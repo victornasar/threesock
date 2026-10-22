@@ -1,0 +1,54 @@
+{
+  "name": "threesock",
+  "version": "0.1.0",
+  "description": "One extra layer of confidence before your SOC 2 audit. Open-source SOC 2 codebase readiness scanner.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "threesock": "dist/cli/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "docs/rubric",
+    "mappings",
+    "assets/brand"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "gen:criteria": "node scripts/gen-criteria.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "selfscan": "pnpm run build && node dist/cli/index.js scan . --fail-on high",
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm test && pnpm run selfscan"
+  },
+  "keywords": [
+    "soc2",
+    "compliance",
+    "security",
+    "readiness",
+    "audit",
+    "sarif",
+    "mcp"
+  ],
+  "dependencies": {
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  },
+  "packageManager": "pnpm@12.15.0"
+}

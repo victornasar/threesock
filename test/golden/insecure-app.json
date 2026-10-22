@@ -1,0 +1,1935 @@
+{
+  "schemaVersion": "1.0.0",
+  "tool": {
+    "name": "threesock",
+    "version": "<version>"
+  },
+  "disclaimer": "threesock is an engineering readiness aid, not an audit. SOC 2 is attested by a licensed CPA firm against your organization's system description and commitments. A codebase can only demonstrate part of the criteria; the rest (board oversight, HR, vendor contracts, physical security) must be evidenced outside the repo. Use this report to find gaps early, not to claim compliance.",
+  "generatedAt": "2026-01-15T12:00:00.000Z",
+  "repository": {
+    "root": "<root>",
+    "filesScanned": 7,
+    "gitAware": true
+  },
+  "config": {
+    "scope": [
+      "security"
+    ]
+  },
+  "summary": {
+    "overall": {
+      "assessable": 3,
+      "earned": 0,
+      "possible": 6,
+      "percent": 0,
+      "band": "not-ready",
+      "capped": true,
+      "manualOpen": 30,
+      "notApplicable": 0
+    },
+    "categories": [
+      {
+        "category": "security",
+        "label": "Security",
+        "inScope": true,
+        "assessable": 3,
+        "earned": 0,
+        "possible": 6,
+        "percent": 0,
+        "band": "not-ready",
+        "capped": true,
+        "manualOpen": 30,
+        "notApplicable": 0
+      },
+      {
+        "category": "availability",
+        "label": "Availability",
+        "inScope": false,
+        "assessable": 0,
+        "earned": 0,
+        "possible": 0,
+        "percent": null,
+        "band": null,
+        "capped": false,
+        "manualOpen": 0,
+        "notApplicable": 3
+      },
+      {
+        "category": "processing-integrity",
+        "label": "Processing Integrity",
+        "inScope": false,
+        "assessable": 0,
+        "earned": 0,
+        "possible": 0,
+        "percent": null,
+        "band": null,
+        "capped": false,
+        "manualOpen": 0,
+        "notApplicable": 5
+      },
+      {
+        "category": "confidentiality",
+        "label": "Confidentiality",
+        "inScope": false,
+        "assessable": 0,
+        "earned": 0,
+        "possible": 0,
+        "percent": null,
+        "band": null,
+        "capped": false,
+        "manualOpen": 0,
+        "notApplicable": 2
+      },
+      {
+        "category": "privacy",
+        "label": "Privacy",
+        "inScope": false,
+        "assessable": 0,
+        "earned": 0,
+        "possible": 0,
+        "percent": null,
+        "band": null,
+        "capped": false,
+        "manualOpen": 0,
+        "notApplicable": 18
+      }
+    ],
+    "severityCounts": {
+      "critical": 5,
+      "high": 1,
+      "medium": 2,
+      "low": 1
+    },
+    "acceptedFindings": 0,
+    "manualOpen": 30,
+    "topFixes": [
+      {
+        "ruleId": "cc6.1/hardcoded-secrets",
+        "criterion": "CC6.1",
+        "severity": "critical",
+        "title": "Hard-coded Stripe live key",
+        "occurrences": 5,
+        "recommendation": "Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret."
+      },
+      {
+        "ruleId": "cc6.1/env-files",
+        "criterion": "CC6.1",
+        "severity": "critical",
+        "title": "Environment file committed: .env",
+        "occurrences": 2,
+        "recommendation": "Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead."
+      },
+      {
+        "ruleId": "cc1.3/codeowners",
+        "criterion": "CC1.3",
+        "severity": "medium",
+        "title": "No CODEOWNERS file",
+        "occurrences": 1,
+        "recommendation": "Add .github/CODEOWNERS with a catch-all owner and named teams for sensitive paths, then require code owner review in branch protection."
+      },
+      {
+        "ruleId": "cc2.3/security-policy",
+        "criterion": "CC2.3",
+        "severity": "medium",
+        "title": "No vulnerability disclosure policy",
+        "occurrences": 1,
+        "recommendation": "Add SECURITY.md at the repository root with a private reporting channel, supported versions and expected response time."
+      }
+    ]
+  },
+  "criteria": [
+    {
+      "id": "CC1.1",
+      "category": "security",
+      "title": "Integrity and ethical values",
+      "tags": [
+        "ORG",
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Code of conduct / ethics policy exists and is linked from the handbook or repo",
+        "`SECURITY.md` or equivalent gives a reporting channel for security and ethics concerns",
+        "Employee/contractor acknowledgment of policies is tracked (HRIS/GRC)",
+        "Whistleblower mechanism, disciplinary procedure, and background screening documented"
+      ],
+      "owner": "Leadership and People Ops"
+    },
+    {
+      "id": "CC1.2",
+      "category": "security",
+      "title": "Board oversight",
+      "tags": [
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 0
+      },
+      "manualFollowUps": [],
+      "owner": "Board / executive leadership"
+    },
+    {
+      "id": "CC1.3",
+      "category": "security",
+      "title": "Organizational structure",
+      "tags": [
+        "CONFIG",
+        "DOCS",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "cc1.3/codeowners",
+          "title": "CODEOWNERS assigns an owner to every path",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-007"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-007"
+      ],
+      "coverage": {
+        "automatedRules": 1,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Service ownership recorded (service catalog, `catalog-info.yaml`, README owner section)",
+        "Segregation of duties enforced: PR authors cannot approve their own changes; production deploy permission is distinct from write access",
+        "Org chart, RACI, and job descriptions exist"
+      ]
+    },
+    {
+      "id": "CC1.4",
+      "category": "security",
+      "title": "Competence",
+      "tags": [
+        "DOCS",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": [
+        "Secure coding guidelines and onboarding docs exist",
+        "Contribution guide covers security expectations (dependency policy, secret handling, review standards)",
+        "Training completion records tracked"
+      ],
+      "owner": "Leadership and People Ops"
+    },
+    {
+      "id": "CC1.5",
+      "category": "security",
+      "title": "Accountability",
+      "tags": [
+        "CONFIG",
+        "DOCS",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Every change is attributable to an individual (no shared accounts; signed commits or SSO-linked identities)",
+        "Control owners named for each control in documentation",
+        "Escalation paths documented in runbooks",
+        "Performance objectives and disciplinary process reference security duties"
+      ],
+      "owner": "Leadership and People Ops"
+    },
+    {
+      "id": "CC2.1",
+      "category": "security",
+      "title": "Relevant, quality information",
+      "tags": [
+        "CONFIG",
+        "CODE"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "System/asset inventory maintained (services, datastores, third-party integrations)",
+        "SBOM generated in CI or on release",
+        "Vulnerability scan output retained and queryable",
+        "Security metrics available (open vulns by severity, MTTR, patch age, coverage of MFA)",
+        "Dashboards/alerts defined as code"
+      ],
+      "owner": "Security lead"
+    },
+    {
+      "id": "CC2.2",
+      "category": "security",
+      "title": "Internal communication",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Security policies and runbooks are discoverable in-repo or linked from the README",
+        "PR template includes a security-impact section or checklist",
+        "Alert routing (Slack/PagerDuty/email) defined as code or documented",
+        "Security advisories/alerts (e.g., Dependabot, code scanning) route to the responsible team"
+      ],
+      "owner": "Security lead"
+    },
+    {
+      "id": "CC2.3",
+      "category": "security",
+      "title": "External communication",
+      "tags": [
+        "DOCS",
+        "CODE",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "cc2.3/security-policy",
+          "title": "Vulnerability disclosure policy with a reporting channel",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-008"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-008"
+      ],
+      "coverage": {
+        "automatedRules": 1,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Public privacy/security notices are current and linked in the product",
+        "Incident notification templates for customers exist",
+        "Status page configured; API documentation states auth and security requirements",
+        "Vendor security requirements communicated"
+      ]
+    },
+    {
+      "id": "CC3.1",
+      "category": "security",
+      "title": "Suitable objectives",
+      "tags": [
+        "DOCS",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 2
+      },
+      "manualFollowUps": [
+        "Security, availability, and data-handling objectives documented (README, architecture docs, SLOs)",
+        "Data-flow diagrams and trust boundaries documented"
+      ],
+      "owner": "Security and risk owner"
+    },
+    {
+      "id": "CC3.2",
+      "category": "security",
+      "title": "Risk identification and analysis",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Threat models exist for critical services and are updated with major changes",
+        "Risk register exists and links to issues/tickets",
+        "Vulnerability findings (SAST/SCA/IaC) are scored with a defined method (e.g., CVSS + exploitability + exposure)",
+        "ADRs record security considerations for architectural decisions"
+      ],
+      "owner": "Security and risk owner"
+    },
+    {
+      "id": "CC3.3",
+      "category": "security",
+      "title": "Fraud risk",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Privileged and financial actions require multi-party approval or step-up authentication",
+        "Admin/impersonation actions are audit-logged with actor, target, and reason",
+        "No backdoor accounts, hard-coded admin credentials, or \"debug bypass\" flags active in production code paths",
+        "Management override is detectable (admins cannot bypass branch protection silently; bypass events are logged)",
+        "Rate limiting and anomaly detection on credential-abuse and account-takeover vectors"
+      ],
+      "owner": "Security and risk owner"
+    },
+    {
+      "id": "CC3.4",
+      "category": "security",
+      "title": "Significant changes",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Design review or ADR required for major architectural changes",
+        "Adding a new third-party service, SDK, or datastore triggers a review (documented in PR template or CODEOWNERS on manifests)",
+        "Major dependency/runtime upgrades are reviewed for security impact",
+        "IaC changes to networking, IAM, or encryption require elevated review"
+      ],
+      "owner": "Security and risk owner"
+    },
+    {
+      "id": "CC4.1",
+      "category": "security",
+      "title": "Ongoing/separate evaluations",
+      "tags": [
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "CI runs SAST (e.g., CodeQL/Semgrep), SCA/dependency scanning, secret scanning, and IaC scanning on every PR",
+        "Container image scanning on build and on a schedule",
+        "Scheduled (cron) scans for the default branch, not just PR-triggered",
+        "DAST or penetration test performed at least annually, and reports are retained",
+        "Access reviews performed on a defined cadence (repo, cloud, prod data)",
+        "Compliance-as-code checks (OPA/Conftest, Checkov, cloud config rules) run automatically"
+      ],
+      "owner": "Security lead"
+    },
+    {
+      "id": "CC4.2",
+      "category": "security",
+      "title": "Deficiency communication and remediation",
+      "tags": [
+        "CONFIG",
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Findings automatically create tracked issues with owner and due date",
+        "Remediation SLAs are defined and measured (see 1.4)",
+        "CI blocks merge or release on Critical/High findings (or documented, time-boxed exception)",
+        "Exceptions require approver, justification, and expiry date",
+        "Escalation path exists for overdue findings"
+      ],
+      "owner": "Security lead"
+    },
+    {
+      "id": "CC5.1",
+      "category": "security",
+      "title": "Control selection and design",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": [
+        "Controls are mapped to identified risks (control matrix)",
+        "Preventive controls exist as CI gates and policy-as-code, not only documented intent",
+        "Compensating controls documented where a primary control is not feasible"
+      ],
+      "owner": "Security / GRC"
+    },
+    {
+      "id": "CC5.2",
+      "category": "security",
+      "title": "Technology general controls",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "SSO/MFA enforced on source control, cloud console, CI/CD, and production tooling",
+        "Centralized logging in place (see CC7)",
+        "Encryption in transit and at rest configured (see CC6.7, C1.1)",
+        "Endpoint management/EDR policy for developer machines",
+        "CI/CD hardened: least-privilege pipeline tokens; OIDC federation instead of long-lived cloud keys; third-party actions pinned to commit SHAs; protected environments with required reviewers for production; no secrets echoed in logs"
+      ],
+      "owner": "Security / GRC"
+    },
+    {
+      "id": "CC5.3",
+      "category": "security",
+      "title": "Policies and procedures",
+      "tags": [
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Policies are version-controlled with review history and effective dates",
+        "Procedures/runbooks exist for onboarding, offboarding, deployment, rollback, incident response, key rotation, and access reviews",
+        "Policies are reviewed at least annually, with approver recorded",
+        "Employee acknowledgments tracked"
+      ],
+      "owner": "Security / GRC"
+    },
+    {
+      "id": "CC6.1",
+      "category": "security",
+      "title": "Logical access security",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "An open Critical finding caps this criterion at 0 until it is resolved.",
+      "capped": true,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "cc6.1/env-files",
+          "title": ".env files are not committed and are gitignored",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-001",
+            "F-009"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/hardcoded-secrets",
+          "title": "No secrets committed in source or config",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-002",
+            "F-003",
+            "F-004",
+            "F-005",
+            "F-006"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005",
+        "F-006",
+        "F-009"
+      ],
+      "coverage": {
+        "automatedRules": 2,
+        "rubricChecks": 7
+      },
+      "manualFollowUps": [
+        "**Authentication:** SSO/OIDC/SAML supported for workforce and enterprise customers; MFA available and enforced for admins/privileged roles",
+        "**Credentials:** Passwords hashed with Argon2id/bcrypt/scrypt; no plaintext or reversible storage; breached-password and length checks; account lockout or throttling",
+        "**Sessions/tokens:** Cookies are `HttpOnly`, `Secure`, `SameSite`; sessions expire and are invalidated on logout/password change; JWTs are signed with strong algorithms, validated (`alg`, `exp`, `aud`, `iss`), and short-lived",
+        "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries",
+        "**Least privilege:** IAM roles/policies avoid `*` actions and resources; DB users are scoped per service; service-to-service auth (mTLS/tokens) in place",
+        "**Data stores** are not publicly reachable and require authentication"
+      ]
+    },
+    {
+      "id": "CC6.2",
+      "category": "security",
+      "title": "Registration and authorization before access",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Workforce access is provisioned through IdP/SCIM or an approved request workflow",
+        "IAM/permission changes made via IaC with PR review and approval",
+        "Customer-user registration verifies identity (email/domain verification, invite flows) and cannot self-assign privileged roles",
+        "No default or shared credentials; service accounts have documented owners and purpose",
+        "Role definitions documented and mapped to job function"
+      ],
+      "owner": "Security and platform engineering"
+    },
+    {
+      "id": "CC6.3",
+      "category": "security",
+      "title": "Access removal and modification",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "Offboarding procedure revokes SSO, VCS, cloud, CI/CD, and vendor access, with an SLA (≤ 24h)",
+        "SCIM/IdP deprovisioning propagates to the application",
+        "Role changes take effect promptly (no long-lived cached elevated claims)",
+        "Tokens, API keys, sessions, and deploy keys are revocable; revocation is enforced in code",
+        "Periodic access reviews identify and remove stale accounts, keys, and contractor access",
+        "Machine credentials rotate on schedule and on personnel change"
+      ],
+      "owner": "Security and platform engineering"
+    },
+    {
+      "id": "CC6.4",
+      "category": "security",
+      "title": "Physical access",
+      "tags": [
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 2
+      },
+      "manualFollowUps": [
+        "Production runs in providers with current SOC 2 reports (carve-out/inherited controls documented)",
+        "No on-premises or colo infrastructure defined in IaC unless separately assessed"
+      ],
+      "owner": "IT and facilities (inherit from cloud provider SOC 2 report)"
+    },
+    {
+      "id": "CC6.5",
+      "category": "security",
+      "title": "Secure disposal of assets",
+      "tags": [
+        "CONFIG",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Decommissioned cloud resources (volumes, snapshots, buckets, DBs) are deleted via IaC/lifecycle rules",
+        "Storage is encrypted so that key destruction renders data unrecoverable (crypto-shredding)",
+        "Data-bearing resources have documented decommission steps and verification",
+        "Device wipe/destruction records exist for endpoints and media"
+      ],
+      "owner": "Security and platform engineering"
+    },
+    {
+      "id": "CC6.6",
+      "category": "security",
+      "title": "Protection against external threats",
+      "tags": [
+        "CONFIG",
+        "CODE"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 7
+      },
+      "manualFollowUps": [
+        "Security groups/firewall rules avoid `0.0.0.0/0` on admin/DB ports (22, 3389, 5432, 3306, 6379, 27017, etc.)",
+        "Databases and internal services sit in private subnets; ingress via load balancer/WAF/API gateway only",
+        "WAF or equivalent protection for public endpoints; DDoS protections available",
+        "Rate limiting and abuse protections on auth and public APIs",
+        "Restrictive CORS (no wildcard with credentials); security headers set (CSP, HSTS, X-Content-Type-Options, frame protections)",
+        "Defenses against common web flaws: injection (parameterized queries), XSS (output encoding), CSRF, SSRF, path traversal, unsafe deserialization, open redirects",
+        "Admin access via VPN/bastion/zero-trust proxy, not the public internet"
+      ],
+      "owner": "Security and platform engineering"
+    },
+    {
+      "id": "CC6.7",
+      "category": "security",
+      "title": "Protection of data in transmission",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 7
+      },
+      "manualFollowUps": [
+        "TLS 1.2+ enforced on all external and internal endpoints; HTTP redirects to HTTPS; HSTS enabled",
+        "Certificate validation is never disabled (`verify=False`, `rejectUnauthorized: false`, `InsecureSkipVerify`, `curl -k`)",
+        "Weak protocols/ciphers disabled",
+        "Webhooks and callbacks are signed and verified",
+        "Secrets, tokens, and PII are never placed in URLs/query strings or logs",
+        "Data exports/transfers use encrypted channels (SFTP, presigned URLs with short expiry)",
+        "Controls exist to prevent unauthorized bulk export/exfiltration (e.g., egress rules, export permissions)"
+      ],
+      "owner": "Security and platform engineering"
+    },
+    {
+      "id": "CC6.8",
+      "category": "security",
+      "title": "Malicious/unauthorized software",
+      "tags": [
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 8
+      },
+      "manualFollowUps": [
+        "Lockfiles committed; installs are reproducible (`npm ci`, hash-pinned `pip`, `go.sum`, etc.)",
+        "Dependency and container scanning in CI; new dependencies reviewed",
+        "Base images are minimal and come from trusted registries; pinned by digest where feasible",
+        "Build artifacts are signed or attested; provenance available (e.g., SLSA, Sigstore)",
+        "No unverified `curl | bash` in Dockerfiles/CI; downloads are checksum-verified",
+        "Only approved GitHub Actions/CI plugins are allowed (allowlist or SHA-pinning)",
+        "File-upload paths scan or sandbox untrusted files",
+        "Endpoint protection/EDR on developer and production hosts"
+      ],
+      "owner": "Security and platform engineering"
+    },
+    {
+      "id": "CC7.1",
+      "category": "security",
+      "title": "Detection of vulnerabilities and configuration changes",
+      "tags": [
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Vulnerability scanning of code, dependencies, images, and infrastructure is continuous or scheduled",
+        "Infrastructure drift detection (e.g., `terraform plan` scheduled, cloud config monitoring)",
+        "Hardened baseline configurations defined for hosts/containers/clusters",
+        "Security-relevant events are logged: authentication, authorization failures, privilege changes, admin actions, data export, config changes",
+        "Logs are centralized and tamper-resistant"
+      ],
+      "owner": "SRE / security operations"
+    },
+    {
+      "id": "CC7.2",
+      "category": "security",
+      "title": "Monitoring for anomalies",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Alert rules exist for failed-login spikes, privilege escalation, unusual data access/volume, error-rate spikes, and infrastructure anomalies",
+        "Alerts route to an on-call owner with defined response expectations",
+        "Logs are structured and include timestamp, actor, action, resource, outcome, and correlation ID",
+        "**No secrets, credentials, full card numbers, or unnecessary PII in logs**",
+        "Log retention meets policy (see 1.4); access to logs is restricted and audited"
+      ],
+      "owner": "SRE / security operations"
+    },
+    {
+      "id": "CC7.3",
+      "category": "security",
+      "title": "Security event evaluation",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": [
+        "Severity classification/triage criteria documented",
+        "Alert-to-ticket automation exists",
+        "Event evaluation outcomes are recorded (true/false positive, incident yes/no)"
+      ],
+      "owner": "SRE / security operations"
+    },
+    {
+      "id": "CC7.4",
+      "category": "security",
+      "title": "Incident response",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Incident response plan exists with roles, severity levels, communication plans, and escalation paths",
+        "Runbooks exist for common scenarios (credential leak, data exposure, compromised dependency, DDoS)",
+        "Emergency capability: revoke keys, disable accounts, kill switches/feature flags, isolate services",
+        "Incident tickets with timelines exist; postmortems completed with tracked corrective actions",
+        "Response plan tested (tabletop or simulation) at least annually"
+      ],
+      "owner": "SRE / security operations"
+    },
+    {
+      "id": "CC7.5",
+      "category": "security",
+      "title": "Recovery from incidents",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Infrastructure can be rebuilt from IaC; clean-room redeploy procedure documented",
+        "Secret and credential rotation procedure exists and is exercised",
+        "Backup restore procedures documented (see A1.2, A1.3)",
+        "Post-incident remediation is tracked to completion"
+      ],
+      "owner": "SRE / security operations"
+    },
+    {
+      "id": "CC8.1",
+      "category": "security",
+      "title": "Authorized, tested, approved changes",
+      "tags": [
+        "CONFIG",
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 12
+      },
+      "manualFollowUps": [
+        "**Branch protection** on default and release branches: PR required; ≥ 1 approving review from someone other than the author; stale approvals dismissed; required status checks; conversation resolution; force-push and deletion disabled",
+        "**Admins are not exempt** from protection, or bypass is logged and reviewed",
+        "`CODEOWNERS` review enforced on sensitive paths",
+        "CI runs automated tests, lint, and security scans before merge",
+        "Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure",
+        "IaC changes go through plan/review/apply with recorded approvals; state is remote, locked, and access-controlled",
+        "Database migrations are reviewed, tested, and reversible or have a rollback plan",
+        "Rollback procedure documented and exercised",
+        "Changes are traceable: commit → PR → ticket → build → deployment, with logs retained",
+        "Emergency-change process defined, with retroactive review required",
+        "Production credentials are not available on developer laptops or standing dev access; test and prod are separated",
+        "Production data is not used in lower environments unless masked"
+      ],
+      "owner": "Engineering lead"
+    },
+    {
+      "id": "CC9.1",
+      "category": "security",
+      "title": "Business disruption risk",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Business continuity and disaster recovery plans exist and cover this system",
+        "Single points of failure identified and mitigated (multi-AZ, redundant components)",
+        "Critical dependencies (cloud region, DNS, auth provider, payment provider) have documented fallback or degradation behavior",
+        "Runbooks exist for regional/provider outages"
+      ],
+      "owner": "SRE / business continuity owner"
+    },
+    {
+      "id": "CC9.2",
+      "category": "security",
+      "title": "Vendor and third-party risk",
+      "tags": [
+        "CODE",
+        "CONFIG",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "Inventory of third-party services, SDKs, APIs, and open-source dependencies (SBOM + integrations list)",
+        "New dependencies and vendors require review before adoption",
+        "Third-party credentials are least-privilege and scoped per vendor; rotation supported",
+        "Data shared with each vendor is documented and minimized; data-flow diagrams cover vendors",
+        "Webhook/callback authenticity verified; vendor SDKs pinned and scanned",
+        "Vendor SOC reports, DPAs, security questionnaires, and annual reviews tracked"
+      ],
+      "owner": "Vendor management / procurement"
+    },
+    {
+      "id": "A1.1",
+      "category": "availability",
+      "title": "Capacity management",
+      "tags": [
+        "CONFIG",
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "A1.2",
+      "category": "availability",
+      "title": "Environmental protection, backup, and recovery infrastructure",
+      "tags": [
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 7
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "A1.3",
+      "category": "availability",
+      "title": "Recovery plan testing",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "PI1.1",
+      "category": "processing-integrity",
+      "title": "Processing objectives and specifications",
+      "tags": [
+        "DOCS",
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "PI1.2",
+      "category": "processing-integrity",
+      "title": "Input completeness and accuracy",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "PI1.3",
+      "category": "processing-integrity",
+      "title": "Processing completeness, accuracy, timeliness, authorization",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "PI1.4",
+      "category": "processing-integrity",
+      "title": "Output completeness, accuracy, timeliness",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "PI1.5",
+      "category": "processing-integrity",
+      "title": "Storage completeness and accuracy",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "C1.1",
+      "category": "confidentiality",
+      "title": "Identify and protect confidential information",
+      "tags": [
+        "CODE",
+        "CONFIG",
+        "DOCS"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 8
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "C1.2",
+      "category": "confidentiality",
+      "title": "Dispose of confidential information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P1.1",
+      "category": "privacy",
+      "title": "Privacy notice",
+      "tags": [
+        "CODE",
+        "DOCS"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P2.1",
+      "category": "privacy",
+      "title": "Choice and consent",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P3.1",
+      "category": "privacy",
+      "title": "Collection consistent with objectives",
+      "tags": [
+        "CODE",
+        "DOCS"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P3.2",
+      "category": "privacy",
+      "title": "Sensitive information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P4.1",
+      "category": "privacy",
+      "title": "Use of personal information",
+      "tags": [
+        "CODE",
+        "DOCS"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P4.2",
+      "category": "privacy",
+      "title": "Retention of personal information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P4.3",
+      "category": "privacy",
+      "title": "Disposal of personal information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P5.1",
+      "category": "privacy",
+      "title": "Data subject access",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P5.2",
+      "category": "privacy",
+      "title": "Correction and amendment",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.1",
+      "category": "privacy",
+      "title": "Authorized disclosure to third parties",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.2",
+      "category": "privacy",
+      "title": "Records of authorized disclosures",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 2
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.3",
+      "category": "privacy",
+      "title": "Records of unauthorized disclosures",
+      "tags": [
+        "CODE",
+        "DOCS"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.4",
+      "category": "privacy",
+      "title": "Third-party privacy commitments",
+      "tags": [
+        "ORG",
+        "CONFIG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.5",
+      "category": "privacy",
+      "title": "Third-party notification of unauthorized disclosure",
+      "tags": [
+        "ORG",
+        "DOCS"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 2
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.6",
+      "category": "privacy",
+      "title": "Breach notification",
+      "tags": [
+        "DOCS",
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P6.7",
+      "category": "privacy",
+      "title": "Accounting of personal information held and disclosed",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 2
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P7.1",
+      "category": "privacy",
+      "title": "Data quality",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    },
+    {
+      "id": "P8.1",
+      "category": "privacy",
+      "title": "Privacy inquiries, complaints, and disputes",
+      "tags": [
+        "DOCS",
+        "ORG"
+      ],
+      "inScope": false,
+      "score": "N/A",
+      "label": "Not Applicable",
+      "rationale": "Category not in scope for this scan.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "ruleId": "cc6.1/env-files",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "Environment file committed: .env",
+      "location": {
+        "description": ".env",
+        "path": ".env"
+      },
+      "observed": ".env is tracked by git and assigns 3 variable(s). Secret-looking variables: DATABASE_URL, STRIPE_SECRET_KEY. Values are not shown.",
+      "expected": "Environment files with real values stay out of version control. Only templates such as .env.example are committed, and .gitignore excludes .env files.",
+      "risk": "A committed .env file usually holds live credentials, which are then exposed to everyone with repository access and remain in git history.",
+      "recommendation": "Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "19b2fdd7597cd865",
+      "example": "# .gitignore\n.env\n.env.*\n!.env.example"
+    },
+    {
+      "id": "F-002",
+      "ruleId": "cc6.1/hardcoded-secrets",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "Hard-coded Stripe live key",
+      "location": {
+        "description": ".env:3",
+        "path": ".env",
+        "line": 3
+      },
+      "observed": "A Stripe live key (sk_l********) is present in .env at line 3. The value is redacted.",
+      "expected": "No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.",
+      "risk": "Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.",
+      "recommendation": "Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "5abcffbf8a26b92f",
+      "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
+    },
+    {
+      "id": "F-003",
+      "ruleId": "cc6.1/hardcoded-secrets",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "Hard-coded private key",
+      "location": {
+        "description": "config/deploy.pem:1",
+        "path": "config/deploy.pem",
+        "line": 1
+      },
+      "observed": "A private key (key material) is present in config/deploy.pem at line 1. The value is redacted.",
+      "expected": "No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.",
+      "risk": "Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.",
+      "recommendation": "Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "578d58a6ea3d3f78",
+      "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
+    },
+    {
+      "id": "F-004",
+      "ruleId": "cc6.1/hardcoded-secrets",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "Hard-coded AWS access key ID",
+      "location": {
+        "description": "src/config.js:3",
+        "path": "src/config.js",
+        "line": 3
+      },
+      "observed": "An AWS access key ID (AKIA********) is present in src/config.js at line 3. The value is redacted.",
+      "expected": "No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.",
+      "risk": "Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.",
+      "recommendation": "Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "362be198fe5c6855",
+      "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
+    },
+    {
+      "id": "F-005",
+      "ruleId": "cc6.1/hardcoded-secrets",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "Hard-coded GitHub token",
+      "location": {
+        "description": "src/config.js:7",
+        "path": "src/config.js",
+        "line": 7
+      },
+      "observed": "A GitHub token (ghp_********) is present in src/config.js at line 7. The value is redacted.",
+      "expected": "No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.",
+      "risk": "Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.",
+      "recommendation": "Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "bfc919acd0d513b7",
+      "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
+    },
+    {
+      "id": "F-006",
+      "ruleId": "cc6.1/hardcoded-secrets",
+      "criterion": "CC6.1",
+      "severity": "high",
+      "title": "Hard-coded database URL with password",
+      "location": {
+        "description": ".env:2",
+        "path": ".env",
+        "line": 2
+      },
+      "observed": "A database URL with password (Vq8********) is present in .env at line 2. The value is redacted.",
+      "expected": "No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.",
+      "risk": "Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.",
+      "recommendation": "Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "01a87178c156b224",
+      "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
+    },
+    {
+      "id": "F-007",
+      "ruleId": "cc1.3/codeowners",
+      "criterion": "CC1.3",
+      "severity": "medium",
+      "title": "No CODEOWNERS file",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No CODEOWNERS file found in .github/, the root or docs/.",
+      "expected": "A CODEOWNERS file assigns an owner to every directory, with named teams on security-sensitive paths.",
+      "risk": "Changes to unowned code can merge without review from anyone accountable for it.",
+      "recommendation": "Add .github/CODEOWNERS with a catch-all owner and named teams for sensitive paths, then require code owner review in branch protection.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "3c1304ef0ce0a8d3",
+      "example": "# .github/CODEOWNERS\n*                 @your-org/engineering\n/src/auth/        @your-org/security\n/infra/           @your-org/platform"
+    },
+    {
+      "id": "F-008",
+      "ruleId": "cc2.3/security-policy",
+      "criterion": "CC2.3",
+      "severity": "medium",
+      "title": "No vulnerability disclosure policy",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No SECURITY.md or security.txt found (looked in SECURITY.md, .github/SECURITY.md, docs/SECURITY.md, .well-known/security.txt, public/.well-known/security.txt, static/.well-known/security.txt).",
+      "expected": "A SECURITY.md (or /.well-known/security.txt) tells external researchers how to report a vulnerability and what response to expect.",
+      "risk": "Without a published channel, vulnerabilities get reported publicly, to the wrong person, or not at all.",
+      "recommendation": "Add SECURITY.md at the repository root with a private reporting channel, supported versions and expected response time.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "9f8fe6464cbd7a34",
+      "example": "# Security policy\n\n## Reporting a vulnerability\nEmail security@example.com or use GitHub private vulnerability reporting.\nWe acknowledge reports within 2 business days and aim to fix Critical issues within 7 days."
+    },
+    {
+      "id": "F-009",
+      "ruleId": "cc6.1/env-files",
+      "criterion": "CC6.1",
+      "severity": "low",
+      "title": ".gitignore does not exclude .env files",
+      "location": {
+        "description": ".gitignore",
+        "path": ".gitignore"
+      },
+      "observed": ".gitignore has no entry matching .env files.",
+      "expected": "Environment files with real values stay out of version control. Only templates such as .env.example are committed, and .gitignore excludes .env files.",
+      "risk": "A committed .env file usually holds live credentials, which are then exposed to everyone with repository access and remain in git history.",
+      "recommendation": "Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "c3119a20058b5edf",
+      "example": "# .gitignore\n.env\n.env.*\n!.env.example"
+    }
+  ],
+  "coverage": {
+    "rulesRun": 4,
+    "rulesErrored": [],
+    "externalTools": []
+  }
+}

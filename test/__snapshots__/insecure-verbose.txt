@@ -1,0 +1,79 @@
+threesock <version> · SOC 2 readiness scan
+Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
+
+Repository  <root>
+Scanned     7 files (git-aware) · 4 rules
+Scope       Security
+
+Readiness
+  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/33 criteria assessed, capped by open Critical
+  Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/33 criteria assessed, capped by open Critical
+
+Findings    5 critical · 1 high · 2 medium · 1 low
+
+Top fixes
+  1. CRITICAL CC6.1  Hard-coded Stripe live key (+4 more)
+     Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+  2. CRITICAL CC6.1  Environment file committed: .env (+1 more)
+     Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead.
+  3. MEDIUM   CC1.3  No CODEOWNERS file
+     Add .github/CODEOWNERS with a catch-all owner and named teams for sensitive paths, then require code owner review in branch protection.
+  4. MEDIUM   CC2.3  No vulnerability disclosure policy
+     Add SECURITY.md at the repository root with a private reporting channel, supported versions and expected response time.
+
+Open findings
+  F-001  CRITICAL CC6.1  Environment file committed: .env
+         .env · due 2026-01-16
+  F-002  CRITICAL CC6.1  Hard-coded Stripe live key
+         .env:3 · due 2026-01-16
+  F-003  CRITICAL CC6.1  Hard-coded private key
+         config/deploy.pem:1 · due 2026-01-16
+  F-004  CRITICAL CC6.1  Hard-coded AWS access key ID
+         src/config.js:3 · due 2026-01-16
+  F-005  CRITICAL CC6.1  Hard-coded GitHub token
+         src/config.js:7 · due 2026-01-16
+  F-006  HIGH     CC6.1  Hard-coded database URL with password
+         .env:2 · due 2026-02-14
+  F-007  MEDIUM   CC1.3  No CODEOWNERS file
+         repository · due 2026-04-15
+  F-008  MEDIUM   CC2.3  No vulnerability disclosure policy
+         repository · due 2026-04-15
+  F-009  LOW      CC6.1  .gitignore does not exclude .env files
+         .gitignore · due 2026-07-14
+
+Criteria
+  CC1.1  MANUAL  Manual Evidence  Integrity and ethical values
+  CC1.2  MANUAL  Manual Evidence  Board oversight
+  CC1.3  0       Not Met          Organizational structure
+  CC1.4  MANUAL  Manual Evidence  Competence
+  CC1.5  MANUAL  Manual Evidence  Accountability
+  CC2.1  MANUAL  Manual Evidence  Relevant, quality information
+  CC2.2  MANUAL  Manual Evidence  Internal communication
+  CC2.3  0       Not Met          External communication
+  CC3.1  MANUAL  Manual Evidence  Suitable objectives
+  CC3.2  MANUAL  Manual Evidence  Risk identification and analysis
+  CC3.3  MANUAL  Manual Evidence  Fraud risk
+  CC3.4  MANUAL  Manual Evidence  Significant changes
+  CC4.1  MANUAL  Manual Evidence  Ongoing/separate evaluations
+  CC4.2  MANUAL  Manual Evidence  Deficiency communication and remediation
+  CC5.1  MANUAL  Manual Evidence  Control selection and design
+  CC5.2  MANUAL  Manual Evidence  Technology general controls
+  CC5.3  MANUAL  Manual Evidence  Policies and procedures
+  CC6.1  0       Not Met          Logical access security
+  CC6.2  MANUAL  Manual Evidence  Registration and authorization before access
+  CC6.3  MANUAL  Manual Evidence  Access removal and modification
+  CC6.4  MANUAL  Manual Evidence  Physical access
+  CC6.5  MANUAL  Manual Evidence  Secure disposal of assets
+  CC6.6  MANUAL  Manual Evidence  Protection against external threats
+  CC6.7  MANUAL  Manual Evidence  Protection of data in transmission
+  CC6.8  MANUAL  Manual Evidence  Malicious/unauthorized software
+  CC7.1  MANUAL  Manual Evidence  Detection of vulnerabilities and configuration changes
+  CC7.2  MANUAL  Manual Evidence  Monitoring for anomalies
+  CC7.3  MANUAL  Manual Evidence  Security event evaluation
+  CC7.4  MANUAL  Manual Evidence  Incident response
+  CC7.5  MANUAL  Manual Evidence  Recovery from incidents
+  CC8.1  MANUAL  Manual Evidence  Authorized, tested, approved changes
+  CC9.1  MANUAL  Manual Evidence  Business disruption risk
+  CC9.2  MANUAL  Manual Evidence  Vendor and third-party risk
+
+Manual evidence: 30 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

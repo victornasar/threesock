@@ -1,0 +1,10 @@
+# threesock's own configuration: the repo is scanned by itself in CI.
+version: 1
+
+scope:
+  - security
+
+ignore:
+  # Deliberately insecure fixture repos used by the test suite. Their planted
+  # findings are asserted by test/golden/insecure-app.json instead.
+  - 'test/fixtures/**'

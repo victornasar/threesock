@@ -1,0 +1,16 @@
+threesock <version> · SOC 2 readiness scan
+Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
+
+Repository  <root>
+Scanned     7 files (git-aware) · 4 rules
+Scope       Security
+
+Readiness
+  Overall               ████████████████████  100.0%  Audit-ready · 3/33 criteria assessed
+  Security              ████████████████████  100.0%  Audit-ready · 3/33 criteria assessed
+
+Findings    0 critical · 0 high · 0 medium · 0 low
+
+Socks on. No gaps found in this scope.
+
+Manual evidence: 30 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

@@ -1,0 +1,9 @@
+dist
+node_modules
+test/fixtures
+docs/rubric
+src/engine/criteria.generated.ts
+test/__snapshots__
+*.md
+test/golden
+pnpm-lock.yaml

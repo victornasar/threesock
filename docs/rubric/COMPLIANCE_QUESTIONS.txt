@@ -1,0 +1,66 @@
+﻿Compliance Questions
+
+Controls
+An up to date list of controls published internally by Rational, Inc..
+Acceptable Use
+Access Rights
+Asset Inventory
+Change management
+Configuration & Patch Management
+Credential Management
+Data Privacy
+Data Retention & Destruction
+Disaster Recovery Planning
+Disciplinary process
+Encrypted Data at Rest
+Encryption Key Management
+Endpoint Protection
+Endpoint Security
+Information Classification
+Management Security Accountability
+Network Security
+Organization Structure & Reporting Lines
+Personnel Security
+Physical Access Control
+Policy Compliance
+Regulatory Liaison
+Remote-Work Security
+Resource Capacity Management
+Risk Management
+Secure Data Transfer
+Secure SDLC Integration
+Security Governance Roles
+Security Incident Management
+Security Logging
+Security Monitoring & Detection
+Segregation of duties
+Standard Operating Procedures (SOPs)
+Supplier Security
+Vulnerability Management
+Policies
+An up to date list of policies published internally by Rational, Inc..
+Compliance & Regulatory Monitoring
+Secure Configuration & Hardening
+Information Security & Privacy Governance
+Authentication & Password
+Access Control & Least Privilege
+Acceptable Use & Workstation Security
+Incident Response & Breach Notification
+Logging, Monitoring & Audit
+Vendor & Third-Party Risk
+Secure Software Development Lifecycle
+Encryption & Crypto Controls
+Retention & Secure Disposal
+Background Screening & On/Off-boarding
+Physical Security & Environmental
+Policy Management & Exception Handling
+Sanctions & Disciplinary
+Information Sharing & Transfer
+Backup, Business Continuity & Disaster Recovery
+Change & Release Management
+Remote Access & BYOD
+Data Classification & Handling
+Security & Privacy Awareness Training
+Vulnerability & Patch Management
+Privacy & Data-Subject Rights
+Risk Management

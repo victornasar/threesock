@@ -1,0 +1,44 @@
+threesock <version> · SOC 2 readiness scan
+Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
+
+Repository  <root>
+Scanned     7 files (git-aware) · 4 rules
+Scope       Security
+
+Readiness
+  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/33 criteria assessed, capped by open Critical
+  Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/33 criteria assessed, capped by open Critical
+
+Findings    5 critical · 1 high · 2 medium · 1 low
+
+Top fixes
+  1. CRITICAL CC6.1  Hard-coded Stripe live key (+4 more)
+     Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+  2. CRITICAL CC6.1  Environment file committed: .env (+1 more)
+     Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead.
+  3. MEDIUM   CC1.3  No CODEOWNERS file
+     Add .github/CODEOWNERS with a catch-all owner and named teams for sensitive paths, then require code owner review in branch protection.
+  4. MEDIUM   CC2.3  No vulnerability disclosure policy
+     Add SECURITY.md at the repository root with a private reporting channel, supported versions and expected response time.
+
+Open findings
+  F-001  CRITICAL CC6.1  Environment file committed: .env
+         .env · due 2026-01-16
+  F-002  CRITICAL CC6.1  Hard-coded Stripe live key
+         .env:3 · due 2026-01-16
+  F-003  CRITICAL CC6.1  Hard-coded private key
+         config/deploy.pem:1 · due 2026-01-16
+  F-004  CRITICAL CC6.1  Hard-coded AWS access key ID
+         src/config.js:3 · due 2026-01-16
+  F-005  CRITICAL CC6.1  Hard-coded GitHub token
+         src/config.js:7 · due 2026-01-16
+  F-006  HIGH     CC6.1  Hard-coded database URL with password
+         .env:2 · due 2026-02-14
+  F-007  MEDIUM   CC1.3  No CODEOWNERS file
+         repository · due 2026-04-15
+  F-008  MEDIUM   CC2.3  No vulnerability disclosure policy
+         repository · due 2026-04-15
+  F-009  LOW      CC6.1  .gitignore does not exclude .env files
+         .gitignore · due 2026-07-14
+
+Manual evidence: 30 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

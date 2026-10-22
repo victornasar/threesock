@@ -1,0 +1,3 @@
+# Supply-chain hardening (see docs/design.md, decision 6).
+# Refuse package versions published less than a day ago (value in minutes).
+minimumReleaseAge: 1440
