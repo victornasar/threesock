@@ -29,6 +29,7 @@ threesock scans a software repository, scores it against all 61 SOC 2 Trust Serv
 npx threesock                       # scan the current directory (Security scope)
 npx threesock scan . --scope security,availability --format json --out report.json
 npx threesock explain CC8.1         # what a criterion requires and how to fix it
+npx threesock report                # write threesock-report.md (scorecard + findings)
 npx threesock init                  # create threesock.yaml
 ```
 
@@ -72,7 +73,7 @@ Category readiness = points earned ÷ (2 × assessable criteria), excluding N/A 
 
 ## Status
 
-threesock is pre-1.0. Phase 1 (engine, scoring, config, CLI, JSON and text output) is done, with seed rules for secrets, `.env` files, `SECURITY.md` and `CODEOWNERS`. Built-in coverage of CC6, CC8.1 and CC5.2 comes next, followed by the remaining categories, the SARIF, Markdown and HTML reports, the GitHub API checks, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
+threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 41 built-in rules for CC5.2 (CI hardening), CC6 (access, secrets, network, TLS, supply chain) and CC8.1 (change management). Next: the remaining categories (CC2–CC4, CC7, CC9, Availability, Processing Integrity, Confidentiality), SARIF and HTML reports, baselines, then GitHub API checks, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
 
 ## Repository setup
 

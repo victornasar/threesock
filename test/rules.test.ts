@@ -24,11 +24,16 @@ afterAll(() => {
   rmSync(compliant.dir, { recursive: true, force: true });
 });
 
+// Rules that can't prove a negative report "unknown" instead of failing.
+const INSECURE_STATUS: Record<string, string> = {
+  'cc6.6/rate-limiting': 'unknown', // limits may live in a gateway or WAF
+};
+
 describe('every rule passes on the compliant fixture and fails on the insecure one', () => {
   for (const rule of RULES) {
     it(rule.id, () => {
       expect(statusOf(good, rule.id)).toBe('pass');
-      expect(statusOf(bad, rule.id)).toBe('fail');
+      expect(statusOf(bad, rule.id)).toBe(INSECURE_STATUS[rule.id] ?? 'fail');
     });
   }
 });
@@ -82,6 +87,10 @@ describe('insecure fixture', () => {
       ['Hard-coded GitHub token', 'src/config.js:7', 'critical'],
       ['Hard-coded database URL with password', '.env:2', 'high'],
     ]);
+  });
+  it("titles every finding with the gap, not the rule's passing condition", () => {
+    const titles = new Map(RULES.map((r) => [r.id, r.title]));
+    for (const f of bad.findings) expect(f.title, f.ruleId).not.toBe(titles.get(f.ruleId));
   });
   it('flags the committed .env as Critical because it holds secret-looking variables', () => {
     const env = bad.findings.find(

@@ -7,14 +7,16 @@ import { DISCLAIMER } from '../engine/model.js';
 import { scan } from '../engine/scan.js';
 import { SEVERITIES, type Severity } from '../engine/types.js';
 import { renderJson } from '../reports/json.js';
+import { renderMarkdown } from '../reports/markdown.js';
 import { renderText } from '../reports/text.js';
 import { RULES } from '../rules/index.js';
 import { VERSION } from '../version.js';
+import { isFirstRun } from './first-run.js';
 import { colorEnabled } from './style.js';
 import { INIT_TEMPLATE } from './init-template.js';
 
 const FORMATS = ['text', 'json', 'markdown', 'sarif', 'html'] as const;
-const IMPLEMENTED_FORMATS = new Set(['text', 'json']);
+const IMPLEMENTED_FORMATS = new Set(['text', 'json', 'markdown']);
 
 const HELP = `threesock ${VERSION}
 One extra layer of confidence before your SOC 2 audit.
@@ -30,7 +32,7 @@ Usage
     --verbose                    List every in-scope criterion with its score
   threesock init [path]          Create threesock.yaml with scope, thresholds and owners
   threesock explain <criterion>  Explain a criterion, e.g. CC6.1
-  threesock report               Generate the full scorecard and findings
+  threesock report [path]        Write the full scorecard and findings (default: threesock-report.md)
   threesock baseline             Record accepted findings with approver, reason and expiry
   threesock mcp                  Start the MCP server for AI agents
 
@@ -45,14 +47,22 @@ function fail(message: string): never {
   throw new UsageError(message);
 }
 
-async function cmdScan(argv: string[]): Promise<number> {
+interface ScanDefaults {
+  format: string;
+  out?: string;
+}
+
+async function cmdScan(
+  argv: string[],
+  defaults: ScanDefaults = { format: 'text' },
+): Promise<number> {
   const { values, positionals } = parseArgs({
     args: argv,
     allowPositionals: true,
     options: {
       scope: { type: 'string' },
-      format: { type: 'string', default: 'text' },
-      out: { type: 'string' },
+      format: { type: 'string', default: defaults.format },
+      out: { type: 'string', default: defaults.out },
       'fail-on': { type: 'string', default: 'none' },
       config: { type: 'string' },
       github: { type: 'boolean', default: false },
@@ -67,7 +77,7 @@ async function cmdScan(argv: string[]): Promise<number> {
   if (!(FORMATS as readonly string[]).includes(format))
     fail(`unknown format "${format}". Use one of: ${FORMATS.join(', ')}.`);
   if (!IMPLEMENTED_FORMATS.has(format))
-    fail(`--format ${format} is not available in this version yet. Use text or json.`);
+    fail(`--format ${format} is not available in this version yet. Use text, json or markdown.`);
 
   const failOn = values['fail-on'] as string;
   if (failOn !== 'none' && !(SEVERITIES as readonly string[]).includes(failOn)) {
@@ -83,10 +93,15 @@ async function cmdScan(argv: string[]): Promise<number> {
   const { report, scrub } = await scan({ root, configPath: values.config, scope, rules: RULES });
 
   const toFile = values.out !== undefined;
+  if (format === 'text' && !toFile && isFirstRun(Boolean(process.stdout.isTTY))) {
+    process.stderr.write(`${DISCLAIMER}\n\n`);
+  }
   const rendered =
     format === 'json'
       ? renderJson(report)
-      : renderText(report, { color: !toFile && colorEnabled(), verbose: values.verbose });
+      : format === 'markdown'
+        ? renderMarkdown(report)
+        : renderText(report, { color: !toFile && colorEnabled(), verbose: values.verbose });
   const safe = scrub(rendered);
   if (toFile) {
     writeFileSync(resolve(values.out as string), safe);
@@ -180,6 +195,7 @@ export async function main(argv: string[]): Promise<number> {
       case 'explain':
         return cmdExplain(rest);
       case 'report':
+        return await cmdScan(rest, { format: 'markdown', out: 'threesock-report.md' });
       case 'baseline':
       case 'mcp':
         return notYet(first);

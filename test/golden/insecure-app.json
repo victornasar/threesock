@@ -8,7 +8,7 @@
   "generatedAt": "2026-01-15T12:00:00.000Z",
   "repository": {
     "root": "<root>",
-    "filesScanned": 7,
+    "filesScanned": 13,
     "gitAware": true
   },
   "config": {
@@ -18,13 +18,13 @@
   },
   "summary": {
     "overall": {
-      "assessable": 3,
+      "assessable": 8,
       "earned": 0,
-      "possible": 6,
+      "possible": 16,
       "percent": 0,
       "band": "not-ready",
       "capped": true,
-      "manualOpen": 30,
+      "manualOpen": 25,
       "notApplicable": 0
     },
     "categories": [
@@ -32,13 +32,13 @@
         "category": "security",
         "label": "Security",
         "inScope": true,
-        "assessable": 3,
+        "assessable": 8,
         "earned": 0,
-        "possible": 6,
+        "possible": 16,
         "percent": 0,
         "band": "not-ready",
         "capped": true,
-        "manualOpen": 30,
+        "manualOpen": 25,
         "notApplicable": 0
       },
       {
@@ -95,13 +95,13 @@
       }
     ],
     "severityCounts": {
-      "critical": 5,
-      "high": 1,
-      "medium": 2,
-      "low": 1
+      "critical": 9,
+      "high": 18,
+      "medium": 16,
+      "low": 4
     },
     "acceptedFindings": 0,
-    "manualOpen": 30,
+    "manualOpen": 25,
     "topFixes": [
       {
         "ruleId": "cc6.1/hardcoded-secrets",
@@ -120,20 +120,28 @@
         "recommendation": "Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead."
       },
       {
-        "ruleId": "cc1.3/codeowners",
-        "criterion": "CC1.3",
-        "severity": "medium",
-        "title": "No CODEOWNERS file",
-        "occurrences": 1,
-        "recommendation": "Add .github/CODEOWNERS with a catch-all owner and named teams for sensitive paths, then require code owner review in branch protection."
+        "ruleId": "cc6.1/jwt-verification",
+        "criterion": "CC6.1",
+        "severity": "critical",
+        "title": "JWTs accepted with the \"none\" algorithm",
+        "occurrences": 2,
+        "recommendation": "Always verify tokens with an explicit algorithm allow-list, and check exp, aud and iss. Use decode only for logging-free inspection of already-verified tokens."
       },
       {
-        "ruleId": "cc2.3/security-policy",
-        "criterion": "CC2.3",
-        "severity": "medium",
-        "title": "No vulnerability disclosure policy",
+        "ruleId": "cc5.2/pull-request-target",
+        "criterion": "CC5.2",
+        "severity": "critical",
+        "title": "Untrusted PR code checked out in a privileged workflow (.github/workflows/ci.yml)",
         "occurrences": 1,
-        "recommendation": "Add SECURITY.md at the repository root with a private reporting channel, supported versions and expected response time."
+        "recommendation": "Use the pull_request trigger for anything that builds or tests PR code. Keep pull_request_target for labelling or commenting, without checking out the head."
+      },
+      {
+        "ruleId": "cc6.1/public-datastore",
+        "criterion": "CC6.1",
+        "severity": "critical",
+        "title": "Publicly accessible database: aws_db_instance.main",
+        "occurrences": 1,
+        "recommendation": "Turn off public accessibility, place the database in private subnets, and reach it through the application, a bastion or a private endpoint."
       }
     ]
   },
@@ -149,7 +157,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -176,7 +184,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -210,12 +218,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-007"
+            "F-028"
           ]
         }
       ],
       "findingIds": [
-        "F-007"
+        "F-028"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -238,7 +246,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -362,12 +370,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-008"
+            "F-029"
           ]
         }
       ],
       "findingIds": [
-        "F-008"
+        "F-029"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -391,7 +399,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -585,25 +593,95 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
-      "capped": false,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "An open Critical finding caps this criterion at 0 until it is resolved.",
+      "capped": true,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc5.2/actions-pinned",
+          "title": "GitHub Actions are pinned to commit SHAs",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-030"
+          ]
+        },
+        {
+          "ruleId": "cc5.2/cloud-credentials",
+          "title": "CI authenticates to clouds with OIDC, not long-lived keys",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-010"
+          ]
+        },
+        {
+          "ruleId": "cc5.2/deploy-environments",
+          "title": "Deploy jobs run in protected environments",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-031"
+          ]
+        },
+        {
+          "ruleId": "cc5.2/pull-request-target",
+          "title": "Privileged workflows never check out untrusted pull request code",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-001"
+          ]
+        },
+        {
+          "ruleId": "cc5.2/script-injection",
+          "title": "Untrusted event data is not interpolated into shell scripts",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-011"
+          ]
+        },
+        {
+          "ruleId": "cc5.2/secrets-in-logs",
+          "title": "Secrets are never echoed in CI logs",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-012"
+          ]
+        },
+        {
+          "ruleId": "cc5.2/workflow-permissions",
+          "title": "Workflow tokens use least-privilege permissions",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-013"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-001",
+        "F-010",
+        "F-011",
+        "F-012",
+        "F-013",
+        "F-030",
+        "F-031"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 7,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "SSO/MFA enforced on source control, cloud console, CI/CD, and production tooling",
         "Centralized logging in place (see CC7)",
         "Encryption in transit and at rest configured (see CC6.7, C1.1)",
-        "Endpoint management/EDR policy for developer machines",
-        "CI/CD hardened: least-privilege pipeline tokens; OIDC federation instead of long-lived cloud keys; third-party actions pinned to commit SHAs; protected environments with required reviewers for production; no secrets echoed in logs"
-      ],
-      "owner": "Security / GRC"
+        "Endpoint management/EDR policy for developer machines"
+      ]
     },
     {
       "id": "CC5.3",
@@ -648,13 +726,31 @@
       "evidence": [],
       "checks": [
         {
+          "ruleId": "cc6.1/cookie-flags",
+          "title": "Session cookies are HttpOnly and Secure",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-032"
+          ]
+        },
+        {
           "ruleId": "cc6.1/env-files",
           "title": ".env files are not committed and are gitignored",
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-001",
-            "F-009"
+            "F-002",
+            "F-044"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/generic-password",
+          "title": "No literal passwords or keys assigned in code or config",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-045"
           ]
         },
         {
@@ -663,34 +759,84 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-002",
             "F-003",
             "F-004",
             "F-005",
-            "F-006"
+            "F-006",
+            "F-014"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/iam-wildcard",
+          "title": "IAM policies avoid wildcard actions",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-015"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/jwt-verification",
+          "title": "JWTs are verified with a strong algorithm and expiry",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-007",
+            "F-033"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/password-hashing",
+          "title": "Passwords hashed with Argon2id, bcrypt or scrypt",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-016"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/public-datastore",
+          "title": "Databases are not publicly accessible",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-008"
+          ]
+        },
+        {
+          "ruleId": "cc6.1/secret-scanning",
+          "title": "Secret scanning runs automatically",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-034"
           ]
         }
       ],
       "findingIds": [
-        "F-001",
         "F-002",
         "F-003",
         "F-004",
         "F-005",
         "F-006",
-        "F-009"
+        "F-007",
+        "F-008",
+        "F-014",
+        "F-015",
+        "F-016",
+        "F-032",
+        "F-033",
+        "F-034",
+        "F-044",
+        "F-045"
       ],
       "coverage": {
-        "automatedRules": 2,
+        "automatedRules": 9,
         "rubricChecks": 7
       },
       "manualFollowUps": [
         "**Authentication:** SSO/OIDC/SAML supported for workforce and enterprise customers; MFA available and enforced for admins/privileged roles",
-        "**Credentials:** Passwords hashed with Argon2id/bcrypt/scrypt; no plaintext or reversible storage; breached-password and length checks; account lockout or throttling",
-        "**Sessions/tokens:** Cookies are `HttpOnly`, `Secure`, `SameSite`; sessions expire and are invalidated on logout/password change; JWTs are signed with strong algorithms, validated (`alg`, `exp`, `aud`, `iss`), and short-lived",
-        "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries",
-        "**Least privilege:** IAM roles/policies avoid `*` actions and resources; DB users are scoped per service; service-to-service auth (mTLS/tokens) in place",
-        "**Data stores** are not publicly reachable and require authentication"
+        "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries"
       ]
     },
     {
@@ -762,7 +908,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -814,27 +960,103 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
-      "capped": false,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "An open Critical finding caps this criterion at 0 until it is resolved.",
+      "capped": true,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc6.6/cors-credentials",
+          "title": "CORS does not allow any origin with credentials",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-017"
+          ]
+        },
+        {
+          "ruleId": "cc6.6/dangerous-execution",
+          "title": "No dynamic code execution or shell injection sinks",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-018",
+            "F-019"
+          ]
+        },
+        {
+          "ruleId": "cc6.6/open-admin-ports",
+          "title": "Admin and database ports are not open to the internet",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-020"
+          ]
+        },
+        {
+          "ruleId": "cc6.6/public-buckets",
+          "title": "Storage buckets are not public",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-009"
+          ]
+        },
+        {
+          "ruleId": "cc6.6/rate-limiting",
+          "title": "Rate limiting protects auth and public APIs",
+          "status": "unknown",
+          "evidence": [],
+          "findingIds": [],
+          "note": "HTTP server or web framework detected in package.json, but no rate limiter was found in code or config. It may be enforced by a gateway or WAF; confirm manually."
+        },
+        {
+          "ruleId": "cc6.6/security-headers",
+          "title": "HTTP security headers are set",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-035"
+          ]
+        },
+        {
+          "ruleId": "cc6.6/sql-string-building",
+          "title": "SQL queries are parameterized, not built from strings",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-021"
+          ]
+        },
+        {
+          "ruleId": "cc6.6/xss-sinks",
+          "title": "No unescaped HTML rendering sinks",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-036"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-009",
+        "F-017",
+        "F-018",
+        "F-019",
+        "F-020",
+        "F-021",
+        "F-035",
+        "F-036"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 8,
         "rubricChecks": 7
       },
       "manualFollowUps": [
-        "Security groups/firewall rules avoid `0.0.0.0/0` on admin/DB ports (22, 3389, 5432, 3306, 6379, 27017, etc.)",
-        "Databases and internal services sit in private subnets; ingress via load balancer/WAF/API gateway only",
         "WAF or equivalent protection for public endpoints; DDoS protections available",
-        "Rate limiting and abuse protections on auth and public APIs",
-        "Restrictive CORS (no wildcard with credentials); security headers set (CSP, HSTS, X-Content-Type-Options, frame protections)",
-        "Defenses against common web flaws: injection (parameterized queries), XSS (output encoding), CSRF, SSRF, path traversal, unsafe deserialization, open redirects",
         "Admin access via VPN/bastion/zero-trust proxy, not the public internet"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.7",
@@ -845,27 +1067,55 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "Red flag present: Node TLS client with certificate rejection turned off (F-022).",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc6.7/plain-http-urls",
+          "title": "Service URLs use HTTPS, not plain HTTP",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-037"
+          ]
+        },
+        {
+          "ruleId": "cc6.7/tls-verification",
+          "title": "TLS certificate verification is never disabled",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-022"
+          ]
+        },
+        {
+          "ruleId": "cc6.7/weak-tls-crypto",
+          "title": "Weak TLS versions and ciphers are disabled",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-023"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-022",
+        "F-023",
+        "F-037"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 3,
         "rubricChecks": 7
       },
       "manualFollowUps": [
-        "TLS 1.2+ enforced on all external and internal endpoints; HTTP redirects to HTTPS; HSTS enabled",
-        "Certificate validation is never disabled (`verify=False`, `rejectUnauthorized: false`, `InsecureSkipVerify`, `curl -k`)",
-        "Weak protocols/ciphers disabled",
         "Webhooks and callbacks are signed and verified",
         "Secrets, tokens, and PII are never placed in URLs/query strings or logs",
         "Data exports/transfers use encrypted channels (SFTP, presigned URLs with short expiry)",
         "Controls exist to prevent unauthorized bulk export/exfiltration (e.g., egress rules, export permissions)"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.8",
@@ -875,28 +1125,85 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc6.8/base-images",
+          "title": "Container base images are pinned",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-038"
+          ]
+        },
+        {
+          "ruleId": "cc6.8/container-scanning",
+          "title": "Container images are scanned in CI",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-039"
+          ]
+        },
+        {
+          "ruleId": "cc6.8/curl-pipe-shell",
+          "title": "No unverified remote scripts piped to a shell",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-024"
+          ]
+        },
+        {
+          "ruleId": "cc6.8/dependency-scanning",
+          "title": "Dependencies are scanned for known vulnerabilities",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-040"
+          ]
+        },
+        {
+          "ruleId": "cc6.8/lockfiles",
+          "title": "Dependency lockfiles are committed",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-025"
+          ]
+        },
+        {
+          "ruleId": "cc6.8/reproducible-installs",
+          "title": "CI and image builds install from the lockfile",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-041"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-024",
+        "F-025",
+        "F-038",
+        "F-039",
+        "F-040",
+        "F-041"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 6,
         "rubricChecks": 8
       },
       "manualFollowUps": [
-        "Lockfiles committed; installs are reproducible (`npm ci`, hash-pinned `pip`, `go.sum`, etc.)",
-        "Dependency and container scanning in CI; new dependencies reviewed",
-        "Base images are minimal and come from trusted registries; pinned by digest where feasible",
         "Build artifacts are signed or attested; provenance available (e.g., SLSA, Sigstore)",
-        "No unverified `curl | bash` in Dockerfiles/CI; downloads are checksum-verified",
         "Only approved GitHub Actions/CI plugins are allowed (allowlist or SHA-pinning)",
         "File-upload paths scan or sandbox untrusted files",
         "Endpoint protection/EDR on developer and production hosts"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC7.1",
@@ -1048,32 +1355,87 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc8.1/ci-on-pull-requests",
+          "title": "CI runs tests and lint on every pull request",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-026"
+          ]
+        },
+        {
+          "ruleId": "cc8.1/codeowners-sensitive-paths",
+          "title": "Sensitive paths have named CODEOWNERS",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-042"
+          ]
+        },
+        {
+          "ruleId": "cc8.1/emergency-change",
+          "title": "Emergency change process is documented",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-046"
+          ]
+        },
+        {
+          "ruleId": "cc8.1/migrations-reversible",
+          "title": "Database migrations are reversible or have a rollback plan",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-043"
+          ]
+        },
+        {
+          "ruleId": "cc8.1/rollback-procedure",
+          "title": "Rollback procedure is documented",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-047"
+          ]
+        },
+        {
+          "ruleId": "cc8.1/terraform-state",
+          "title": "Terraform state is remote, locked and not committed",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-027"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-026",
+        "F-027",
+        "F-042",
+        "F-043",
+        "F-046",
+        "F-047"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 6,
         "rubricChecks": 12
       },
       "manualFollowUps": [
         "**Branch protection** on default and release branches: PR required; ≥ 1 approving review from someone other than the author; stale approvals dismissed; required status checks; conversation resolution; force-push and deletion disabled",
         "**Admins are not exempt** from protection, or bypass is logged and reviewed",
-        "`CODEOWNERS` review enforced on sensitive paths",
-        "CI runs automated tests, lint, and security scans before merge",
         "Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure",
-        "IaC changes go through plan/review/apply with recorded approvals; state is remote, locked, and access-controlled",
-        "Database migrations are reviewed, tested, and reversible or have a rollback plan",
-        "Rollback procedure documented and exercised",
         "Changes are traceable: commit → PR → ticket → build → deployment, with logs retained",
-        "Emergency-change process defined, with retroactive review required",
         "Production credentials are not available on developer laptops or standing dev access; test and prod are separated",
         "Production data is not used in lower environments unless masked"
-      ],
-      "owner": "Engineering lead"
+      ]
     },
     {
       "id": "CC9.1",
@@ -1745,6 +2107,27 @@
   "findings": [
     {
       "id": "F-001",
+      "ruleId": "cc5.2/pull-request-target",
+      "criterion": "CC5.2",
+      "severity": "critical",
+      "title": "Untrusted PR code checked out in a privileged workflow (.github/workflows/ci.yml)",
+      "location": {
+        "description": ".github/workflows/ci.yml:10",
+        "path": ".github/workflows/ci.yml",
+        "line": 10
+      },
+      "observed": ".github/workflows/ci.yml runs on pull_request_target and references the pull request head at line 10.",
+      "expected": "Workflows triggered by pull_request_target or workflow_run do not check out or run code from the pull request.",
+      "risk": "These triggers run with secrets and a write token. Checking out the PR head lets anyone who opens a pull request run code with them (\"pwn request\").",
+      "recommendation": "Use the pull_request trigger for anything that builds or tests PR code. Keep pull_request_target for labelling or commenting, without checking out the head.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "2e38110b587137ff",
+      "example": "on: pull_request          # untrusted code, no secrets, read-only token\npermissions:\n  contents: read"
+    },
+    {
+      "id": "F-002",
       "ruleId": "cc6.1/env-files",
       "criterion": "CC6.1",
       "severity": "critical",
@@ -1764,7 +2147,7 @@
       "example": "# .gitignore\n.env\n.env.*\n!.env.example"
     },
     {
-      "id": "F-002",
+      "id": "F-003",
       "ruleId": "cc6.1/hardcoded-secrets",
       "criterion": "CC6.1",
       "severity": "critical",
@@ -1785,7 +2168,7 @@
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
-      "id": "F-003",
+      "id": "F-004",
       "ruleId": "cc6.1/hardcoded-secrets",
       "criterion": "CC6.1",
       "severity": "critical",
@@ -1806,7 +2189,7 @@
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
-      "id": "F-004",
+      "id": "F-005",
       "ruleId": "cc6.1/hardcoded-secrets",
       "criterion": "CC6.1",
       "severity": "critical",
@@ -1827,7 +2210,7 @@
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
-      "id": "F-005",
+      "id": "F-006",
       "ruleId": "cc6.1/hardcoded-secrets",
       "criterion": "CC6.1",
       "severity": "critical",
@@ -1848,7 +2231,154 @@
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
-      "id": "F-006",
+      "id": "F-007",
+      "ruleId": "cc6.1/jwt-verification",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "JWTs accepted with the \"none\" algorithm",
+      "location": {
+        "description": "src/server.js:31",
+        "path": "src/server.js",
+        "line": 31
+      },
+      "observed": "JWTs accepted with the \"none\" algorithm in src/server.js at line 31.",
+      "expected": "JWTs are signed with strong algorithms and validated (alg, exp, aud, iss) on every request.",
+      "risk": "An unverified or \"none\"-algorithm token lets anyone forge a session for any user.",
+      "recommendation": "Always verify tokens with an explicit algorithm allow-list, and check exp, aud and iss. Use decode only for logging-free inspection of already-verified tokens.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "dbc842e483c9a34d",
+      "example": "const claims = jwt.verify(token, publicKey, {\n  algorithms: ['RS256'], audience: 'api.example.com', issuer: 'https://auth.example.com/',\n});"
+    },
+    {
+      "id": "F-008",
+      "ruleId": "cc6.1/public-datastore",
+      "criterion": "CC6.1",
+      "severity": "critical",
+      "title": "Publicly accessible database: aws_db_instance.main",
+      "location": {
+        "description": "infra/main.tf:12",
+        "path": "infra/main.tf",
+        "line": 12
+      },
+      "observed": "aws_db_instance.main sets publicly_accessible = true (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Data stores sit in private networks, are not publicly reachable, and require authentication.",
+      "risk": "A publicly reachable database is one leaked or weak password away from a full data breach, and is scanned for continuously.",
+      "recommendation": "Turn off public accessibility, place the database in private subnets, and reach it through the application, a bastion or a private endpoint.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "abc0c452ae79b734",
+      "example": "resource \"aws_db_instance\" \"main\" {\n  publicly_accessible    = false\n  db_subnet_group_name   = aws_db_subnet_group.private.name\n  vpc_security_group_ids = [aws_security_group.db.id]\n}"
+    },
+    {
+      "id": "F-009",
+      "ruleId": "cc6.6/public-buckets",
+      "criterion": "CC6.6",
+      "severity": "critical",
+      "title": "Public bucket ACL on aws_s3_bucket.exports",
+      "location": {
+        "description": "infra/main.tf:17",
+        "path": "infra/main.tf",
+        "line": 17
+      },
+      "observed": "aws_s3_bucket.exports sets acl = \"public-read\" (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Object storage is private by default, with public access blocks enabled; public content is served through a CDN with origin access control.",
+      "risk": "Public buckets are one of the most common causes of large data exposures and are discovered by automated scanners.",
+      "recommendation": "Remove public ACLs and allUsers bindings, enable the public access block, and serve intentionally public assets through a CDN with origin access control.",
+      "dueDate": "2026-01-16",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "710b00c25be90b65",
+      "example": "resource \"aws_s3_bucket_public_access_block\" \"uploads\" {\n  bucket                  = aws_s3_bucket.uploads.id\n  block_public_acls       = true\n  block_public_policy     = true\n  ignore_public_acls      = true\n  restrict_public_buckets = true\n}"
+    },
+    {
+      "id": "F-010",
+      "ruleId": "cc5.2/cloud-credentials",
+      "criterion": "CC5.2",
+      "severity": "high",
+      "title": "Long-lived cloud credentials in .github/workflows/ci.yml",
+      "location": {
+        "description": ".github/workflows/ci.yml:21",
+        "path": ".github/workflows/ci.yml",
+        "line": 21
+      },
+      "observed": ".github/workflows/ci.yml passes stored cloud keys to the workflow (line 21) instead of using OIDC.",
+      "expected": "Workflows assume cloud roles through OIDC federation (id-token: write), so no long-lived cloud keys are stored as CI secrets.",
+      "risk": "Long-lived cloud keys in CI leak through logs, forks and compromised actions, and stay valid until someone remembers to rotate them.",
+      "recommendation": "Configure an OIDC trust between GitHub and your cloud, assume a scoped role in the workflow, and delete the stored keys.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "4d89b8195decb0b5",
+      "example": "permissions:\n  id-token: write\n  contents: read\nsteps:\n  - uses: aws-actions/configure-aws-credentials@<sha>  # pin to a commit SHA\n    with:\n      role-to-assume: arn:aws:iam::123456789012:role/deploy\n      aws-region: us-east-1"
+    },
+    {
+      "id": "F-011",
+      "ruleId": "cc5.2/script-injection",
+      "criterion": "CC5.2",
+      "severity": "high",
+      "title": "Script injection risk in .github/workflows/ci.yml",
+      "location": {
+        "description": ".github/workflows/ci.yml:12",
+        "path": ".github/workflows/ci.yml",
+        "line": 12
+      },
+      "observed": "A run step in .github/workflows/ci.yml interpolates attacker-controllable event data at line 12.",
+      "expected": "run: steps pass attacker-controllable values (issue titles, PR bodies, branch names) through environment variables, never `${{ }}` interpolation.",
+      "risk": "A crafted issue title or branch name becomes shell code running in your workflow, with its token and secrets.",
+      "recommendation": "Move the value into an environment variable and reference it as a quoted shell variable.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "534af5d23c19ca4f",
+      "example": "- run: echo \"Title: $TITLE\"\n  env:\n    TITLE: ${{ github.event.issue.title }}"
+    },
+    {
+      "id": "F-012",
+      "ruleId": "cc5.2/secrets-in-logs",
+      "criterion": "CC5.2",
+      "severity": "high",
+      "title": "Secret printed in .github/workflows/ci.yml",
+      "location": {
+        "description": ".github/workflows/ci.yml:14",
+        "path": ".github/workflows/ci.yml",
+        "line": 14
+      },
+      "observed": "A run step prints a secret in .github/workflows/ci.yml at line 14.",
+      "expected": "Workflows never print secrets; they pass them to tools through environment variables or files.",
+      "risk": "Masking is best-effort: transformed or partial values slip through, and logs are readable by everyone with repository read access.",
+      "recommendation": "Remove the echo. Pass the secret through env and let the tool read it, or write it to a file with restricted permissions.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "39cc5f9477bf680e",
+      "example": "- run: ./deploy.sh\n  env:\n    DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}"
+    },
+    {
+      "id": "F-013",
+      "ruleId": "cc5.2/workflow-permissions",
+      "criterion": "CC5.2",
+      "severity": "high",
+      "title": "write-all token permissions in .github/workflows/ci.yml",
+      "location": {
+        "description": ".github/workflows/ci.yml:3",
+        "path": ".github/workflows/ci.yml",
+        "line": 3
+      },
+      "observed": ".github/workflows/ci.yml grants permissions: write-all at line 3.",
+      "expected": "Each workflow declares `permissions:` (read-only by default) and grants write scopes only to the jobs that need them. Nothing uses write-all.",
+      "risk": "A broad GITHUB_TOKEN lets any compromised step push code, create releases or change repository settings.",
+      "recommendation": "Set a read-only default at the top of each workflow and grant specific write scopes per job.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "be121b3e14b471ef",
+      "example": "permissions:\n  contents: read\njobs:\n  release:\n    permissions:\n      contents: write\n      id-token: write"
+    },
+    {
+      "id": "F-014",
       "ruleId": "cc6.1/hardcoded-secrets",
       "criterion": "CC6.1",
       "severity": "high",
@@ -1869,7 +2399,275 @@
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
-      "id": "F-007",
+      "id": "F-015",
+      "ruleId": "cc6.1/iam-wildcard",
+      "criterion": "CC6.1",
+      "severity": "high",
+      "title": "IAM policy allows every action (\"*\")",
+      "location": {
+        "description": "infra/main.tf:25",
+        "path": "infra/main.tf",
+        "line": 25
+      },
+      "observed": "IAM policy allows every action (\"*\") in infra/main.tf at line 25.",
+      "expected": "IAM roles and policies grant specific actions on specific resources; no \"*\" actions and no primitive owner/editor roles.",
+      "risk": "A wildcard policy turns any compromise of that identity into full control of the account.",
+      "recommendation": "Replace wildcards with the specific actions the workload needs. IAM Access Analyzer or CloudTrail-based policy generation can produce a least-privilege policy from real usage.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "9a99d0ea6971b2f7",
+      "example": "data \"aws_iam_policy_document\" \"app\" {\n  statement {\n    actions   = [\"s3:GetObject\", \"s3:PutObject\"]\n    resources = [\"${aws_s3_bucket.uploads.arn}/*\"]\n  }\n}"
+    },
+    {
+      "id": "F-016",
+      "ruleId": "cc6.1/password-hashing",
+      "criterion": "CC6.1",
+      "severity": "high",
+      "title": "Password hashed with a fast, general-purpose hash function",
+      "location": {
+        "description": "src/server.js:27",
+        "path": "src/server.js",
+        "line": 27
+      },
+      "observed": "Password hashed with a fast, general-purpose hash function in src/server.js at line 27.",
+      "expected": "Passwords are hashed with Argon2id, bcrypt or scrypt (rubric 1.4). Fast hashes such as MD5, SHA-1 or SHA-256 are never used for passwords.",
+      "risk": "Fast hashes can be brute-forced at billions of guesses per second, so a database leak becomes a credential leak.",
+      "recommendation": "Hash passwords with Argon2id (preferred), bcrypt or scrypt through a maintained library, and rehash on next login when migrating.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "512fd13149795fb3",
+      "example": "import argon2 from 'argon2';\nconst hash = await argon2.hash(password, { type: argon2.argon2id });\nconst ok = await argon2.verify(hash, candidate);"
+    },
+    {
+      "id": "F-017",
+      "ruleId": "cc6.6/cors-credentials",
+      "criterion": "CC6.6",
+      "severity": "high",
+      "title": "CORS allows any origin with credentials",
+      "location": {
+        "description": "src/server.js:12",
+        "path": "src/server.js",
+        "line": 12
+      },
+      "observed": "src/server.js allows any (or reflected) origin at line 12 and also enables credentials.",
+      "expected": "Credentialed CORS is limited to an explicit allow-list of origins; wildcard or reflected origins are only used for public, credential-less APIs.",
+      "risk": "Any website a user visits can make authenticated requests to the API and read the responses.",
+      "recommendation": "Replace the wildcard or reflected origin with an explicit list of trusted origins, or drop credentials for truly public endpoints.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "bded86cd02c319b9",
+      "example": "app.use(cors({ origin: ['https://app.example.com'], credentials: true }));"
+    },
+    {
+      "id": "F-018",
+      "ruleId": "cc6.6/dangerous-execution",
+      "criterion": "CC6.6",
+      "severity": "high",
+      "title": "Dynamic evaluation of a string as code",
+      "location": {
+        "description": "src/server.js:22",
+        "path": "src/server.js",
+        "line": 22
+      },
+      "observed": "Dynamic evaluation of a string as code in src/server.js at line 22.",
+      "expected": "Code never evaluates strings as code, never builds shell commands from strings, and never deserializes untrusted data with unsafe loaders.",
+      "risk": "If any part of the evaluated string or command can be influenced by a user, the result is remote code execution.",
+      "recommendation": "Replace dynamic evaluation with explicit logic, pass command arguments as an array without a shell, and use safe loaders (json, yaml.safe_load).",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "665117d0ae33f77c",
+      "example": "# Python: argument list, no shell\nsubprocess.run([\"convert\", src, dst], check=True)\n\n// Node: execFile with arguments, no shell\nexecFile('convert', [src, dst]);"
+    },
+    {
+      "id": "F-019",
+      "ruleId": "cc6.6/dangerous-execution",
+      "criterion": "CC6.6",
+      "severity": "high",
+      "title": "Shell command built with string interpolation",
+      "location": {
+        "description": "src/server.js:23",
+        "path": "src/server.js",
+        "line": 23
+      },
+      "observed": "Shell command built with string interpolation in src/server.js at line 23.",
+      "expected": "Code never evaluates strings as code, never builds shell commands from strings, and never deserializes untrusted data with unsafe loaders.",
+      "risk": "If any part of the evaluated string or command can be influenced by a user, the result is remote code execution.",
+      "recommendation": "Replace dynamic evaluation with explicit logic, pass command arguments as an array without a shell, and use safe loaders (json, yaml.safe_load).",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "ffbea44c97b0072a",
+      "example": "# Python: argument list, no shell\nsubprocess.run([\"convert\", src, dst], check=True)\n\n// Node: execFile with arguments, no shell\nexecFile('convert', [src, dst]);"
+    },
+    {
+      "id": "F-020",
+      "ruleId": "cc6.6/open-admin-ports",
+      "criterion": "CC6.6",
+      "severity": "high",
+      "title": "SSH (22) open to the internet in aws_security_group.bastion",
+      "location": {
+        "description": "infra/main.tf:4",
+        "path": "infra/main.tf",
+        "line": 4
+      },
+      "observed": "aws_security_group.bastion allows ingress from 0.0.0.0/0 to SSH (22) (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Firewall rules never allow 0.0.0.0/0 or ::/0 to admin ports (SSH, RDP) or data ports (PostgreSQL, MySQL, Redis, MongoDB, ...).",
+      "risk": "Internet-exposed admin and database ports are scanned constantly and are a leading entry point for breaches and ransomware.",
+      "recommendation": "Restrict ingress to known CIDRs or security groups, and reach admin interfaces through a VPN, bastion, SSM Session Manager or an identity-aware proxy.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "a018d583cbc96df7",
+      "example": "ingress {\n  from_port       = 5432\n  to_port         = 5432\n  protocol        = \"tcp\"\n  security_groups = [aws_security_group.app.id]  # not 0.0.0.0/0\n}"
+    },
+    {
+      "id": "F-021",
+      "ruleId": "cc6.6/sql-string-building",
+      "criterion": "CC6.6",
+      "severity": "high",
+      "title": "SQL built from strings",
+      "location": {
+        "description": "src/server.js:24",
+        "path": "src/server.js",
+        "line": 24
+      },
+      "observed": "SQL query built with template literal interpolation in src/server.js at line 24.",
+      "expected": "Queries use bound parameters or a query builder; user input is never concatenated or interpolated into SQL.",
+      "risk": "String-built SQL is the classic injection flaw: one unescaped value can read, change or delete the whole database.",
+      "recommendation": "Pass values as bound parameters (placeholders) or use a tagged template or query builder that parameterizes for you.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "1a0881ed5c779226",
+      "example": "// Node (pg)\nawait db.query('SELECT * FROM users WHERE id = $1', [id]);\n\n# Python (psycopg)\ncur.execute(\"SELECT * FROM users WHERE id = %s\", (user_id,))"
+    },
+    {
+      "id": "F-022",
+      "ruleId": "cc6.7/tls-verification",
+      "criterion": "CC6.7",
+      "severity": "high",
+      "title": "Node TLS client with certificate rejection turned off",
+      "location": {
+        "description": "src/server.js:36",
+        "path": "src/server.js",
+        "line": 36
+      },
+      "observed": "Node TLS client with certificate rejection turned off in src/server.js at line 36.",
+      "expected": "Every TLS client validates certificates and hostnames. Private CAs are trusted explicitly instead of turning validation off.",
+      "risk": "With validation off, anyone on the network path can impersonate the server and read or alter traffic, including credentials.",
+      "recommendation": "Remove the override. For internal or self-signed services, trust the specific CA bundle instead.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "a4a096edf2831697",
+      "example": "// Node: trust a private CA instead of disabling checks\nhttps.request(url, { ca: fs.readFileSync('certs/internal-ca.pem') });\n\n# Python\nrequests.get(url, verify=\"certs/internal-ca.pem\")"
+    },
+    {
+      "id": "F-023",
+      "ruleId": "cc6.7/weak-tls-crypto",
+      "criterion": "CC6.7",
+      "severity": "high",
+      "title": "Weak cipher (DES, 3DES, RC4, Blowfish or ECB mode)",
+      "location": {
+        "description": "src/server.js:41",
+        "path": "src/server.js",
+        "line": 41
+      },
+      "observed": "Weak cipher (DES, 3DES, RC4, Blowfish or ECB mode) in src/server.js at line 41.",
+      "expected": "TLS endpoints and clients require at least the configured minimum version (default 1.2), and code uses modern ciphers (AES-GCM, ChaCha20-Poly1305).",
+      "risk": "Legacy protocols and ciphers have practical attacks that expose traffic or encrypted data.",
+      "recommendation": "Raise the minimum TLS version to 1.2 or 1.3 and replace legacy ciphers with an authenticated cipher such as AES-256-GCM.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "731d8c5f1ef22bf4",
+      "example": "tls.createServer({ minVersion: 'TLSv1.3', key, cert });\nconst cipher = crypto.createCipheriv('aes-256-gcm', key, iv);"
+    },
+    {
+      "id": "F-024",
+      "ruleId": "cc6.8/curl-pipe-shell",
+      "criterion": "CC6.8",
+      "severity": "high",
+      "title": "Remote script piped straight into a shell",
+      "location": {
+        "description": "Dockerfile:5",
+        "path": "Dockerfile",
+        "line": 5
+      },
+      "observed": "Remote script piped straight into a shell in Dockerfile at line 5.",
+      "expected": "Downloaded tools and scripts are verified with a checksum or signature before they run.",
+      "risk": "Piping a remote script to a shell runs whatever the server (or anyone who compromises it) sends, inside your build.",
+      "recommendation": "Download to a file, verify its checksum or signature, then run it, or install from a package manager.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "309d1158cf9e78ea",
+      "example": "curl -fsSLo install.sh https://example.com/install.sh\necho \"<sha256>  install.sh\" | sha256sum -c -\nsh install.sh"
+    },
+    {
+      "id": "F-025",
+      "ruleId": "cc6.8/lockfiles",
+      "criterion": "CC6.8",
+      "severity": "high",
+      "title": "No lockfile for package.json",
+      "location": {
+        "description": "package.json",
+        "path": "package.json"
+      },
+      "observed": "package.json declares npm dependencies but no lockfile (package-lock.json, npm-shrinkwrap.json, pnpm-lock.yaml, yarn.lock, bun.lock, bun.lockb) is committed.",
+      "expected": "Every dependency manifest has a committed lockfile (or hash-pinned requirements) so installs are reproducible.",
+      "risk": "Without a lockfile, each install can pull different, possibly compromised, versions, and a build cannot be reproduced.",
+      "recommendation": "Generate the lockfile with your package manager, commit it, and install with the frozen/ci mode in CI.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8f9488b34667e010",
+      "example": "pnpm install && git add pnpm-lock.yaml       # Node\nuv lock && git add uv.lock                    # Python\npip-compile --generate-hashes requirements.in # pip"
+    },
+    {
+      "id": "F-026",
+      "ruleId": "cc8.1/ci-on-pull-requests",
+      "criterion": "CC8.1",
+      "severity": "high",
+      "title": "Tests do not run on pull requests",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No workflow is triggered by pull_request.",
+      "expected": "A CI pipeline runs automated tests and lint on every pull request, and branch protection requires it to pass before merge.",
+      "risk": "Without a test gate, broken or unreviewed behaviour reaches the default branch and production.",
+      "recommendation": "Add a pull-request workflow that runs tests and lint, then make it a required status check.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "39ca38eb997ecb43",
+      "example": "on: pull_request\npermissions: { contents: read }\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>\n      - run: npm ci && npm run lint && npm test"
+    },
+    {
+      "id": "F-027",
+      "ruleId": "cc8.1/terraform-state",
+      "criterion": "CC8.1",
+      "severity": "high",
+      "title": "Terraform uses local state",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No backend or cloud block was found in 1 Terraform file(s) (detected by threesock's lightweight Terraform scanner), so state is local to whoever runs apply.",
+      "expected": "Terraform state lives in a remote, locked, access-controlled backend, and state files are never committed.",
+      "risk": "State files contain secrets in plain text, and unlocked or local state lets concurrent applies corrupt infrastructure.",
+      "recommendation": "Configure a remote backend with locking, remove committed state from git (and rotate any secrets it held), and gitignore *.tfstate.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "2a1bb17d45e5f72a",
+      "example": "terraform {\n  backend \"s3\" {\n    bucket       = \"acme-terraform-state\"\n    key          = \"prod/terraform.tfstate\"\n    region       = \"us-east-1\"\n    encrypt      = true\n    use_lockfile = true\n  }\n}"
+    },
+    {
+      "id": "F-028",
       "ruleId": "cc1.3/codeowners",
       "criterion": "CC1.3",
       "severity": "medium",
@@ -1888,7 +2686,7 @@
       "example": "# .github/CODEOWNERS\n*                 @your-org/engineering\n/src/auth/        @your-org/security\n/infra/           @your-org/platform"
     },
     {
-      "id": "F-008",
+      "id": "F-029",
       "ruleId": "cc2.3/security-policy",
       "criterion": "CC2.3",
       "severity": "medium",
@@ -1907,7 +2705,291 @@
       "example": "# Security policy\n\n## Reporting a vulnerability\nEmail security@example.com or use GitHub private vulnerability reporting.\nWe acknowledge reports within 2 business days and aim to fix Critical issues within 7 days."
     },
     {
-      "id": "F-009",
+      "id": "F-030",
+      "ruleId": "cc5.2/actions-pinned",
+      "criterion": "CC5.2",
+      "severity": "medium",
+      "title": "3 actions not pinned to a SHA in .github/workflows/ci.yml",
+      "location": {
+        "description": ".github/workflows/ci.yml:8",
+        "path": ".github/workflows/ci.yml",
+        "line": 8
+      },
+      "observed": "Unpinned: actions/checkout@v4 (line 8), some-org/setup-deploy@main (line 18), aws-actions/configure-aws-credentials@v4 (line 19).",
+      "expected": "Every third-party action is pinned to a full 40-character commit SHA (with the version in a comment), so a moved tag cannot change what runs.",
+      "risk": "Tags can be moved. A compromised action tag (as in the tj-actions/changed-files incident) runs attacker code with your workflow's secrets.",
+      "recommendation": "Pin each action to the commit SHA of the release you reviewed, keep the version as a comment, and let Dependabot update the pins.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "b286c79acb36cf93",
+      "example": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2"
+    },
+    {
+      "id": "F-031",
+      "ruleId": "cc5.2/deploy-environments",
+      "criterion": "CC5.2",
+      "severity": "medium",
+      "title": "Deploy job without an environment: deploy",
+      "location": {
+        "description": ".github/workflows/ci.yml:15",
+        "path": ".github/workflows/ci.yml",
+        "line": 15
+      },
+      "observed": "Job deploy in .github/workflows/ci.yml deploys or publishes without an environment, so no reviewer or branch gate applies.",
+      "expected": "Jobs that deploy or publish run in a GitHub environment, so required reviewers, branch restrictions and environment-scoped secrets apply.",
+      "risk": "Without an environment gate, anyone who can push to a triggering branch can deploy to production.",
+      "recommendation": "Add `environment: production` to deploy jobs and configure required reviewers and deployment branch rules on that environment.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "9b80fea4d7c398f9",
+      "example": "jobs:\n  deploy:\n    environment: production\n    runs-on: ubuntu-latest"
+    },
+    {
+      "id": "F-032",
+      "ruleId": "cc6.1/cookie-flags",
+      "criterion": "CC6.1",
+      "severity": "medium",
+      "title": "Session cookie is readable from JavaScript (HttpOnly disabled)",
+      "location": {
+        "description": "src/server.js:16",
+        "path": "src/server.js",
+        "line": 16
+      },
+      "observed": "Session cookie is readable from JavaScript (HttpOnly disabled) in src/server.js at line 16.",
+      "expected": "Session and auth cookies set HttpOnly, Secure and SameSite.",
+      "risk": "Without HttpOnly an XSS bug can steal sessions; without Secure the cookie can leak over plain HTTP.",
+      "recommendation": "Set httpOnly, secure and sameSite on every session or auth cookie. Use an environment check only to relax Secure for local HTTP development.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "867f41806c1540c5",
+      "example": "app.use(session({\n  cookie: { httpOnly: true, secure: true, sameSite: 'lax', maxAge: 8 * 60 * 60 * 1000 },\n}));"
+    },
+    {
+      "id": "F-033",
+      "ruleId": "cc6.1/jwt-verification",
+      "criterion": "CC6.1",
+      "severity": "medium",
+      "title": "JWT decoded without verifying its signature",
+      "location": {
+        "description": "src/server.js:32",
+        "path": "src/server.js",
+        "line": 32
+      },
+      "observed": "JWT decoded without verifying its signature in src/server.js at line 32.",
+      "expected": "JWTs are signed with strong algorithms and validated (alg, exp, aud, iss) on every request.",
+      "risk": "An unverified or \"none\"-algorithm token lets anyone forge a session for any user.",
+      "recommendation": "Always verify tokens with an explicit algorithm allow-list, and check exp, aud and iss. Use decode only for logging-free inspection of already-verified tokens.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "f62b4c3dcce53a1e",
+      "example": "const claims = jwt.verify(token, publicKey, {\n  algorithms: ['RS256'], audience: 'api.example.com', issuer: 'https://auth.example.com/',\n});"
+    },
+    {
+      "id": "F-034",
+      "ruleId": "cc6.1/secret-scanning",
+      "criterion": "CC6.1",
+      "severity": "medium",
+      "title": "No automated secret scanning",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No Gitleaks, TruffleHog, detect-secrets or similar scanner is configured in CI, pre-commit or the repository. Platform-level push protection is checked with --github.",
+      "expected": "A secret scanner runs on every push or pull request (and ideally as a pre-commit hook), with push protection enabled on the hosting platform.",
+      "risk": "Without automated scanning, a committed credential is found by an attacker before it is found by you.",
+      "recommendation": "Add Gitleaks (or TruffleHog) to CI and to pre-commit, and enable GitHub secret scanning with push protection.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "690d9982717aee72",
+      "example": "# .github/workflows/secrets.yml\non: [push, pull_request]\npermissions: { contents: read }\njobs:\n  gitleaks:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>  # pin to a commit SHA\n        with: { fetch-depth: 0 }\n      - uses: gitleaks/gitleaks-action@<sha>"
+    },
+    {
+      "id": "F-035",
+      "ruleId": "cc6.6/security-headers",
+      "criterion": "CC6.6",
+      "severity": "medium",
+      "title": "No HTTP security headers configured",
+      "location": {
+        "description": "package.json",
+        "path": "package.json"
+      },
+      "observed": "HTTP server or web framework detected in package.json, but no security-headers middleware or CSP/HSTS configuration was found in code or config. They may be set at a CDN; if so, add an exception that says where.",
+      "expected": "Responses set CSP, HSTS, X-Content-Type-Options and frame protections, in code or at the edge (CDN, proxy, platform config).",
+      "risk": "Missing headers remove browser-side defences against XSS, clickjacking and protocol downgrade.",
+      "recommendation": "Add a security-headers middleware (helmet, Talisman, SecurityMiddleware) or set the headers in your proxy or platform configuration.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "b1b961b9dd42774a",
+      "example": "import helmet from 'helmet';\napp.use(helmet({ hsts: { maxAge: 31536000, includeSubDomains: true } }));"
+    },
+    {
+      "id": "F-036",
+      "ruleId": "cc6.6/xss-sinks",
+      "criterion": "CC6.6",
+      "severity": "medium",
+      "title": "DOM innerHTML/outerHTML assigned without visible sanitization",
+      "location": {
+        "description": "src/public/app.js:2",
+        "path": "src/public/app.js",
+        "line": 2
+      },
+      "observed": "DOM innerHTML/outerHTML assigned without visible sanitization in src/public/app.js at line 2.",
+      "expected": "HTML output is escaped by the framework; raw-HTML sinks are avoided or fed only sanitized content.",
+      "risk": "Rendering raw HTML that contains user input enables cross-site scripting: session theft and actions on the victim's behalf.",
+      "recommendation": "Render text through the framework's escaping. Where raw HTML is unavoidable, sanitize it with DOMPurify (or bleach) on the same line so the intent is visible.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "252663a1cc6ca858",
+      "example": "<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />"
+    },
+    {
+      "id": "F-037",
+      "ruleId": "cc6.7/plain-http-urls",
+      "criterion": "CC6.7",
+      "severity": "medium",
+      "title": "Plain HTTP URL to api.partner-service.com",
+      "location": {
+        "description": "src/server.js:37",
+        "path": "src/server.js",
+        "line": 37
+      },
+      "observed": "http://api.partner-service.com is used in src/server.js at line 37.",
+      "expected": "Every external and internal service URL uses https://. Plain HTTP is limited to localhost and documentation examples.",
+      "risk": "Requests over plain HTTP can be read and modified in transit, including tokens and personal data.",
+      "recommendation": "Switch the URL to https:// and make sure the target service redirects HTTP to HTTPS with HSTS.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "058f7cfbcedb5e93",
+      "example": "const API_URL = process.env.API_URL ?? 'https://api.example.com';"
+    },
+    {
+      "id": "F-038",
+      "ruleId": "cc6.8/base-images",
+      "criterion": "CC6.8",
+      "severity": "medium",
+      "title": "Unpinned base image node:latest",
+      "location": {
+        "description": "Dockerfile:1",
+        "path": "Dockerfile",
+        "line": 1
+      },
+      "observed": "node:latest in Dockerfile at line 1 has no version tag or uses :latest.",
+      "expected": "Base images use an explicit version tag, ideally pinned by digest, from a trusted registry.",
+      "risk": "An untagged or :latest base image changes underneath you, so builds are not reproducible and a compromised upstream image flows straight in.",
+      "recommendation": "Pin base images to a version and digest, and let Dependabot or Renovate propose updates.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "a190bb6b318d0b0c",
+      "example": "FROM node:22.11.0-bookworm-slim@sha256:<digest>"
+    },
+    {
+      "id": "F-039",
+      "ruleId": "cc6.8/container-scanning",
+      "criterion": "CC6.8",
+      "severity": "medium",
+      "title": "Container images are not scanned",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The repository builds container images but no image scanner (Trivy, Grype, Snyk, Docker Scout) runs in CI.",
+      "expected": "Images built from this repository are scanned (Trivy, Grype, Snyk, Docker Scout) before they are pushed or deployed.",
+      "risk": "Base images and OS packages carry their own vulnerabilities that dependency scanning of your code does not see.",
+      "recommendation": "Scan each built image in CI and fail on Critical/High vulnerabilities with a fix available.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "1f84927c8fe3b5df",
+      "example": "- uses: aquasecurity/trivy-action@<sha>  # pin to a commit SHA\n  with: { image-ref: 'app:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true }"
+    },
+    {
+      "id": "F-040",
+      "ruleId": "cc6.8/dependency-scanning",
+      "criterion": "CC6.8",
+      "severity": "medium",
+      "title": "Missing automated dependency updates (Dependabot or Renovate) and a dependency vulnerability scan in CI",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No automated dependency updates (Dependabot or Renovate) and a dependency vulnerability scan in CI is configured.",
+      "expected": "Dependabot or Renovate keeps dependencies current, and a vulnerability scan (dependency review, OSV-Scanner, npm audit, pip-audit, govulncheck) runs in CI.",
+      "risk": "Known-vulnerable dependencies are the most common way attackers get in, and they are only fixed if someone notices.",
+      "recommendation": "Enable Dependabot (or Renovate) and add a dependency scan to pull-request CI.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8c1d00f27d428537",
+      "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }\n  - package-ecosystem: github-actions\n    directory: /\n    schedule: { interval: weekly }"
+    },
+    {
+      "id": "F-041",
+      "ruleId": "cc6.8/reproducible-installs",
+      "criterion": "CC6.8",
+      "severity": "medium",
+      "title": "`npm install` used in a build",
+      "location": {
+        "description": "Dockerfile:4",
+        "path": "Dockerfile",
+        "line": 4
+      },
+      "observed": "Dockerfile runs npm install at line 4; use npm ci to install from the lockfile.",
+      "expected": "Builds install exactly what the lockfile says (npm ci, pnpm install --frozen-lockfile, pip --require-hashes).",
+      "risk": "`npm install` in CI can rewrite the lockfile and pull versions nobody reviewed.",
+      "recommendation": "Use the lockfile-respecting install command in CI and Dockerfiles.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "64cedb67b78b3910",
+      "example": "RUN npm ci --omit=dev\n# or\nRUN pnpm install --frozen-lockfile --prod"
+    },
+    {
+      "id": "F-042",
+      "ruleId": "cc8.1/codeowners-sensitive-paths",
+      "criterion": "CC8.1",
+      "severity": "medium",
+      "title": "Sensitive paths have no code owners",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "3 sensitive files exist but there is no CODEOWNERS file.",
+      "expected": "Security-sensitive paths (auth, IAM, crypto, payments, infrastructure, workflows, migrations, lockfiles) have a specific CODEOWNERS entry, not just the catch-all.",
+      "risk": "Changes to the riskiest code can be approved by any reviewer instead of the people accountable for it.",
+      "recommendation": "Add explicit CODEOWNERS entries for sensitive paths and require code owner review. Adjust what counts as sensitive with sensitivePaths in threesock.yaml.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "96725e2faf218099",
+      "example": "/src/auth/            @your-org/security\n/infra/               @your-org/platform\n/.github/workflows/   @your-org/platform"
+    },
+    {
+      "id": "F-043",
+      "ruleId": "cc8.1/migrations-reversible",
+      "criterion": "CC8.1",
+      "severity": "medium",
+      "title": "Migration without a down step",
+      "location": {
+        "description": "migrations/001_init.up.sql",
+        "path": "migrations/001_init.up.sql"
+      },
+      "observed": "migrations/001_init.up.sql has no matching 001_init.down.sql.",
+      "expected": "Each migration has a down/downgrade step, or the repository documents how schema changes are rolled back.",
+      "risk": "A bad migration without a way back turns a deploy rollback into a data-recovery incident.",
+      "recommendation": "Write a down migration for each change, or document the expand/contract and restore procedure used instead.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "65588b3df01f4147",
+      "example": "-- 20261022_add_status.down.sql\nALTER TABLE orders DROP COLUMN status;"
+    },
+    {
+      "id": "F-044",
       "ruleId": "cc6.1/env-files",
       "criterion": "CC6.1",
       "severity": "low",
@@ -1925,10 +3007,69 @@
       "redFlag": false,
       "fingerprint": "c3119a20058b5edf",
       "example": "# .gitignore\n.env\n.env.*\n!.env.example"
+    },
+    {
+      "id": "F-045",
+      "ruleId": "cc6.1/generic-password",
+      "criterion": "CC6.1",
+      "severity": "low",
+      "title": "Possible literal credential: smtpPassword",
+      "location": {
+        "description": "src/server.js:20",
+        "path": "src/server.js",
+        "line": 20
+      },
+      "observed": "`smtpPassword` is assigned a literal value (Hun********) in src/server.js at line 20. The value is redacted.",
+      "expected": "Credential-like settings read their values from the environment or a secrets manager, never from string literals.",
+      "risk": "A literal credential in code is shared with everyone who can read the repository and is hard to rotate. This check is heuristic, so confirm each match.",
+      "recommendation": "Replace the literal with a value loaded at runtime. If it is not a credential, add an exception with a justification.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "fe0aa376e16bf539",
+      "example": "// After\nconst client = new Client({ password: process.env.SMTP_PASSWORD });"
+    },
+    {
+      "id": "F-046",
+      "ruleId": "cc8.1/emergency-change",
+      "criterion": "CC8.1",
+      "severity": "low",
+      "title": "No documented emergency change process",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No document describes an emergency, hotfix or break-glass change process.",
+      "expected": "An emergency (hotfix / break-glass) change process is documented, including who may use it and the retroactive review it requires.",
+      "risk": "Without a defined path, urgent fixes bypass review informally and leave no audit trail, which auditors treat as a control failure.",
+      "recommendation": "Document the emergency change path: who can invoke it, what is skipped, and the retroactive review required within a set time.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "add910b5218ba2ce",
+      "example": "## Emergency changes\nUse only for active incidents. An on-call engineer may merge with one approval from the incident commander.\nA retroactive review PR is opened within 2 business days and linked from the incident ticket."
+    },
+    {
+      "id": "F-047",
+      "ruleId": "cc8.1/rollback-procedure",
+      "criterion": "CC8.1",
+      "severity": "low",
+      "title": "No documented rollback procedure",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No runbook or document describing how to roll back a deployment was found.",
+      "expected": "A runbook explains how to roll back a bad release, who can do it, and how to verify it worked.",
+      "risk": "Under incident pressure, an undocumented rollback is slow, inconsistent and easy to get wrong.",
+      "recommendation": "Add a rollback section to your deployment runbook (docs/runbooks/rollback.md) and rehearse it.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "d97d88987bf8548d",
+      "example": "## Rolling back a release\n1. Find the last good deployment in the Deployments tab.\n2. Promote it: `vercel promote <deployment-url>` (or re-run the deploy workflow for the previous tag).\n3. Confirm health checks and error rates recover; post in #incidents."
     }
   ],
   "coverage": {
-    "rulesRun": 4,
+    "rulesRun": 41,
     "rulesErrored": [],
     "externalTools": []
   }

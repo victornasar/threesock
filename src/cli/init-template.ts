@@ -28,6 +28,12 @@ owners:
 ignore:
   # - "vendor/**"
 
+# Security-sensitive paths that need named CODEOWNERS. Setting this replaces the defaults
+# (auth, iam, crypto, security, payments/billing, infra/terraform, workflows, migrations, lockfiles).
+# sensitivePaths:
+#   - "src/auth/**"
+#   - "infra/**"
+
 # Criteria that genuinely do not apply. Each needs a written justification.
 notApplicable:
   # CC6.4: "No physical facilities; production runs on AWS, covered by its SOC 2 report."

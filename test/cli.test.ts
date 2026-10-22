@@ -72,6 +72,19 @@ describe('cli', () => {
     expect(stdout).toContain('cc6.1/hardcoded-secrets');
     expect(await main(['explain', 'CC99.1'])).toBe(2);
   });
+  it('report writes a Markdown scorecard to threesock-report.md by default', async () => {
+    const cwd = process.cwd();
+    process.chdir(compliant.dir);
+    try {
+      expect(await main(['report', '.'])).toBe(0);
+      expect(readFileSync(join(compliant.dir, 'threesock-report.md'), 'utf8')).toContain(
+        '## Scorecard (Appendix A)',
+      );
+    } finally {
+      rmSync(join(compliant.dir, 'threesock-report.md'), { force: true });
+      process.chdir(cwd);
+    }
+  });
   it('init creates threesock.yaml and refuses to overwrite', async () => {
     expect(await main(['init', compliant.dir])).toBe(0);
     expect(existsSync(join(compliant.dir, 'threesock.yaml'))).toBe(true);

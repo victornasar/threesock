@@ -65,3 +65,33 @@ export function article(phrase: string): string {
 export function plural(n: number, word: string, pluralWord = `${word}s`): string {
   return `${n} ${n === 1 ? word : pluralWord}`;
 }
+
+/** Evidence for checks that pass because a red flag was looked for and not found. */
+export function absence(description: string) {
+  return { status: 'pass' as const, evidence: [{ kind: 'absence' as const, description }] };
+}
+
+/** First match of `re` in a file, as path + 1-based line. */
+export function findIn(
+  files: FileIndex,
+  path: string,
+  re: RegExp,
+): { path: string; line: number } | undefined {
+  const text = files.read(path);
+  if (text === undefined) return undefined;
+  const m = re.exec(text);
+  return m ? { path, line: lineAt(text, m.index) } : undefined;
+}
+
+/** First file (among candidates) containing `re`, with the matching line. */
+export function findAny(
+  files: FileIndex,
+  candidates: readonly RepoFile[],
+  re: RegExp,
+): { path: string; line: number } | undefined {
+  for (const f of candidates) {
+    const hit = findIn(files, f.path, re);
+    if (hit) return hit;
+  }
+  return undefined;
+}

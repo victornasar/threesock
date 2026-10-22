@@ -8,7 +8,7 @@
   "generatedAt": "2026-01-15T12:00:00.000Z",
   "repository": {
     "root": "<root>",
-    "filesScanned": 7,
+    "filesScanned": 19,
     "gitAware": true
   },
   "config": {
@@ -18,13 +18,13 @@
   },
   "summary": {
     "overall": {
-      "assessable": 3,
-      "earned": 6,
-      "possible": 6,
+      "assessable": 8,
+      "earned": 16,
+      "possible": 16,
       "percent": 100,
       "band": "audit-ready",
       "capped": false,
-      "manualOpen": 30,
+      "manualOpen": 25,
       "notApplicable": 0
     },
     "categories": [
@@ -32,13 +32,13 @@
         "category": "security",
         "label": "Security",
         "inScope": true,
-        "assessable": 3,
-        "earned": 6,
-        "possible": 6,
+        "assessable": 8,
+        "earned": 16,
+        "possible": 16,
         "percent": 100,
         "band": "audit-ready",
         "capped": false,
-        "manualOpen": 30,
+        "manualOpen": 25,
         "notApplicable": 0
       },
       {
@@ -101,7 +101,7 @@
       "low": 0
     },
     "acceptedFindings": 0,
-    "manualOpen": 30,
+    "manualOpen": 25,
     "topFixes": []
   },
   "criteria": [
@@ -116,7 +116,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -143,7 +143,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -167,7 +167,7 @@
       "inScope": true,
       "score": 2,
       "label": "Met",
-      "rationale": "All 1 automated check passed with evidence.",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
       "evidence": [
         {
@@ -215,7 +215,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -329,7 +329,7 @@
       "inScope": true,
       "score": 2,
       "label": "Met",
-      "rationale": "All 1 automated check passed with evidence.",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
       "evidence": [
         {
@@ -378,7 +378,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -572,25 +572,173 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "All 7 automated checks passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "description": "All actions are pinned to commit SHAs."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/deploy.yml",
+          "description": "All actions are pinned to commit SHAs."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/deploy.yml",
+          "line": 18,
+          "description": "Cloud access uses OIDC role assumption."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/deploy.yml",
+          "line": 8,
+          "description": "Job deploy deploys through an environment."
+        },
+        {
+          "kind": "config",
+          "description": "None of 2 workflow(s) use pull_request_target or workflow_run."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 2 workflow(s); no untrusted event data interpolated into run steps."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 2 workflow(s); no secrets printed by run steps."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 6,
+          "description": "Token permissions are declared."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/deploy.yml",
+          "line": 5,
+          "description": "Token permissions are declared."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "cc5.2/actions-pinned",
+          "title": "GitHub Actions are pinned to commit SHAs",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "description": "All actions are pinned to commit SHAs."
+            },
+            {
+              "kind": "file",
+              "path": ".github/workflows/deploy.yml",
+              "description": "All actions are pinned to commit SHAs."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc5.2/cloud-credentials",
+          "title": "CI authenticates to clouds with OIDC, not long-lived keys",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/deploy.yml",
+              "line": 18,
+              "description": "Cloud access uses OIDC role assumption."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc5.2/deploy-environments",
+          "title": "Deploy jobs run in protected environments",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/deploy.yml",
+              "line": 8,
+              "description": "Job deploy deploys through an environment."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc5.2/pull-request-target",
+          "title": "Privileged workflows never check out untrusted pull request code",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "config",
+              "description": "None of 2 workflow(s) use pull_request_target or workflow_run."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc5.2/script-injection",
+          "title": "Untrusted event data is not interpolated into shell scripts",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 2 workflow(s); no untrusted event data interpolated into run steps."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc5.2/secrets-in-logs",
+          "title": "Secrets are never echoed in CI logs",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 2 workflow(s); no secrets printed by run steps."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc5.2/workflow-permissions",
+          "title": "Workflow tokens use least-privilege permissions",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 6,
+              "description": "Token permissions are declared."
+            },
+            {
+              "kind": "file",
+              "path": ".github/workflows/deploy.yml",
+              "line": 5,
+              "description": "Token permissions are declared."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 7,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "SSO/MFA enforced on source control, cloud console, CI/CD, and production tooling",
         "Centralized logging in place (see CC7)",
         "Encryption in transit and at rest configured (see CC6.7, C1.1)",
-        "Endpoint management/EDR policy for developer machines",
-        "CI/CD hardened: least-privilege pipeline tokens; OIDC federation instead of long-lived cloud keys; third-party actions pinned to commit SHAs; protected environments with required reviewers for production; no secrets echoed in logs"
-      ],
-      "owner": "Security / GRC"
+        "Endpoint management/EDR policy for developer machines"
+      ]
     },
     {
       "id": "CC5.3",
@@ -630,9 +778,15 @@
       "inScope": true,
       "score": 2,
       "label": "Met",
-      "rationale": "All 2 automated checks passed with evidence.",
+      "rationale": "All 9 automated checks passed with evidence.",
       "capped": false,
       "evidence": [
+        {
+          "kind": "file",
+          "path": "src/server.js",
+          "line": 14,
+          "description": "Cookie security flags are set explicitly."
+        },
         {
           "kind": "file",
           "path": ".gitignore",
@@ -641,14 +795,61 @@
         },
         {
           "kind": "absence",
-          "description": "No .env files (other than templates) are present among 7 files."
+          "description": "No .env files (other than templates) are present among 19 files."
         },
         {
           "kind": "absence",
-          "description": "No high-confidence secret patterns (13 patterns) matched in 7 files."
+          "description": "No literal credential assignments found in 4 source or config files (tests excluded)."
+        },
+        {
+          "kind": "absence",
+          "description": "No high-confidence secret patterns (13 patterns) matched in 19 files."
+        },
+        {
+          "kind": "file",
+          "path": "infra/main.tf",
+          "description": "IAM definitions use no wildcard actions."
+        },
+        {
+          "kind": "file",
+          "path": "src/auth/login.js",
+          "line": 13,
+          "description": "JWTs are verified, and no insecure verification options were found."
+        },
+        {
+          "kind": "file",
+          "path": "package.json",
+          "line": 7,
+          "description": "A recommended password hashing library is used (package.json)."
+        },
+        {
+          "kind": "file",
+          "path": "infra/main.tf",
+          "line": 29,
+          "description": "aws_db_instance.main is not publicly accessible (detected by threesock's lightweight Terraform scanner)."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 22,
+          "description": "A workflow runs a secret scanner."
         }
       ],
       "checks": [
+        {
+          "ruleId": "cc6.1/cookie-flags",
+          "title": "Session cookies are HttpOnly and Secure",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/server.js",
+              "line": 14,
+              "description": "Cookie security flags are set explicitly."
+            }
+          ],
+          "findingIds": []
+        },
         {
           "ruleId": "cc6.1/env-files",
           "title": ".env files are not committed and are gitignored",
@@ -662,7 +863,19 @@
             },
             {
               "kind": "absence",
-              "description": "No .env files (other than templates) are present among 7 files."
+              "description": "No .env files (other than templates) are present among 19 files."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.1/generic-password",
+          "title": "No literal passwords or keys assigned in code or config",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "No literal credential assignments found in 4 source or config files (tests excluded)."
             }
           ],
           "findingIds": []
@@ -674,7 +887,76 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "No high-confidence secret patterns (13 patterns) matched in 7 files."
+              "description": "No high-confidence secret patterns (13 patterns) matched in 19 files."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.1/iam-wildcard",
+          "title": "IAM policies avoid wildcard actions",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "description": "IAM definitions use no wildcard actions."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.1/jwt-verification",
+          "title": "JWTs are verified with a strong algorithm and expiry",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/auth/login.js",
+              "line": 13,
+              "description": "JWTs are verified, and no insecure verification options were found."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.1/password-hashing",
+          "title": "Passwords hashed with Argon2id, bcrypt or scrypt",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "package.json",
+              "line": 7,
+              "description": "A recommended password hashing library is used (package.json)."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.1/public-datastore",
+          "title": "Databases are not publicly accessible",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "line": 29,
+              "description": "aws_db_instance.main is not publicly accessible (detected by threesock's lightweight Terraform scanner)."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.1/secret-scanning",
+          "title": "Secret scanning runs automatically",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 22,
+              "description": "A workflow runs a secret scanner."
             }
           ],
           "findingIds": []
@@ -682,16 +964,12 @@
       ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 2,
+        "automatedRules": 9,
         "rubricChecks": 7
       },
       "manualFollowUps": [
         "**Authentication:** SSO/OIDC/SAML supported for workforce and enterprise customers; MFA available and enforced for admins/privileged roles",
-        "**Credentials:** Passwords hashed with Argon2id/bcrypt/scrypt; no plaintext or reversible storage; breached-password and length checks; account lockout or throttling",
-        "**Sessions/tokens:** Cookies are `HttpOnly`, `Secure`, `SameSite`; sessions expire and are invalidated on logout/password change; JWTs are signed with strong algorithms, validated (`alg`, `exp`, `aud`, `iss`), and short-lived",
-        "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries",
-        "**Least privilege:** IAM roles/policies avoid `*` actions and resources; DB users are scoped per service; service-to-service auth (mTLS/tokens) in place",
-        "**Data stores** are not publicly reachable and require authentication"
+        "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries"
       ]
     },
     {
@@ -763,7 +1041,7 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.",
+      "rationale": "The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -815,27 +1093,181 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "All 8 automated checks passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "src/server.js",
+          "description": "CORS configuration does not combine a wildcard origin with credentials."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 4 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization."
+        },
+        {
+          "kind": "file",
+          "path": "infra/main.tf",
+          "line": 11,
+          "description": "aws_security_group.web exposes no admin or data ports to the internet (detected by threesock's lightweight Terraform scanner)."
+        },
+        {
+          "kind": "file",
+          "path": "infra/main.tf",
+          "line": 35,
+          "description": "aws_s3_bucket.uploads has no public ACL or public member (detected by threesock's lightweight Terraform scanner)."
+        },
+        {
+          "kind": "file",
+          "path": "infra/main.tf",
+          "line": 39,
+          "description": "aws_s3_bucket_public_access_block.uploads has no public ACL or public member (detected by threesock's lightweight Terraform scanner)."
+        },
+        {
+          "kind": "file",
+          "path": "package.json",
+          "line": 10,
+          "description": "Rate limiting is configured."
+        },
+        {
+          "kind": "file",
+          "path": "package.json",
+          "line": 12,
+          "description": "Security headers are configured."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 4 production files; no SQL built by interpolation, concatenation or formatting."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 4 files (JS/TS, Python, Go source and related config); no raw-HTML rendering sinks without visible sanitization."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "cc6.6/cors-credentials",
+          "title": "CORS does not allow any origin with credentials",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/server.js",
+              "description": "CORS configuration does not combine a wildcard origin with credentials."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/dangerous-execution",
+          "title": "No dynamic code execution or shell injection sinks",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 4 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/open-admin-ports",
+          "title": "Admin and database ports are not open to the internet",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "line": 11,
+              "description": "aws_security_group.web exposes no admin or data ports to the internet (detected by threesock's lightweight Terraform scanner)."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/public-buckets",
+          "title": "Storage buckets are not public",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "line": 35,
+              "description": "aws_s3_bucket.uploads has no public ACL or public member (detected by threesock's lightweight Terraform scanner)."
+            },
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "line": 39,
+              "description": "aws_s3_bucket_public_access_block.uploads has no public ACL or public member (detected by threesock's lightweight Terraform scanner)."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/rate-limiting",
+          "title": "Rate limiting protects auth and public APIs",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "package.json",
+              "line": 10,
+              "description": "Rate limiting is configured."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/security-headers",
+          "title": "HTTP security headers are set",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "package.json",
+              "line": 12,
+              "description": "Security headers are configured."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/sql-string-building",
+          "title": "SQL queries are parameterized, not built from strings",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 4 production files; no SQL built by interpolation, concatenation or formatting."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.6/xss-sinks",
+          "title": "No unescaped HTML rendering sinks",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 4 files (JS/TS, Python, Go source and related config); no raw-HTML rendering sinks without visible sanitization."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 8,
         "rubricChecks": 7
       },
       "manualFollowUps": [
-        "Security groups/firewall rules avoid `0.0.0.0/0` on admin/DB ports (22, 3389, 5432, 3306, 6379, 27017, etc.)",
-        "Databases and internal services sit in private subnets; ingress via load balancer/WAF/API gateway only",
         "WAF or equivalent protection for public endpoints; DDoS protections available",
-        "Rate limiting and abuse protections on auth and public APIs",
-        "Restrictive CORS (no wildcard with credentials); security headers set (CSP, HSTS, X-Content-Type-Options, frame protections)",
-        "Defenses against common web flaws: injection (parameterized queries), XSS (output encoding), CSRF, SSRF, path traversal, unsafe deserialization, open redirects",
         "Admin access via VPN/bastion/zero-trust proxy, not the public internet"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.7",
@@ -846,27 +1278,73 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "All 3 automated checks passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "absence",
+          "description": "Checked 8 files; no plain http:// URLs to non-local hosts."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 7 files (JS/TS, Python, Go source and related config); certificate verification is never disabled."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 5 files; no TLS below 1.2 and no legacy ciphers found."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "cc6.7/plain-http-urls",
+          "title": "Service URLs use HTTPS, not plain HTTP",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 8 files; no plain http:// URLs to non-local hosts."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.7/tls-verification",
+          "title": "TLS certificate verification is never disabled",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 7 files (JS/TS, Python, Go source and related config); certificate verification is never disabled."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.7/weak-tls-crypto",
+          "title": "Weak TLS versions and ciphers are disabled",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 5 files; no TLS below 1.2 and no legacy ciphers found."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 3,
         "rubricChecks": 7
       },
       "manualFollowUps": [
-        "TLS 1.2+ enforced on all external and internal endpoints; HTTP redirects to HTTPS; HSTS enabled",
-        "Certificate validation is never disabled (`verify=False`, `rejectUnauthorized: false`, `InsecureSkipVerify`, `curl -k`)",
-        "Weak protocols/ciphers disabled",
         "Webhooks and callbacks are signed and verified",
         "Secrets, tokens, and PII are never placed in URLs/query strings or logs",
         "Data exports/transfers use encrypted channels (SFTP, presigned URLs with short expiry)",
         "Controls exist to prevent unauthorized bulk export/exfiltration (e.g., egress rules, export permissions)"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.8",
@@ -876,28 +1354,149 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "All 6 automated checks passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "Dockerfile",
+          "line": 1,
+          "description": "node:22.11.0-bookworm-slim is pinned by digest."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 25,
+          "description": "A container image scanner runs in CI."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 3 build files; no remote scripts piped to a shell."
+        },
+        {
+          "kind": "file",
+          "path": ".github/dependabot.yml",
+          "description": "Automated dependency updates configured (.github/dependabot.yml)."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 23,
+          "description": "A dependency vulnerability scan runs in CI."
+        },
+        {
+          "kind": "file",
+          "path": "pnpm-lock.yaml",
+          "description": "npm lockfile for package.json."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 13,
+          "description": "Builds install dependencies from the lockfile."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "cc6.8/base-images",
+          "title": "Container base images are pinned",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "Dockerfile",
+              "line": 1,
+              "description": "node:22.11.0-bookworm-slim is pinned by digest."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.8/container-scanning",
+          "title": "Container images are scanned in CI",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 25,
+              "description": "A container image scanner runs in CI."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.8/curl-pipe-shell",
+          "title": "No unverified remote scripts piped to a shell",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 3 build files; no remote scripts piped to a shell."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.8/dependency-scanning",
+          "title": "Dependencies are scanned for known vulnerabilities",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/dependabot.yml",
+              "description": "Automated dependency updates configured (.github/dependabot.yml)."
+            },
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 23,
+              "description": "A dependency vulnerability scan runs in CI."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.8/lockfiles",
+          "title": "Dependency lockfiles are committed",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "pnpm-lock.yaml",
+              "description": "npm lockfile for package.json."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc6.8/reproducible-installs",
+          "title": "CI and image builds install from the lockfile",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 13,
+              "description": "Builds install dependencies from the lockfile."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 6,
         "rubricChecks": 8
       },
       "manualFollowUps": [
-        "Lockfiles committed; installs are reproducible (`npm ci`, hash-pinned `pip`, `go.sum`, etc.)",
-        "Dependency and container scanning in CI; new dependencies reviewed",
-        "Base images are minimal and come from trusted registries; pinned by digest where feasible",
         "Build artifacts are signed or attested; provenance available (e.g., SLSA, Sigstore)",
-        "No unverified `curl | bash` in Dockerfiles/CI; downloads are checksum-verified",
         "Only approved GitHub Actions/CI plugins are allowed (allowlist or SHA-pinning)",
         "File-upload paths scan or sandbox untrusted files",
         "Endpoint protection/EDR on developer and production hosts"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC7.1",
@@ -1049,32 +1648,155 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "All 6 automated checks passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 15,
+          "description": "Tests run on every pull request."
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/ci.yml",
+          "line": 14,
+          "description": "Lint runs on every pull request."
+        },
+        {
+          "kind": "file",
+          "path": ".github/CODEOWNERS",
+          "description": "All 7 sensitive files have a specific code owner."
+        },
+        {
+          "kind": "file",
+          "path": "docs/runbooks/deploy.md",
+          "line": 10,
+          "description": "Emergency change process documented."
+        },
+        {
+          "kind": "file",
+          "path": "migrations/001_init.up.sql",
+          "description": "All 1 up migrations have down migrations."
+        },
+        {
+          "kind": "file",
+          "path": "docs/runbooks/deploy.md",
+          "line": 5,
+          "description": "Rollback procedure documented."
+        },
+        {
+          "kind": "file",
+          "path": "infra/main.tf",
+          "line": 2,
+          "description": "Remote s3 backend with locking (detected by threesock's lightweight Terraform scanner)."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "cc8.1/ci-on-pull-requests",
+          "title": "CI runs tests and lint on every pull request",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 15,
+              "description": "Tests run on every pull request."
+            },
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 14,
+              "description": "Lint runs on every pull request."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc8.1/codeowners-sensitive-paths",
+          "title": "Sensitive paths have named CODEOWNERS",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/CODEOWNERS",
+              "description": "All 7 sensitive files have a specific code owner."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc8.1/emergency-change",
+          "title": "Emergency change process is documented",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "docs/runbooks/deploy.md",
+              "line": 10,
+              "description": "Emergency change process documented."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc8.1/migrations-reversible",
+          "title": "Database migrations are reversible or have a rollback plan",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "migrations/001_init.up.sql",
+              "description": "All 1 up migrations have down migrations."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc8.1/rollback-procedure",
+          "title": "Rollback procedure is documented",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "docs/runbooks/deploy.md",
+              "line": 5,
+              "description": "Rollback procedure documented."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "cc8.1/terraform-state",
+          "title": "Terraform state is remote, locked and not committed",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "line": 2,
+              "description": "Remote s3 backend with locking (detected by threesock's lightweight Terraform scanner)."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 6,
         "rubricChecks": 12
       },
       "manualFollowUps": [
         "**Branch protection** on default and release branches: PR required; ≥ 1 approving review from someone other than the author; stale approvals dismissed; required status checks; conversation resolution; force-push and deletion disabled",
         "**Admins are not exempt** from protection, or bypass is logged and reviewed",
-        "`CODEOWNERS` review enforced on sensitive paths",
-        "CI runs automated tests, lint, and security scans before merge",
         "Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure",
-        "IaC changes go through plan/review/apply with recorded approvals; state is remote, locked, and access-controlled",
-        "Database migrations are reviewed, tested, and reversible or have a rollback plan",
-        "Rollback procedure documented and exercised",
         "Changes are traceable: commit → PR → ticket → build → deployment, with logs retained",
-        "Emergency-change process defined, with retroactive review required",
         "Production credentials are not available on developer laptops or standing dev access; test and prod are separated",
         "Production data is not used in lower environments unless masked"
-      ],
-      "owner": "Engineering lead"
+      ]
     },
     {
       "id": "CC9.1",
@@ -1745,7 +2467,7 @@
   ],
   "findings": [],
   "coverage": {
-    "rulesRun": 4,
+    "rulesRun": 41,
     "rulesErrored": [],
     "externalTools": []
   }

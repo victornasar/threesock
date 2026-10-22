@@ -175,5 +175,7 @@ export interface ResolvedConfig {
   ignore: string[];
   notApplicable: NotApplicableEntry[];
   exceptions: ExceptionEntry[];
+  /** Globs for security-sensitive paths. A value in threesock.yaml replaces the default list. */
+  sensitivePaths: string[];
   mappingsPath?: string;
 }

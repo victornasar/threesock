@@ -26,6 +26,33 @@ export const DEFAULT_THRESHOLDS: Threshold = {
   dsarResponseDays: 30,
 };
 
+/** Security-sensitive paths (decision 17 in docs/design.md). */
+export const DEFAULT_SENSITIVE_PATHS: readonly string[] = [
+  '**/auth/**',
+  '**/authn/**',
+  '**/authz/**',
+  '**/authentication/**',
+  '**/authorization/**',
+  '**/iam/**',
+  '**/crypto/**',
+  '**/security/**',
+  '**/payment/**',
+  '**/payments/**',
+  '**/billing/**',
+  '**/infra/**',
+  '**/infrastructure/**',
+  '**/terraform/**',
+  '**/*.tf',
+  '.github/workflows/**',
+  '**/migrations/**',
+  '**/package-lock.json',
+  '**/pnpm-lock.yaml',
+  '**/yarn.lock',
+  '**/go.sum',
+  '**/poetry.lock',
+  '**/uv.lock',
+];
+
 export class ConfigError extends Error {
   constructor(
     message: string,
@@ -202,6 +229,14 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
     });
   }
 
+  let sensitivePaths = [...DEFAULT_SENSITIVE_PATHS];
+  if (data.sensitivePaths !== undefined) {
+    if (!Array.isArray(data.sensitivePaths) || data.sensitivePaths.some((g) => !str(g))) {
+      throw new ConfigError('sensitivePaths must be a list of non-empty globs.', file);
+    }
+    sensitivePaths = data.sensitivePaths.map((g) => String(g).trim());
+  }
+
   const config: ResolvedConfig = {
     configDir,
     scope,
@@ -210,6 +245,7 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
     ignore,
     notApplicable,
     exceptions,
+    sensitivePaths,
   };
   if (file) config.configPath = file;
   const mappings = str(data.mappings);

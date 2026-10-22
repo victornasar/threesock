@@ -81,7 +81,7 @@ export function scoreCriterion(input: CriterionInput): CriterionScore {
     return {
       score: 'MANUAL',
       rationale:
-        'The rubric marks this criterion as manual evidence. Repo signals below are supporting evidence only.',
+        'The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only.',
       capped: false,
     };
   }
@@ -123,7 +123,10 @@ export function scoreCriterion(input: CriterionInput): CriterionScore {
   if (pass === applicable.length) {
     return {
       score: 2,
-      rationale: `All ${pass} automated check${pass === 1 ? '' : 's'} passed with evidence.`,
+      rationale:
+        pass === 1
+          ? 'The automated check passed with evidence.'
+          : `All ${pass} automated checks passed with evidence.`,
       capped: false,
     };
   }

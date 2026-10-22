@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { scan, type ScanOutput } from '../src/engine/scan.js';
 import { renderJson } from '../src/reports/json.js';
+import { renderMarkdown } from '../src/reports/markdown.js';
 import { renderText } from '../src/reports/text.js';
 import { RULES } from '../src/rules/index.js';
 import { VERSION } from '../src/version.js';
@@ -62,6 +63,36 @@ describe('report snapshots', () => {
     expect(text).toContain('Socks on. No gaps found in this scope.');
     await expect(text).toMatchFileSnapshot('__snapshots__/compliant.txt');
   });
+  it('markdown: insecure', async () => {
+    await expect(
+      normalize(bad.scrub(renderMarkdown(bad.report)), insecure.dir),
+    ).toMatchFileSnapshot('__snapshots__/insecure.md');
+  });
+  it('markdown: compliant', async () => {
+    await expect(
+      normalize(good.scrub(renderMarkdown(good.report)), compliant.dir),
+    ).toMatchFileSnapshot('__snapshots__/compliant.md');
+  });
+  it('markdown follows the Appendix B finding template and lists all 61 criteria', () => {
+    const md = renderMarkdown(bad.report);
+    for (const field of [
+      'Finding ID:',
+      'Criterion:',
+      'Severity:',
+      'Location:',
+      'Observed:',
+      'Expected:',
+      'Risk:',
+      'Recommendation:',
+      'Owner:',
+      'Due date:',
+      'Status:',
+      'Verification:',
+    ]) {
+      expect(md).toContain(field);
+    }
+    expect(md.match(/^\| (?:CC|A|PI|C|P)\d+\.\d+ \|/gm)).toHaveLength(61);
+  });
   it('json: compliant', async () => {
     await expect(normalize(good.scrub(renderJson(good.report)), compliant.dir)).toMatchFileSnapshot(
       '__snapshots__/compliant.json',
@@ -75,6 +106,7 @@ describe('secret values never appear in output', () => {
       renderJson(bad.report),
       renderText(bad.report),
       renderText(bad.report, { color: true, verbose: true, maxFindings: 1000 }),
+      renderMarkdown(bad.report),
     ];
     for (const out of outputs) {
       for (const secret of insecure.secrets) {

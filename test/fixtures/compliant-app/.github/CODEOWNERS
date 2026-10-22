@@ -1,2 +1,6 @@
-*              @compliant-org/engineering
-/src/auth/     @compliant-org/security
+*                    @compliant-org/engineering
+/src/auth/           @compliant-org/security
+/infra/              @compliant-org/platform
+/.github/workflows/  @compliant-org/platform
+/migrations/         @compliant-org/data
+/pnpm-lock.yaml      @compliant-org/platform

@@ -9,5 +9,6 @@
 # Supply chain and release
 /.github/                @threesock/maintainers
 /package.json            @threesock/maintainers
-/package-lock.json       @threesock/maintainers
+/pnpm-lock.yaml          @threesock/maintainers
+/pnpm-workspace.yaml     @threesock/maintainers
 /action/                 @threesock/maintainers
