@@ -143,6 +143,8 @@ export interface Threshold {
   minTlsVersion: string;
   /** Remediation SLA in days per severity (rubric 1.3). */
   slaDays: Record<Severity, number>;
+  /** Longest an exception may run, by severity (decision 32). Unset means no limit. */
+  maxExceptionDays: Partial<Record<Severity, number>>;
   logRetentionDays: number;
   secretRotationDays: number;
   dsarResponseDays: number;
@@ -154,6 +156,10 @@ export interface NotApplicableEntry {
 }
 
 export interface ExceptionEntry {
+  /** Where the entry came from: threesock.yaml or threesock-baseline.yaml. */
+  source?: 'config' | 'baseline';
+  /** Finding title at the time it was baselined (informational). */
+  title?: string;
   /** Rule id or finding fingerprint this exception covers. */
   rule?: string;
   fingerprint?: string;
@@ -174,6 +180,8 @@ export interface ResolvedConfig {
   /** Directory of the config file, or the scan root when none exists. */
   configDir: string;
   configPath?: string;
+  /** threesock-baseline.yaml, when present. */
+  baselinePath?: string;
   scope: Category[];
   thresholds: Threshold;
   owners: OwnerEntry[];

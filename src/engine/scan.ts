@@ -211,6 +211,7 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       (a.raw.line ?? 0) - (b.raw.line ?? 0) ||
       a.raw.observed.localeCompare(b.raw.observed),
   );
+  const usedExceptions = new Set<ExceptionEntry>();
   const findings: Finding[] = draft.map(({ rule, raw }, i) => {
     const severity = raw.severity ?? rule.severity;
     const fingerprint = fingerprintOf(rule.id, raw);
@@ -240,7 +241,16 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
     if (owner) finding.owner = owner;
 
     const exc = findException(config.exceptions, rule.id, fingerprint, raw.path);
-    if (exc && exc.expires >= today) {
+    if (exc) usedExceptions.add(exc);
+    const cap = config.thresholds.maxExceptionDays[severity];
+    const latest = cap === undefined ? undefined : isoDate(addDays(now, cap));
+    if (exc && exc.expires >= today && latest !== undefined && exc.expires > latest) {
+      finding.rejectedException = {
+        approver: exc.approver,
+        expires: exc.expires,
+        reason: `Exceptions for ${severity} findings may run at most ${cap} days (until ${latest}).`,
+      };
+    } else if (exc && exc.expires >= today) {
       finding.status = 'accepted';
       finding.exception = {
         approver: exc.approver,
@@ -344,6 +354,17 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       categories,
       severityCounts,
       acceptedFindings: findings.length - open.length,
+      // Exceptions that matched nothing: the finding was fixed, or the entry is wrong.
+      staleExceptions: config.exceptions
+        .filter((e) => !usedExceptions.has(e))
+        .map((e) => ({
+          source: e.source ?? 'config',
+          ...(e.rule ? { rule: e.rule } : {}),
+          ...(e.fingerprint ? { fingerprint: e.fingerprint } : {}),
+          ...(e.title ? { title: e.title } : {}),
+          approver: e.approver,
+          expires: e.expires,
+        })),
       manualOpen: criteria.filter((c) => c.inScope && c.score === 'MANUAL').length,
       topFixes: topFixes(open, sortedRules),
     },

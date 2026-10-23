@@ -3,6 +3,8 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { scan, type ScanOutput } from '../src/engine/scan.js';
 import { renderJson } from '../src/reports/json.js';
 import { renderMarkdown } from '../src/reports/markdown.js';
+import { renderHtml } from '../src/reports/html.js';
+import { renderSarif } from '../src/reports/sarif.js';
 import { renderText } from '../src/reports/text.js';
 import { RULES } from '../src/rules/index.js';
 import { CATEGORIES } from '../src/engine/types.js';
@@ -94,6 +96,18 @@ describe('report snapshots', () => {
     }
     expect(md.match(/^\| (?:CC|A|PI|C|P)\d+\.\d+ \|/gm)).toHaveLength(61);
   });
+  it('sarif: insecure', async () => {
+    await expect(
+      normalize(bad.scrub(renderSarif(bad.report, RULES)), insecure.dir),
+    ).toMatchFileSnapshot('__snapshots__/insecure.sarif');
+  });
+  it('html: insecure (inline assets elided)', async () => {
+    const html = normalize(bad.scrub(renderHtml(bad.report)), insecure.dir).replace(
+      /data:[\w/+.-]+;base64,[A-Za-z0-9+/=]+/g,
+      'data:<elided>',
+    );
+    await expect(html).toMatchFileSnapshot('__snapshots__/insecure.html');
+  });
   it('json: compliant', async () => {
     await expect(normalize(good.scrub(renderJson(good.report)), compliant.dir)).toMatchFileSnapshot(
       '__snapshots__/compliant.json',
@@ -108,6 +122,8 @@ describe('secret values never appear in output', () => {
       renderText(bad.report),
       renderText(bad.report, { color: true, verbose: true, maxFindings: 1000 }),
       renderMarkdown(bad.report),
+      renderSarif(bad.report, RULES),
+      renderHtml(bad.report),
     ];
     for (const out of outputs) {
       for (const secret of insecure.secrets) {

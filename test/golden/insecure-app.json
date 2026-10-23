@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "tool": {
     "name": "threesock",
     "version": "<version>"
@@ -105,6 +105,7 @@
       "low": 21
     },
     "acceptedFindings": 0,
+    "staleExceptions": [],
     "manualOpen": 25,
     "topFixes": [
       {

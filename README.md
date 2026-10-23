@@ -30,6 +30,9 @@ npx threesock                       # scan the current directory (Security scope
 npx threesock scan . --scope security,availability --format json --out report.json
 npx threesock explain CC8.1         # what a criterion requires and how to fix it
 npx threesock report                # write threesock-report.md (scorecard + findings)
+npx threesock report --format html  # single-file, offline HTML report
+npx threesock scan --format sarif --out threesock.sarif   # for GitHub code scanning
+npx threesock baseline --all --approver you@co.com --reason "Q1 backlog" --expires 2026-03-31
 npx threesock init                  # create threesock.yaml
 ```
 
@@ -69,11 +72,13 @@ Category readiness = points earned ÷ (2 × assessable criteria), excluding N/A 
 
 ## Configuration
 
-`threesock init` writes a commented `threesock.yaml`: scope, thresholds (rubric 1.4), owners, ignored paths, N/A declarations and exceptions. Every exception needs an approver, a justification and an expiry date, and expired exceptions turn back into open findings.
+`threesock init` writes a commented `threesock.yaml`: scope, thresholds (rubric 1.4), owners, ignored paths, sensitive paths, external evidence links, N/A declarations and exceptions. Every exception needs an approver, a justification and an expiry date. Expired exceptions turn back into open findings, and exceptions longer than the cap for their severity (Critical 7 days, High 90 days by default) are not applied.
+
+`threesock baseline` records accepted findings in `threesock-baseline.yaml`, matched by fingerprint. `--all` accepts every open Medium and Low finding (to adopt threesock on an existing codebase without accepting anything serious in bulk); Critical and High findings are accepted one at a time with `--fingerprint`. Reports list entries that no longer match anything, and `--prune` removes them.
 
 ## Status
 
-threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 98 built-in rules across Security (CC1–CC9), Availability, Processing Integrity and Confidentiality. Next: SARIF and HTML reports and baselines, then GitHub API checks, Privacy rules, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
+threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 98 built-in rules across Security (CC1–CC9), Availability, Processing Integrity and Confidentiality. SARIF, HTML and baselines are in. Next: GitHub API checks, the control and policy mapping, Privacy rules, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
 
 ## Security
 

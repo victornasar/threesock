@@ -3,7 +3,7 @@
 // removals or renames) and record it in CHANGELOG.md.
 import type { Band, Category, Evidence, Score, Severity } from './types.js';
 
-export const SCHEMA_VERSION = '1.1.0';
+export const SCHEMA_VERSION = '1.2.0';
 
 export const DISCLAIMER =
   'threesock is an engineering readiness aid, not an audit. SOC 2 is attested by a licensed CPA firm ' +
@@ -86,8 +86,19 @@ export interface Finding {
   exception?: { approver: string; justification: string; expires: string };
   /** Present when an exception matched but has expired. */
   expiredException?: { approver: string; expires: string };
+  /** Present when an exception matched but runs longer than allowed for this severity (schema 1.2). */
+  rejectedException?: { approver: string; expires: string; reason: string };
   /** Stable across runs; use it in baselines and exceptions. */
   fingerprint: string;
+}
+
+export interface StaleException {
+  source: 'config' | 'baseline';
+  rule?: string;
+  fingerprint?: string;
+  title?: string;
+  approver: string;
+  expires: string;
 }
 
 export interface TopFix {
@@ -111,6 +122,8 @@ export interface ScanReport {
     categories: CategorySummary[];
     severityCounts: Record<Severity, number>;
     acceptedFindings: number;
+    /** Exceptions and baseline entries that match no current finding (schema 1.2). */
+    staleExceptions: StaleException[];
     manualOpen: number;
     topFixes: TopFix[];
   };

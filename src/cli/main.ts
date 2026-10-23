@@ -4,19 +4,22 @@ import { parseArgs } from 'node:util';
 import { ConfigError, parseScope } from '../engine/config.js';
 import { CRITERIA } from '../engine/criteria.generated.js';
 import { DISCLAIMER } from '../engine/model.js';
-import { scan } from '../engine/scan.js';
+import { nowFromEnv, scan } from '../engine/scan.js';
 import { SEVERITIES, type Severity } from '../engine/types.js';
 import { renderJson } from '../reports/json.js';
+import { renderHtml } from '../reports/html.js';
 import { renderMarkdown } from '../reports/markdown.js';
+import { renderSarif } from '../reports/sarif.js';
 import { renderText } from '../reports/text.js';
 import { RULES } from '../rules/index.js';
 import { VERSION } from '../version.js';
+import { BaselineError, runBaseline } from './baseline.js';
 import { isFirstRun } from './first-run.js';
 import { colorEnabled } from './style.js';
 import { INIT_TEMPLATE } from './init-template.js';
 
 const FORMATS = ['text', 'json', 'markdown', 'sarif', 'html'] as const;
-const IMPLEMENTED_FORMATS = new Set(['text', 'json', 'markdown']);
+const IMPLEMENTED_FORMATS = new Set<string>(FORMATS);
 
 const HELP = `threesock ${VERSION}
 One extra layer of confidence before your SOC 2 audit.
@@ -34,8 +37,13 @@ Usage
     --verbose                    List every in-scope criterion with its score
   threesock init [path]          Create threesock.yaml with scope, thresholds and owners
   threesock explain <criterion>  Explain a criterion, e.g. CC6.1
-  threesock report [path]        Write the full scorecard and findings (default: threesock-report.md)
-  threesock baseline             Record accepted findings with approver, reason and expiry
+  threesock report [path]        Write the full scorecard and findings
+                                 (threesock-report.md, or .html with --format html)
+  threesock baseline [path]      Record accepted findings in threesock-baseline.yaml
+    --approver <who> --reason <why> --expires <YYYY-MM-DD>
+    --all                        Accept every open Medium and Low finding
+    --fingerprint <fp>           Accept one finding (repeatable; any severity, within expiry caps)
+    --prune                      Remove entries that no longer match a finding
   threesock mcp                  Start the MCP server for AI agents
 
 Exit codes: 0 ok · 1 findings at or above --fail-on · 2 usage or configuration error
@@ -51,8 +59,17 @@ function fail(message: string): never {
 
 interface ScanDefaults {
   format: string;
-  out?: string;
+  /** Default output file name without extension; the extension follows --format. */
+  outBase?: string;
 }
+
+const EXTENSIONS: Record<string, string> = {
+  text: 'txt',
+  json: 'json',
+  markdown: 'md',
+  sarif: 'sarif',
+  html: 'html',
+};
 
 async function cmdScan(
   argv: string[],
@@ -64,7 +81,7 @@ async function cmdScan(
     options: {
       scope: { type: 'string' },
       format: { type: 'string', default: defaults.format },
-      out: { type: 'string', default: defaults.out },
+      out: { type: 'string' },
       'fail-on': { type: 'string', default: 'none' },
       config: { type: 'string' },
       github: { type: 'boolean', default: false },
@@ -104,6 +121,8 @@ async function cmdScan(
   const scope = values.scope ? parseScope(values.scope.split(',')) : undefined;
   const { report, scrub } = await scan({ root, configPath: values.config, scope, rules: RULES });
 
+  if (values.out === undefined && defaults.outBase)
+    values.out = `${defaults.outBase}.${EXTENSIONS[format]}`;
   const toFile = values.out !== undefined;
   if (format === 'text' && !toFile && isFirstRun(Boolean(process.stdout.isTTY))) {
     process.stderr.write(`${DISCLAIMER}\n\n`);
@@ -113,7 +132,11 @@ async function cmdScan(
       ? renderJson(report)
       : format === 'markdown'
         ? renderMarkdown(report)
-        : renderText(report, { color: !toFile && colorEnabled(), verbose: values.verbose });
+        : format === 'sarif'
+          ? renderSarif(report, RULES)
+          : format === 'html'
+            ? renderHtml(report)
+            : renderText(report, { color: !toFile && colorEnabled(), verbose: values.verbose });
   const safe = scrub(rendered);
   if (toFile) {
     writeFileSync(resolve(values.out as string), safe);
@@ -198,6 +221,51 @@ function cmdExplain(argv: string[]): number {
   return 0;
 }
 
+async function cmdBaseline(argv: string[]): Promise<number> {
+  const { values, positionals } = parseArgs({
+    args: argv,
+    allowPositionals: true,
+    options: {
+      approver: { type: 'string' },
+      reason: { type: 'string' },
+      expires: { type: 'string' },
+      all: { type: 'boolean', default: false },
+      fingerprint: { type: 'string', multiple: true, default: [] },
+      prune: { type: 'boolean', default: false },
+      config: { type: 'string' },
+    },
+  });
+  if (positionals.length > 1) fail('baseline takes at most one path.');
+  try {
+    const result = await runBaseline({
+      root: resolve(positionals[0] ?? '.'),
+      configPath: values.config,
+      rules: RULES,
+      now: nowFromEnv(),
+      approver: values.approver,
+      reason: values.reason,
+      expires: values.expires,
+      all: values.all,
+      fingerprints: values.fingerprint,
+      prune: values.prune,
+    });
+    const lines = [
+      result.added.length
+        ? `Accepted ${result.added.length} finding(s) until ${values.expires}: ${result.added.map((f) => f.id).join(', ')}.`
+        : '',
+      result.pruned
+        ? `Removed ${result.pruned} stale entr${result.pruned === 1 ? 'y' : 'ies'}.`
+        : '',
+      `${result.path} now holds ${result.total} entr${result.total === 1 ? 'y' : 'ies'}. Commit it so the acceptance is reviewed.`,
+    ].filter(Boolean);
+    process.stdout.write(`${lines.join('\n')}\n`);
+    return 0;
+  } catch (err) {
+    if (err instanceof BaselineError) fail(err.message);
+    throw err;
+  }
+}
+
 function notYet(command: string): number {
   process.stderr.write(`threesock ${command} is planned but not available in this version yet.\n`);
   return 2;
@@ -224,8 +292,9 @@ export async function main(argv: string[]): Promise<number> {
       case 'explain':
         return cmdExplain(rest);
       case 'report':
-        return await cmdScan(rest, { format: 'markdown', out: 'threesock-report.md' });
+        return await cmdScan(rest, { format: 'markdown', outBase: 'threesock-report' });
       case 'baseline':
+        return await cmdBaseline(rest);
       case 'mcp':
         return notYet(first);
       default:

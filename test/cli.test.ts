@@ -45,7 +45,7 @@ describe('cli', () => {
   });
   it('--format json emits parseable JSON with a schema version', async () => {
     await main(['scan', insecure.dir, '--format', 'json']);
-    expect(JSON.parse(stdout).schemaVersion).toBe('1.1.0');
+    expect(JSON.parse(stdout).schemaVersion).toBe('1.2.0');
   });
   it('never prints secret values to stdout', async () => {
     for (const fmt of ['text', 'json']) {
@@ -65,6 +65,40 @@ describe('cli', () => {
     expect(stderr).toContain('--min-assessed requires 60');
     expect(await main(['scan', insecure.dir, '--min-readiness', '50'])).toBe(1);
     expect(await main(['scan', compliant.dir, '--min-readiness', '120'])).toBe(2);
+  });
+  it('writes SARIF and HTML, and report picks the extension from --format', async () => {
+    await main(['scan', insecure.dir, '--format', 'sarif']);
+    expect(JSON.parse(stdout).version).toBe('2.1.0');
+    const cwd = process.cwd();
+    process.chdir(compliant.dir);
+    try {
+      expect(await main(['report', '.', '--format', 'html'])).toBe(0);
+      expect(readFileSync(join(compliant.dir, 'threesock-report.html'), 'utf8')).toMatch(
+        /^<!doctype html>/,
+      );
+    } finally {
+      rmSync(join(compliant.dir, 'threesock-report.html'), { force: true });
+      process.chdir(cwd);
+    }
+  });
+  it('baseline accepts findings with approver, reason and expiry, and validates input', async () => {
+    expect(await main(['baseline', insecure.dir, '--all'])).toBe(2);
+    expect(stderr).toContain('--approver is required');
+    expect(
+      await main([
+        'baseline',
+        insecure.dir,
+        '--all',
+        '--approver',
+        'cto@example.com',
+        '--reason',
+        'Q1 backlog',
+        '--expires',
+        '2026-03-01',
+      ]),
+    ).toBe(0);
+    expect(stdout).toMatch(/Accepted \d+ finding\(s\) until 2026-03-01/);
+    rmSync(join(insecure.dir, 'threesock-baseline.yaml'));
   });
   it('rejects bad flags with exit code 2', async () => {
     expect(await main(['scan', '--format', 'pdf'])).toBe(2);

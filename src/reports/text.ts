@@ -115,6 +115,16 @@ export function renderText(report: ScanReport, opts: TextOptions = {}): string {
   const expired = report.findings.filter((f) => f.expiredException).length;
   if (expired)
     out.push(`${expired} exception(s) have expired and are counted as open findings again.`);
+  const rejected = report.findings.filter((f) => f.rejectedException).length;
+  if (rejected)
+    out.push(
+      `${rejected} exception(s) run longer than allowed for their severity and were not applied.`,
+    );
+  const stale = summary.staleExceptions.length;
+  if (stale)
+    out.push(
+      `${stale} exception(s) or baseline entries match no finding; remove them, or run \`threesock baseline --prune\`.`,
+    );
   out.push(
     `Manual evidence: ${summary.manualOpen} in-scope criteria need evidence a human must gather. ` +
       'Run `threesock explain <criterion>` for guidance.',

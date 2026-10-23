@@ -21,6 +21,7 @@ export const DEFAULT_THRESHOLDS: Threshold = {
   sensitivePathApprovals: 2,
   minTlsVersion: '1.2',
   slaDays: { critical: 1, high: 30, medium: 90, low: 180 },
+  maxExceptionDays: { critical: 7, high: 90 },
   logRetentionDays: 365,
   secretRotationDays: 90,
   dsarResponseDays: 30,
@@ -113,6 +114,7 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
   const thresholds: Threshold = {
     ...DEFAULT_THRESHOLDS,
     slaDays: { ...DEFAULT_THRESHOLDS.slaDays },
+    maxExceptionDays: { ...DEFAULT_THRESHOLDS.maxExceptionDays },
   };
   if (data.thresholds !== undefined) {
     if (!isRecord(data.thresholds)) throw new ConfigError('thresholds must be a mapping.', file);
@@ -136,6 +138,28 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
         throw new ConfigError('thresholds.minTlsVersion must be "1.2" or "1.3".', file);
       }
       thresholds.minTlsVersion = v;
+    }
+    if (t.maxExceptionDays !== undefined) {
+      if (!isRecord(t.maxExceptionDays)) {
+        throw new ConfigError('thresholds.maxExceptionDays must be a mapping.', file);
+      }
+      for (const [sev, days] of Object.entries(t.maxExceptionDays)) {
+        if (!(SEVERITIES as readonly string[]).includes(sev)) {
+          throw new ConfigError(`thresholds.maxExceptionDays.${sev} is not a severity.`, file);
+        }
+        if (days !== null && (typeof days !== 'number' || days < 0)) {
+          throw new ConfigError(
+            `thresholds.maxExceptionDays.${sev} must be a number of days (or null for no limit).`,
+            file,
+          );
+        }
+        // null removes the cap for that severity.
+        thresholds.maxExceptionDays = Object.fromEntries(
+          Object.entries({ ...thresholds.maxExceptionDays, [sev]: days }).filter(
+            ([, d]) => d !== null,
+          ),
+        ) as Threshold['maxExceptionDays'];
+      }
     }
     if (t.slaDays !== undefined) {
       if (!isRecord(t.slaDays))
@@ -200,34 +224,8 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
     }
   }
 
-  const exceptions: ExceptionEntry[] = [];
-  if (data.exceptions !== undefined) {
-    if (!Array.isArray(data.exceptions)) throw new ConfigError('exceptions must be a list.', file);
-    data.exceptions.forEach((e, i) => {
-      const at = `exceptions[${i}]`;
-      if (!isRecord(e)) throw new ConfigError(`${at} must be a mapping.`, file);
-      const rule = str(e.rule);
-      const fingerprint = str(e.fingerprint);
-      if (!rule && !fingerprint)
-        throw new ConfigError(`${at} needs a rule or a fingerprint.`, file);
-      const approver = str(e.approver);
-      const justification = str(e.justification);
-      const expires =
-        e.expires instanceof Date ? e.expires.toISOString().slice(0, 10) : str(e.expires);
-      if (!approver) throw new ConfigError(`${at} needs an approver (rubric CC4.2).`, file);
-      if (!justification)
-        throw new ConfigError(`${at} needs a justification (rubric CC4.2).`, file);
-      if (!expires || !ISO_DATE.test(expires)) {
-        throw new ConfigError(`${at} needs an expiry date as YYYY-MM-DD (rubric CC4.2).`, file);
-      }
-      const entry: ExceptionEntry = { approver, justification, expires };
-      if (rule) entry.rule = rule;
-      if (fingerprint) entry.fingerprint = fingerprint;
-      const path = str(e.path);
-      if (path) entry.path = path;
-      exceptions.push(entry);
-    });
-  }
+  const exceptions =
+    data.exceptions === undefined ? [] : parseExceptions(data.exceptions, 'config', file);
 
   let sensitivePaths = [...DEFAULT_SENSITIVE_PATHS];
   if (data.sensitivePaths !== undefined) {
@@ -276,9 +274,66 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
   return config;
 }
 
+/** Validates an exceptions list (threesock.yaml `exceptions` or the baseline file). */
+export function parseExceptions(
+  list: unknown,
+  source: 'config' | 'baseline',
+  file?: string,
+): ExceptionEntry[] {
+  if (!Array.isArray(list)) throw new ConfigError('exceptions must be a list.', file);
+  return list.map((e, i) => {
+    const at = `exceptions[${i}]`;
+    if (!isRecord(e)) throw new ConfigError(`${at} must be a mapping.`, file);
+    const rule = str(e.rule);
+    const fingerprint = str(e.fingerprint);
+    if (!rule && !fingerprint) throw new ConfigError(`${at} needs a rule or a fingerprint.`, file);
+    if (source === 'baseline' && !fingerprint)
+      throw new ConfigError(`${at} needs a fingerprint.`, file);
+    const approver = str(e.approver);
+    const justification = str(e.justification);
+    const expires =
+      e.expires instanceof Date ? e.expires.toISOString().slice(0, 10) : str(e.expires);
+    if (!approver) throw new ConfigError(`${at} needs an approver (rubric CC4.2).`, file);
+    if (!justification) throw new ConfigError(`${at} needs a justification (rubric CC4.2).`, file);
+    if (!expires || !ISO_DATE.test(expires)) {
+      throw new ConfigError(`${at} needs an expiry date as YYYY-MM-DD (rubric CC4.2).`, file);
+    }
+    const entry: ExceptionEntry = { source, approver, justification, expires };
+    // In a baseline the rule id is informational: matching is by fingerprint only.
+    if (rule && source === 'config') entry.rule = rule;
+    if (fingerprint) entry.fingerprint = fingerprint;
+    const path = str(e.path);
+    if (path && source === 'config') entry.path = path;
+    const title = str(e.title);
+    if (title) entry.title = title;
+    return entry;
+  });
+}
+
+export const BASELINE_FILENAME = 'threesock-baseline.yaml';
+
+function loadBaseline(config: ResolvedConfig): ResolvedConfig {
+  const path = join(config.configDir, BASELINE_FILENAME);
+  if (!existsSync(path)) return config;
+  let raw: unknown;
+  try {
+    raw = parse(readFileSync(path, 'utf8'));
+  } catch (err) {
+    throw new ConfigError(`invalid YAML: ${(err as Error).message}`, path);
+  }
+  const data = isRecord(raw) ? raw : {};
+  if (data.version !== undefined && data.version !== 1)
+    throw new ConfigError(`unsupported version ${String(data.version)}; expected 1.`, path);
+  const entries =
+    data.exceptions === undefined || data.exceptions === null
+      ? []
+      : parseExceptions(data.exceptions, 'baseline', path);
+  return { ...config, baselinePath: path, exceptions: [...config.exceptions, ...entries] };
+}
+
 export function loadConfig(root: string, explicitPath?: string): ResolvedConfig {
   const file = explicitPath ? resolve(explicitPath) : findConfig(root);
-  if (!file) return resolveConfig({}, root);
+  if (!file) return loadBaseline(resolveConfig({}, root));
   if (!existsSync(file)) throw new ConfigError('config file not found.', file);
   let raw: unknown;
   try {
@@ -286,5 +341,5 @@ export function loadConfig(root: string, explicitPath?: string): ResolvedConfig 
   } catch (err) {
     throw new ConfigError(`invalid YAML: ${(err as Error).message}`, file);
   }
-  return resolveConfig(raw, dirname(file), file);
+  return loadBaseline(resolveConfig(raw, dirname(file), file));
 }

@@ -15,6 +15,7 @@ thresholds:
   sensitivePathApprovals: 2
   minTlsVersion: "1.2"
   slaDays: { critical: 1, high: 30, medium: 90, low: 180 }
+  maxExceptionDays: { critical: 7, high: 90 }  # longest an exception may run
   logRetentionDays: 365
   secretRotationDays: 90
   dsarResponseDays: 30

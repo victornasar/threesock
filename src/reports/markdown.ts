@@ -48,7 +48,9 @@ function findingBlock(f: Finding): string {
       ? `Accepted until ${f.exception.expires} (approved by ${f.exception.approver}: ${f.exception.justification})`
       : f.expiredException
         ? `Open (exception approved by ${f.expiredException.approver} expired ${f.expiredException.expires})`
-        : 'Open';
+        : f.rejectedException
+          ? `Open (exception by ${f.rejectedException.approver} until ${f.rejectedException.expires} not applied: ${f.rejectedException.reason})`
+          : 'Open';
   const rows: [string, string][] = [
     ['Finding ID', f.id],
     ['Criterion', f.criterion],
@@ -123,6 +125,14 @@ export function renderMarkdown(report: ScanReport): string {
     'Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded from both sides of the ratio (rubric 1.1), so read it together with the number of criteria assessed.',
     '',
   );
+  if (summary.staleExceptions.length) {
+    out.push(
+      `${summary.staleExceptions.length} exception(s) or baseline entries match no current finding: ${summary.staleExceptions
+        .map((e) => e.rule ?? `fingerprint ${e.fingerprint}`)
+        .join(', ')}. Remove them, or run \`threesock baseline --prune\`.`,
+      '',
+    );
+  }
   if (summary.topFixes.length) {
     out.push('### Top fixes', '');
     summary.topFixes.forEach((f, i) => {
