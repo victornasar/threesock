@@ -25,6 +25,7 @@ export const suppressions: Rule = {
   title: 'Scanner suppressions carry a justification',
   tags: ['CODE', 'CONFIG'],
   severity: 'medium',
+  redFlag: false, // set per finding
   checks: ['Exceptions require approver, justification, and expiry date'],
   expected:
     'Every suppression of a security finding says why (and ideally who approved it and until when).',

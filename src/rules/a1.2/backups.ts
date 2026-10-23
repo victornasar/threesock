@@ -8,6 +8,7 @@ export const backups: Rule = {
   title: 'Persistent data stores have automated backups',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: false,
   checks: ['Automated backups for all persistent data stores'],
   expected:
     'Every database has automated backups with a retention policy, and point-in-time recovery where supported.',

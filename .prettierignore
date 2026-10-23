@@ -7,3 +7,4 @@ test/__snapshots__
 *.md
 test/golden
 pnpm-lock.yaml
+docs/site/rules.md

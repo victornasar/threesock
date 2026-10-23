@@ -22,6 +22,7 @@ export const githubAgedAlerts: Rule = {
   title: 'Security alerts are fixed within the remediation SLA',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: false,
   requires: ['github'],
   checks: ['Remediation SLAs are defined and measured'],
   expected:

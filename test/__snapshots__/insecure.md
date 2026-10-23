@@ -47,7 +47,7 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 | CC2.3 | External communication | 0 (Not Met) |  | F-038 |  | No automated check passed. |
 | CC3.1 | Suitable objectives | MANUAL |  |  | Security and risk owner | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
 | CC3.2 | Risk identification and analysis | 0 (Not Met) |  | F-039, F-040, F-101 |  | No automated check passed. |
-| CC3.3 | Fraud risk | 0 (Not Met) |  | F-010, F-011 |  | No automated check passed. |
+| CC3.3 | Fraud risk | 0 (Not Met) |  | F-010, F-011 |  | Red flag present: Authentication can be switched off by an environment variable (F-010). |
 | CC3.4 | Significant changes | 0 (Not Met) |  | F-102 |  | No automated check passed. |
 | CC4.1 | Ongoing/separate evaluations | 0 (Not Met) |  | F-041, F-042, F-103 |  | No automated check passed. |
 | CC4.2 | Deficiency communication and remediation | 0 (Not Met) |  | F-043, F-044, F-045, F-046 |  | Red flag present: Unexplained entries in .trivyignore (F-045). |
@@ -55,7 +55,7 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 | CC5.2 | Technology general controls | 0 (Not Met) |  | F-001, F-012, F-013, F-014, F-015, F-047, F-048 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
 | CC5.3 | Policies and procedures | 0 (Not Met) |  | F-049, F-105 |  | No automated check passed. |
 | CC6.1 | Logical access security | 0 (Not Met) |  | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-050, F-051, F-052, F-106, F-107 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
-| CC6.2 | Registration and authorization before access | 0 (Not Met) |  | F-019 |  | No automated check passed. |
+| CC6.2 | Registration and authorization before access | 0 (Not Met) |  | F-019 |  | Red flag present: Whole request body spread into a database write (F-019). |
 | CC6.3 | Access removal and modification | 0 (Not Met) |  | F-053, F-054 |  | No automated check passed. |
 | CC6.4 | Physical access | MANUAL |  |  | IT and facilities (inherit from cloud provider SOC 2 report) | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
 | CC6.5 | Secure disposal of assets | 0 (Not Met) |  | F-108 |  | No automated check passed. |
@@ -63,7 +63,7 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 | CC6.7 | Protection of data in transmission | 0 (Not Met) |  | F-025, F-026, F-027, F-057 |  | Red flag present: Node TLS client with certificate rejection turned off (F-025). |
 | CC6.8 | Malicious/unauthorized software | 0 (Not Met) |  | F-028, F-029, F-058, F-059, F-060, F-109, F-110 |  | No automated check passed. |
 | CC7.1 | Detection of vulnerabilities and configuration changes | 0 (Not Met) |  | F-061, F-062, F-111 |  | No automated check passed. |
-| CC7.2 | Monitoring for anomalies | 0 (Not Met) |  | F-030, F-063, F-064 |  | No automated check passed. |
+| CC7.2 | Monitoring for anomalies | 0 (Not Met) |  | F-030, F-063, F-064 |  | Red flag present: Request body or headers passed to a logger (F-030). |
 | CC7.3 | Security event evaluation | 0 (Not Met) |  | F-065 |  | No automated check passed. |
 | CC7.4 | Incident response | 0 (Not Met) |  | F-031, F-066 |  | No automated check passed. |
 | CC7.5 | Recovery from incidents | 0 (Not Met) |  | F-067 |  | No automated check passed. |
@@ -78,7 +78,7 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 | PI1.3 | Processing completeness, accuracy, timeliness, authorization | 0 (Not Met) |  | F-080 |  | No automated check passed. |
 | PI1.4 | Output completeness, accuracy, timeliness | MANUAL |  |  | Engineering lead | threesock has no automated checks for this criterion yet. Gather evidence manually. |
 | PI1.5 | Storage completeness and accuracy | 0 (Not Met) |  | F-081 |  | No automated check passed. |
-| C1.1 | Identify and protect confidential information | 0 (Not Met) |  | F-035, F-082, F-083 |  | No automated check passed. |
+| C1.1 | Identify and protect confidential information | 0 (Not Met) |  | F-035, F-082, F-083 |  | Red flag present: Unencrypted data store: aws_db_instance.main (F-035). |
 | C1.2 | Dispose of confidential information | 0 (Not Met) |  | F-084, F-118 |  | No automated check passed. |
 | P1.1 | Privacy notice | 0 (Not Met) |  | F-085 |  | No automated check passed. |
 | P2.1 | Choice and consent | 0 (Not Met) |  | F-036 |  | Red flag present: Trackers load without a consent check (F-036). |

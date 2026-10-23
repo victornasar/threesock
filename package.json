@@ -18,17 +18,17 @@
   "engines": {
     "node": ">=22"
   },
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "gen:criteria": "node scripts/gen-criteria.mjs",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "test": "vitest run",
-    "selfscan": "pnpm run build && node dist/cli/index.js scan . --fail-on high --min-readiness 90 --min-assessed 20",
-    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm test && pnpm run selfscan",
-    "gen:rules": "node scripts/gen-rule-index.mjs"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/threesock/threesock.git"
+  },
+  "homepage": "https://github.com/threesock/threesock#readme",
+  "bugs": {
+    "url": "https://github.com/threesock/threesock/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "soc2",
@@ -39,8 +39,25 @@
     "sarif",
     "mcp"
   ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "gen:criteria": "node scripts/gen-criteria.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "selfscan": "pnpm run build && node dist/cli/index.js scan . --fail-on high --min-readiness 90 --min-assessed 20",
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm test && pnpm run selfscan",
+    "gen:rules": "node scripts/gen-rule-index.mjs",
+    "prepack": "pnpm run build",
+    "gen:docs": "pnpm run build && node scripts/gen-docs.mjs"
+  },
+  "packageManager": "pnpm@12.15.0",
   "dependencies": {
-    "yaml": "^2.9.1"
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -50,6 +67,5 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.0",
     "vitest": "^5.0.5"
-  },
-  "packageManager": "pnpm@12.15.0"
+  }
 }

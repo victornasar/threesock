@@ -1,0 +1,120 @@
+name: threesock
+description: SOC 2 readiness scan. One extra layer of confidence before your SOC 2 audit. A readiness aid, not an audit.
+author: threesock
+branding:
+  icon: shield
+  color: gray-dark
+
+inputs:
+  path:
+    description: Repository path to scan.
+    default: '.'
+  scope:
+    description: Comma-separated categories (security is always included), e.g. security,availability,privacy.
+    default: security
+  fail-on:
+    description: Fail the job on open findings at or above this severity (critical, high, medium, low, none).
+    default: high
+  min-readiness:
+    description: Fail if any in-scope category is below this readiness percentage (empty to disable).
+    default: ''
+  min-assessed:
+    description: Fail if fewer criteria than this are scored (empty to disable).
+    default: ''
+  upload-sarif:
+    description: 'Upload results to GitHub code scanning (needs `security-events: write`).'
+    default: 'true'
+  github-checks:
+    description: Also run read-only GitHub API checks with the workflow token (branch protection, secret scanning, alerts).
+    default: 'false'
+  tools:
+    description: External scanners to run if installed (auto, none, or a list such as gitleaks,zizmor).
+    default: auto
+  network:
+    description: Allow tools that need the network (OSV-Scanner, Trivy, Semgrep registry rules).
+    default: 'false'
+  version:
+    description: threesock version to run from npm. Pin it; the default matches this action's release.
+    default: 0.1.0
+  token:
+    description: Token for `github-checks`. Defaults to the workflow token.
+    default: ${{ github.token }}
+
+outputs:
+  sarif-file:
+    description: Path of the SARIF report.
+    value: ${{ steps.scan.outputs.sarif-file }}
+  report-file:
+    description: Path of the Markdown report.
+    value: ${{ steps.scan.outputs.report-file }}
+  exit-code:
+    description: threesock's exit code (0 ok, 1 gate failed, 2 usage or configuration error).
+    value: ${{ steps.scan.outputs.exit-code }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version: 22
+
+    # Inputs reach the shell only through environment variables, never ${{ }} interpolation.
+    - id: scan
+      shell: bash
+      env:
+        TS_PATH: ${{ inputs.path }}
+        TS_SCOPE: ${{ inputs.scope }}
+        TS_FAIL_ON: ${{ inputs.fail-on }}
+        TS_MIN_READINESS: ${{ inputs.min-readiness }}
+        TS_MIN_ASSESSED: ${{ inputs.min-assessed }}
+        TS_GITHUB: ${{ inputs.github-checks }}
+        TS_TOOLS: ${{ inputs.tools }}
+        TS_NETWORK: ${{ inputs.network }}
+        TS_VERSION: ${{ inputs.version }}
+        TS_TOKEN: ${{ inputs.token }}
+      run: |
+        set -uo pipefail
+        if ! [[ "$TS_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.]+)?$ ]]; then
+          echo "::error::version must be an exact version such as 0.1.0"; exit 2
+        fi
+        out="$RUNNER_TEMP/threesock"
+        mkdir -p "$out"
+        args=(scan "$TS_PATH" --scope "$TS_SCOPE" --fail-on "$TS_FAIL_ON" --tools "$TS_TOOLS"
+              --output "sarif=$out/threesock.sarif" --output "markdown=$out/threesock-report.md")
+        [ -n "$TS_MIN_READINESS" ] && args+=(--min-readiness "$TS_MIN_READINESS")
+        [ -n "$TS_MIN_ASSESSED" ] && args+=(--min-assessed "$TS_MIN_ASSESSED")
+        [ "$TS_NETWORK" = "true" ] && args+=(--network)
+        if [ "$TS_GITHUB" = "true" ]; then
+          export GITHUB_TOKEN="$TS_TOKEN"
+          args+=(--github --github-repo "$GITHUB_REPOSITORY")
+        fi
+        set +e
+        NO_COLOR=1 npx --yes "threesock@$TS_VERSION" "${args[@]}" | tee "$out/summary.txt"
+        code=${PIPESTATUS[0]}
+        set -e
+        {
+          echo '## threesock SOC 2 readiness'
+          echo
+          echo '```text'
+          cat "$out/summary.txt"
+          echo '```'
+          echo
+          echo 'Readiness aid, not an audit. The full Markdown scorecard is at the `report-file` output.'
+        } >> "$GITHUB_STEP_SUMMARY"
+        {
+          echo "sarif-file=$out/threesock.sarif"
+          echo "report-file=$out/threesock-report.md"
+          echo "exit-code=$code"
+        } >> "$GITHUB_OUTPUT"
+
+    - if: ${{ inputs.upload-sarif == 'true' && hashFiles(format('{0}/threesock/threesock.sarif', runner.temp)) != '' }}
+      uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+      with:
+        sarif_file: ${{ steps.scan.outputs.sarif-file }}
+        category: threesock
+
+    # The gate is applied last, so results are uploaded even when it fails.
+    - shell: bash
+      env:
+        TS_CODE: ${{ steps.scan.outputs.exit-code }}
+      run: exit "${TS_CODE:-2}"

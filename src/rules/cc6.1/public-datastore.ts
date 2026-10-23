@@ -11,6 +11,7 @@ export const publicDatastore: Rule = {
   title: 'Databases are not publicly accessible',
   tags: ['CONFIG'],
   severity: 'critical',
+  redFlag: true,
   checks: ['**Data stores**'],
   expected:
     'Data stores sit in private networks, are not publicly reachable, and require authentication.',

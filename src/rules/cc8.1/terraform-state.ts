@@ -7,6 +7,7 @@ export const terraformState: Rule = {
   title: 'Terraform state is remote, locked and not committed',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: false,
   checks: ['IaC changes go through plan/review/apply'],
   expected:
     'Terraform state lives in a remote, locked, access-controlled backend, and state files are never committed.',

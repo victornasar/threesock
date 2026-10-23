@@ -30,6 +30,7 @@ Usage
     --scope <list>               security,availability,processing-integrity,confidentiality,privacy
     --format <fmt>               text | json | markdown | sarif | html   (default: text)
     --out <file>                 Write the report to a file instead of stdout
+    --output <format>=<file>     Also write another format from the same scan (repeatable)
     --fail-on <severity>         critical | high | medium | low | none   (default: none)
     --min-readiness <percent>    Exit 1 if any in-scope category is below this readiness
     --min-assessed <count>       Exit 1 if fewer criteria than this are scored (not N/A or MANUAL)
@@ -51,7 +52,8 @@ Usage
     --all                        Accept every open Medium and Low finding
     --fingerprint <fp>           Accept one finding (repeatable; any severity, within expiry caps)
     --prune                      Remove entries that no longer match a finding
-  threesock mcp                  Start the MCP server for AI agents
+  threesock mcp                  Start the MCP server for AI agents (stdio; read-only)
+    --allow-path <dir>           Also allow scanning this directory (repeatable)
 
 Exit codes: 0 ok · 1 findings at or above --fail-on · 2 usage or configuration error
 
@@ -98,6 +100,7 @@ async function cmdScan(
       network: { type: 'boolean', default: false },
       verbose: { type: 'boolean', default: false },
       'min-readiness': { type: 'string' },
+      output: { type: 'string', multiple: true, default: [] },
       'min-assessed': { type: 'string' },
     },
   });
@@ -118,6 +121,15 @@ async function cmdScan(
     fail(`unknown format "${format}". Use one of: ${FORMATS.join(', ')}.`);
   if (!IMPLEMENTED_FORMATS.has(format))
     fail(`--format ${format} is not available in this version yet. Use text, json or markdown.`);
+
+  // --output <format>=<file> (repeatable): extra report files from the same scan.
+  const extraOutputs = (values.output as string[]).map((spec): [string, string] => {
+    const m = /^([a-z]+)=(.+)$/.exec(spec);
+    if (!m || !(FORMATS as readonly string[]).includes(m[1] as string)) {
+      fail(`--output must look like <format>=<file>, with format one of ${FORMATS.join(', ')}.`);
+    }
+    return [m[1] as string, m[2] as string];
+  });
 
   const failOn = values['fail-on'] as string;
   if (failOn !== 'none' && !(SEVERITIES as readonly string[]).includes(failOn)) {
@@ -178,17 +190,21 @@ async function cmdScan(
   if (format === 'text' && !toFile && isFirstRun(Boolean(process.stdout.isTTY))) {
     process.stderr.write(`${DISCLAIMER}\n\n`);
   }
-  const rendered =
-    format === 'json'
+  const render = (fmt: string, color: boolean) =>
+    fmt === 'json'
       ? renderJson(report)
-      : format === 'markdown'
+      : fmt === 'markdown'
         ? renderMarkdown(report)
-        : format === 'sarif'
+        : fmt === 'sarif'
           ? renderSarif(report, RULES)
-          : format === 'html'
+          : fmt === 'html'
             ? renderHtml(report)
-            : renderText(report, { color: !toFile && colorEnabled(), verbose: values.verbose });
-  const safe = scrub(rendered);
+            : renderText(report, { color, verbose: values.verbose });
+  for (const [fmt, file] of extraOutputs) {
+    writeFileSync(resolve(file), scrub(render(fmt, false)));
+    process.stderr.write(`Wrote ${fmt} report to ${file}\n`);
+  }
+  const safe = scrub(render(format, !toFile && colorEnabled()));
   if (toFile) {
     writeFileSync(resolve(values.out as string), safe);
     process.stderr.write(`Wrote ${format} report to ${values.out}\n`);
@@ -319,9 +335,17 @@ async function cmdBaseline(argv: string[]): Promise<number> {
   }
 }
 
-function notYet(command: string): number {
-  process.stderr.write(`threesock ${command} is planned but not available in this version yet.\n`);
-  return 2;
+async function cmdMcp(argv: string[]): Promise<number> {
+  const { values } = parseArgs({
+    args: argv,
+    options: { 'allow-path': { type: 'string', multiple: true, default: [] } },
+  });
+  const roots = [process.cwd(), ...(values['allow-path'] as string[]).map((p) => resolve(p))];
+  for (const r of roots) if (!existsSync(r)) fail(`--allow-path ${r} does not exist.`);
+  // Loaded only here, so `scan` never imports the MCP SDK.
+  const { startStdio } = await import('../mcp/server.js');
+  await startStdio({ roots });
+  return new Promise<number>(() => undefined); // serve until the client disconnects
 }
 
 export async function main(argv: string[]): Promise<number> {
@@ -349,7 +373,7 @@ export async function main(argv: string[]): Promise<number> {
       case 'baseline':
         return await cmdBaseline(rest);
       case 'mcp':
-        return notYet(first);
+        return await cmdMcp(rest);
       default:
         // `threesock ./path --format json` is shorthand for scan.
         return await cmdScan(argv);

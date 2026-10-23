@@ -95,7 +95,7 @@ const out = await run(tokensInUrls, { 'src/api.ts': "fetch(`${base}/users?access
 expect(out.status).toBe('fail');
 ```
 
-Then refresh the golden report and snapshots, and review the diff:
+Then regenerate the rule reference (`pnpm gen:docs`), refresh the golden report and snapshots, and review the diff:
 
 ```sh
 UPDATE_GOLDEN=1 pnpm exec vitest run -u

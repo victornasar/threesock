@@ -13,6 +13,7 @@ export const cloudCredentials: Rule = {
   title: 'CI authenticates to clouds with OIDC, not long-lived keys',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: true,
   checks: ['CI/CD hardened'],
   expected:
     'Workflows assume cloud roles through OIDC federation (id-token: write), so no long-lived cloud keys are stored as CI secrets.',

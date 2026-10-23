@@ -56,6 +56,25 @@ Top fixes
      secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
 ```
 
+## GitHub Action
+
+```yaml
+- uses: threesock/threesock/action@<sha> # pin to a release commit
+  with:
+    scope: security,availability
+    fail-on: high
+```
+
+Uploads SARIF to code scanning, writes a job summary and fails on findings at or above `fail-on`. See [docs/github-action.md](docs/github-action.md).
+
+## AI agents (MCP)
+
+```sh
+claude mcp add threesock -- npx -y threesock@0.1.0 mcp
+```
+
+Read-only tools for agents: `scan`, `list_findings`, `suggest_fix`, `explain_criterion` and `get_report`. See [docs/site/agents.md](docs/site/agents.md).
+
 ## GitHub checks (opt-in)
 
 `--github` adds read-only checks against the GitHub API: branch protection and rulesets, required signed commits, secret scanning and push protection, Dependabot alerts and their age, production environment reviewers, and organization 2FA and base permissions. It is the only feature that uses the network, and it runs only when you pass the flag.
@@ -103,7 +122,7 @@ Category readiness = points earned ÷ (2 × assessable criteria), excluding N/A 
 
 ## Status
 
-threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 122 built-in rules across all five categories: Security (CC1–CC9), Availability, Processing Integrity, Confidentiality and Privacy. SARIF, HTML, baselines, the control and policy mapping, opt-in GitHub API checks and external scanners are in. Next: the GitHub Action, the MCP server and npm publishing. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
+threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 122 built-in rules across all five categories: Security (CC1–CC9), Availability, Processing Integrity, Confidentiality and Privacy. Every planned interface is in: CLI, GitHub Action, MCP server, and the npm release workflow. Full documentation lives in [docs/site](docs/site). See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
 
 ## Security
 

@@ -20,6 +20,7 @@ export const encryptionAtRest: Rule = {
   title: 'Data stores are encrypted at rest',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: true,
   checks: ['Encryption at rest with managed keys'],
   expected:
     'Every database, volume, file system and cache is encrypted at rest, preferably with managed KMS keys.',

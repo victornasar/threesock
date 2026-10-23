@@ -57,6 +57,10 @@ describe('rule registry', () => {
     expect(files.sort()).toEqual(RULES.map((r) => r.id).sort());
   });
 
+  it('every rule says explicitly whether it is a rubric red flag', () => {
+    for (const r of RULES) expect(typeof r.redFlag, r.id).toBe('boolean');
+  });
+
   it('every rule has remediation, expected and risk text', () => {
     for (const r of RULES) {
       expect(r.remediation.summary.length, r.id).toBeGreaterThan(20);

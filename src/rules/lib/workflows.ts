@@ -16,18 +16,27 @@ const cache = new WeakMap<FileIndex, Workflow[]>();
 export function workflows(files: FileIndex): Workflow[] {
   const cached = cache.get(files);
   if (cached) return cached;
-  const list = files.glob(['.github/workflows/*.yml', '.github/workflows/*.yaml']).map((f) => {
-    const text = files.read(f.path) ?? '';
-    let doc: Record<string, unknown> | undefined;
-    try {
-      const parsed: unknown = parse(text);
-      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed))
-        doc = parsed as Record<string, unknown>;
-    } catch {
-      doc = undefined;
-    }
-    return { path: f.path, text, lines: text.split('\n'), doc };
-  });
+  // Composite actions (action.yml) contain run steps and `uses:` too, so the same checks apply.
+  const list = files
+    .glob([
+      '.github/workflows/*.yml',
+      '.github/workflows/*.yaml',
+      '**/action.yml',
+      '**/action.yaml',
+    ])
+    .filter((f) => !/(?:^|\/)(?:node_modules|test|tests|fixtures)\//.test(f.path))
+    .map((f) => {
+      const text = files.read(f.path) ?? '';
+      let doc: Record<string, unknown> | undefined;
+      try {
+        const parsed: unknown = parse(text);
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed))
+          doc = parsed as Record<string, unknown>;
+      } catch {
+        doc = undefined;
+      }
+      return { path: f.path, text, lines: text.split('\n'), doc };
+    });
   cache.set(files, list);
   return list;
 }

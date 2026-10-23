@@ -6,6 +6,7 @@ export const userObjectsToThirdParties = codePatternRule({
   title: 'Only minimal identifiers are sent to analytics and support tools',
   tags: ['CODE'],
   severity: 'medium',
+  redFlag: false, // set per finding
   checks: ['Payloads to vendors are minimized'],
   expected:
     'Calls to analytics, error-tracking and support SDKs send a pseudonymous id and only the fields the purpose needs, never whole user objects.',

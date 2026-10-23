@@ -125,6 +125,7 @@ export const openAdminPorts: Rule = {
   title: 'Admin and database ports are not open to the internet',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: true,
   checks: ['Security groups/firewall rules avoid'],
   expected:
     'Firewall rules never allow 0.0.0.0/0 or ::/0 to admin ports (SSH, RDP) or data ports (PostgreSQL, MySQL, Redis, MongoDB, ...).',

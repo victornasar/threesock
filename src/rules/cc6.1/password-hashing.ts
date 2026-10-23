@@ -13,6 +13,7 @@ export const passwordHashing: Rule = {
   title: 'Passwords hashed with Argon2id, bcrypt or scrypt',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: false, // set per finding
   checks: ['**Credentials:**'],
   expected:
     'Passwords are hashed with Argon2id, bcrypt or scrypt (rubric 1.4). Fast hashes such as MD5, SHA-1 or SHA-256 are never used for passwords.',

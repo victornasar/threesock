@@ -14,6 +14,7 @@ export const corsCredentials: Rule = {
   title: 'CORS does not allow any origin with credentials',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: false,
   checks: ['Restrictive CORS'],
   expected:
     'Credentialed CORS is limited to an explicit allow-list of origins; wildcard or reflected origins are only used for public, credential-less APIs.',

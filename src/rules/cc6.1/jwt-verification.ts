@@ -47,6 +47,7 @@ export const jwtVerification: Rule = {
   title: 'JWTs are verified with a strong algorithm and expiry',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: false,
   checks: ['**Sessions/tokens:**'],
   expected:
     'JWTs are signed with strong algorithms and validated (alg, exp, aud, iss) on every request.',

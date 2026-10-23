@@ -12,7 +12,7 @@ export const directPushes: Rule = {
   title: 'Changes reach the default branch through pull requests',
   tags: ['CONFIG'],
   severity: 'medium',
-  redFlag: false,
+  redFlag: true, // rubric CC8.1 red flag: direct pushes to main
   checks: ['**Branch protection**'],
   expected:
     'Every commit on the default branch arrives through a reviewed pull request (merge commit or squash with a PR reference).',

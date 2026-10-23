@@ -5,6 +5,15 @@ All notable changes to threesock are recorded here. The JSON report has its own 
 ## Unreleased
 
 ### Added
+- GitHub Action (`action/action.yml`): composite action that uploads SARIF, writes a job summary and gates on `fail-on`; inputs reach the shell only through environment variables.
+- MCP server (`threesock mcp`): read-only `scan`, `list_findings`, `suggest_fix`, `explain_criterion` and `get_report` tools; scans only under its working directory (`--allow-path` to widen).
+- `--output <format>=<file>` writes extra formats from one scan.
+- Release workflow: npm trusted publishing (OIDC, provenance) from `v*` tags in a protected environment.
+- Docs site content in `docs/site`, including a generated rule reference.
+
+### Fixed
+- Rules meant to mirror rubric red flags (public buckets, open admin ports, string-built SQL, unencrypted storage, and others) did not zero their criterion, because the engine defaults to "not a red flag". Every rule now declares it explicitly, and a test enforces that.
+- Direct pushes to the default branch are now a rubric red flag, as the rubric lists.
 - Privacy rules (P1.1, P2.1, P3.1, P3.2, P4.2, P4.3, P5.1, P5.2, P6.1, P6.3, P6.5, P6.6, P7.1, P8.1): consent before trackers, third-party SDK inventory, whole user objects sent to vendors, field-level protection of sensitive data, retention purge jobs, deletion paths and soft-delete purging, data export and correction, personal data validation, privacy notice, data map, breach notification, incident register, vendor breach intake and privacy contact. Code-path rules are not applicable when no personal data is handled.
 - `cc7.2/pii-in-logs`: personal data fields passed to loggers.
 - External scanners: Gitleaks (full history), zizmor, Checkov and Semgrep (local rules) run automatically when installed; OSV-Scanner, Trivy and Semgrep registry rules need `--network`. `--tools`, `--no-tools`, `THREESOCK_TOOLS`; 60-second timeout per tool; findings de-duplicated against built-in rules ("also found by"); Checkov/Trivy misconfigurations mapped to criteria by topic. JSON schema 1.4.0 (`findings[].source`, `alsoFoundBy`, tool versions in `coverage.externalTools`).

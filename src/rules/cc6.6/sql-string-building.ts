@@ -16,6 +16,7 @@ export const sqlStringBuilding: Rule = {
   title: 'SQL queries are parameterized, not built from strings',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: true,
   checks: ['Defenses against common web flaws'],
   expected:
     'Queries use bound parameters or a query builder; user input is never concatenated or interpolated into SQL.',

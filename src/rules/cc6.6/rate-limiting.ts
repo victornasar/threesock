@@ -12,6 +12,7 @@ export const rateLimiting: Rule = {
   title: 'Rate limiting protects auth and public APIs',
   tags: ['CODE', 'CONFIG'],
   severity: 'medium',
+  redFlag: false,
   checks: ['Rate limiting and abuse protections'],
   expected:
     'Login, signup, password reset and public APIs are rate limited, in code or at a gateway/WAF.',

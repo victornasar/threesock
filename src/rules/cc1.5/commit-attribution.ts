@@ -12,6 +12,7 @@ export const commitAttribution: Rule = {
   title: 'Every change is attributable to an individual',
   tags: ['CONFIG'],
   severity: 'medium',
+  redFlag: true,
   checks: ['Every change is attributable to an individual'],
   expected:
     'Commits come from identifiable people (SSO-linked accounts or signed commits); no shared or machine-default identities.',

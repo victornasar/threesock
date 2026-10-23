@@ -6,6 +6,7 @@ export const authBypass = codePatternRule({
   title: 'No authentication bypass flags or hard-coded privileged users',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: true,
   checks: ['No backdoor accounts'],
   expected:
     'Authentication cannot be switched off by a flag or environment variable, and no code grants privileges to a hard-coded username.',

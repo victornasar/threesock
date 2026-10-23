@@ -6,6 +6,7 @@ export const massAssignment = codePatternRule({
   title: 'Users cannot assign their own roles through request data',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: true,
   checks: ['cannot self-assign privileged roles'],
   expected:
     'Create and update handlers copy only allow-listed fields from requests; roles and permissions are set by privileged code paths only.',

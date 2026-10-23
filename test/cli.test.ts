@@ -101,6 +101,25 @@ describe('cli', () => {
     expect(stdout).toMatch(/Accepted \d+ finding\(s\) until 2026-03-01/);
     rmSync(join(insecure.dir, 'threesock-baseline.yaml'));
   });
+  it('--output writes extra formats from one scan', async () => {
+    const sarif = join(compliant.dir, 'r.sarif');
+    const md = join(compliant.dir, 'r.md');
+    expect(
+      await main([
+        'scan',
+        compliant.dir,
+        '--output',
+        `sarif=${sarif}`,
+        '--output',
+        `markdown=${md}`,
+      ]),
+    ).toBe(0);
+    expect(JSON.parse(readFileSync(sarif, 'utf8')).version).toBe('2.1.0');
+    expect(readFileSync(md, 'utf8')).toContain('# threesock SOC 2 readiness report');
+    rmSync(sarif);
+    rmSync(md);
+    expect(await main(['scan', compliant.dir, '--output', 'pdf=x.pdf'])).toBe(2);
+  });
   it('rejects bad flags with exit code 2', async () => {
     expect(await main(['scan', '--format', 'pdf'])).toBe(2);
     expect(stderr).toContain('unknown format "pdf"');

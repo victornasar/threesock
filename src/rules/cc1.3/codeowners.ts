@@ -36,6 +36,7 @@ export const codeowners: Rule = {
   title: 'CODEOWNERS assigns an owner to every path',
   tags: ['CONFIG'],
   severity: 'medium',
+  redFlag: false,
   checks: ['`CODEOWNERS` (or equivalent) assigns owners'],
   expected:
     'A CODEOWNERS file assigns an owner to every directory, with named teams on security-sensitive paths.',

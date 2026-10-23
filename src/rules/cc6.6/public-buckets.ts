@@ -17,6 +17,7 @@ export const publicBuckets: Rule = {
   title: 'Storage buckets are not public',
   tags: ['CONFIG'],
   severity: 'critical',
+  redFlag: true,
   checks: ['Databases and internal services sit in private subnets'],
   expected:
     'Object storage is private by default, with public access blocks enabled; public content is served through a CDN with origin access control.',

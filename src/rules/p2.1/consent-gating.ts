@@ -11,6 +11,7 @@ export const consentGating: Rule = {
   title: 'Analytics and tracking load only after consent',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: false, // set per finding
   checks: ['Cookie/tracker consent enforced'],
   expected:
     'Non-essential trackers (analytics, advertising, session recording) are gated on recorded consent, and Global Privacy Control is respected where required.',

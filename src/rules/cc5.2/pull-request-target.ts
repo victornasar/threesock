@@ -10,6 +10,7 @@ export const pullRequestTarget: Rule = {
   title: 'Privileged workflows never check out untrusted pull request code',
   tags: ['CONFIG'],
   severity: 'critical',
+  redFlag: true,
   checks: ['CI/CD hardened'],
   expected:
     'Workflows triggered by pull_request_target or workflow_run do not check out or run code from the pull request.',

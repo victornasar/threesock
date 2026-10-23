@@ -8,6 +8,7 @@ export const sensitiveLogging = codePatternRule({
   title: 'Credentials and request bodies are not logged',
   tags: ['CODE'],
   severity: 'high',
+  redFlag: true,
   checks: ['No secrets, credentials, full card numbers, or unnecessary PII in logs'],
   expected:
     'Logs never contain passwords, tokens, authorization headers, full request bodies or card numbers.',

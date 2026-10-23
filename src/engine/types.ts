@@ -94,7 +94,10 @@ export interface Rule {
   title: string;
   tags: Tag[];
   severity: Severity;
-  /** Findings are rubric red flags by default: an open one scores the criterion 0 (Not Met). */
+  /**
+   * Whether this rule's findings are rubric red flags: an open one scores the criterion 0.
+   * Defaults to false; a finding can override it. Every rule sets it explicitly (a test checks).
+   */
   redFlag?: boolean;
   /**
    * Text fragments identifying which rubric checks (under this criterion) the rule

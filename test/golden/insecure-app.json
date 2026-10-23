@@ -625,7 +625,7 @@
       "inScope": true,
       "score": 0,
       "label": "Not Met",
-      "rationale": "No automated check passed.",
+      "rationale": "Red flag present: Authentication can be switched off by an environment variable (F-010).",
       "capped": false,
       "evidence": [],
       "checks": [
@@ -1206,7 +1206,7 @@
       "inScope": true,
       "score": 0,
       "label": "Not Met",
-      "rationale": "No automated check passed.",
+      "rationale": "Red flag present: Whole request body spread into a database write (F-019).",
       "capped": false,
       "evidence": [],
       "checks": [
@@ -1754,7 +1754,7 @@
       "inScope": true,
       "score": 0,
       "label": "Not Met",
-      "rationale": "No automated check passed.",
+      "rationale": "Red flag present: Request body or headers passed to a logger (F-030).",
       "capped": false,
       "evidence": [],
       "checks": [
@@ -2606,7 +2606,7 @@
       "inScope": true,
       "score": 0,
       "label": "Not Met",
-      "rationale": "No automated check passed.",
+      "rationale": "Red flag present: Unencrypted data store: aws_db_instance.main (F-035).",
       "capped": false,
       "evidence": [],
       "checks": [
@@ -3522,7 +3522,7 @@
       "recommendation": "Use the pull_request trigger for anything that builds or tests PR code. Keep pull_request_target for labelling or commenting, without checking out the head.",
       "dueDate": "2026-01-16",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "2e38110b587137ff",
       "controls": [
         "Configuration & Patch Management",
@@ -3746,7 +3746,7 @@
       "recommendation": "Turn off public accessibility, place the database in private subnets, and reach it through the application, a bastion or a private endpoint.",
       "dueDate": "2026-01-16",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "abc0c452ae79b734",
       "controls": [
         "Access Rights",
@@ -3778,7 +3778,7 @@
       "recommendation": "Remove public ACLs and allUsers bindings, enable the public access block, and serve intentionally public assets through a CDN with origin access control.",
       "dueDate": "2026-01-16",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "710b00c25be90b65",
       "controls": [
         "Network Security",
@@ -3808,7 +3808,7 @@
       "recommendation": "Remove the bypass. For local development, use a seeded test user against the real auth path, and authorize by role, never by username.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "53644da3b9edf3d1",
       "controls": [
         "Risk Management",
@@ -3839,7 +3839,7 @@
       "recommendation": "Remove the bypass. For local development, use a seeded test user against the real auth path, and authorize by role, never by username.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "84838710166e87cf",
       "controls": [
         "Risk Management",
@@ -3870,7 +3870,7 @@
       "recommendation": "Configure an OIDC trust between GitHub and your cloud, assume a scoped role in the workflow, and delete the stored keys.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "4d89b8195decb0b5",
       "controls": [
         "Configuration & Patch Management",
@@ -4098,7 +4098,7 @@
       "recommendation": "Validate request bodies against a schema of allowed fields and set roles explicitly on the server.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "4652b4f328c9728c",
       "controls": [
         "Access Rights",
@@ -4217,7 +4217,7 @@
       "recommendation": "Restrict ingress to known CIDRs or security groups, and reach admin interfaces through a VPN, bastion, SSM Session Manager or an identity-aware proxy.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "a018d583cbc96df7",
       "controls": [
         "Network Security",
@@ -4247,7 +4247,7 @@
       "recommendation": "Pass values as bound parameters (placeholders) or use a tagged template or query builder that parameterizes for you.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "1a0881ed5c779226",
       "controls": [
         "Network Security",
@@ -4427,7 +4427,7 @@
       "recommendation": "Log identifiers and outcomes, not payloads. Use a logger with redaction paths for anything sensitive.",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "eb77d5808f5e2c89",
       "controls": [
         "Security Monitoring & Detection",
@@ -4565,7 +4565,7 @@
       "recommendation": "Enable encryption at rest on every data store (it usually requires a replacement for existing RDS instances: snapshot, copy encrypted, restore).",
       "dueDate": "2026-02-14",
       "status": "open",
-      "redFlag": false,
+      "redFlag": true,
       "fingerprint": "8c477cd12be1c9a3",
       "controls": [
         "Information Classification",

@@ -40,6 +40,7 @@ export const iamWildcard: Rule = {
   title: 'IAM policies avoid wildcard actions',
   tags: ['CONFIG'],
   severity: 'high',
+  redFlag: false, // set per finding
   checks: ['**Least privilege:**'],
   expected:
     'IAM roles and policies grant specific actions on specific resources; no "*" actions and no primitive owner/editor roles.',

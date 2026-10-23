@@ -16,6 +16,7 @@ export const securityPolicy: Rule = {
   title: 'Vulnerability disclosure policy with a reporting channel',
   tags: ['DOCS'],
   severity: 'medium',
+  redFlag: false,
   checks: ['Vulnerability disclosure policy'],
   expected:
     'A SECURITY.md (or /.well-known/security.txt) tells external researchers how to report a vulnerability and what response to expect.',
