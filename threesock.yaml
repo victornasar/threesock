@@ -22,3 +22,9 @@ exceptions:
     approver: '@victornasar'
     justification: 'Solo maintainer: an approval from someone other than the author is not yet possible. Lapses when a second maintainer joins.'
     expires: 2027-01-20
+  # Same solo-maintainer limit as above (risk R6): requiring code owner review would
+  # block every merge, because the only code owner cannot approve their own PRs.
+  - fingerprint: 93139f588b4a30ae
+    approver: '@victornasar'
+    justification: 'Solo maintainer: code owner review cannot be required until a second code owner exists. Lapses when a second maintainer joins.'
+    expires: 2027-01-20
