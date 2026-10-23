@@ -19,11 +19,26 @@ export const FIXTURES = fileURLToPath(new URL('../fixtures/', import.meta.url));
 export const FIXED_NOW = new Date('2026-01-15T12:00:00.000Z');
 
 const dash = '-----';
+
+/** Appends a Luhn check digit. */
+function withLuhn(partial: string): string {
+  let sum = 0;
+  for (let i = 0; i < partial.length; i++) {
+    let d = Number(partial[partial.length - 1 - i]);
+    if (i % 2 === 0) d = d * 2 > 9 ? d * 2 - 9 : d * 2;
+    sum += d;
+  }
+  return partial + String((10 - (sum % 10)) % 10);
+}
 export const FAKE_SECRETS: Record<string, string> = {
   AWS_KEY: ['AK', 'IA', 'Q7RZ3XK2M9PLW4TB'].join(''),
   GITHUB_TOKEN: ['gh', 'p_', 'R8sLq2VxN4mT7wKc9ZbH3yJd6FgPa1Ue5Xo0'].join(''),
   STRIPE_KEY: ['sk', '_live_', '4fTq9LmZ2xRw8VcN1bKp7HsJ'].join(''),
   DB_PASSWORD: ['Vq8', 'zL2r', 'Wm5nT'].join(''),
+  // Generated so no personal-data-shaped value is committed (see c1.1/pii-in-fixtures).
+  CARD_NUMBER: withLuhn('45320151128303'),
+  CONSUMER_EMAIL: ['fixture', '.only', '@', 'gmail', '.com'].join(''),
+  SSN: ['078', '05', '1120'].join('-'), // the published, long-invalidated "Woolworth" SSN
   PRIVATE_KEY: [
     `${dash}BEGIN RSA ${'PRIVATE'} KEY${dash}`,
     'MIIEpAIBAAKCAQEA3Tz2mR5Lq9VxN4mT7wKc9ZbH3yJd6FgPa1Ue5Xo0R8sLq2Vx',

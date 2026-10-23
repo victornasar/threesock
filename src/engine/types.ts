@@ -1,4 +1,5 @@
 // Core types shared by the engine, rules and reporters.
+import type { GitHistory } from './git.js';
 
 export type Tag = 'CODE' | 'CONFIG' | 'DOCS' | 'ORG';
 
@@ -130,6 +131,10 @@ export interface RuleContext {
   config: ResolvedConfig;
   /** Every detected secret value must go through this: it returns the redacted form. */
   secrets: { register(value: string): string };
+  /** Local git history (last 200 commits), read on first use. Rules never run git themselves. */
+  git: () => GitHistory;
+  /** The scan's clock (THREESOCK_NOW / SOURCE_DATE_EPOCH in tests). */
+  now: Date;
 }
 
 export interface Threshold {
@@ -175,6 +180,8 @@ export interface ResolvedConfig {
   ignore: string[];
   notApplicable: NotApplicableEntry[];
   exceptions: ExceptionEntry[];
+  /** External evidence links by criterion id or rule id (decision 23). */
+  evidenceLinks: Record<string, string>;
   /** Globs for security-sensitive paths. A value in threesock.yaml replaces the default list. */
   sensitivePaths: string[];
   mappingsPath?: string;

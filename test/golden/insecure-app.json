@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "tool": {
     "name": "threesock",
     "version": "<version>"
@@ -8,19 +8,23 @@
   "generatedAt": "2026-01-15T12:00:00.000Z",
   "repository": {
     "root": "<root>",
-    "filesScanned": 13,
+    "filesScanned": 19,
     "gitAware": true
   },
   "config": {
     "scope": [
-      "security"
+      "security",
+      "availability",
+      "processing-integrity",
+      "confidentiality",
+      "privacy"
     ]
   },
   "summary": {
     "overall": {
-      "assessable": 8,
+      "assessable": 36,
       "earned": 0,
-      "possible": 16,
+      "possible": 72,
       "percent": 0,
       "band": "not-ready",
       "capped": true,
@@ -32,73 +36,73 @@
         "category": "security",
         "label": "Security",
         "inScope": true,
-        "assessable": 8,
+        "assessable": 27,
         "earned": 0,
-        "possible": 16,
+        "possible": 54,
         "percent": 0,
         "band": "not-ready",
         "capped": true,
-        "manualOpen": 25,
+        "manualOpen": 6,
         "notApplicable": 0
       },
       {
         "category": "availability",
         "label": "Availability",
-        "inScope": false,
-        "assessable": 0,
+        "inScope": true,
+        "assessable": 3,
         "earned": 0,
-        "possible": 0,
-        "percent": null,
-        "band": null,
+        "possible": 6,
+        "percent": 0,
+        "band": "not-ready",
         "capped": false,
         "manualOpen": 0,
-        "notApplicable": 3
+        "notApplicable": 0
       },
       {
         "category": "processing-integrity",
         "label": "Processing Integrity",
-        "inScope": false,
-        "assessable": 0,
+        "inScope": true,
+        "assessable": 4,
         "earned": 0,
-        "possible": 0,
-        "percent": null,
-        "band": null,
+        "possible": 8,
+        "percent": 0,
+        "band": "not-ready",
         "capped": false,
-        "manualOpen": 0,
-        "notApplicable": 5
+        "manualOpen": 1,
+        "notApplicable": 0
       },
       {
         "category": "confidentiality",
         "label": "Confidentiality",
-        "inScope": false,
-        "assessable": 0,
+        "inScope": true,
+        "assessable": 2,
         "earned": 0,
-        "possible": 0,
-        "percent": null,
-        "band": null,
+        "possible": 4,
+        "percent": 0,
+        "band": "not-ready",
         "capped": false,
         "manualOpen": 0,
-        "notApplicable": 2
+        "notApplicable": 0
       },
       {
         "category": "privacy",
         "label": "Privacy",
-        "inScope": false,
+        "inScope": true,
         "assessable": 0,
         "earned": 0,
         "possible": 0,
         "percent": null,
         "band": null,
         "capped": false,
-        "manualOpen": 0,
-        "notApplicable": 18
+        "manualOpen": 18,
+        "notApplicable": 0
       }
     ],
     "severityCounts": {
       "critical": 9,
-      "high": 18,
-      "medium": 16,
-      "low": 4
+      "high": 26,
+      "medium": 46,
+      "low": 21
     },
     "acceptedFindings": 0,
     "manualOpen": 25,
@@ -218,12 +222,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-028"
+            "F-036"
           ]
         }
       ],
       "findingIds": [
-        "F-028"
+        "F-036"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -274,13 +278,22 @@
       "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "rationale": "None of the automated checks apply to this repository. Confirm manually, or declare N/A with a justification in threesock.yaml.",
       "capped": false,
       "evidence": [],
-      "checks": [],
+      "checks": [
+        {
+          "ruleId": "cc1.5/commit-attribution",
+          "title": "Every change is attributable to an individual",
+          "status": "not_applicable",
+          "evidence": [],
+          "findingIds": [],
+          "note": "No git history to examine."
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
@@ -300,25 +313,44 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc2.1/observability",
+          "title": "Monitoring and dashboards are defined as code",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-082"
+          ]
+        },
+        {
+          "ruleId": "cc2.1/sbom",
+          "title": "CI generates a software bill of materials",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-083"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-082",
+        "F-083"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "System/asset inventory maintained (services, datastores, third-party integrations)",
-        "SBOM generated in CI or on release",
         "Vulnerability scan output retained and queryable",
-        "Security metrics available (open vulns by severity, MTTR, patch age, coverage of MFA)",
-        "Dashboards/alerts defined as code"
-      ],
-      "owner": "Security lead"
+        "Security metrics available (open vulns by severity, MTTR, patch age, coverage of MFA)"
+      ]
     },
     {
       "id": "CC2.2",
@@ -329,24 +361,43 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc2.2/pr-template-security",
+          "title": "The pull request template has a security section",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-084"
+          ]
+        },
+        {
+          "ruleId": "cc2.2/security-docs-linked",
+          "title": "Security policies and runbooks are linked from the README",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-085"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-084",
+        "F-085"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Security policies and runbooks are discoverable in-repo or linked from the README",
-        "PR template includes a security-impact section or checklist",
         "Alert routing (Slack/PagerDuty/email) defined as code or documented",
         "Security advisories/alerts (e.g., Dependabot, code scanning) route to the responsible team"
-      ],
-      "owner": "Security lead"
+      ]
     },
     {
       "id": "CC2.3",
@@ -370,12 +421,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-029"
+            "F-037"
           ]
         }
       ],
       "findingIds": [
-        "F-029"
+        "F-037"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -423,24 +474,52 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc3.2/adrs",
+          "title": "Architecture decision records cover security considerations",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-086"
+          ]
+        },
+        {
+          "ruleId": "cc3.2/risk-register",
+          "title": "A risk register records likelihood, impact, owner and treatment",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-038"
+          ]
+        },
+        {
+          "ruleId": "cc3.2/threat-model",
+          "title": "A threat model exists for the system",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-039"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-038",
+        "F-039",
+        "F-086"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 3,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Threat models exist for critical services and are updated with major changes",
-        "Risk register exists and links to issues/tickets",
-        "Vulnerability findings (SAST/SCA/IaC) are scored with a defined method (e.g., CVSS + exploitability + exposure)",
-        "ADRs record security considerations for architectural decisions"
-      ],
-      "owner": "Security and risk owner"
+        "Vulnerability findings (SAST/SCA/IaC) are scored with a defined method (e.g., CVSS + exploitability + exposure)"
+      ]
     },
     {
       "id": "CC3.3",
@@ -451,25 +530,37 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc3.3/auth-bypass",
+          "title": "No authentication bypass flags or hard-coded privileged users",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-010",
+            "F-011"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-010",
+        "F-011"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Privileged and financial actions require multi-party approval or step-up authentication",
         "Admin/impersonation actions are audit-logged with actor, target, and reason",
-        "No backdoor accounts, hard-coded admin credentials, or \"debug bypass\" flags active in production code paths",
         "Management override is detectable (admins cannot bypass branch protection silently; bypass events are logged)",
         "Rate limiting and anomaly detection on credential-abuse and account-takeover vectors"
-      ],
-      "owner": "Security and risk owner"
+      ]
     },
     {
       "id": "CC3.4",
@@ -480,24 +571,34 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc3.4/manifest-ownership",
+          "title": "New dependencies and infrastructure changes need a named reviewer",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-087"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-087"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Design review or ADR required for major architectural changes",
-        "Adding a new third-party service, SDK, or datastore triggers a review (documented in PR template or CODEOWNERS on manifests)",
         "Major dependency/runtime upgrades are reviewed for security impact",
         "IaC changes to networking, IAM, or encryption require elevated review"
-      ],
-      "owner": "Security and risk owner"
+      ]
     },
     {
       "id": "CC4.1",
@@ -507,26 +608,55 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc4.1/iac-scanning",
+          "title": "Infrastructure as code is scanned in CI",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-040"
+          ]
+        },
+        {
+          "ruleId": "cc4.1/sast",
+          "title": "Static analysis (SAST) runs in CI",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-041"
+          ]
+        },
+        {
+          "ruleId": "cc4.1/scheduled-scans",
+          "title": "Security scans also run on a schedule",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-088"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-040",
+        "F-041",
+        "F-088"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 3,
         "rubricChecks": 6
       },
       "manualFollowUps": [
-        "CI runs SAST (e.g., CodeQL/Semgrep), SCA/dependency scanning, secret scanning, and IaC scanning on every PR",
         "Container image scanning on build and on a schedule",
-        "Scheduled (cron) scans for the default branch, not just PR-triggered",
         "DAST or penetration test performed at least annually, and reports are retained",
         "Access reviews performed on a defined cadence (repo, cloud, prod data)",
         "Compliance-as-code checks (OPA/Conftest, Checkov, cloud config rules) run automatically"
-      ],
-      "owner": "Security lead"
+      ]
     },
     {
       "id": "CC4.2",
@@ -537,25 +667,55 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "Red flag present: Unexplained entries in .trivyignore (F-044).",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc4.2/blocking-scans",
+          "title": "Security scans block the pipeline on findings",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-042"
+          ]
+        },
+        {
+          "ruleId": "cc4.2/remediation-sla",
+          "title": "Remediation SLAs are defined by severity",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-043"
+          ]
+        },
+        {
+          "ruleId": "cc4.2/suppressions",
+          "title": "Scanner suppressions carry a justification",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-044",
+            "F-045"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-042",
+        "F-043",
+        "F-044",
+        "F-045"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 3,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Findings automatically create tracked issues with owner and due date",
-        "Remediation SLAs are defined and measured (see 1.4)",
-        "CI blocks merge or release on Critical/High findings (or documented, time-boxed exception)",
-        "Exceptions require approver, justification, and expiry date",
         "Escalation path exists for overdue findings"
-      ],
-      "owner": "Security lead"
+      ]
     },
     {
       "id": "CC5.1",
@@ -566,23 +726,33 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc5.1/control-matrix",
+          "title": "Controls are mapped to the risks they mitigate",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-089"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-089"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 3
       },
       "manualFollowUps": [
-        "Controls are mapped to identified risks (control matrix)",
         "Preventive controls exist as CI gates and policy-as-code, not only documented intent",
         "Compensating controls documented where a primary control is not feasible"
-      ],
-      "owner": "Security / GRC"
+      ]
     },
     {
       "id": "CC5.2",
@@ -605,7 +775,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-030"
+            "F-046"
           ]
         },
         {
@@ -614,7 +784,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-010"
+            "F-012"
           ]
         },
         {
@@ -623,7 +793,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-031"
+            "F-047"
           ]
         },
         {
@@ -641,7 +811,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-011"
+            "F-013"
           ]
         },
         {
@@ -650,7 +820,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-012"
+            "F-014"
           ]
         },
         {
@@ -659,18 +829,18 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-013"
+            "F-015"
           ]
         }
       ],
       "findingIds": [
         "F-001",
-        "F-010",
-        "F-011",
         "F-012",
         "F-013",
-        "F-030",
-        "F-031"
+        "F-014",
+        "F-015",
+        "F-046",
+        "F-047"
       ],
       "coverage": {
         "automatedRules": 7,
@@ -691,24 +861,43 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc5.3/policy-review",
+          "title": "Policies record an owner and a review within the last year",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-090"
+          ]
+        },
+        {
+          "ruleId": "cc5.3/runbooks",
+          "title": "Procedures exist for the core operational processes",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-048"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-048",
+        "F-090"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Policies are version-controlled with review history and effective dates",
-        "Procedures/runbooks exist for onboarding, offboarding, deployment, rollback, incident response, key rotation, and access reviews",
-        "Policies are reviewed at least annually, with approver recorded",
         "Employee acknowledgments tracked"
-      ],
-      "owner": "Security / GRC"
+      ]
     },
     {
       "id": "CC6.1",
@@ -731,7 +920,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-032"
+            "F-049"
           ]
         },
         {
@@ -741,7 +930,7 @@
           "evidence": [],
           "findingIds": [
             "F-002",
-            "F-044"
+            "F-091"
           ]
         },
         {
@@ -750,7 +939,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-045"
+            "F-092"
           ]
         },
         {
@@ -763,7 +952,7 @@
             "F-004",
             "F-005",
             "F-006",
-            "F-014"
+            "F-016"
           ]
         },
         {
@@ -772,7 +961,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-015"
+            "F-017"
           ]
         },
         {
@@ -782,7 +971,7 @@
           "evidence": [],
           "findingIds": [
             "F-007",
-            "F-033"
+            "F-050"
           ]
         },
         {
@@ -791,7 +980,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-016"
+            "F-018"
           ]
         },
         {
@@ -809,7 +998,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-034"
+            "F-051"
           ]
         }
       ],
@@ -821,14 +1010,14 @@
         "F-006",
         "F-007",
         "F-008",
-        "F-014",
-        "F-015",
         "F-016",
-        "F-032",
-        "F-033",
-        "F-034",
-        "F-044",
-        "F-045"
+        "F-017",
+        "F-018",
+        "F-049",
+        "F-050",
+        "F-051",
+        "F-091",
+        "F-092"
       ],
       "coverage": {
         "automatedRules": 9,
@@ -848,25 +1037,35 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc6.2/mass-assignment",
+          "title": "Users cannot assign their own roles through request data",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-019"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-019"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Workforce access is provisioned through IdP/SCIM or an approved request workflow",
         "IAM/permission changes made via IaC with PR review and approval",
-        "Customer-user registration verifies identity (email/domain verification, invite flows) and cannot self-assign privileged roles",
         "No default or shared credentials; service accounts have documented owners and purpose",
         "Role definitions documented and mapped to job function"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.3",
@@ -877,26 +1076,45 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc6.3/offboarding",
+          "title": "An offboarding procedure revokes access within a deadline",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-052"
+          ]
+        },
+        {
+          "ruleId": "cc6.3/token-expiry",
+          "title": "Issued tokens expire",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-053"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-052",
+        "F-053"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 6
       },
       "manualFollowUps": [
-        "Offboarding procedure revokes SSO, VCS, cloud, CI/CD, and vendor access, with an SLA (≤ 24h)",
         "SCIM/IdP deprovisioning propagates to the application",
         "Role changes take effect promptly (no long-lived cached elevated claims)",
-        "Tokens, API keys, sessions, and deploy keys are revocable; revocation is enforced in code",
         "Periodic access reviews identify and remove stale accounts, keys, and contractor access",
         "Machine credentials rotate on schedule and on personnel change"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.4",
@@ -932,24 +1150,34 @@
         "ORG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc6.5/managed-keys",
+          "title": "Data stores use customer-managed keys that can be destroyed",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-093"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-093"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Decommissioned cloud resources (volumes, snapshots, buckets, DBs) are deleted via IaC/lifecycle rules",
-        "Storage is encrypted so that key destruction renders data unrecoverable (crypto-shredding)",
         "Data-bearing resources have documented decommission steps and verification",
         "Device wipe/destruction records exist for endpoints and media"
-      ],
-      "owner": "Security and platform engineering"
+      ]
     },
     {
       "id": "CC6.6",
@@ -972,7 +1200,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-017"
+            "F-020"
           ]
         },
         {
@@ -981,8 +1209,8 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-018",
-            "F-019"
+            "F-021",
+            "F-022"
           ]
         },
         {
@@ -991,7 +1219,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-020"
+            "F-023"
           ]
         },
         {
@@ -1017,7 +1245,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-035"
+            "F-054"
           ]
         },
         {
@@ -1026,7 +1254,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-021"
+            "F-024"
           ]
         },
         {
@@ -1035,19 +1263,19 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-036"
+            "F-055"
           ]
         }
       ],
       "findingIds": [
         "F-009",
-        "F-017",
-        "F-018",
-        "F-019",
         "F-020",
         "F-021",
-        "F-035",
-        "F-036"
+        "F-022",
+        "F-023",
+        "F-024",
+        "F-054",
+        "F-055"
       ],
       "coverage": {
         "automatedRules": 8,
@@ -1069,7 +1297,7 @@
       "inScope": true,
       "score": 0,
       "label": "Not Met",
-      "rationale": "Red flag present: Node TLS client with certificate rejection turned off (F-022).",
+      "rationale": "Red flag present: Node TLS client with certificate rejection turned off (F-025).",
       "capped": false,
       "evidence": [],
       "checks": [
@@ -1079,7 +1307,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-037"
+            "F-056"
           ]
         },
         {
@@ -1088,7 +1316,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-022"
+            "F-025"
           ]
         },
         {
@@ -1097,21 +1325,30 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-023"
+            "F-026"
+          ]
+        },
+        {
+          "ruleId": "cc6.7/webhook-signatures",
+          "title": "Incoming webhooks verify their signatures",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-027"
           ]
         }
       ],
       "findingIds": [
-        "F-022",
-        "F-023",
-        "F-037"
+        "F-025",
+        "F-026",
+        "F-027",
+        "F-056"
       ],
       "coverage": {
-        "automatedRules": 3,
+        "automatedRules": 4,
         "rubricChecks": 7
       },
       "manualFollowUps": [
-        "Webhooks and callbacks are signed and verified",
         "Secrets, tokens, and PII are never placed in URLs/query strings or logs",
         "Data exports/transfers use encrypted channels (SFTP, presigned URLs with short expiry)",
         "Controls exist to prevent unauthorized bulk export/exfiltration (e.g., egress rules, export permissions)"
@@ -1137,7 +1374,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-038"
+            "F-057"
           ]
         },
         {
@@ -1146,7 +1383,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-039"
+            "F-058"
           ]
         },
         {
@@ -1155,16 +1392,23 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-024"
+            "F-028"
           ]
         },
         {
           "ruleId": "cc6.8/dependency-scanning",
           "title": "Dependencies are scanned for known vulnerabilities",
           "status": "fail",
-          "evidence": [],
+          "evidence": [
+            {
+              "kind": "file",
+              "path": ".github/workflows/ci.yml",
+              "line": 15,
+              "description": "A dependency vulnerability scan runs in CI."
+            }
+          ],
           "findingIds": [
-            "F-040"
+            "F-094"
           ]
         },
         {
@@ -1173,7 +1417,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-025"
+            "F-029"
           ]
         },
         {
@@ -1182,17 +1426,17 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-041"
+            "F-059"
           ]
         }
       ],
       "findingIds": [
-        "F-024",
-        "F-025",
-        "F-038",
-        "F-039",
-        "F-040",
-        "F-041"
+        "F-028",
+        "F-029",
+        "F-057",
+        "F-058",
+        "F-059",
+        "F-094"
       ],
       "coverage": {
         "automatedRules": 6,
@@ -1213,25 +1457,53 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc7.1/container-user",
+          "title": "Containers run as a non-root user",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-060"
+          ]
+        },
+        {
+          "ruleId": "cc7.1/drift-detection",
+          "title": "Infrastructure drift is detected on a schedule",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-095"
+          ]
+        },
+        {
+          "ruleId": "cc7.1/vulnerability-monitoring",
+          "title": "Dependencies are monitored continuously for new vulnerabilities",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-061"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-060",
+        "F-061",
+        "F-095"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 3,
         "rubricChecks": 5
       },
       "manualFollowUps": [
-        "Vulnerability scanning of code, dependencies, images, and infrastructure is continuous or scheduled",
-        "Infrastructure drift detection (e.g., `terraform plan` scheduled, cloud config monitoring)",
-        "Hardened baseline configurations defined for hosts/containers/clusters",
         "Security-relevant events are logged: authentication, authorization failures, privilege changes, admin actions, data export, config changes",
         "Logs are centralized and tamper-resistant"
-      ],
-      "owner": "SRE / security operations"
+      ]
     },
     {
       "id": "CC7.2",
@@ -1242,25 +1514,44 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc7.2/alert-rules",
+          "title": "Alert rules are defined and routed to an owner",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-062"
+          ]
+        },
+        {
+          "ruleId": "cc7.2/sensitive-logging",
+          "title": "Credentials and request bodies are not logged",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-030"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-030",
+        "F-062"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 5
       },
       "manualFollowUps": [
-        "Alert rules exist for failed-login spikes, privilege escalation, unusual data access/volume, error-rate spikes, and infrastructure anomalies",
         "Alerts route to an on-call owner with defined response expectations",
         "Logs are structured and include timestamp, actor, action, resource, outcome, and correlation ID",
-        "**No secrets, credentials, full card numbers, or unnecessary PII in logs**",
         "Log retention meets policy (see 1.4); access to logs is restricted and audited"
-      ],
-      "owner": "SRE / security operations"
+      ]
     },
     {
       "id": "CC7.3",
@@ -1271,23 +1562,33 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc7.3/triage-criteria",
+          "title": "Security event severity and triage criteria are documented",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-063"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-063"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 3
       },
       "manualFollowUps": [
-        "Severity classification/triage criteria documented",
         "Alert-to-ticket automation exists",
         "Event evaluation outcomes are recorded (true/false positive, incident yes/no)"
-      ],
-      "owner": "SRE / security operations"
+      ]
     },
     {
       "id": "CC7.4",
@@ -1298,25 +1599,44 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc7.4/incident-response-plan",
+          "title": "An incident response plan defines roles, severity, escalation and communication",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-031"
+          ]
+        },
+        {
+          "ruleId": "cc7.4/incident-runbooks",
+          "title": "Runbooks exist for common incident scenarios",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-064"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-031",
+        "F-064"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 5
       },
       "manualFollowUps": [
-        "Incident response plan exists with roles, severity levels, communication plans, and escalation paths",
-        "Runbooks exist for common scenarios (credential leak, data exposure, compromised dependency, DDoS)",
         "Emergency capability: revoke keys, disable accounts, kill switches/feature flags, isolate services",
         "Incident tickets with timelines exist; postmortems completed with tracked corrective actions",
         "Response plan tested (tabletop or simulation) at least annually"
-      ],
-      "owner": "SRE / security operations"
+      ]
     },
     {
       "id": "CC7.5",
@@ -1327,24 +1647,34 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "cc7.5/key-rotation",
+          "title": "A secret and key rotation procedure is documented",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-065"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-065"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Infrastructure can be rebuilt from IaC; clean-room redeploy procedure documented",
-        "Secret and credential rotation procedure exists and is exercised",
         "Backup restore procedures documented (see A1.2, A1.3)",
         "Post-incident remediation is tracked to completion"
-      ],
-      "owner": "SRE / security operations"
+      ]
     },
     {
       "id": "CC8.1",
@@ -1367,7 +1697,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-026"
+            "F-032"
           ]
         },
         {
@@ -1376,8 +1706,16 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-042"
+            "F-066"
           ]
+        },
+        {
+          "ruleId": "cc8.1/direct-pushes",
+          "title": "Changes reach the default branch through pull requests",
+          "status": "not_applicable",
+          "evidence": [],
+          "findingIds": [],
+          "note": "No git history to examine."
         },
         {
           "ruleId": "cc8.1/emergency-change",
@@ -1385,7 +1723,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-046"
+            "F-096"
           ]
         },
         {
@@ -1394,7 +1732,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-043"
+            "F-067"
           ]
         },
         {
@@ -1403,7 +1741,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-047"
+            "F-097"
           ]
         },
         {
@@ -1412,24 +1750,23 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-027"
+            "F-033"
           ]
         }
       ],
       "findingIds": [
-        "F-026",
-        "F-027",
-        "F-042",
-        "F-043",
-        "F-046",
-        "F-047"
+        "F-032",
+        "F-033",
+        "F-066",
+        "F-067",
+        "F-096",
+        "F-097"
       ],
       "coverage": {
-        "automatedRules": 6,
+        "automatedRules": 7,
         "rubricChecks": 12
       },
       "manualFollowUps": [
-        "**Branch protection** on default and release branches: PR required; ≥ 1 approving review from someone other than the author; stale approvals dismissed; required status checks; conversation resolution; force-push and deletion disabled",
         "**Admins are not exempt** from protection, or bypass is logged and reviewed",
         "Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure",
         "Changes are traceable: commit → PR → ticket → build → deployment, with logs retained",
@@ -1446,6 +1783,580 @@
         "CONFIG"
       ],
       "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "cc9.1/continuity-plan",
+          "title": "A business continuity and disaster recovery plan covers this system",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-068"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-068"
+      ],
+      "coverage": {
+        "automatedRules": 1,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Single points of failure identified and mitigated (multi-AZ, redundant components)",
+        "Critical dependencies (cloud region, DNS, auth provider, payment provider) have documented fallback or degradation behavior",
+        "Runbooks exist for regional/provider outages"
+      ]
+    },
+    {
+      "id": "CC9.2",
+      "category": "security",
+      "title": "Vendor and third-party risk",
+      "tags": [
+        "CODE",
+        "CONFIG",
+        "ORG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "cc9.2/vendor-inventory",
+          "title": "Third-party services and dependencies are inventoried",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-069"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-069"
+      ],
+      "coverage": {
+        "automatedRules": 1,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "New dependencies and vendors require review before adoption",
+        "Third-party credentials are least-privilege and scoped per vendor; rotation supported",
+        "Data shared with each vendor is documented and minimized; data-flow diagrams cover vendors",
+        "Webhook/callback authenticity verified; vendor SDKs pinned and scanned",
+        "Vendor SOC reports, DPAs, security questionnaires, and annual reviews tracked"
+      ]
+    },
+    {
+      "id": "A1.1",
+      "category": "availability",
+      "title": "Capacity management",
+      "tags": [
+        "CONFIG",
+        "CODE"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "a1.1/autoscaling",
+          "title": "Autoscaling or a capacity plan is defined",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-098"
+          ]
+        },
+        {
+          "ruleId": "a1.1/load-tests",
+          "title": "Load or performance tests exist",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-099"
+          ]
+        },
+        {
+          "ruleId": "a1.1/resource-limits",
+          "title": "Workloads declare resource limits",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-070"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-070",
+        "F-098",
+        "F-099"
+      ],
+      "coverage": {
+        "automatedRules": 3,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "Monitoring and alerting on CPU, memory, disk, network, queue depth, DB connections, and storage growth",
+        "Back-pressure, timeouts, connection-pool limits, and rate limiting protect from overload",
+        "Capacity reviews occur on a defined cadence"
+      ]
+    },
+    {
+      "id": "A1.2",
+      "category": "availability",
+      "title": "Environmental protection, backup, and recovery infrastructure",
+      "tags": [
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "Red flag present: No reliable backups for aws_db_instance.main (F-034).",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "a1.2/backups",
+          "title": "Persistent data stores have automated backups",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-034"
+          ]
+        },
+        {
+          "ruleId": "a1.2/deletion-protection",
+          "title": "Databases have deletion protection",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-071"
+          ]
+        },
+        {
+          "ruleId": "a1.2/health-checks",
+          "title": "Workloads have health checks for self-healing",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-072"
+          ]
+        },
+        {
+          "ruleId": "a1.2/multi-az",
+          "title": "Critical data stores are deployed across availability zones",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-073"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-034",
+        "F-071",
+        "F-072",
+        "F-073"
+      ],
+      "coverage": {
+        "automatedRules": 4,
+        "rubricChecks": 7
+      },
+      "manualFollowUps": [
+        "Availability objectives (SLOs/SLAs) defined and monitored, with alerting on breach",
+        "Environment is reproducible from IaC",
+        "Physical/environmental controls inherited from provider with reports reviewed"
+      ]
+    },
+    {
+      "id": "A1.3",
+      "category": "availability",
+      "title": "Recovery plan testing",
+      "tags": [
+        "DOCS",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "a1.3/restore-tests",
+          "title": "Backup restores and DR exercises are tested and recorded",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-074"
+          ]
+        },
+        {
+          "ruleId": "a1.3/rto-rpo",
+          "title": "RTO and RPO are defined",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-075"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-074",
+        "F-075"
+      ],
+      "coverage": {
+        "automatedRules": 2,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "DR/failover exercises performed, with results documented",
+        "Failures during tests generate remediation tickets tracked to closure"
+      ]
+    },
+    {
+      "id": "PI1.1",
+      "category": "processing-integrity",
+      "title": "Processing objectives and specifications",
+      "tags": [
+        "DOCS",
+        "CODE"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "pi1.1/api-contracts",
+          "title": "API contracts are published and versioned",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-100"
+          ]
+        },
+        {
+          "ruleId": "pi1.1/changelog",
+          "title": "Changes are versioned and communicated in a changelog",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-101"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-100",
+        "F-101"
+      ],
+      "coverage": {
+        "automatedRules": 2,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Data definitions/dictionary exist for key entities and calculations",
+        "Service specifications and SLAs/SLOs documented and communicated to users"
+      ]
+    },
+    {
+      "id": "PI1.2",
+      "category": "processing-integrity",
+      "title": "Input completeness and accuracy",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "pi1.2/idempotency",
+          "title": "Payment and event ingestion is idempotent",
+          "status": "unknown",
+          "evidence": [],
+          "findingIds": [],
+          "note": "Payment or webhook code found (src/webhooks.js:1) but no idempotency keys or deduplication were recognised. Confirm retries cannot double-apply."
+        },
+        {
+          "ruleId": "pi1.2/input-validation",
+          "title": "Inputs are validated against schemas at the trust boundary",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-076"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-076"
+      ],
+      "coverage": {
+        "automatedRules": 2,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Server-side validation (never client-only)",
+        "Invalid input is rejected or quarantined with clear error handling; malformed records are not silently dropped",
+        "Parameterized queries; safe file-upload validation (type, size, content)"
+      ]
+    },
+    {
+      "id": "PI1.3",
+      "category": "processing-integrity",
+      "title": "Processing completeness, accuracy, timeliness, authorization",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "pi1.3/job-retries",
+          "title": "Background jobs have bounded retries and a dead-letter path",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-077"
+          ]
+        },
+        {
+          "ruleId": "pi1.3/transactions",
+          "title": "Multi-step writes use transactions",
+          "status": "unknown",
+          "evidence": [],
+          "findingIds": [],
+          "note": "A database client is used but no transactions were found. Single-statement writes may be fine; confirm multi-step operations are atomic."
+        }
+      ],
+      "findingIds": [
+        "F-077"
+      ],
+      "coverage": {
+        "automatedRules": 2,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "Idempotent handlers; safe retry with deduplication; concurrency control (optimistic locking/versioning)",
+        "Authorization is re-checked at processing time, not only at intake",
+        "Business-rule and calculation logic covered by automated tests, including edge cases (rounding, currency, time zones)",
+        "Job/pipeline monitoring alerts on failure, lag, and stuck work"
+      ]
+    },
+    {
+      "id": "PI1.4",
+      "category": "processing-integrity",
+      "title": "Output completeness, accuracy, timeliness",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Output validation before release (reports, exports, notifications, invoices)",
+        "Reconciliation jobs compare inputs vs. outputs and alert on discrepancy",
+        "Delivery confirmation/acknowledgment and retry for outbound messages and webhooks",
+        "Output access is authorized and scoped to the recipient",
+        "Delivery timeliness is measured against specification"
+      ],
+      "owner": "Engineering lead"
+    },
+    {
+      "id": "PI1.5",
+      "category": "processing-integrity",
+      "title": "Storage completeness and accuracy",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "pi1.5/db-constraints",
+          "title": "Database schemas enforce integrity constraints",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-078"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-078"
+      ],
+      "coverage": {
+        "automatedRules": 1,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "Audit trails/history for critical records; append-only or tamper-evident logs where required",
+        "Checksums or hashes for stored files/artifacts where integrity matters",
+        "Data retention rules implemented, including soft-delete semantics where needed",
+        "Safe, tested migrations; backups verified (see A1)",
+        "Data-integrity tests or reconciliation queries run on a schedule"
+      ]
+    },
+    {
+      "id": "C1.1",
+      "category": "confidentiality",
+      "title": "Identify and protect confidential information",
+      "tags": [
+        "CODE",
+        "CONFIG",
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "c1.1/data-classification",
+          "title": "A data classification scheme is defined",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-079"
+          ]
+        },
+        {
+          "ruleId": "c1.1/encryption-at-rest",
+          "title": "Data stores are encrypted at rest",
+          "status": "fail",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "infra/main.tf",
+              "line": 19,
+              "description": "aws_s3_bucket.exports is encrypted at rest by the provider by default."
+            }
+          ],
+          "findingIds": [
+            "F-035"
+          ]
+        },
+        {
+          "ruleId": "c1.1/pii-in-fixtures",
+          "title": "Fixtures and seed data contain no real personal or card data",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-080"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-035",
+        "F-079",
+        "F-080"
+      ],
+      "coverage": {
+        "automatedRules": 3,
+        "rubricChecks": 8
+      },
+      "manualFollowUps": [
+        "Inventory/data map of confidential data locations, including logs, caches, analytics, backups, and vendors",
+        "Field-level encryption or tokenization for the most sensitive fields",
+        "Access to confidential data is least-privilege and audit-logged",
+        "Protection against accidental deletion (versioning, deletion protection, backups)",
+        "Confidentiality agreements with staff and vendors"
+      ]
+    },
+    {
+      "id": "C1.2",
+      "category": "confidentiality",
+      "title": "Dispose of confidential information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
+      "capped": false,
+      "evidence": [],
+      "checks": [
+        {
+          "ruleId": "c1.2/lifecycle-rules",
+          "title": "Retention is enforced by lifecycle rules and TTLs",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-102"
+          ]
+        },
+        {
+          "ruleId": "c1.2/retention-schedule",
+          "title": "Retention periods are defined per data class",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-081"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-081",
+        "F-102"
+      ],
+      "coverage": {
+        "automatedRules": 2,
+        "rubricChecks": 6
+      },
+      "manualFollowUps": [
+        "Deletion propagates to replicas, search indexes, caches, analytics stores, data warehouses, and vendors",
+        "Backups age out per policy; cryptographic erasure used where feasible",
+        "Deletion is verified and logged (job outputs, audit records)",
+        "Media/device disposal records exist"
+      ]
+    },
+    {
+      "id": "P1.1",
+      "category": "privacy",
+      "title": "Privacy notice",
+      "tags": [
+        "CODE",
+        "DOCS"
+      ],
+      "inScope": true,
       "score": "MANUAL",
       "label": "Manual Evidence",
       "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
@@ -1458,21 +2369,187 @@
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Business continuity and disaster recovery plans exist and cover this system",
-        "Single points of failure identified and mitigated (multi-AZ, redundant components)",
-        "Critical dependencies (cloud region, DNS, auth provider, payment provider) have documented fallback or degradation behavior",
-        "Runbooks exist for regional/provider outages"
+        "Privacy notice is accessible from the product (signup, footer, app settings)",
+        "Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal",
+        "Changes are communicated to affected users; prior versions are retained",
+        "Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)"
       ],
-      "owner": "SRE / business continuity owner"
+      "owner": "Privacy / legal"
     },
     {
-      "id": "CC9.2",
-      "category": "security",
-      "title": "Vendor and third-party risk",
+      "id": "P2.1",
+      "category": "privacy",
+      "title": "Choice and consent",
+      "tags": [
+        "CODE"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Consent captured with timestamp, policy/notice version, purpose, and channel",
+        "Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)",
+        "Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required",
+        "Re-consent triggered for new purposes or material changes",
+        "Explicit consent for sensitive data and cross-border transfers where required"
+      ],
+      "owner": "Privacy / legal"
+    },
+    {
+      "id": "P3.1",
+      "category": "privacy",
+      "title": "Collection consistent with objectives",
       "tags": [
         "CODE",
-        "CONFIG",
-        "ORG"
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 5
+      },
+      "manualFollowUps": [
+        "Data minimization: each collected field has a documented purpose",
+        "PII fields identified in schemas/APIs and tracked in a data map",
+        "Collected data matches what the notice says",
+        "Third-party SDKs and analytics events reviewed for unintended PII collection",
+        "Legal basis/purpose recorded where applicable"
+      ],
+      "owner": "Privacy / legal"
+    },
+    {
+      "id": "P3.2",
+      "category": "privacy",
+      "title": "Sensitive information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)",
+        "Explicit consent obtained before collection",
+        "Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls",
+        "Age-gating/parental-consent logic where minors' data is possible"
+      ],
+      "owner": "Privacy / legal"
+    },
+    {
+      "id": "P4.1",
+      "category": "privacy",
+      "title": "Use of personal information",
+      "tags": [
+        "CODE",
+        "DOCS"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 3
+      },
+      "manualFollowUps": [
+        "Purpose limitation enforced (purpose tags/access policies, not just documentation)",
+        "No secondary use without basis (e.g., production PII in analytics, ML training, or marketing without consent)",
+        "Data-use documented for pipelines and internal tools; internal access is justified and logged"
+      ],
+      "owner": "Privacy / legal"
+    },
+    {
+      "id": "P4.2",
+      "category": "privacy",
+      "title": "Retention of personal information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Retention schedule defined per data type",
+        "TTLs/purge jobs implemented and monitored",
+        "Backup and log retention aligned with schedule",
+        "Legal-hold process exists and is honored by purge jobs"
+      ],
+      "owner": "Privacy / legal"
+    },
+    {
+      "id": "P4.3",
+      "category": "privacy",
+      "title": "Disposal of personal information",
+      "tags": [
+        "CODE",
+        "CONFIG"
+      ],
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "capped": false,
+      "evidence": [],
+      "checks": [],
+      "findingIds": [],
+      "coverage": {
+        "automatedRules": 0,
+        "rubricChecks": 4
+      },
+      "manualFollowUps": [
+        "Secure deletion or irreversible anonymization implemented",
+        "Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)",
+        "Deletion is verified and audit-logged",
+        "P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)"
+      ],
+      "owner": "Privacy / legal"
+    },
+    {
+      "id": "P5.1",
+      "category": "privacy",
+      "title": "Data subject access",
+      "tags": [
+        "CODE"
       ],
       "inScope": true,
       "score": "MANUAL",
@@ -1487,405 +2564,14 @@
         "rubricChecks": 6
       },
       "manualFollowUps": [
-        "Inventory of third-party services, SDKs, APIs, and open-source dependencies (SBOM + integrations list)",
-        "New dependencies and vendors require review before adoption",
-        "Third-party credentials are least-privilege and scoped per vendor; rotation supported",
-        "Data shared with each vendor is documented and minimized; data-flow diagrams cover vendors",
-        "Webhook/callback authenticity verified; vendor SDKs pinned and scanned",
-        "Vendor SOC reports, DPAs, security questionnaires, and annual reviews tracked"
+        "Self-service or request-based access/export endpoint exists",
+        "Requester identity is authenticated before disclosure; export is scoped to that subject only",
+        "Machine-readable export format",
+        "Export covers all stores holding the subject's data, including vendors",
+        "Requests are tracked with response-time SLA and audit logs",
+        "Endpoint is rate-limited and abuse-resistant"
       ],
-      "owner": "Vendor management / procurement"
-    },
-    {
-      "id": "A1.1",
-      "category": "availability",
-      "title": "Capacity management",
-      "tags": [
-        "CONFIG",
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 6
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "A1.2",
-      "category": "availability",
-      "title": "Environmental protection, backup, and recovery infrastructure",
-      "tags": [
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 7
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "A1.3",
-      "category": "availability",
-      "title": "Recovery plan testing",
-      "tags": [
-        "DOCS",
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 4
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "PI1.1",
-      "category": "processing-integrity",
-      "title": "Processing objectives and specifications",
-      "tags": [
-        "DOCS",
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 4
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "PI1.2",
-      "category": "processing-integrity",
-      "title": "Input completeness and accuracy",
-      "tags": [
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 5
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "PI1.3",
-      "category": "processing-integrity",
-      "title": "Processing completeness, accuracy, timeliness, authorization",
-      "tags": [
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 6
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "PI1.4",
-      "category": "processing-integrity",
-      "title": "Output completeness, accuracy, timeliness",
-      "tags": [
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 5
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "PI1.5",
-      "category": "processing-integrity",
-      "title": "Storage completeness and accuracy",
-      "tags": [
-        "CODE",
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 6
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "C1.1",
-      "category": "confidentiality",
-      "title": "Identify and protect confidential information",
-      "tags": [
-        "CODE",
-        "CONFIG",
-        "DOCS"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 8
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "C1.2",
-      "category": "confidentiality",
-      "title": "Dispose of confidential information",
-      "tags": [
-        "CODE",
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 6
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P1.1",
-      "category": "privacy",
-      "title": "Privacy notice",
-      "tags": [
-        "CODE",
-        "DOCS"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 4
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P2.1",
-      "category": "privacy",
-      "title": "Choice and consent",
-      "tags": [
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 5
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P3.1",
-      "category": "privacy",
-      "title": "Collection consistent with objectives",
-      "tags": [
-        "CODE",
-        "DOCS"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 5
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P3.2",
-      "category": "privacy",
-      "title": "Sensitive information",
-      "tags": [
-        "CODE",
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 4
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P4.1",
-      "category": "privacy",
-      "title": "Use of personal information",
-      "tags": [
-        "CODE",
-        "DOCS"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 3
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P4.2",
-      "category": "privacy",
-      "title": "Retention of personal information",
-      "tags": [
-        "CODE",
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 4
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P4.3",
-      "category": "privacy",
-      "title": "Disposal of personal information",
-      "tags": [
-        "CODE",
-        "CONFIG"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 4
-      },
-      "manualFollowUps": []
-    },
-    {
-      "id": "P5.1",
-      "category": "privacy",
-      "title": "Data subject access",
-      "tags": [
-        "CODE"
-      ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
-      "capped": false,
-      "evidence": [],
-      "checks": [],
-      "findingIds": [],
-      "coverage": {
-        "automatedRules": 0,
-        "rubricChecks": 6
-      },
-      "manualFollowUps": []
+      "owner": "Privacy / legal"
     },
     {
       "id": "P5.2",
@@ -1894,10 +2580,10 @@
       "tags": [
         "CODE"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -1906,7 +2592,12 @@
         "automatedRules": 0,
         "rubricChecks": 3
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Users can update or request correction of their data",
+        "Corrections propagate to downstream systems and relevant third parties",
+        "Change history/audit trail retained; denials documented with rationale"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.1",
@@ -1916,10 +2607,10 @@
         "CODE",
         "CONFIG"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -1928,7 +2619,13 @@
         "automatedRules": 0,
         "rubricChecks": 4
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Disclosure paths to third parties are inventoried (subprocessors, analytics, support tools, integrations)",
+        "Consent/authorization checked in code before sending PI to third parties",
+        "Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)",
+        "Cross-border transfer mechanisms documented where applicable"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.2",
@@ -1937,10 +2634,10 @@
       "tags": [
         "CODE"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -1949,7 +2646,11 @@
         "automatedRules": 0,
         "rubricChecks": 2
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Disclosure events are logged (subject, recipient, data categories, purpose, timestamp, authorization basis)",
+        "Records are retained per policy and queryable by data subject"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.3",
@@ -1959,10 +2660,10 @@
         "CODE",
         "DOCS"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -1971,7 +2672,12 @@
         "automatedRules": 0,
         "rubricChecks": 3
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Incident register captures unauthorized disclosures with scope, affected subjects, root cause, and remediation",
+        "Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)",
+        "Records link to the incident-response process (CC7.3–CC7.4)"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.4",
@@ -1981,10 +2687,10 @@
         "ORG",
         "CONFIG"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -1993,7 +2699,12 @@
         "automatedRules": 0,
         "rubricChecks": 3
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Vendor contracts/DPAs include privacy commitments",
+        "Technical scopes limit vendor access to necessary data",
+        "Vendor compliance is monitored (SOC reports, reviews)"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.5",
@@ -2003,10 +2714,10 @@
         "ORG",
         "DOCS"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -2015,7 +2726,11 @@
         "automatedRules": 0,
         "rubricChecks": 2
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Contracts specify notification timelines",
+        "Intake channel/process exists for vendor breach notices and feeds incident response"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.6",
@@ -2025,10 +2740,10 @@
         "DOCS",
         "CODE"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -2037,7 +2752,13 @@
         "automatedRules": 0,
         "rubricChecks": 4
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Breach notification runbook and templates exist, with regulator/customer deadlines documented (e.g., 72h where applicable)",
+        "Affected data subjects can be identified quickly through queries and tooling",
+        "Contact data and notification tooling available for affected populations",
+        "Notification decisions recorded"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P6.7",
@@ -2046,10 +2767,10 @@
       "tags": [
         "CODE"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -2058,7 +2779,11 @@
         "automatedRules": 0,
         "rubricChecks": 2
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "DSAR output includes what is held (P5.1) and to whom it was disclosed (P6.2)",
+        "Accounting can be produced within the response SLA"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P7.1",
@@ -2067,10 +2792,10 @@
       "tags": [
         "CODE"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -2079,7 +2804,13 @@
         "automatedRules": 0,
         "rubricChecks": 4
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Validation on PI fields (format, completeness); duplicate detection and merge handling",
+        "Users can review and update their own data",
+        "Data-quality checks or stale-data flagging run on a schedule",
+        "Irrelevant or unnecessary fields are removed"
+      ],
+      "owner": "Privacy / legal"
     },
     {
       "id": "P8.1",
@@ -2089,10 +2820,10 @@
         "DOCS",
         "ORG"
       ],
-      "inScope": false,
-      "score": "N/A",
-      "label": "Not Applicable",
-      "rationale": "Category not in scope for this scan.",
+      "inScope": true,
+      "score": "MANUAL",
+      "label": "Manual Evidence",
+      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
       "capped": false,
       "evidence": [],
       "checks": [],
@@ -2101,7 +2832,13 @@
         "automatedRules": 0,
         "rubricChecks": 4
       },
-      "manualFollowUps": []
+      "manualFollowUps": [
+        "Privacy contact channel published (email/form) and monitored",
+        "Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester",
+        "Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI",
+        "Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)"
+      ],
+      "owner": "Privacy / legal"
     }
   ],
   "findings": [
@@ -2279,9 +3016,9 @@
       "severity": "critical",
       "title": "Public bucket ACL on aws_s3_bucket.exports",
       "location": {
-        "description": "infra/main.tf:17",
+        "description": "infra/main.tf:19",
         "path": "infra/main.tf",
-        "line": 17
+        "line": 19
       },
       "observed": "aws_s3_bucket.exports sets acl = \"public-read\" (detected by threesock's lightweight Terraform scanner).",
       "expected": "Object storage is private by default, with public access blocks enabled; public content is served through a CDN with origin access control.",
@@ -2295,16 +3032,58 @@
     },
     {
       "id": "F-010",
+      "ruleId": "cc3.3/auth-bypass",
+      "criterion": "CC3.3",
+      "severity": "high",
+      "title": "Authentication can be switched off by an environment variable",
+      "location": {
+        "description": "src/auth.js:6",
+        "path": "src/auth.js",
+        "line": 6
+      },
+      "observed": "Authentication can be switched off by an environment variable in src/auth.js at line 6.",
+      "expected": "Authentication cannot be switched off by a flag or environment variable, and no code grants privileges to a hard-coded username.",
+      "risk": "A bypass meant for debugging reaches production sooner or later, giving anyone who finds it full access.",
+      "recommendation": "Remove the bypass. For local development, use a seeded test user against the real auth path, and authorize by role, never by username.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "53644da3b9edf3d1",
+      "example": "if (!session.user.roles.includes('admin')) return res.sendStatus(403);"
+    },
+    {
+      "id": "F-011",
+      "ruleId": "cc3.3/auth-bypass",
+      "criterion": "CC3.3",
+      "severity": "high",
+      "title": "Privileges granted by comparing to a hard-coded username",
+      "location": {
+        "description": "src/auth.js:7",
+        "path": "src/auth.js",
+        "line": 7
+      },
+      "observed": "Privileges granted by comparing to a hard-coded username in src/auth.js at line 7.",
+      "expected": "Authentication cannot be switched off by a flag or environment variable, and no code grants privileges to a hard-coded username.",
+      "risk": "A bypass meant for debugging reaches production sooner or later, giving anyone who finds it full access.",
+      "recommendation": "Remove the bypass. For local development, use a seeded test user against the real auth path, and authorize by role, never by username.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "84838710166e87cf",
+      "example": "if (!session.user.roles.includes('admin')) return res.sendStatus(403);"
+    },
+    {
+      "id": "F-012",
       "ruleId": "cc5.2/cloud-credentials",
       "criterion": "CC5.2",
       "severity": "high",
       "title": "Long-lived cloud credentials in .github/workflows/ci.yml",
       "location": {
-        "description": ".github/workflows/ci.yml:21",
+        "description": ".github/workflows/ci.yml:22",
         "path": ".github/workflows/ci.yml",
-        "line": 21
+        "line": 22
       },
-      "observed": ".github/workflows/ci.yml passes stored cloud keys to the workflow (line 21) instead of using OIDC.",
+      "observed": ".github/workflows/ci.yml passes stored cloud keys to the workflow (line 22) instead of using OIDC.",
       "expected": "Workflows assume cloud roles through OIDC federation (id-token: write), so no long-lived cloud keys are stored as CI secrets.",
       "risk": "Long-lived cloud keys in CI leak through logs, forks and compromised actions, and stay valid until someone remembers to rotate them.",
       "recommendation": "Configure an OIDC trust between GitHub and your cloud, assume a scoped role in the workflow, and delete the stored keys.",
@@ -2315,7 +3094,7 @@
       "example": "permissions:\n  id-token: write\n  contents: read\nsteps:\n  - uses: aws-actions/configure-aws-credentials@<sha>  # pin to a commit SHA\n    with:\n      role-to-assume: arn:aws:iam::123456789012:role/deploy\n      aws-region: us-east-1"
     },
     {
-      "id": "F-011",
+      "id": "F-013",
       "ruleId": "cc5.2/script-injection",
       "criterion": "CC5.2",
       "severity": "high",
@@ -2336,7 +3115,7 @@
       "example": "- run: echo \"Title: $TITLE\"\n  env:\n    TITLE: ${{ github.event.issue.title }}"
     },
     {
-      "id": "F-012",
+      "id": "F-014",
       "ruleId": "cc5.2/secrets-in-logs",
       "criterion": "CC5.2",
       "severity": "high",
@@ -2357,7 +3136,7 @@
       "example": "- run: ./deploy.sh\n  env:\n    DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}"
     },
     {
-      "id": "F-013",
+      "id": "F-015",
       "ruleId": "cc5.2/workflow-permissions",
       "criterion": "CC5.2",
       "severity": "high",
@@ -2378,7 +3157,7 @@
       "example": "permissions:\n  contents: read\njobs:\n  release:\n    permissions:\n      contents: write\n      id-token: write"
     },
     {
-      "id": "F-014",
+      "id": "F-016",
       "ruleId": "cc6.1/hardcoded-secrets",
       "criterion": "CC6.1",
       "severity": "high",
@@ -2399,17 +3178,17 @@
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
-      "id": "F-015",
+      "id": "F-017",
       "ruleId": "cc6.1/iam-wildcard",
       "criterion": "CC6.1",
       "severity": "high",
       "title": "IAM policy allows every action (\"*\")",
       "location": {
-        "description": "infra/main.tf:25",
+        "description": "infra/main.tf:27",
         "path": "infra/main.tf",
-        "line": 25
+        "line": 27
       },
-      "observed": "IAM policy allows every action (\"*\") in infra/main.tf at line 25.",
+      "observed": "IAM policy allows every action (\"*\") in infra/main.tf at line 27.",
       "expected": "IAM roles and policies grant specific actions on specific resources; no \"*\" actions and no primitive owner/editor roles.",
       "risk": "A wildcard policy turns any compromise of that identity into full control of the account.",
       "recommendation": "Replace wildcards with the specific actions the workload needs. IAM Access Analyzer or CloudTrail-based policy generation can produce a least-privilege policy from real usage.",
@@ -2420,7 +3199,7 @@
       "example": "data \"aws_iam_policy_document\" \"app\" {\n  statement {\n    actions   = [\"s3:GetObject\", \"s3:PutObject\"]\n    resources = [\"${aws_s3_bucket.uploads.arn}/*\"]\n  }\n}"
     },
     {
-      "id": "F-016",
+      "id": "F-018",
       "ruleId": "cc6.1/password-hashing",
       "criterion": "CC6.1",
       "severity": "high",
@@ -2441,7 +3220,28 @@
       "example": "import argon2 from 'argon2';\nconst hash = await argon2.hash(password, { type: argon2.argon2id });\nconst ok = await argon2.verify(hash, candidate);"
     },
     {
-      "id": "F-017",
+      "id": "F-019",
+      "ruleId": "cc6.2/mass-assignment",
+      "criterion": "CC6.2",
+      "severity": "high",
+      "title": "Whole request body spread into a database write",
+      "location": {
+        "description": "src/auth.js:17",
+        "path": "src/auth.js",
+        "line": 17
+      },
+      "observed": "Whole request body spread into a database write in src/auth.js at line 17.",
+      "expected": "Create and update handlers copy only allow-listed fields from requests; roles and permissions are set by privileged code paths only.",
+      "risk": "Mass assignment lets a user send `\"role\": \"admin\"` in a signup or profile update and become an administrator.",
+      "recommendation": "Validate request bodies against a schema of allowed fields and set roles explicitly on the server.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "4652b4f328c9728c",
+      "example": "const input = SignupSchema.parse(req.body); // { email, password, name } only\nawait User.create({ ...input, role: 'member' });"
+    },
+    {
+      "id": "F-020",
       "ruleId": "cc6.6/cors-credentials",
       "criterion": "CC6.6",
       "severity": "high",
@@ -2462,7 +3262,7 @@
       "example": "app.use(cors({ origin: ['https://app.example.com'], credentials: true }));"
     },
     {
-      "id": "F-018",
+      "id": "F-021",
       "ruleId": "cc6.6/dangerous-execution",
       "criterion": "CC6.6",
       "severity": "high",
@@ -2483,7 +3283,7 @@
       "example": "# Python: argument list, no shell\nsubprocess.run([\"convert\", src, dst], check=True)\n\n// Node: execFile with arguments, no shell\nexecFile('convert', [src, dst]);"
     },
     {
-      "id": "F-019",
+      "id": "F-022",
       "ruleId": "cc6.6/dangerous-execution",
       "criterion": "CC6.6",
       "severity": "high",
@@ -2504,7 +3304,7 @@
       "example": "# Python: argument list, no shell\nsubprocess.run([\"convert\", src, dst], check=True)\n\n// Node: execFile with arguments, no shell\nexecFile('convert', [src, dst]);"
     },
     {
-      "id": "F-020",
+      "id": "F-023",
       "ruleId": "cc6.6/open-admin-ports",
       "criterion": "CC6.6",
       "severity": "high",
@@ -2525,7 +3325,7 @@
       "example": "ingress {\n  from_port       = 5432\n  to_port         = 5432\n  protocol        = \"tcp\"\n  security_groups = [aws_security_group.app.id]  # not 0.0.0.0/0\n}"
     },
     {
-      "id": "F-021",
+      "id": "F-024",
       "ruleId": "cc6.6/sql-string-building",
       "criterion": "CC6.6",
       "severity": "high",
@@ -2546,7 +3346,7 @@
       "example": "// Node (pg)\nawait db.query('SELECT * FROM users WHERE id = $1', [id]);\n\n# Python (psycopg)\ncur.execute(\"SELECT * FROM users WHERE id = %s\", (user_id,))"
     },
     {
-      "id": "F-022",
+      "id": "F-025",
       "ruleId": "cc6.7/tls-verification",
       "criterion": "CC6.7",
       "severity": "high",
@@ -2567,7 +3367,7 @@
       "example": "// Node: trust a private CA instead of disabling checks\nhttps.request(url, { ca: fs.readFileSync('certs/internal-ca.pem') });\n\n# Python\nrequests.get(url, verify=\"certs/internal-ca.pem\")"
     },
     {
-      "id": "F-023",
+      "id": "F-026",
       "ruleId": "cc6.7/weak-tls-crypto",
       "criterion": "CC6.7",
       "severity": "high",
@@ -2588,7 +3388,28 @@
       "example": "tls.createServer({ minVersion: 'TLSv1.3', key, cert });\nconst cipher = crypto.createCipheriv('aes-256-gcm', key, iv);"
     },
     {
-      "id": "F-024",
+      "id": "F-027",
+      "ruleId": "cc6.7/webhook-signatures",
+      "criterion": "CC6.7",
+      "severity": "high",
+      "title": "Webhook handler without signature verification",
+      "location": {
+        "description": "src/webhooks.js:7",
+        "path": "src/webhooks.js",
+        "line": 7
+      },
+      "observed": "src/webhooks.js handles webhooks at line 7, but no signature verification was found.",
+      "expected": "Every webhook handler verifies the sender signature over the raw body, with a constant-time comparison, before acting.",
+      "risk": "Unsigned webhooks let anyone forge events such as \"payment succeeded\" or \"user verified\".",
+      "recommendation": "Verify the provider signature with its SDK (or an HMAC over the raw body with timingSafeEqual) before processing.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "bddf14bf0738a3f6",
+      "example": "const event = stripe.webhooks.constructEvent(rawBody, req.headers['stripe-signature'], process.env.STRIPE_WEBHOOK_SECRET);"
+    },
+    {
+      "id": "F-028",
       "ruleId": "cc6.8/curl-pipe-shell",
       "criterion": "CC6.8",
       "severity": "high",
@@ -2609,7 +3430,7 @@
       "example": "curl -fsSLo install.sh https://example.com/install.sh\necho \"<sha256>  install.sh\" | sha256sum -c -\nsh install.sh"
     },
     {
-      "id": "F-025",
+      "id": "F-029",
       "ruleId": "cc6.8/lockfiles",
       "criterion": "CC6.8",
       "severity": "high",
@@ -2629,7 +3450,47 @@
       "example": "pnpm install && git add pnpm-lock.yaml       # Node\nuv lock && git add uv.lock                    # Python\npip-compile --generate-hashes requirements.in # pip"
     },
     {
-      "id": "F-026",
+      "id": "F-030",
+      "ruleId": "cc7.2/sensitive-logging",
+      "criterion": "CC7.2",
+      "severity": "high",
+      "title": "Request body or headers passed to a logger",
+      "location": {
+        "description": "src/auth.js:16",
+        "path": "src/auth.js",
+        "line": 16
+      },
+      "observed": "Request body or headers passed to a logger in src/auth.js at line 16.",
+      "expected": "Logs never contain passwords, tokens, authorization headers, full request bodies or card numbers.",
+      "risk": "Logs are copied widely (log platforms, support tools, laptops). Credentials in them become a breach with a long tail.",
+      "recommendation": "Log identifiers and outcomes, not payloads. Use a logger with redaction paths for anything sensitive.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "eb77d5808f5e2c89",
+      "example": "const log = pino({ redact: ['req.headers.authorization', 'req.body.password'] });\nlog.info({ userId, outcome: 'login_failed' });"
+    },
+    {
+      "id": "F-031",
+      "ruleId": "cc7.4/incident-response-plan",
+      "criterion": "CC7.4",
+      "severity": "high",
+      "title": "No incident response plan",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No incident response plan was found in the repository's documentation.",
+      "expected": "An incident response plan defines roles, severity levels, escalation paths and how internal and external communication happens.",
+      "risk": "During an incident, an undocumented process means slow, inconsistent response and missed notification deadlines.",
+      "recommendation": "Write docs/security/incident-response.md covering who leads, how severity is set, when to escalate, and who tells customers and regulators.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "f3e66946d186a412",
+      "example": "## Roles\nIncident lead: on-call engineer. Comms: head of support.\n## Severity\nSEV1: data exposure or full outage. SEV2: partial outage. SEV3: minor.\n## Escalation\nSEV1 pages the CTO within 15 minutes.\n## Communication\nStatus page within 30 minutes; customers notified within 72 hours of a confirmed breach."
+    },
+    {
+      "id": "F-032",
       "ruleId": "cc8.1/ci-on-pull-requests",
       "criterion": "CC8.1",
       "severity": "high",
@@ -2648,7 +3509,7 @@
       "example": "on: pull_request\npermissions: { contents: read }\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>\n      - run: npm ci && npm run lint && npm test"
     },
     {
-      "id": "F-027",
+      "id": "F-033",
       "ruleId": "cc8.1/terraform-state",
       "criterion": "CC8.1",
       "severity": "high",
@@ -2667,7 +3528,49 @@
       "example": "terraform {\n  backend \"s3\" {\n    bucket       = \"acme-terraform-state\"\n    key          = \"prod/terraform.tfstate\"\n    region       = \"us-east-1\"\n    encrypt      = true\n    use_lockfile = true\n  }\n}"
     },
     {
-      "id": "F-028",
+      "id": "F-034",
+      "ruleId": "a1.2/backups",
+      "criterion": "A1.2",
+      "severity": "high",
+      "title": "No reliable backups for aws_db_instance.main",
+      "location": {
+        "description": "infra/main.tf:12",
+        "path": "infra/main.tf",
+        "line": 12
+      },
+      "observed": "aws_db_instance.main sets backup_retention_period = 0 (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Every database has automated backups with a retention policy, and point-in-time recovery where supported.",
+      "risk": "A bad migration, deletion or ransomware event with no backup is permanent data loss.",
+      "recommendation": "Enable automated backups with explicit retention (and PITR), or cover the stores with an AWS Backup plan.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "ccf9494442fb333a",
+      "example": "resource \"aws_db_instance\" \"main\" {\n  backup_retention_period = 14\n}\nresource \"aws_dynamodb_table\" \"events\" {\n  point_in_time_recovery { enabled = true }\n}"
+    },
+    {
+      "id": "F-035",
+      "ruleId": "c1.1/encryption-at-rest",
+      "criterion": "C1.1",
+      "severity": "high",
+      "title": "Unencrypted data store: aws_db_instance.main",
+      "location": {
+        "description": "infra/main.tf:12",
+        "path": "infra/main.tf",
+        "line": 12
+      },
+      "observed": "aws_db_instance.main does not set storage_encrypted = true (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Every database, volume, file system and cache is encrypted at rest, preferably with managed KMS keys.",
+      "risk": "Unencrypted storage exposes data through snapshots, decommissioned disks and backup copies.",
+      "recommendation": "Enable encryption at rest on every data store (it usually requires a replacement for existing RDS instances: snapshot, copy encrypted, restore).",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8c477cd12be1c9a3",
+      "example": "resource \"aws_db_instance\" \"main\" {\n  storage_encrypted = true\n  kms_key_id        = aws_kms_key.data.arn\n}"
+    },
+    {
+      "id": "F-036",
       "ruleId": "cc1.3/codeowners",
       "criterion": "CC1.3",
       "severity": "medium",
@@ -2686,7 +3589,7 @@
       "example": "# .github/CODEOWNERS\n*                 @your-org/engineering\n/src/auth/        @your-org/security\n/infra/           @your-org/platform"
     },
     {
-      "id": "F-029",
+      "id": "F-037",
       "ruleId": "cc2.3/security-policy",
       "criterion": "CC2.3",
       "severity": "medium",
@@ -2705,7 +3608,165 @@
       "example": "# Security policy\n\n## Reporting a vulnerability\nEmail security@example.com or use GitHub private vulnerability reporting.\nWe acknowledge reports within 2 business days and aim to fix Critical issues within 7 days."
     },
     {
-      "id": "F-030",
+      "id": "F-038",
+      "ruleId": "cc3.2/risk-register",
+      "criterion": "CC3.2",
+      "severity": "medium",
+      "title": "No risk register",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No risk register was found in the repository's documentation.",
+      "expected": "Risks are recorded with likelihood, impact, an owner and a treatment decision, and link to tracking issues.",
+      "risk": "Unrecorded risks have no owner, so they are neither fixed nor consciously accepted.",
+      "recommendation": "Keep a risk register (a Markdown table is fine) and review it at least quarterly.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "77e4d97527a22b7e",
+      "example": "| Risk | Likelihood | Impact | Owner | Treatment |\n|---|---|---|---|---|\n| Leaked deploy key | Low | High | @platform | Mitigate: OIDC, no stored keys |"
+    },
+    {
+      "id": "F-039",
+      "ruleId": "cc3.2/threat-model",
+      "criterion": "CC3.2",
+      "severity": "medium",
+      "title": "No threat model",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No threat model was found in the repository's documentation.",
+      "expected": "A threat model names the assets, trust boundaries, threats and mitigations for the system, and is updated with major changes.",
+      "risk": "Without one, security work follows whatever is noticed rather than what matters most, and design flaws ship unexamined.",
+      "recommendation": "Write a short threat model (docs/security/threat-model.md): what you protect, where untrusted input enters, what could go wrong (STRIDE works), and what stops it.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "6ae91c3bc21beb3a",
+      "example": "# Threat model\n## Assets\nCustomer PII in Postgres; API keys for payment providers.\n## Trust boundaries\nPublic API, admin console, webhook endpoint.\n## Threats and mitigations\n| Threat | Mitigation |\n|---|---|\n| Forged webhook | Signature verification |"
+    },
+    {
+      "id": "F-040",
+      "ruleId": "cc4.1/iac-scanning",
+      "criterion": "CC4.1",
+      "severity": "medium",
+      "title": "Infrastructure code is not scanned",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The repository defines infrastructure, but no IaC scanner (Checkov, Trivy config, tfsec, KICS, hadolint, kube-linter, ...) runs in CI.",
+      "expected": "Terraform, Kubernetes, CloudFormation and Dockerfiles are scanned for misconfigurations (Checkov, Trivy config, tfsec, hadolint, ...) on every change.",
+      "risk": "Misconfigurations such as public buckets or open ports are the leading cause of cloud breaches, and are cheap to catch before apply.",
+      "recommendation": "Run Checkov or Trivy in config mode on pull requests that touch infrastructure.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8b2c446528141102",
+      "example": "- run: trivy config --exit-code 1 --severity HIGH,CRITICAL ."
+    },
+    {
+      "id": "F-041",
+      "ruleId": "cc4.1/sast",
+      "criterion": "CC4.1",
+      "severity": "medium",
+      "title": "No static analysis in CI",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No SAST tool (CodeQL, Semgrep, Bandit, gosec, SonarQube, ...) runs in CI. GitHub CodeQL default setup is not visible from the repository; if it is enabled, add an exception that says so.",
+      "expected": "A SAST tool (CodeQL, Semgrep, Bandit, gosec, ...) runs on every pull request.",
+      "risk": "Injection and other code-level flaws reach production without automated review.",
+      "recommendation": "Enable CodeQL (GitHub default setup or a workflow) or run Semgrep on pull requests.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "e0d61d296e682e2d",
+      "example": "- uses: github/codeql-action/init@<sha>  # pin to a commit SHA\n  with: { languages: javascript-typescript }\n- uses: github/codeql-action/analyze@<sha>"
+    },
+    {
+      "id": "F-042",
+      "ruleId": "cc4.2/blocking-scans",
+      "criterion": "CC4.2",
+      "severity": "medium",
+      "title": "Non-blocking security scan in .github/workflows/ci.yml",
+      "location": {
+        "description": ".github/workflows/ci.yml:15",
+        "path": ".github/workflows/ci.yml",
+        "line": 15
+      },
+      "observed": "The scan at line 15 of .github/workflows/ci.yml is configured not to fail the pipeline.",
+      "expected": "Security scan steps fail the pipeline on Critical/High findings instead of reporting and carrying on.",
+      "risk": "Non-blocking scanners produce reports nobody reads; known issues merge anyway.",
+      "recommendation": "Remove continue-on-error / \"|| true\" from scan steps and set the scanner to fail on Critical and High.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "1a04e51ee5fb35fd",
+      "example": "- run: trivy fs --exit-code 1 --severity CRITICAL,HIGH ."
+    },
+    {
+      "id": "F-043",
+      "ruleId": "cc4.2/remediation-sla",
+      "criterion": "CC4.2",
+      "severity": "medium",
+      "title": "No vulnerability remediation policy",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No vulnerability remediation policy was found in the repository's documentation.",
+      "expected": "Remediation deadlines are defined per severity (e.g. Critical 7 days, High 30) and overdue findings are escalated.",
+      "risk": "Without deadlines, known vulnerabilities age indefinitely, and auditors flag aged Critical/High findings as a control failure.",
+      "recommendation": "Publish remediation SLAs per severity and an escalation path for overdue findings, and configure the same values in threesock.yaml.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "851e178537973934",
+      "example": "| Severity | Fix within |\n|---|---|\n| Critical | 7 days |\n| High | 30 days |\nOverdue findings are escalated to the engineering lead; exceptions need an approver and expiry."
+    },
+    {
+      "id": "F-044",
+      "ruleId": "cc4.2/suppressions",
+      "criterion": "CC4.2",
+      "severity": "medium",
+      "title": "Unexplained entries in .trivyignore",
+      "location": {
+        "description": ".trivyignore:1",
+        "path": ".trivyignore",
+        "line": 1
+      },
+      "observed": "1 entry in .trivyignore have no comment explaining why.",
+      "expected": "Every suppression of a security finding says why (and ideally who approved it and until when).",
+      "risk": "Unexplained suppressions hide real vulnerabilities and cannot be reviewed; auditors treat blanket suppressions as a red flag.",
+      "recommendation": "Add the rule id and a reason to each suppression, or move it into threesock.yaml exceptions with an approver and expiry.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "1ccc5bcdef082ee4",
+      "example": "subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)"
+    },
+    {
+      "id": "F-045",
+      "ruleId": "cc4.2/suppressions",
+      "criterion": "CC4.2",
+      "severity": "medium",
+      "title": "1 unexplained security suppression in infra/main.tf",
+      "location": {
+        "description": "infra/main.tf:16",
+        "path": "infra/main.tf",
+        "line": 16
+      },
+      "observed": "IaC scanner skip without a reason at line 16.",
+      "expected": "Every suppression of a security finding says why (and ideally who approved it and until when).",
+      "risk": "Unexplained suppressions hide real vulnerabilities and cannot be reviewed; auditors treat blanket suppressions as a red flag.",
+      "recommendation": "Add the rule id and a reason to each suppression, or move it into threesock.yaml exceptions with an approver and expiry.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "17afa8e513c40558",
+      "example": "subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)"
+    },
+    {
+      "id": "F-046",
       "ruleId": "cc5.2/actions-pinned",
       "criterion": "CC5.2",
       "severity": "medium",
@@ -2715,7 +3776,7 @@
         "path": ".github/workflows/ci.yml",
         "line": 8
       },
-      "observed": "Unpinned: actions/checkout@v4 (line 8), some-org/setup-deploy@main (line 18), aws-actions/configure-aws-credentials@v4 (line 19).",
+      "observed": "Unpinned: actions/checkout@v4 (line 8), some-org/setup-deploy@main (line 19), aws-actions/configure-aws-credentials@v4 (line 20).",
       "expected": "Every third-party action is pinned to a full 40-character commit SHA (with the version in a comment), so a moved tag cannot change what runs.",
       "risk": "Tags can be moved. A compromised action tag (as in the tj-actions/changed-files incident) runs attacker code with your workflow's secrets.",
       "recommendation": "Pin each action to the commit SHA of the release you reviewed, keep the version as a comment, and let Dependabot update the pins.",
@@ -2726,15 +3787,15 @@
       "example": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2"
     },
     {
-      "id": "F-031",
+      "id": "F-047",
       "ruleId": "cc5.2/deploy-environments",
       "criterion": "CC5.2",
       "severity": "medium",
       "title": "Deploy job without an environment: deploy",
       "location": {
-        "description": ".github/workflows/ci.yml:15",
+        "description": ".github/workflows/ci.yml:16",
         "path": ".github/workflows/ci.yml",
-        "line": 15
+        "line": 16
       },
       "observed": "Job deploy in .github/workflows/ci.yml deploys or publishes without an environment, so no reviewer or branch gate applies.",
       "expected": "Jobs that deploy or publish run in a GitHub environment, so required reviewers, branch restrictions and environment-scoped secrets apply.",
@@ -2747,7 +3808,26 @@
       "example": "jobs:\n  deploy:\n    environment: production\n    runs-on: ubuntu-latest"
     },
     {
-      "id": "F-032",
+      "id": "F-048",
+      "ruleId": "cc5.3/runbooks",
+      "criterion": "CC5.3",
+      "severity": "medium",
+      "title": "No documented procedure for onboarding, offboarding, deployment, rollback, incident response, key rotation, access reviews",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Procedures found for 0 of 7 core processes (by heading); missing: onboarding, offboarding, deployment, rollback, incident response, key rotation, access reviews.",
+      "expected": "Runbooks cover onboarding, offboarding, deployment, rollback, incident response, key rotation and access reviews.",
+      "risk": "Undocumented procedures are performed inconsistently and cannot be shown to an auditor.",
+      "recommendation": "Add a section (heading) for each missing procedure to your runbooks.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "f4fd96f0ec240f17",
+      "example": "docs/runbooks/\n  access.md     # onboarding, offboarding, access reviews\n  release.md    # deployment and rollback\n  incidents.md  # incident response\n  secrets.md    # key rotation"
+    },
+    {
+      "id": "F-049",
       "ruleId": "cc6.1/cookie-flags",
       "criterion": "CC6.1",
       "severity": "medium",
@@ -2768,7 +3848,7 @@
       "example": "app.use(session({\n  cookie: { httpOnly: true, secure: true, sameSite: 'lax', maxAge: 8 * 60 * 60 * 1000 },\n}));"
     },
     {
-      "id": "F-033",
+      "id": "F-050",
       "ruleId": "cc6.1/jwt-verification",
       "criterion": "CC6.1",
       "severity": "medium",
@@ -2789,7 +3869,7 @@
       "example": "const claims = jwt.verify(token, publicKey, {\n  algorithms: ['RS256'], audience: 'api.example.com', issuer: 'https://auth.example.com/',\n});"
     },
     {
-      "id": "F-034",
+      "id": "F-051",
       "ruleId": "cc6.1/secret-scanning",
       "criterion": "CC6.1",
       "severity": "medium",
@@ -2808,7 +3888,47 @@
       "example": "# .github/workflows/secrets.yml\non: [push, pull_request]\npermissions: { contents: read }\njobs:\n  gitleaks:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>  # pin to a commit SHA\n        with: { fetch-depth: 0 }\n      - uses: gitleaks/gitleaks-action@<sha>"
     },
     {
-      "id": "F-035",
+      "id": "F-052",
+      "ruleId": "cc6.3/offboarding",
+      "criterion": "CC6.3",
+      "severity": "medium",
+      "title": "No offboarding procedure",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No offboarding procedure was found in the repository's documentation.",
+      "expected": "Offboarding revokes SSO, source control, cloud, CI/CD and vendor access within a set deadline (≤ 24h).",
+      "risk": "Departed staff and contractors keep working credentials, a common source of incidents and an audit finding.",
+      "recommendation": "Document an offboarding checklist covering every system with access, and the deadline for completing it.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8d143efb3eb76cc7",
+      "example": "## Offboarding (within 24 hours)\n- [ ] Disable SSO account (cascades to apps via SCIM)\n- [ ] Remove from GitHub org and npm org\n- [ ] Revoke personal cloud credentials and tokens"
+    },
+    {
+      "id": "F-053",
+      "ruleId": "cc6.3/token-expiry",
+      "criterion": "CC6.3",
+      "severity": "medium",
+      "title": "Token issued without an expiry",
+      "location": {
+        "description": "src/auth.js:12",
+        "path": "src/auth.js",
+        "line": 12
+      },
+      "observed": "A token is signed in src/auth.js at line 12 with no expiry nearby.",
+      "expected": "Every token the application issues has an expiry, so access ends even if revocation fails.",
+      "risk": "A token without expiry stays valid forever; one leak is permanent access.",
+      "recommendation": "Set a short expiry on every issued token and use refresh tokens that can be revoked.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8418b171847a6f9f",
+      "example": "jwt.sign(claims, key, { algorithm: 'RS256', expiresIn: '15m' });"
+    },
+    {
+      "id": "F-054",
       "ruleId": "cc6.6/security-headers",
       "criterion": "CC6.6",
       "severity": "medium",
@@ -2828,7 +3948,7 @@
       "example": "import helmet from 'helmet';\napp.use(helmet({ hsts: { maxAge: 31536000, includeSubDomains: true } }));"
     },
     {
-      "id": "F-036",
+      "id": "F-055",
       "ruleId": "cc6.6/xss-sinks",
       "criterion": "CC6.6",
       "severity": "medium",
@@ -2849,7 +3969,7 @@
       "example": "<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />"
     },
     {
-      "id": "F-037",
+      "id": "F-056",
       "ruleId": "cc6.7/plain-http-urls",
       "criterion": "CC6.7",
       "severity": "medium",
@@ -2870,7 +3990,7 @@
       "example": "const API_URL = process.env.API_URL ?? 'https://api.example.com';"
     },
     {
-      "id": "F-038",
+      "id": "F-057",
       "ruleId": "cc6.8/base-images",
       "criterion": "CC6.8",
       "severity": "medium",
@@ -2891,7 +4011,7 @@
       "example": "FROM node:22.11.0-bookworm-slim@sha256:<digest>"
     },
     {
-      "id": "F-039",
+      "id": "F-058",
       "ruleId": "cc6.8/container-scanning",
       "criterion": "CC6.8",
       "severity": "medium",
@@ -2910,26 +4030,7 @@
       "example": "- uses: aquasecurity/trivy-action@<sha>  # pin to a commit SHA\n  with: { image-ref: 'app:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true }"
     },
     {
-      "id": "F-040",
-      "ruleId": "cc6.8/dependency-scanning",
-      "criterion": "CC6.8",
-      "severity": "medium",
-      "title": "Missing automated dependency updates (Dependabot or Renovate) and a dependency vulnerability scan in CI",
-      "location": {
-        "description": "repository"
-      },
-      "observed": "No automated dependency updates (Dependabot or Renovate) and a dependency vulnerability scan in CI is configured.",
-      "expected": "Dependabot or Renovate keeps dependencies current, and a vulnerability scan (dependency review, OSV-Scanner, npm audit, pip-audit, govulncheck) runs in CI.",
-      "risk": "Known-vulnerable dependencies are the most common way attackers get in, and they are only fixed if someone notices.",
-      "recommendation": "Enable Dependabot (or Renovate) and add a dependency scan to pull-request CI.",
-      "dueDate": "2026-04-15",
-      "status": "open",
-      "redFlag": false,
-      "fingerprint": "8c1d00f27d428537",
-      "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }\n  - package-ecosystem: github-actions\n    directory: /\n    schedule: { interval: weekly }"
-    },
-    {
-      "id": "F-041",
+      "id": "F-059",
       "ruleId": "cc6.8/reproducible-installs",
       "criterion": "CC6.8",
       "severity": "medium",
@@ -2950,7 +4051,123 @@
       "example": "RUN npm ci --omit=dev\n# or\nRUN pnpm install --frozen-lockfile --prod"
     },
     {
-      "id": "F-042",
+      "id": "F-060",
+      "ruleId": "cc7.1/container-user",
+      "criterion": "CC7.1",
+      "severity": "medium",
+      "title": "Container runs as root: Dockerfile",
+      "location": {
+        "description": "Dockerfile:1",
+        "path": "Dockerfile",
+        "line": 1
+      },
+      "observed": "Dockerfile never sets a non-root USER in its final stage.",
+      "expected": "The final stage of each Dockerfile switches to a non-root USER.",
+      "risk": "A process running as root turns any code execution bug into full control of the container and an easier escape to the host.",
+      "recommendation": "Create or use an unprivileged user and switch to it in the final stage.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "12cd005a083794da",
+      "example": "RUN addgroup --system app && adduser --system --ingroup app app\nUSER app"
+    },
+    {
+      "id": "F-061",
+      "ruleId": "cc7.1/vulnerability-monitoring",
+      "criterion": "CC7.1",
+      "severity": "medium",
+      "title": "No continuous vulnerability monitoring",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Neither Dependabot/Renovate nor a scheduled dependency scan is configured.",
+      "expected": "New vulnerabilities in existing dependencies are detected continuously (Dependabot/Renovate alerts or a scheduled scan).",
+      "risk": "Code that does not change still becomes vulnerable as CVEs are published; without monitoring nobody finds out.",
+      "recommendation": "Enable Dependabot (with security updates) or Renovate, or run a dependency scan on a weekly schedule.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "031b1135912c21cc",
+      "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }"
+    },
+    {
+      "id": "F-062",
+      "ruleId": "cc7.2/alert-rules",
+      "criterion": "CC7.2",
+      "severity": "medium",
+      "title": "No alert rules defined in code",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No alert definitions (Prometheus rules, CloudWatch alarms, Datadog monitors, ...) were found.",
+      "expected": "Alerts for auth-failure spikes, error rates and infrastructure anomalies are defined as code and routed to on-call.",
+      "risk": "Attacks and outages that nobody is alerted to run for hours or days.",
+      "recommendation": "Define alert rules in code (Prometheus, CloudWatch, Datadog, Grafana) with routing to an on-call channel.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "a79d3b3ef70c6b25",
+      "example": "- alert: LoginFailureSpike\n  expr: sum(rate(auth_login_failures_total[5m])) > 20\n  labels: { severity: page }"
+    },
+    {
+      "id": "F-063",
+      "ruleId": "cc7.3/triage-criteria",
+      "criterion": "CC7.3",
+      "severity": "medium",
+      "title": "No severity and triage criteria",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No severity and triage criteria was found in the repository's documentation.",
+      "expected": "Documented criteria say how a security event is classified, at what severity it becomes an incident, and how the triage outcome is recorded.",
+      "risk": "Without shared criteria, the same alert is ignored by one person and escalated by another, and real incidents are missed.",
+      "recommendation": "Document severity levels with examples, the threshold for declaring an incident, and where triage outcomes (true/false positive) are recorded.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "3dc942ce851cbe84",
+      "example": "| Severity | Criteria | Example |\n|---|---|---|\n| Critical | Confirmed data exposure or active exploitation | Leaked production key used by a third party |\nTriage outcome (true/false positive, incident yes/no) is recorded on the ticket."
+    },
+    {
+      "id": "F-064",
+      "ruleId": "cc7.4/incident-runbooks",
+      "criterion": "CC7.4",
+      "severity": "medium",
+      "title": "No runbook for credential leak, data exposure, compromised dependency, outage or DDoS",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Runbooks found for 0 of 4 common scenarios; missing: credential leak, data exposure, compromised dependency, outage or DDoS.",
+      "expected": "Runbooks cover credential leaks, data exposure, compromised dependencies and outages/DDoS.",
+      "risk": "Improvising the first steps of a credential leak or supply-chain incident costs the hours that matter most.",
+      "recommendation": "Add a short runbook per scenario: how to detect it, contain it, eradicate it and who to tell.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "2ed0b4d82201c82c",
+      "example": "## Credential leak\n1. Revoke the credential at the provider.\n2. Search logs for use since the leak.\n3. Rotate dependent secrets and record the incident."
+    },
+    {
+      "id": "F-065",
+      "ruleId": "cc7.5/key-rotation",
+      "criterion": "CC7.5",
+      "severity": "medium",
+      "title": "No key rotation procedure",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No key rotation procedure was found in the repository's documentation.",
+      "expected": "A procedure says which secrets and keys are rotated, how, on what schedule, and on exposure or personnel change.",
+      "risk": "Unrotated credentials stay valid long after they leak or their holder leaves.",
+      "recommendation": "Document each secret, where it lives, how to rotate it, and when (≤ 90 days, or on exposure or departure).",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "1cd4f93fec683e49",
+      "example": "## Rotating secrets\n| Secret | Where | How | When |\n|---|---|---|---|\n| Database password | AWS Secrets Manager | Automatic rotation Lambda | Every 30 days |"
+    },
+    {
+      "id": "F-066",
       "ruleId": "cc8.1/codeowners-sensitive-paths",
       "criterion": "CC8.1",
       "severity": "medium",
@@ -2958,7 +4175,7 @@
       "location": {
         "description": "repository"
       },
-      "observed": "3 sensitive files exist but there is no CODEOWNERS file.",
+      "observed": "4 sensitive files exist but there is no CODEOWNERS file.",
       "expected": "Security-sensitive paths (auth, IAM, crypto, payments, infrastructure, workflows, migrations, lockfiles) have a specific CODEOWNERS entry, not just the catch-all.",
       "risk": "Changes to the riskiest code can be approved by any reviewer instead of the people accountable for it.",
       "recommendation": "Add explicit CODEOWNERS entries for sensitive paths and require code owner review. Adjust what counts as sensitive with sensitivePaths in threesock.yaml.",
@@ -2969,7 +4186,7 @@
       "example": "/src/auth/            @your-org/security\n/infra/               @your-org/platform\n/.github/workflows/   @your-org/platform"
     },
     {
-      "id": "F-043",
+      "id": "F-067",
       "ruleId": "cc8.1/migrations-reversible",
       "criterion": "CC8.1",
       "severity": "medium",
@@ -2989,7 +4206,455 @@
       "example": "-- 20261022_add_status.down.sql\nALTER TABLE orders DROP COLUMN status;"
     },
     {
-      "id": "F-044",
+      "id": "F-068",
+      "ruleId": "cc9.1/continuity-plan",
+      "criterion": "CC9.1",
+      "severity": "medium",
+      "title": "No business continuity / disaster recovery plan",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No business continuity / disaster recovery plan was found in the repository's documentation.",
+      "expected": "A BC/DR plan lists critical dependencies and their fallbacks, how the system is recovered, and what happens in a provider or regional outage.",
+      "risk": "A provider outage or loss of a key component turns into an improvised, extended outage.",
+      "recommendation": "Write a short continuity plan: critical dependencies, what degrades gracefully, recovery steps, and who decides.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "07d989501a867971",
+      "example": "## Critical dependencies\n| Dependency | If unavailable |\n|---|---|\n| Auth provider | Existing sessions continue; new logins fail with a status banner |\n## Recovery\nRebuild from IaC in the secondary region; restore the latest snapshot."
+    },
+    {
+      "id": "F-069",
+      "ruleId": "cc9.2/vendor-inventory",
+      "criterion": "CC9.2",
+      "severity": "medium",
+      "title": "Missing a third-party services inventory and an SBOM",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No a third-party services inventory and an SBOM was found.",
+      "expected": "An inventory lists third-party services and integrations (with the data they receive), and an SBOM covers open-source dependencies.",
+      "risk": "Unknown vendors and SDKs receive data nobody approved, and a vendor breach cannot be assessed quickly.",
+      "recommendation": "Keep a third-party inventory (service, purpose, data shared, owner) and generate an SBOM in CI.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "d4dbc3c2328936e8",
+      "example": "| Service | Purpose | Data shared | Owner |\n|---|---|---|---|\n| Stripe | Payments | Name, email, card token | @billing |"
+    },
+    {
+      "id": "F-070",
+      "ruleId": "a1.1/resource-limits",
+      "criterion": "A1.1",
+      "severity": "medium",
+      "title": "Containers without resource limits in k8s/deployment.yaml",
+      "location": {
+        "description": "k8s/deployment.yaml",
+        "path": "k8s/deployment.yaml"
+      },
+      "observed": "No resources.limits for: api.",
+      "expected": "Every container and task declares CPU and memory limits (and requests where the scheduler uses them).",
+      "risk": "One runaway workload can starve its neighbours and take down unrelated services.",
+      "recommendation": "Set requests and limits on every container, and memory/CPU on every task definition or compose service.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8148fd6d6bd46101",
+      "example": "resources:\n  requests: { cpu: 100m, memory: 128Mi }\n  limits:   { cpu: 500m, memory: 512Mi }"
+    },
+    {
+      "id": "F-071",
+      "ruleId": "a1.2/deletion-protection",
+      "criterion": "A1.2",
+      "severity": "medium",
+      "title": "No deletion protection on aws_db_instance.main",
+      "location": {
+        "description": "infra/main.tf:12",
+        "path": "infra/main.tf",
+        "line": 12
+      },
+      "observed": "aws_db_instance.main does not set deletion_protection (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Production databases enable deletion protection so a mistaken apply or console click cannot drop them.",
+      "risk": "One bad `terraform apply` or a compromised credential deletes the database outright.",
+      "recommendation": "Enable deletion protection on databases (and turn it off deliberately when decommissioning).",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "bec52221fd33da0d",
+      "example": "resource \"aws_db_instance\" \"main\" {\n  deletion_protection = true\n}"
+    },
+    {
+      "id": "F-072",
+      "ruleId": "a1.2/health-checks",
+      "criterion": "A1.2",
+      "severity": "medium",
+      "title": "No probes in k8s/deployment.yaml",
+      "location": {
+        "description": "k8s/deployment.yaml",
+        "path": "k8s/deployment.yaml"
+      },
+      "observed": "k8s/deployment.yaml defines a workload without readiness or liveness probes.",
+      "expected": "Every workload declares liveness/readiness probes (or a HEALTHCHECK / load balancer health check) so failures are detected and replaced automatically.",
+      "risk": "A hung process keeps receiving traffic and is never restarted.",
+      "recommendation": "Add readiness and liveness probes to containers (or HEALTHCHECK / target group health checks).",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "5555ec23a1e53ab8",
+      "example": "readinessProbe: { httpGet: { path: /healthz, port: 8080 }, periodSeconds: 10 }\nlivenessProbe:  { httpGet: { path: /healthz, port: 8080 }, initialDelaySeconds: 15 }"
+    },
+    {
+      "id": "F-073",
+      "ruleId": "a1.2/multi-az",
+      "criterion": "A1.2",
+      "severity": "medium",
+      "title": "Single-zone data store: aws_db_instance.main",
+      "location": {
+        "description": "infra/main.tf:12",
+        "path": "infra/main.tf",
+        "line": 12
+      },
+      "observed": "aws_db_instance.main is not configured for multi-AZ failover (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Databases and caches run in more than one availability zone with automatic failover.",
+      "risk": "A single-zone failure takes the database down until the zone recovers.",
+      "recommendation": "Enable Multi-AZ (RDS), automatic failover (ElastiCache) or regional availability (Cloud SQL).",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "ab5e59a7b452607b",
+      "example": "resource \"aws_db_instance\" \"main\" {\n  multi_az = true\n}"
+    },
+    {
+      "id": "F-074",
+      "ruleId": "a1.3/restore-tests",
+      "criterion": "A1.3",
+      "severity": "medium",
+      "title": "No record of restore or DR tests",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No documentation of backup restore tests or DR exercises was found.",
+      "expected": "Backup restores are tested on a schedule (quarterly for critical systems), with dated results kept.",
+      "risk": "Untested backups routinely fail when needed: wrong scope, missing keys, or restores slower than the RTO.",
+      "recommendation": "Run and record a restore test each quarter: date, what was restored, time taken, and issues found.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "60dd5b2951849fe6",
+      "example": "## Restore test log\n| Date | System | Result | Time | Follow-up |\n|---|---|---|---|---|\n| 2026-09-30 | Postgres | Pass | 42 min | none |"
+    },
+    {
+      "id": "F-075",
+      "ruleId": "a1.3/rto-rpo",
+      "criterion": "A1.3",
+      "severity": "medium",
+      "title": "No recovery objectives (RTO/RPO)",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No recovery objectives (RTO/RPO) was found in the repository's documentation.",
+      "expected": "Recovery time and recovery point objectives are defined for each system.",
+      "risk": "Without objectives, nobody can tell whether backups and failover are adequate until it is too late.",
+      "recommendation": "Set RTO and RPO per system in the DR plan and design backups and failover to meet them.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "6098614b792829db",
+      "example": "| System | RTO | RPO |\n|---|---|---|\n| API | 1 hour | 15 minutes |"
+    },
+    {
+      "id": "F-076",
+      "ruleId": "pi1.2/input-validation",
+      "criterion": "PI1.2",
+      "severity": "medium",
+      "title": "No schema validation library",
+      "location": {
+        "description": "package.json",
+        "path": "package.json"
+      },
+      "observed": "HTTP server or web framework detected in package.json, but no schema validation library (Zod, Joi, Pydantic, validator, ...) is used.",
+      "expected": "Request bodies, query parameters and webhook payloads are validated server-side with a schema library.",
+      "risk": "Unvalidated input causes silent data corruption, crashes and injection, and lets clients send totals or IDs the server should compute.",
+      "recommendation": "Validate every request with a schema (Zod, Pydantic, Joi, validator) and reject what does not match.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "ad6f9b2c6e653388",
+      "example": "const Order = z.object({ sku: z.string().min(1), quantity: z.number().int().positive().max(100) });\nconst order = Order.parse(req.body);"
+    },
+    {
+      "id": "F-077",
+      "ruleId": "pi1.3/job-retries",
+      "criterion": "PI1.3",
+      "severity": "medium",
+      "title": "Jobs have no retry limits or dead-letter queue",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Job queues are used, but no retry limits, backoff or dead-letter configuration was found.",
+      "expected": "Jobs and consumers set retry limits with backoff, and failed work lands in a dead-letter queue that is monitored.",
+      "risk": "Failed jobs are dropped silently or retried forever, losing or duplicating work.",
+      "recommendation": "Configure attempts and backoff on every queue, and route exhausted messages to a dead-letter queue.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "ee49649f32de1b4d",
+      "example": "await queue.add('send-invoice', data, { attempts: 5, backoff: { type: 'exponential', delay: 1000 } });"
+    },
+    {
+      "id": "F-078",
+      "ruleId": "pi1.5/db-constraints",
+      "criterion": "PI1.5",
+      "severity": "medium",
+      "title": "Schemas declare no integrity constraints",
+      "location": {
+        "description": "migrations/001_init.up.sql",
+        "path": "migrations/001_init.up.sql"
+      },
+      "observed": "1 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints.",
+      "expected": "Schemas declare NOT NULL, UNIQUE, foreign key and check constraints, so the database rejects invalid data even when application code misses it.",
+      "risk": "Without constraints, a single bug writes orphaned or duplicate records that corrupt reports and billing.",
+      "recommendation": "Declare constraints in the schema for required fields, uniqueness and relationships.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "97da2166fc43d3c7",
+      "example": "CREATE TABLE orders (\n  id uuid PRIMARY KEY,\n  customer_id uuid NOT NULL REFERENCES customers(id),\n  total_cents integer NOT NULL CHECK (total_cents >= 0)\n);"
+    },
+    {
+      "id": "F-079",
+      "ruleId": "c1.1/data-classification",
+      "criterion": "C1.1",
+      "severity": "medium",
+      "title": "No data classification scheme",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No data classification scheme was found in the repository's documentation.",
+      "expected": "A classification scheme (e.g. public / internal / confidential / restricted) is defined with handling rules, and applied to data stores and fields.",
+      "risk": "Without classification, confidential data is handled like everything else: logged, copied to lower environments and shared with vendors.",
+      "recommendation": "Define classification levels and their handling rules, then tag data stores and sensitive fields.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "d88ba9bf23694c7f",
+      "example": "| Level | Examples | Handling |\n|---|---|---|\n| Restricted | Card data, credentials | Encrypted fields, no logs, no lower environments |\n| Confidential | Customer PII | Encrypted at rest, access logged |"
+    },
+    {
+      "id": "F-080",
+      "ruleId": "c1.1/pii-in-fixtures",
+      "criterion": "C1.1",
+      "severity": "medium",
+      "title": "Possible real personal data in seeds/customers.json",
+      "location": {
+        "description": "seeds/customers.json",
+        "path": "seeds/customers.json"
+      },
+      "observed": "seeds/customers.json contains 1 valid card number, 1 SSN-shaped value, 1 address at consumer email providers (gmail). Values are not shown.",
+      "expected": "Seeds, fixtures and sample data are synthetic: test card numbers, reserved example domains, generated identifiers.",
+      "risk": "Real customer data in the repository is a breach of its own, copied to every clone, CI runner and laptop.",
+      "recommendation": "Replace real-looking data with synthetic values (example.com addresses, provider test cards) or generate it with Faker; purge any real data from history.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "64db513299b3c82f",
+      "example": "{ \"email\": \"ada@example.com\", \"card\": \"4242424242424242\", \"ssn\": \"000-00-0000\" }"
+    },
+    {
+      "id": "F-081",
+      "ruleId": "c1.2/retention-schedule",
+      "criterion": "C1.2",
+      "severity": "medium",
+      "title": "No data retention schedule",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No data retention schedule was found in the repository's documentation.",
+      "expected": "Retention periods are defined per data class, and say how data is deleted at the end of them.",
+      "risk": "Data kept forever is breach exposure without business value, and violates privacy commitments.",
+      "recommendation": "Document a retention schedule per data class and implement it with TTLs, lifecycle rules or purge jobs.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "838be99c20f0bf44",
+      "example": "| Data | Retention | Deletion |\n|---|---|---|\n| Application logs | 90 days hot, 12 months archive | Bucket lifecycle rule |\n| Closed accounts | 30 days | Nightly purge job |"
+    },
+    {
+      "id": "F-082",
+      "ruleId": "cc2.1/observability",
+      "criterion": "CC2.1",
+      "severity": "low",
+      "title": "No monitoring defined in code",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No error tracking, metrics or dashboard configuration was found in code or IaC.",
+      "expected": "Error tracking, metrics and dashboards are configured in code (Sentry, OpenTelemetry, Prometheus, Grafana, Datadog, CloudWatch, ...).",
+      "risk": "Without instrumentation, security-relevant failures and abuse are invisible until users report them.",
+      "recommendation": "Instrument the service (error tracking and metrics) and keep dashboards and monitors in code.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "2572b71906218fe6",
+      "example": "import * as Sentry from '@sentry/node';\nSentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 0.1 });"
+    },
+    {
+      "id": "F-083",
+      "ruleId": "cc2.1/sbom",
+      "criterion": "CC2.1",
+      "severity": "low",
+      "title": "No SBOM generated",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No SBOM tool (Syft, CycloneDX, SPDX, npm sbom) runs in CI.",
+      "expected": "CI produces an SBOM (CycloneDX or SPDX) for each release or build.",
+      "risk": "Without an SBOM you cannot answer \"are we affected?\" quickly when a new vulnerability lands.",
+      "recommendation": "Generate an SBOM in CI with Syft or a CycloneDX tool and keep it with the release artifacts.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "83f7ff6461ca3144",
+      "example": "- uses: anchore/sbom-action@<sha>  # pin to a commit SHA\n  with: { format: cyclonedx-json, output-file: sbom.cdx.json }"
+    },
+    {
+      "id": "F-084",
+      "ruleId": "cc2.2/pr-template-security",
+      "criterion": "CC2.2",
+      "severity": "low",
+      "title": "No pull request template",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No pull request (or merge request) template was found.",
+      "expected": "The PR template asks authors to state the security impact of each change.",
+      "risk": "Without a prompt, security-relevant changes (new endpoints, data flows, dependencies) go through review unflagged.",
+      "recommendation": "Add a security section with a short checklist to .github/pull_request_template.md.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "d0279ff1b06f9a97",
+      "example": "## Security impact\n- [ ] Touches auth, permissions, secrets or personal data\n- [ ] Adds a dependency or third-party service\n- [ ] Changes infrastructure, network or IAM"
+    },
+    {
+      "id": "F-085",
+      "ruleId": "cc2.2/security-docs-linked",
+      "criterion": "CC2.2",
+      "severity": "low",
+      "title": "README does not link security documentation",
+      "location": {
+        "description": "README.md",
+        "path": "README.md"
+      },
+      "observed": "README.md has no link to SECURITY.md or security documentation.",
+      "expected": "The README links to the security policy and the security documentation, so people can find them.",
+      "risk": "Documentation nobody can find is not followed.",
+      "recommendation": "Add a Security section to the README linking SECURITY.md and your security docs folder.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "c5a9d1a2bcd044ac",
+      "example": "## Security\nSee [SECURITY.md](SECURITY.md) to report a vulnerability, and [docs/security](docs/security) for policies and runbooks."
+    },
+    {
+      "id": "F-086",
+      "ruleId": "cc3.2/adrs",
+      "criterion": "CC3.2",
+      "severity": "low",
+      "title": "No architecture decision records",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No ADR directory (docs/adr, decisions/) with decision records was found.",
+      "expected": "Significant architectural decisions are recorded as ADRs, and ADRs discuss their security considerations.",
+      "risk": "Without recorded decisions, the security reasoning behind an architecture is lost and gets undone by later changes.",
+      "recommendation": "Record decisions in docs/adr/NNNN-title.md with a \"Security considerations\" section.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "3fc01bac0142f0ab",
+      "example": "# 0003. Use OIDC for CI cloud access\n## Status\nAccepted\n## Decision\nCI assumes a deploy role through OIDC.\n## Security considerations\nNo long-lived keys in CI; role scoped to the deploy bucket."
+    },
+    {
+      "id": "F-087",
+      "ruleId": "cc3.4/manifest-ownership",
+      "criterion": "CC3.4",
+      "severity": "low",
+      "title": "Dependency and infrastructure changes have no specific reviewer",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "3 manifest or IaC file(s) rely on the catch-all owner or none, e.g. Dockerfile, infra/main.tf, package.json.",
+      "expected": "Dependency manifests, Dockerfiles and IaC have specific CODEOWNERS, so adding a dependency, service or datastore is reviewed by someone accountable.",
+      "risk": "New SDKs and services slip in through routine reviews, bringing data flows and vulnerabilities nobody assessed.",
+      "recommendation": "Give manifests, Dockerfiles and infrastructure directories specific CODEOWNERS and require code owner review.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "22c479d23700fd83",
+      "example": "/package.json   @your-org/platform\n/infra/         @your-org/platform"
+    },
+    {
+      "id": "F-088",
+      "ruleId": "cc4.1/scheduled-scans",
+      "criterion": "CC4.1",
+      "severity": "low",
+      "title": "No scheduled security scans",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No workflow both runs a security scanner and has a schedule trigger.",
+      "expected": "Security scans run on a schedule against the default branch, not only on pull requests, so new vulnerabilities in unchanged code are found.",
+      "risk": "A repository nobody touches is never rescanned, while new CVEs land against its dependencies every week.",
+      "recommendation": "Add a schedule trigger to the workflow that runs your scanners.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "3a02c1fb6200cd9a",
+      "example": "on:\n  pull_request:\n  schedule:\n    - cron: '17 6 * * 1'  # weekly"
+    },
+    {
+      "id": "F-089",
+      "ruleId": "cc5.1/control-matrix",
+      "criterion": "CC5.1",
+      "severity": "low",
+      "title": "No risk-to-control mapping",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No risk-to-control mapping was found in the repository's documentation.",
+      "expected": "A control matrix (or a risk register with a controls column) maps each identified risk to the controls that address it.",
+      "risk": "Controls that are not tied to risks drift into box-ticking, and uncovered risks go unnoticed.",
+      "recommendation": "Add a controls column to the risk register, or keep a separate control matrix table.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "7a0903a4b8ad240f",
+      "example": "| Risk | Controls |\n|---|---|\n| Malicious dependency | Lockfiles, minimumReleaseAge, dependency review |"
+    },
+    {
+      "id": "F-090",
+      "ruleId": "cc5.3/policy-review",
+      "criterion": "CC5.3",
+      "severity": "low",
+      "title": "Policy review metadata incomplete: docs/security/old-policy.md",
+      "location": {
+        "description": "docs/security/old-policy.md",
+        "path": "docs/security/old-policy.md"
+      },
+      "observed": "docs/security/old-policy.md: no review date; no owner.",
+      "expected": "Each policy states its owner and the date it was last reviewed, and is reviewed at least annually.",
+      "risk": "Stale or ownerless policies describe controls that no longer operate, which auditors test against.",
+      "recommendation": "Add an owner and a \"Last reviewed: YYYY-MM-DD\" line to each policy, and review them yearly.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "5ef979bfa230d62f",
+      "example": "Owner: @security-lead\nLast reviewed: 2026-10-01"
+    },
+    {
+      "id": "F-091",
       "ruleId": "cc6.1/env-files",
       "criterion": "CC6.1",
       "severity": "low",
@@ -3009,7 +4674,7 @@
       "example": "# .gitignore\n.env\n.env.*\n!.env.example"
     },
     {
-      "id": "F-045",
+      "id": "F-092",
       "ruleId": "cc6.1/generic-password",
       "criterion": "CC6.1",
       "severity": "low",
@@ -3030,7 +4695,66 @@
       "example": "// After\nconst client = new Client({ password: process.env.SMTP_PASSWORD });"
     },
     {
-      "id": "F-046",
+      "id": "F-093",
+      "ruleId": "cc6.5/managed-keys",
+      "criterion": "CC6.5",
+      "severity": "low",
+      "title": "No customer-managed key for aws_db_instance.main",
+      "location": {
+        "description": "infra/main.tf:12",
+        "path": "infra/main.tf",
+        "line": 12
+      },
+      "observed": "aws_db_instance.main does not set kms_key_id (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Data stores are encrypted with customer-managed KMS keys (with a deletion window), so destroying the key renders all copies, including snapshots, unrecoverable.",
+      "risk": "With provider-owned keys, decommissioned data and stray snapshots stay readable; disposal relies on finding every copy.",
+      "recommendation": "Encrypt data stores with a dedicated customer-managed KMS key with rotation enabled.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "6cfd9e32872f265f",
+      "example": "resource \"aws_kms_key\" \"data\" {\n  enable_key_rotation     = true\n  deletion_window_in_days = 30\n}\nresource \"aws_db_instance\" \"main\" {\n  kms_key_id = aws_kms_key.data.arn\n}"
+    },
+    {
+      "id": "F-094",
+      "ruleId": "cc6.8/dependency-scanning",
+      "criterion": "CC6.8",
+      "severity": "low",
+      "title": "Missing automated dependency updates (Dependabot or Renovate)",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No automated dependency updates (Dependabot or Renovate) is configured.",
+      "expected": "Dependabot or Renovate keeps dependencies current, and a vulnerability scan (dependency review, OSV-Scanner, npm audit, pip-audit, govulncheck) runs in CI.",
+      "risk": "Known-vulnerable dependencies are the most common way attackers get in, and they are only fixed if someone notices.",
+      "recommendation": "Enable Dependabot (or Renovate) and add a dependency scan to pull-request CI.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "2953e1da21b438da",
+      "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }\n  - package-ecosystem: github-actions\n    directory: /\n    schedule: { interval: weekly }"
+    },
+    {
+      "id": "F-095",
+      "ruleId": "cc7.1/drift-detection",
+      "criterion": "CC7.1",
+      "severity": "low",
+      "title": "No infrastructure drift detection",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Terraform is used, but no scheduled plan or drift detection was found.",
+      "expected": "A scheduled `terraform plan` (or a drift detection service) reports changes made outside of code.",
+      "risk": "Manual console changes silently reopen gaps that code review closed, and are invisible until something breaks.",
+      "recommendation": "Run `terraform plan -detailed-exitcode` on a schedule and alert when it reports changes.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "a9d8df233ec64892",
+      "example": "on: { schedule: [{ cron: '0 6 * * *' }] }\n...\n      - run: terraform plan -detailed-exitcode -lock=false"
+    },
+    {
+      "id": "F-096",
       "ruleId": "cc8.1/emergency-change",
       "criterion": "CC8.1",
       "severity": "low",
@@ -3049,7 +4773,7 @@
       "example": "## Emergency changes\nUse only for active incidents. An on-call engineer may merge with one approval from the incident commander.\nA retroactive review PR is opened within 2 business days and linked from the incident ticket."
     },
     {
-      "id": "F-047",
+      "id": "F-097",
       "ruleId": "cc8.1/rollback-procedure",
       "criterion": "CC8.1",
       "severity": "low",
@@ -3066,10 +4790,107 @@
       "redFlag": false,
       "fingerprint": "d97d88987bf8548d",
       "example": "## Rolling back a release\n1. Find the last good deployment in the Deployments tab.\n2. Promote it: `vercel promote <deployment-url>` (or re-run the deploy workflow for the previous tag).\n3. Confirm health checks and error rates recover; post in #incidents."
+    },
+    {
+      "id": "F-098",
+      "ruleId": "a1.1/autoscaling",
+      "criterion": "A1.1",
+      "severity": "low",
+      "title": "No autoscaling or capacity plan",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No autoscaling configuration and no documented capacity plan were found.",
+      "expected": "Workloads autoscale on load, or a documented capacity plan sets headroom targets.",
+      "risk": "Traffic spikes (or abuse) exhaust fixed capacity and cause an outage.",
+      "recommendation": "Add a HorizontalPodAutoscaler or cloud autoscaling policy, or document a capacity plan with headroom targets.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "3704b993535764be",
+      "example": "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nspec: { minReplicas: 2, maxReplicas: 10, metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } } }] }"
+    },
+    {
+      "id": "F-099",
+      "ruleId": "a1.1/load-tests",
+      "criterion": "A1.1",
+      "severity": "low",
+      "title": "No load tests",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The repository serves HTTP but has no load or performance tests.",
+      "expected": "Load tests (k6, Artillery, Locust, Gatling, ...) exist and run before major releases.",
+      "risk": "Capacity limits are discovered in production, during the busiest hour.",
+      "recommendation": "Add a load test for the critical paths and run it before major releases.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "6b97411e28ba84a2",
+      "example": "import http from 'k6/http';\nexport const options = { vus: 50, duration: '2m' };\nexport default () => http.get(`${__ENV.BASE_URL}/health`);"
+    },
+    {
+      "id": "F-100",
+      "ruleId": "pi1.1/api-contracts",
+      "criterion": "PI1.1",
+      "severity": "low",
+      "title": "No API contract",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The repository serves an API but has no OpenAPI, GraphQL or protobuf contract.",
+      "expected": "The API has a machine-readable contract (OpenAPI, GraphQL schema, protobuf) kept in the repository or generated from code.",
+      "risk": "Without a contract, clients and the service disagree about inputs and outputs, and breaking changes go unnoticed.",
+      "recommendation": "Commit an OpenAPI document (or GraphQL schema / .proto files), or generate one from code, and version it.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "403ea7999f4ef693",
+      "example": "openapi: 3.1.0\ninfo: { title: Orders API, version: 2.3.0 }\npaths: { /v2/orders: { get: { ... } } }"
+    },
+    {
+      "id": "F-101",
+      "ruleId": "pi1.1/changelog",
+      "criterion": "PI1.1",
+      "severity": "low",
+      "title": "No changelog",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No CHANGELOG, CHANGES, HISTORY or release notes file at the repository root.",
+      "expected": "A changelog or release notes record each version, including breaking changes.",
+      "risk": "Users and downstream systems are surprised by breaking changes, causing processing errors.",
+      "recommendation": "Keep a CHANGELOG.md (Keep a Changelog format) and call out breaking changes explicitly.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "d11928f11f6871b8",
+      "example": "## 2.0.0\n### Breaking\n- `/v1/orders` removed; use `/v2/orders`."
+    },
+    {
+      "id": "F-102",
+      "ruleId": "c1.2/lifecycle-rules",
+      "criterion": "C1.2",
+      "severity": "low",
+      "title": "No lifecycle rule for aws_s3_bucket.exports",
+      "location": {
+        "description": "infra/main.tf:19",
+        "path": "infra/main.tf",
+        "line": 19
+      },
+      "observed": "aws_s3_bucket.exports has no lifecycle configuration, so objects are kept forever (detected by threesock's lightweight Terraform scanner).",
+      "expected": "Buckets have lifecycle expiration, log groups have a retention period, and ephemeral tables use TTLs.",
+      "risk": "Without automated deletion, data (and logs full of it) accumulates forever, enlarging every breach.",
+      "recommendation": "Add lifecycle expiration to buckets and retention_in_days to log groups, matching your retention schedule.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "ff79c698e87e8c4a",
+      "example": "resource \"aws_s3_bucket_lifecycle_configuration\" \"exports\" {\n  bucket = aws_s3_bucket.exports.id\n  rule {\n    id     = \"expire-exports\"\n    status = \"Enabled\"\n    expiration { days = 30 }\n  }\n}"
     }
   ],
   "coverage": {
-    "rulesRun": 41,
+    "rulesRun": 98,
     "rulesErrored": [],
     "externalTools": []
   }

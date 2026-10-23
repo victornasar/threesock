@@ -12,6 +12,7 @@ jobs:
           echo "Building ${{ github.event.pull_request.title }}"
           npm run build
       - run: echo ${{ secrets.NPM_TOKEN }}
+      - run: npm audit || true
   deploy:
     runs-on: ubuntu-latest
     steps:

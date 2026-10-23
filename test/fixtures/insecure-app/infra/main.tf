@@ -10,8 +10,10 @@ resource "aws_security_group" "bastion" {
 }
 
 resource "aws_db_instance" "main" {
-  engine              = "postgres"
-  publicly_accessible = true
+  engine                  = "postgres"
+  publicly_accessible     = true
+  backup_retention_period = 0
+  # checkov:skip=CKV_AWS_17
 }
 
 resource "aws_s3_bucket" "exports" {

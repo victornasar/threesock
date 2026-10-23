@@ -16,6 +16,10 @@ export function authenticate(token) {
   });
 }
 
+export function issueToken(user) {
+  return jwt.sign({ sub: user.id }, process.env.JWT_PRIVATE_KEY, { algorithm: 'RS256', expiresIn: '15m' });
+}
+
 export async function findUser(id) {
   return db.query('SELECT id, email FROM users WHERE id = $1', [id]);
 }

@@ -26,6 +26,13 @@ export interface CodePattern {
   label: string;
   severity?: Severity;
   redFlag?: boolean;
+  /** Match against the line with string-literal contents blanked, so prose in messages can't match. */
+  code?: boolean;
+}
+
+/** Blanks the contents of '...', "..." and `...` literals on one line. */
+export function stripStrings(line: string): string {
+  return line.replace(/(['"`])(?:\\.|(?!\1)[^\\])*\1/g, (m) => `${m[0]}${m[0]}`);
 }
 
 export type CodePatternRuleDef = Omit<Rule, 'detect'> & {
@@ -51,7 +58,7 @@ export function scanLines(
     text.split('\n').forEach((line, i) => {
       if (isCommentLine(line)) return;
       for (const p of applicable) {
-        if (!p.re.test(line)) continue;
+        if (!p.re.test(p.code ? stripStrings(line) : line)) continue;
         const finding: RawFinding = {
           path: f.path,
           line: i + 1,

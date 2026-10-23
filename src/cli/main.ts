@@ -27,6 +27,8 @@ Usage
     --format <fmt>               text | json | markdown | sarif | html   (default: text)
     --out <file>                 Write the report to a file instead of stdout
     --fail-on <severity>         critical | high | medium | low | none   (default: none)
+    --min-readiness <percent>    Exit 1 if any in-scope category is below this readiness
+    --min-assessed <count>       Exit 1 if fewer criteria than this are scored (not N/A or MANUAL)
     --config <file>              Use a specific threesock.yaml
     --github                     Enable GitHub API checks (needs GITHUB_TOKEN)
     --verbose                    List every in-scope criterion with its score
@@ -67,9 +69,19 @@ async function cmdScan(
       config: { type: 'string' },
       github: { type: 'boolean', default: false },
       verbose: { type: 'boolean', default: false },
+      'min-readiness': { type: 'string' },
+      'min-assessed': { type: 'string' },
     },
   });
   if (positionals.length > 1) fail('scan takes at most one path.');
+  const minReadiness =
+    values['min-readiness'] === undefined ? undefined : Number(values['min-readiness']);
+  const minAssessed =
+    values['min-assessed'] === undefined ? undefined : Number(values['min-assessed']);
+  if (minReadiness !== undefined && !(minReadiness >= 0 && minReadiness <= 100))
+    fail('--min-readiness must be a number from 0 to 100.');
+  if (minAssessed !== undefined && !(Number.isInteger(minAssessed) && minAssessed >= 0))
+    fail('--min-assessed must be a whole number.');
   const root = resolve(positionals[0] ?? '.');
   if (!existsSync(root)) fail(`path not found: ${root}`);
 
@@ -110,12 +122,29 @@ async function cmdScan(
     process.stdout.write(safe);
   }
 
-  if (failOn === 'none') return 0;
-  const threshold = SEVERITIES.indexOf(failOn as Severity);
-  const tripped = report.findings.some(
-    (f) => f.status === 'open' && SEVERITIES.indexOf(f.severity) <= threshold,
-  );
-  return tripped ? 1 : 0;
+  const gateFailures: string[] = [];
+  for (const c of report.summary.categories.filter((x) => x.inScope)) {
+    if (minReadiness !== undefined && (c.percent ?? 0) < minReadiness) {
+      gateFailures.push(
+        `${c.label} readiness ${c.percent ?? 0}% is below --min-readiness ${minReadiness}%.`,
+      );
+    }
+  }
+  if (minAssessed !== undefined && report.summary.overall.assessable < minAssessed) {
+    gateFailures.push(
+      `${report.summary.overall.assessable} criteria were scored; --min-assessed requires ${minAssessed}.`,
+    );
+  }
+  for (const msg of gateFailures) process.stderr.write(`threesock: ${msg}\n`);
+
+  let tripped = false;
+  if (failOn !== 'none') {
+    const threshold = SEVERITIES.indexOf(failOn as Severity);
+    tripped = report.findings.some(
+      (f) => f.status === 'open' && SEVERITIES.indexOf(f.severity) <= threshold,
+    );
+  }
+  return tripped || gateFailures.length ? 1 : 0;
 }
 
 function cmdInit(argv: string[]): number {

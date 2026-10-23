@@ -1,6 +1,10 @@
 *                    @compliant-org/engineering
 /src/auth/           @compliant-org/security
+/docs/security/      @compliant-org/security
 /infra/              @compliant-org/platform
+/k8s/                @compliant-org/platform
 /.github/workflows/  @compliant-org/platform
 /migrations/         @compliant-org/data
 /pnpm-lock.yaml      @compliant-org/platform
+/package.json        @compliant-org/platform
+/Dockerfile          @compliant-org/platform

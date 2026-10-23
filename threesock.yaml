@@ -8,3 +8,11 @@ ignore:
   # Deliberately insecure fixture repos used by the test suite. Their planted
   # findings are asserted by test/golden/insecure-app.json instead.
   - 'test/fixtures/**'
+
+exceptions:
+  # Decision 7 and 27: commits land directly on main until the GitHub repository
+  # and branch protection exist; from then on every change goes through a PR.
+  - rule: cc8.1/direct-pushes
+    approver: '@victornasar'
+    justification: 'Pre-launch history committed directly to main before the GitHub repo and branch protection exist.'
+    expires: 2027-01-20

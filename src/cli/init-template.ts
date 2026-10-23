@@ -34,6 +34,11 @@ ignore:
 #   - "src/auth/**"
 #   - "infra/**"
 
+# Evidence kept outside the repository (Notion, Confluence, a GRC tool), by criterion
+# or rule id. Linked documentation checks are reported, never counted as Met.
+evidenceLinks:
+  # CC7.4: "https://notion.so/acme/incident-response"
+
 # Criteria that genuinely do not apply. Each needs a written justification.
 notApplicable:
   # CC6.4: "No physical facilities; production runs on AWS, covered by its SOC 2 report."

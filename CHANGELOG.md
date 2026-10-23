@@ -5,6 +5,12 @@ All notable changes to threesock are recorded here. The JSON report has its own 
 ## Unreleased
 
 ### Added
+- 57 more rules (98 total) covering CC1.5, CC2–CC4, CC5.1, CC5.3, CC6.2, CC6.3, CC6.5, CC7, CC9, Availability (A1.1–A1.3), Processing Integrity (PI1.1–PI1.3, PI1.5) and Confidentiality (C1.1–C1.2). Documentation checks require the sections the rubric names, not just a file.
+- Git-history rules (last 200 commits): commit attribution and direct pushes to the default branch. Reports show counts and short SHAs only.
+- `evidenceLinks` in `threesock.yaml` for evidence kept outside the repository; linked checks are reported, never counted as Met.
+- `--min-readiness` and `--min-assessed` gates.
+- JSON schema 1.1.0: `criteria[].evidenceLinks`.
+- threesock's own threat model, risk register, incident response plan, vulnerability management, access management, continuity and third-party documents, and ADRs; CodeQL and SBOM generation in CI.
 - pnpm with supply-chain hardening (`minimumReleaseAge`, pinned `packageManager`); Node 22 minimum.
 - Criteria catalogue generated from `docs/rubric/SOC2_CODEBASE_RUBRIC.md` (all 61 criteria), with a drift check.
 - Scoring engine implementing rubric 1.1: Met/Partial/Not Met/N/A/MANUAL, category readiness, bands, red flags and the Critical cap.

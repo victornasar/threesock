@@ -5,6 +5,9 @@
 /src/engine/             @threesock/maintainers
 /src/rules/              @threesock/maintainers
 /docs/rubric/            @threesock/maintainers
+/docs/security/          @threesock/maintainers
+/docs/adr/               @threesock/maintainers
+/threesock.yaml          @threesock/maintainers
 
 # Supply chain and release
 /.github/                @threesock/maintainers

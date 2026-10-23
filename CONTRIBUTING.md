@@ -19,75 +19,68 @@ pnpm run check                 # type-check, lint, format, tests, self-scan
 1. **Evidence or nothing.** A `pass` must cite evidence: a file and line, a config value, or (for red-flag searches) a description of what was checked. The engine turns an evidence-free pass into `unknown`.
 2. **Can't tell? Say so.** Return `unknown` with a reason, or `not_applicable` with a justification. Never `pass` by default.
 3. **Never print secrets.** Pass every secret value through `ctx.secrets.register(value)` and use the redacted string it returns. Don't quote matched source lines in findings; describe the construct instead.
-4. **Read-only and offline.** Rules read files through `ctx.files`. No network, no writes, no child processes.
+4. **Read-only and offline.** Rules read files through `ctx.files` and history through `ctx.git()`. No network, no writes, no child processes.
 5. **Deterministic.** Same input, same output. No dates, randomness or environment lookups.
 
 ## Adding a rule
 
 ### 1. Pick the criterion and check
 
-Find the check in `docs/rubric/SOC2_CODEBASE_RUBRIC.md`, e.g. CC6.7 → "Webhooks and callbacks are signed and verified". `threesock explain CC6.7` shows what's already automated.
+Find the check in `docs/rubric/SOC2_CODEBASE_RUBRIC.md`, e.g. CC6.7 → "Secrets, tokens, and PII are never placed in URLs/query strings or logs". `threesock explain CC6.7` shows what's already automated.
 
 ### 2. Write the rule
 
-Create `src/rules/cc6.7/webhook-signatures.ts`:
+Create `src/rules/cc6.7/tokens-in-urls.ts`:
 
 ```ts
-import type { Rule } from '../../engine/types.js';
-import { isProductionSource } from '../lib/languages.js';
-import { findAny } from '../util.js';
+import { codePatternRule } from '../lib/code-patterns.js';
 
-export const webhookSignatures: Rule = {
-  id: 'cc6.7/webhook-signatures',      // "<criterion lowercased>/<slug>"
+export const tokensInUrls = codePatternRule({
+  id: 'cc6.7/tokens-in-urls',          // "<criterion lowercased>/<slug>"
   criterion: 'CC6.7',
-  title: 'Incoming webhooks verify signatures', // the passing condition
+  title: 'Tokens are not sent in URLs',  // the passing condition
   tags: ['CODE'],
-  severity: 'high',
+  severity: 'medium',
   redFlag: false,                       // true only for rubric red flags
-  checks: ['Webhooks and callbacks are signed'], // must match exactly one rubric check
-  expected: 'Every webhook handler verifies the sender signature before acting on the payload.',
-  risk: 'Unsigned webhooks let anyone forge events such as "payment succeeded".',
+  checks: ['never placed in URLs/query strings'], // must match exactly one rubric check
+  expected: 'Credentials travel in headers or request bodies, never in URLs, which end up in logs and browser history.',
+  risk: 'Query strings are logged by proxies, CDNs and analytics, so a token in a URL leaks widely.',
   remediation: {
-    summary: 'Verify the provider signature with its SDK, using the raw request body.',
-    example: `const event = stripe.webhooks.constructEvent(rawBody, sig, process.env.STRIPE_WEBHOOK_SECRET);`,
+    summary: 'Send the token in an Authorization header instead.',
+    example: `fetch(url, { headers: { Authorization: \`Bearer \${token}\` } });`,
   },
-  detect(ctx) {
-    const source = ctx.files.files.filter((f) => isProductionSource(f));
-    const handler = findAny(ctx.files, source, /\/webhooks?\b/);
-    if (!handler) return { status: 'not_applicable', justification: 'No webhook handlers found.' };
-    const verified = findAny(ctx.files, source, /constructEvent|verifySignature|timingSafeEqual/);
-    if (verified) {
-      return { status: 'pass', evidence: [{ kind: 'file', ...verified, description: 'Webhook signatures are verified.' }] };
-    }
-    return {
-      status: 'fail',
-      findings: [{
-        path: handler.path,
-        line: handler.line,
-        title: 'Webhook handler without signature verification', // the gap, not the passing condition
-        observed: `${handler.path} handles webhooks but no signature verification was found.`,
-        key: handler.path,                // stable across runs; used for the fingerprint
-      }],
-    };
-  },
-};
+  clean: 'no credentials placed in query strings', // completes "Checked N files; ..."
+  patterns: [
+    {
+      languages: ['js', 'python', 'go'],
+      re: /[?&](?:access_token|api_?key|token|password)=/i,
+      label: 'Credential passed in a URL query string', // the gap: becomes the finding title
+    },
+  ],
+});
 ```
 
-For "look for dangerous lines in source" rules, use `codePatternRule` from `src/rules/lib/code-patterns.ts` (see `cc6.7/tls-verification.ts`). Helpers you'll want:
+Most "look for risky lines" rules fit `codePatternRule`, which handles languages, tests, generated files, comments and evidence for you. For anything else, write a full `Rule` with a `detect(ctx)` function returning `pass` (with evidence), `fail` (with findings), `unknown` (with a reason) or `not_applicable` (with a justification); `src/rules/cc2.2/pr-template-security.ts` is a short example. Documentation checks use `docRule` (see `src/rules/cc7.4/incident-response-plan.ts`).
+
+Helpers you'll want:
 
 | Helper | For |
 |---|---|
+| `lib/code-patterns.ts` | `codePatternRule` for line patterns in source |
+| `lib/doc-rule.ts` | `docRule` for documents that must cover named sections |
 | `lib/languages.ts` | `isProductionSource`, `isTestPath`, language detection (JS/TS, Python, Go) |
 | `lib/workflows.ts` | GitHub Actions workflows: parsed YAML plus line lookup |
 | `lib/terraform.ts` | Lightweight Terraform scanner: resources, nested blocks, attributes |
 | `lib/build-files.ts` | Dockerfiles, CI configs and build scripts |
 | `lib/docs.ts` | Finding runbooks and policies in Markdown |
 | `lib/web.ts` | Whether the repo serves HTTP at all |
+| `lib/infra.ts`, `lib/datastores.ts` | Kubernetes, compose, CloudFormation and Terraform data stores |
+| `ctx.git()` | The last 200 commits (rules never run git themselves) |
 | `util.ts` | `grep`, `findAny`, `absence`, `lineAt`, `plural` |
 
 ### 3. Register it
 
-Add it to `src/rules/index.ts`.
+Add the import and the rule to `src/rules/index.ts`. A test fails if a rule file is not registered.
 
 ### 4. Test it
 
@@ -98,7 +91,7 @@ Two kinds of test, both required:
 
 ```ts
 import { run } from './helpers/memory.js';
-const out = await run(webhookSignatures, { 'src/hooks.ts': "app.post('/webhooks/stripe', handler)" });
+const out = await run(tokensInUrls, { 'src/api.ts': "fetch(`${base}/users?access_token=${token}`)" });
 expect(out.status).toBe('fail');
 ```
 

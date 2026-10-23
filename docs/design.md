@@ -95,3 +95,22 @@ Agreed with the maintainer before Phase 2. Change them deliberately, not by drif
 19. The full disclaimer shows once per machine via a marker in `$XDG_CONFIG_HOME/threesock/` (or `~/.config/threesock/`); nothing is written in CI or non-TTY runs. The one-line disclaimer is always shown.
 20. HTML reports use system fonts only; brand fonts appear only on the docs site.
 21. The MCP server uses the official `@modelcontextprotocol/sdk`, scans only paths under its working directory unless `--allow-path` is given, and never writes files.
+
+## Phase 3 decisions (2026-10-22)
+
+**Rules and evidence (3a)**
+
+22. Documentation checks require the content the rubric names (e.g. an incident response plan covers roles, severity, escalation, communication). Evidence says "structure checked, quality not judged". Placeholder files do not pass.
+23. `evidenceLinks` in `threesock.yaml`, keyed by criterion or rule id (rule wins), mark DOCS checks as "not applicable: documented externally" and appear in reports. They never count as Met.
+24. SBOMs: threesock checks that CI produces one; it does not generate them.
+25. Git-history rules read the last 200 commits (fixed count, not a time window, for determinism); shallow clones are inconclusive. Findings show counts and short SHAs only, never author names or emails.
+26. Commit attribution (CC1.5): unattributable identities fail; ≥ 90% signed passes; otherwise inconclusive, because SSO-linked identities may satisfy the check (`--github` can resolve it later).
+27. Direct pushes to the default branch (CC8.1) are Medium, rising to High when `--github` confirms there is no branch protection. threesock's own direct-push history is an exception approved by @victornasar, expiring 2027-01-20.
+28. The dogfood gate counts scored criteria only (Met/Partial/Not Met): Security ≥ 90% and ≥ 20/33 scored. threesock keeps real, small-project-sized process documents in `docs/security/` and `docs/adr/`.
+
+**Reports and baselines (3b)**
+
+29. SARIF: critical/high → error, medium → warning, low → note, with `security-severity` 9.5/8.0/5.5/3.0. Accepted findings become suppressions carrying approver and justification. Repository-level findings anchor to the most relevant existing file at line 1.
+30. HTML: one offline file, no JavaScript, `<details>` sections, inline logo, system fonts, automatic light/dark.
+31. `threesock baseline` writes `threesock-baseline.yaml` (same schema as `exceptions`); approver, reason and expiry are required. `--all` accepts only Medium and Low; Critical and High are accepted one fingerprint at a time. `--prune` removes stale entries, and reports count them.
+32. Exception expiry caps: Critical ≤ 7 days, High ≤ 90 days (configurable).

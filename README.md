@@ -73,7 +73,11 @@ Category readiness = points earned ÷ (2 × assessable criteria), excluding N/A 
 
 ## Status
 
-threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 41 built-in rules for CC5.2 (CI hardening), CC6 (access, secrets, network, TLS, supply chain) and CC8.1 (change management). Next: the remaining categories (CC2–CC4, CC7, CC9, Availability, Processing Integrity, Confidentiality), SARIF and HTML reports, baselines, then GitHub API checks, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
+threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 98 built-in rules across Security (CC1–CC9), Availability, Processing Integrity and Confidentiality. Next: SARIF and HTML reports and baselines, then GitHub API checks, Privacy rules, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
+
+## Security
+
+To report a vulnerability, see [SECURITY.md](SECURITY.md). threesock's own threat model, incident response plan and other policies live in [docs/security](docs/security), and architecture decisions in [docs/adr](docs/adr).
 
 ## Repository setup
 

@@ -45,7 +45,7 @@ describe('cli', () => {
   });
   it('--format json emits parseable JSON with a schema version', async () => {
     await main(['scan', insecure.dir, '--format', 'json']);
-    expect(JSON.parse(stdout).schemaVersion).toBe('1.0.0');
+    expect(JSON.parse(stdout).schemaVersion).toBe('1.1.0');
   });
   it('never prints secret values to stdout', async () => {
     for (const fmt of ['text', 'json']) {
@@ -58,6 +58,13 @@ describe('cli', () => {
     await main(['scan', compliant.dir, '--format', 'json', '--out', out]);
     expect(JSON.parse(readFileSync(out, 'utf8')).tool.name).toBe('threesock');
     rmSync(out);
+  });
+  it('--min-readiness and --min-assessed gate the exit code', async () => {
+    expect(await main(['scan', compliant.dir, '--min-readiness', '90'])).toBe(0);
+    expect(await main(['scan', compliant.dir, '--min-assessed', '60'])).toBe(1);
+    expect(stderr).toContain('--min-assessed requires 60');
+    expect(await main(['scan', insecure.dir, '--min-readiness', '50'])).toBe(1);
+    expect(await main(['scan', compliant.dir, '--min-readiness', '120'])).toBe(2);
   });
   it('rejects bad flags with exit code 2', async () => {
     expect(await main(['scan', '--format', 'pdf'])).toBe(2);

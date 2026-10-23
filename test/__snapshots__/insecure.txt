@@ -2,14 +2,18 @@ threesock <version> · SOC 2 readiness scan
 Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
 
 Repository  <root>
-Scanned     13 files (git-aware) · 41 rules
-Scope       Security
+Scanned     19 files (git-aware) · 98 rules
+Scope       Security, Availability, Processing Integrity, Confidentiality, Privacy
 
 Readiness
-  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 8/33 criteria assessed, capped by open Critical
-  Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 8/33 criteria assessed, capped by open Critical
+  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 36/61 criteria assessed, capped by open Critical
+  Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 27/33 criteria assessed, capped by open Critical
+  Availability          ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/3 criteria assessed
+  Processing Integrity  ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 4/5 criteria assessed
+  Confidentiality       ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 2/2 criteria assessed
+  Privacy               ····················      —  nothing assessable yet · 0/18 criteria assessed
 
-Findings    9 critical · 18 high · 16 medium · 4 low
+Findings    9 critical · 26 high · 46 medium · 21 low
 
 Top fixes
   1. CRITICAL CC6.1  Hard-coded Stripe live key (+4 more)
@@ -41,19 +45,19 @@ Open findings
   F-008  CRITICAL CC6.1  Publicly accessible database: aws_db_instance.main
          infra/main.tf:12 · due 2026-01-16
   F-009  CRITICAL CC6.6  Public bucket ACL on aws_s3_bucket.exports
-         infra/main.tf:17 · due 2026-01-16
-  F-010  HIGH     CC5.2  Long-lived cloud credentials in .github/workflows/ci.yml
-         .github/workflows/ci.yml:21 · due 2026-02-14
-  F-011  HIGH     CC5.2  Script injection risk in .github/workflows/ci.yml
+         infra/main.tf:19 · due 2026-01-16
+  F-010  HIGH     CC3.3  Authentication can be switched off by an environment variable
+         src/auth.js:6 · due 2026-02-14
+  F-011  HIGH     CC3.3  Privileges granted by comparing to a hard-coded username
+         src/auth.js:7 · due 2026-02-14
+  F-012  HIGH     CC5.2  Long-lived cloud credentials in .github/workflows/ci.yml
+         .github/workflows/ci.yml:22 · due 2026-02-14
+  F-013  HIGH     CC5.2  Script injection risk in .github/workflows/ci.yml
          .github/workflows/ci.yml:12 · due 2026-02-14
-  F-012  HIGH     CC5.2  Secret printed in .github/workflows/ci.yml
+  F-014  HIGH     CC5.2  Secret printed in .github/workflows/ci.yml
          .github/workflows/ci.yml:14 · due 2026-02-14
-  F-013  HIGH     CC5.2  write-all token permissions in .github/workflows/ci.yml
+  F-015  HIGH     CC5.2  write-all token permissions in .github/workflows/ci.yml
          .github/workflows/ci.yml:3 · due 2026-02-14
-  F-014  HIGH     CC6.1  Hard-coded database URL with password
-         .env:2 · due 2026-02-14
-  F-015  HIGH     CC6.1  IAM policy allows every action ("*")
-         infra/main.tf:25 · due 2026-02-14
-  ... and 32 more. Use --format json or markdown for the full list.
+  ... and 87 more. Use --format json or markdown for the full list.
 
 Manual evidence: 25 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

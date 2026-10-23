@@ -5,6 +5,7 @@ import { renderJson } from '../src/reports/json.js';
 import { renderMarkdown } from '../src/reports/markdown.js';
 import { renderText } from '../src/reports/text.js';
 import { RULES } from '../src/rules/index.js';
+import { CATEGORIES } from '../src/engine/types.js';
 import { VERSION } from '../src/version.js';
 import { FIXED_NOW, materialize, normalizeRoot, type Materialized } from './helpers/fixtures.js';
 
@@ -25,8 +26,8 @@ function normalize(text: string, dir: string): string {
 beforeAll(async () => {
   insecure = materialize('insecure-app');
   compliant = materialize('compliant-app');
-  bad = await scan({ root: insecure.dir, rules: RULES, now: FIXED_NOW });
-  good = await scan({ root: compliant.dir, rules: RULES, now: FIXED_NOW });
+  bad = await scan({ root: insecure.dir, rules: RULES, now: FIXED_NOW, scope: [...CATEGORIES] });
+  good = await scan({ root: compliant.dir, rules: RULES, now: FIXED_NOW, scope: [...CATEGORIES] });
 });
 afterAll(() => {
   rmSync(insecure.dir, { recursive: true, force: true });

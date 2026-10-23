@@ -3,7 +3,7 @@
 // removals or renames) and record it in CHANGELOG.md.
 import type { Band, Category, Evidence, Score, Severity } from './types.js';
 
-export const SCHEMA_VERSION = '1.0.0';
+export const SCHEMA_VERSION = '1.1.0';
 
 export const DISCLAIMER =
   'threesock is an engineering readiness aid, not an audit. SOC 2 is attested by a licensed CPA firm ' +
@@ -42,6 +42,8 @@ export interface CriterionResult {
   coverage: { automatedRules: number; rubricChecks: number };
   /** Rubric checks threesock cannot verify; a human must gather this evidence. */
   manualFollowUps: string[];
+  /** External evidence links from threesock.yaml (schema 1.1). Never counted as Met. */
+  evidenceLinks?: string[];
   owner?: string;
 }
 

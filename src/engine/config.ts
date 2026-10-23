@@ -237,6 +237,28 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
     sensitivePaths = data.sensitivePaths.map((g) => String(g).trim());
   }
 
+  const evidenceLinks: Record<string, string> = {};
+  if (data.evidenceLinks !== undefined) {
+    if (!isRecord(data.evidenceLinks)) {
+      throw new ConfigError(
+        'evidenceLinks must be a mapping of criterion or rule id to a URL.',
+        file,
+      );
+    }
+    for (const [key, url] of Object.entries(data.evidenceLinks)) {
+      if (!CRITERION_IDS.has(key) && !/^[a-z]+\d+\.\d+\/[a-z0-9-]+$/.test(key)) {
+        throw new ConfigError(
+          `evidenceLinks.${key} is neither a criterion id (CC7.4) nor a rule id (cc7.4/incident-response-plan).`,
+          file,
+        );
+      }
+      const u = str(url);
+      if (!u || !/^https?:\/\//.test(u))
+        throw new ConfigError(`evidenceLinks.${key} must be an http(s) URL.`, file);
+      evidenceLinks[key] = u;
+    }
+  }
+
   const config: ResolvedConfig = {
     configDir,
     scope,
@@ -245,6 +267,7 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
     ignore,
     notApplicable,
     exceptions,
+    evidenceLinks,
     sensitivePaths,
   };
   if (file) config.configPath = file;

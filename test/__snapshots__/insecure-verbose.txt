@@ -2,14 +2,18 @@ threesock <version> · SOC 2 readiness scan
 Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
 
 Repository  <root>
-Scanned     13 files (git-aware) · 41 rules
-Scope       Security
+Scanned     19 files (git-aware) · 98 rules
+Scope       Security, Availability, Processing Integrity, Confidentiality, Privacy
 
 Readiness
-  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 8/33 criteria assessed, capped by open Critical
-  Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 8/33 criteria assessed, capped by open Critical
+  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 36/61 criteria assessed, capped by open Critical
+  Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 27/33 criteria assessed, capped by open Critical
+  Availability          ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/3 criteria assessed
+  Processing Integrity  ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 4/5 criteria assessed
+  Confidentiality       ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 2/2 criteria assessed
+  Privacy               ····················      —  nothing assessable yet · 0/18 criteria assessed
 
-Findings    9 critical · 18 high · 16 medium · 4 low
+Findings    9 critical · 26 high · 46 medium · 21 low
 
 Top fixes
   1. CRITICAL CC6.1  Hard-coded Stripe live key (+4 more)
@@ -41,20 +45,20 @@ Open findings
   F-008  CRITICAL CC6.1  Publicly accessible database: aws_db_instance.main
          infra/main.tf:12 · due 2026-01-16
   F-009  CRITICAL CC6.6  Public bucket ACL on aws_s3_bucket.exports
-         infra/main.tf:17 · due 2026-01-16
-  F-010  HIGH     CC5.2  Long-lived cloud credentials in .github/workflows/ci.yml
-         .github/workflows/ci.yml:21 · due 2026-02-14
-  F-011  HIGH     CC5.2  Script injection risk in .github/workflows/ci.yml
+         infra/main.tf:19 · due 2026-01-16
+  F-010  HIGH     CC3.3  Authentication can be switched off by an environment variable
+         src/auth.js:6 · due 2026-02-14
+  F-011  HIGH     CC3.3  Privileges granted by comparing to a hard-coded username
+         src/auth.js:7 · due 2026-02-14
+  F-012  HIGH     CC5.2  Long-lived cloud credentials in .github/workflows/ci.yml
+         .github/workflows/ci.yml:22 · due 2026-02-14
+  F-013  HIGH     CC5.2  Script injection risk in .github/workflows/ci.yml
          .github/workflows/ci.yml:12 · due 2026-02-14
-  F-012  HIGH     CC5.2  Secret printed in .github/workflows/ci.yml
+  F-014  HIGH     CC5.2  Secret printed in .github/workflows/ci.yml
          .github/workflows/ci.yml:14 · due 2026-02-14
-  F-013  HIGH     CC5.2  write-all token permissions in .github/workflows/ci.yml
+  F-015  HIGH     CC5.2  write-all token permissions in .github/workflows/ci.yml
          .github/workflows/ci.yml:3 · due 2026-02-14
-  F-014  HIGH     CC6.1  Hard-coded database URL with password
-         .env:2 · due 2026-02-14
-  F-015  HIGH     CC6.1  IAM policy allows every action ("*")
-         infra/main.tf:25 · due 2026-02-14
-  ... and 32 more. Use --format json or markdown for the full list.
+  ... and 87 more. Use --format json or markdown for the full list.
 
 Criteria
   CC1.1  MANUAL  Manual Evidence  Integrity and ethical values
@@ -62,33 +66,61 @@ Criteria
   CC1.3  0       Not Met          Organizational structure
   CC1.4  MANUAL  Manual Evidence  Competence
   CC1.5  MANUAL  Manual Evidence  Accountability
-  CC2.1  MANUAL  Manual Evidence  Relevant, quality information
-  CC2.2  MANUAL  Manual Evidence  Internal communication
+  CC2.1  0       Not Met          Relevant, quality information
+  CC2.2  0       Not Met          Internal communication
   CC2.3  0       Not Met          External communication
   CC3.1  MANUAL  Manual Evidence  Suitable objectives
-  CC3.2  MANUAL  Manual Evidence  Risk identification and analysis
-  CC3.3  MANUAL  Manual Evidence  Fraud risk
-  CC3.4  MANUAL  Manual Evidence  Significant changes
-  CC4.1  MANUAL  Manual Evidence  Ongoing/separate evaluations
-  CC4.2  MANUAL  Manual Evidence  Deficiency communication and remediation
-  CC5.1  MANUAL  Manual Evidence  Control selection and design
+  CC3.2  0       Not Met          Risk identification and analysis
+  CC3.3  0       Not Met          Fraud risk
+  CC3.4  0       Not Met          Significant changes
+  CC4.1  0       Not Met          Ongoing/separate evaluations
+  CC4.2  0       Not Met          Deficiency communication and remediation
+  CC5.1  0       Not Met          Control selection and design
   CC5.2  0       Not Met          Technology general controls
-  CC5.3  MANUAL  Manual Evidence  Policies and procedures
+  CC5.3  0       Not Met          Policies and procedures
   CC6.1  0       Not Met          Logical access security
-  CC6.2  MANUAL  Manual Evidence  Registration and authorization before access
-  CC6.3  MANUAL  Manual Evidence  Access removal and modification
+  CC6.2  0       Not Met          Registration and authorization before access
+  CC6.3  0       Not Met          Access removal and modification
   CC6.4  MANUAL  Manual Evidence  Physical access
-  CC6.5  MANUAL  Manual Evidence  Secure disposal of assets
+  CC6.5  0       Not Met          Secure disposal of assets
   CC6.6  0       Not Met          Protection against external threats
   CC6.7  0       Not Met          Protection of data in transmission
   CC6.8  0       Not Met          Malicious/unauthorized software
-  CC7.1  MANUAL  Manual Evidence  Detection of vulnerabilities and configuration changes
-  CC7.2  MANUAL  Manual Evidence  Monitoring for anomalies
-  CC7.3  MANUAL  Manual Evidence  Security event evaluation
-  CC7.4  MANUAL  Manual Evidence  Incident response
-  CC7.5  MANUAL  Manual Evidence  Recovery from incidents
+  CC7.1  0       Not Met          Detection of vulnerabilities and configuration changes
+  CC7.2  0       Not Met          Monitoring for anomalies
+  CC7.3  0       Not Met          Security event evaluation
+  CC7.4  0       Not Met          Incident response
+  CC7.5  0       Not Met          Recovery from incidents
   CC8.1  0       Not Met          Authorized, tested, approved changes
-  CC9.1  MANUAL  Manual Evidence  Business disruption risk
-  CC9.2  MANUAL  Manual Evidence  Vendor and third-party risk
+  CC9.1  0       Not Met          Business disruption risk
+  CC9.2  0       Not Met          Vendor and third-party risk
+  A1.1   0       Not Met          Capacity management
+  A1.2   0       Not Met          Environmental protection, backup, and recovery infrastructure
+  A1.3   0       Not Met          Recovery plan testing
+  PI1.1  0       Not Met          Processing objectives and specifications
+  PI1.2  0       Not Met          Input completeness and accuracy
+  PI1.3  0       Not Met          Processing completeness, accuracy, timeliness, authorization
+  PI1.4  MANUAL  Manual Evidence  Output completeness, accuracy, timeliness
+  PI1.5  0       Not Met          Storage completeness and accuracy
+  C1.1   0       Not Met          Identify and protect confidential information
+  C1.2   0       Not Met          Dispose of confidential information
+  P1.1   MANUAL  Manual Evidence  Privacy notice
+  P2.1   MANUAL  Manual Evidence  Choice and consent
+  P3.1   MANUAL  Manual Evidence  Collection consistent with objectives
+  P3.2   MANUAL  Manual Evidence  Sensitive information
+  P4.1   MANUAL  Manual Evidence  Use of personal information
+  P4.2   MANUAL  Manual Evidence  Retention of personal information
+  P4.3   MANUAL  Manual Evidence  Disposal of personal information
+  P5.1   MANUAL  Manual Evidence  Data subject access
+  P5.2   MANUAL  Manual Evidence  Correction and amendment
+  P6.1   MANUAL  Manual Evidence  Authorized disclosure to third parties
+  P6.2   MANUAL  Manual Evidence  Records of authorized disclosures
+  P6.3   MANUAL  Manual Evidence  Records of unauthorized disclosures
+  P6.4   MANUAL  Manual Evidence  Third-party privacy commitments
+  P6.5   MANUAL  Manual Evidence  Third-party notification of unauthorized disclosure
+  P6.6   MANUAL  Manual Evidence  Breach notification
+  P6.7   MANUAL  Manual Evidence  Accounting of personal information held and disclosed
+  P7.1   MANUAL  Manual Evidence  Data quality
+  P8.1   MANUAL  Manual Evidence  Privacy inquiries, complaints, and disputes
 
 Manual evidence: 25 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

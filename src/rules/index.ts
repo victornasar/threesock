@@ -1,7 +1,25 @@
-// Rule registry. Add new rules here after creating them under src/rules/<criterion>/.
+// Rule registry, ordered by criterion. Add new rules here after creating them
+// under src/rules/<criterion>/; test/criteria.test.ts fails if one is missing.
 import type { Rule } from '../engine/types.js';
 import { codeowners } from './cc1.3/codeowners.js';
+import { commitAttribution } from './cc1.5/commit-attribution.js';
+import { observability } from './cc2.1/observability.js';
+import { sbom } from './cc2.1/sbom.js';
+import { prTemplateSecurity } from './cc2.2/pr-template-security.js';
+import { securityDocsLinked } from './cc2.2/security-docs-linked.js';
 import { securityPolicy } from './cc2.3/security-policy.js';
+import { adrs } from './cc3.2/adrs.js';
+import { riskRegister } from './cc3.2/risk-register.js';
+import { threatModel } from './cc3.2/threat-model.js';
+import { authBypass } from './cc3.3/auth-bypass.js';
+import { manifestOwnership } from './cc3.4/manifest-ownership.js';
+import { iacScanning } from './cc4.1/iac-scanning.js';
+import { sast } from './cc4.1/sast.js';
+import { scheduledScans } from './cc4.1/scheduled-scans.js';
+import { blockingScans } from './cc4.2/blocking-scans.js';
+import { remediationSla } from './cc4.2/remediation-sla.js';
+import { suppressions } from './cc4.2/suppressions.js';
+import { controlMatrix } from './cc5.1/control-matrix.js';
 import { actionsPinned } from './cc5.2/actions-pinned.js';
 import { cloudCredentials } from './cc5.2/cloud-credentials.js';
 import { deployEnvironments } from './cc5.2/deploy-environments.js';
@@ -9,6 +27,8 @@ import { pullRequestTarget } from './cc5.2/pull-request-target.js';
 import { scriptInjection } from './cc5.2/script-injection.js';
 import { secretsInLogs } from './cc5.2/secrets-in-logs.js';
 import { workflowPermissions } from './cc5.2/workflow-permissions.js';
+import { policyReview } from './cc5.3/policy-review.js';
+import { runbooks } from './cc5.3/runbooks.js';
 import { cookieFlags } from './cc6.1/cookie-flags.js';
 import { envFiles } from './cc6.1/env-files.js';
 import { genericPassword } from './cc6.1/generic-password.js';
@@ -18,6 +38,10 @@ import { jwtVerification } from './cc6.1/jwt-verification.js';
 import { passwordHashing } from './cc6.1/password-hashing.js';
 import { publicDatastore } from './cc6.1/public-datastore.js';
 import { secretScanning } from './cc6.1/secret-scanning.js';
+import { massAssignment } from './cc6.2/mass-assignment.js';
+import { offboarding } from './cc6.3/offboarding.js';
+import { tokenExpiry } from './cc6.3/token-expiry.js';
+import { managedKeys } from './cc6.5/managed-keys.js';
 import { corsCredentials } from './cc6.6/cors-credentials.js';
 import { dangerousExecution } from './cc6.6/dangerous-execution.js';
 import { openAdminPorts } from './cc6.6/open-admin-ports.js';
@@ -29,24 +53,85 @@ import { xssSinks } from './cc6.6/xss-sinks.js';
 import { plainHttpUrls } from './cc6.7/plain-http-urls.js';
 import { tlsVerification } from './cc6.7/tls-verification.js';
 import { weakTlsCrypto } from './cc6.7/weak-tls-crypto.js';
+import { webhookSignatures } from './cc6.7/webhook-signatures.js';
 import { baseImages } from './cc6.8/base-images.js';
 import { containerScanning } from './cc6.8/container-scanning.js';
 import { curlPipeShell } from './cc6.8/curl-pipe-shell.js';
 import { dependencyScanning } from './cc6.8/dependency-scanning.js';
 import { lockfiles } from './cc6.8/lockfiles.js';
 import { reproducibleInstalls } from './cc6.8/reproducible-installs.js';
+import { containerUser } from './cc7.1/container-user.js';
+import { driftDetection } from './cc7.1/drift-detection.js';
+import { vulnerabilityMonitoring } from './cc7.1/vulnerability-monitoring.js';
+import { alertRules } from './cc7.2/alert-rules.js';
+import { sensitiveLogging } from './cc7.2/sensitive-logging.js';
+import { triageCriteria } from './cc7.3/triage-criteria.js';
+import { incidentResponsePlan } from './cc7.4/incident-response-plan.js';
+import { incidentRunbooks } from './cc7.4/incident-runbooks.js';
+import { keyRotation } from './cc7.5/key-rotation.js';
 import { ciOnPullRequests } from './cc8.1/ci-on-pull-requests.js';
 import { codeownersSensitivePaths } from './cc8.1/codeowners-sensitive-paths.js';
+import { directPushes } from './cc8.1/direct-pushes.js';
 import { emergencyChange } from './cc8.1/emergency-change.js';
 import { migrationsReversible } from './cc8.1/migrations-reversible.js';
 import { rollbackProcedure } from './cc8.1/rollback-procedure.js';
 import { terraformState } from './cc8.1/terraform-state.js';
+import { continuityPlan } from './cc9.1/continuity-plan.js';
+import { vendorInventory } from './cc9.2/vendor-inventory.js';
+import { autoscaling } from './a1.1/autoscaling.js';
+import { loadTests } from './a1.1/load-tests.js';
+import { resourceLimits } from './a1.1/resource-limits.js';
+import { backups } from './a1.2/backups.js';
+import { deletionProtection } from './a1.2/deletion-protection.js';
+import { healthChecks } from './a1.2/health-checks.js';
+import { multiAz } from './a1.2/multi-az.js';
+import { restoreTests } from './a1.3/restore-tests.js';
+import { rtoRpo } from './a1.3/rto-rpo.js';
+import { apiContracts } from './pi1.1/api-contracts.js';
+import { changelog } from './pi1.1/changelog.js';
+import { idempotency } from './pi1.2/idempotency.js';
+import { inputValidation } from './pi1.2/input-validation.js';
+import { jobRetries } from './pi1.3/job-retries.js';
+import { transactions } from './pi1.3/transactions.js';
+import { dbConstraints } from './pi1.5/db-constraints.js';
+import { dataClassification } from './c1.1/data-classification.js';
+import { encryptionAtRest } from './c1.1/encryption-at-rest.js';
+import { piiInFixtures } from './c1.1/pii-in-fixtures.js';
+import { lifecycleRules } from './c1.2/lifecycle-rules.js';
+import { retentionSchedule } from './c1.2/retention-schedule.js';
 
 export const RULES: readonly Rule[] = [
-  // CC1.3 / CC2.3
+  // CC1.3
   codeowners,
+  // CC1.5
+  commitAttribution,
+  // CC2.1
+  observability,
+  sbom,
+  // CC2.2
+  prTemplateSecurity,
+  securityDocsLinked,
+  // CC2.3
   securityPolicy,
-  // CC5.2 CI hardening
+  // CC3.2
+  adrs,
+  riskRegister,
+  threatModel,
+  // CC3.3
+  authBypass,
+  // CC3.4
+  manifestOwnership,
+  // CC4.1
+  iacScanning,
+  sast,
+  scheduledScans,
+  // CC4.2
+  blockingScans,
+  remediationSla,
+  suppressions,
+  // CC5.1
+  controlMatrix,
+  // CC5.2
   actionsPinned,
   cloudCredentials,
   deployEnvironments,
@@ -54,7 +139,10 @@ export const RULES: readonly Rule[] = [
   scriptInjection,
   secretsInLogs,
   workflowPermissions,
-  // CC6.1 logical access
+  // CC5.3
+  policyReview,
+  runbooks,
+  // CC6.1
   cookieFlags,
   envFiles,
   genericPassword,
@@ -64,7 +152,14 @@ export const RULES: readonly Rule[] = [
   passwordHashing,
   publicDatastore,
   secretScanning,
-  // CC6.6 external threats
+  // CC6.2
+  massAssignment,
+  // CC6.3
+  offboarding,
+  tokenExpiry,
+  // CC6.5
+  managedKeys,
+  // CC6.6
   corsCredentials,
   dangerousExecution,
   openAdminPorts,
@@ -73,22 +168,72 @@ export const RULES: readonly Rule[] = [
   securityHeaders,
   sqlStringBuilding,
   xssSinks,
-  // CC6.7 data in transit
+  // CC6.7
   plainHttpUrls,
   tlsVerification,
   weakTlsCrypto,
-  // CC6.8 supply chain
+  webhookSignatures,
+  // CC6.8
   baseImages,
   containerScanning,
   curlPipeShell,
   dependencyScanning,
   lockfiles,
   reproducibleInstalls,
-  // CC8.1 change management
+  // CC7.1
+  containerUser,
+  driftDetection,
+  vulnerabilityMonitoring,
+  // CC7.2
+  alertRules,
+  sensitiveLogging,
+  // CC7.3
+  triageCriteria,
+  // CC7.4
+  incidentResponsePlan,
+  incidentRunbooks,
+  // CC7.5
+  keyRotation,
+  // CC8.1
   ciOnPullRequests,
   codeownersSensitivePaths,
+  directPushes,
   emergencyChange,
   migrationsReversible,
   rollbackProcedure,
   terraformState,
+  // CC9.1
+  continuityPlan,
+  // CC9.2
+  vendorInventory,
+  // A1.1
+  autoscaling,
+  loadTests,
+  resourceLimits,
+  // A1.2
+  backups,
+  deletionProtection,
+  healthChecks,
+  multiAz,
+  // A1.3
+  restoreTests,
+  rtoRpo,
+  // PI1.1
+  apiContracts,
+  changelog,
+  // PI1.2
+  idempotency,
+  inputValidation,
+  // PI1.3
+  jobRetries,
+  transactions,
+  // PI1.5
+  dbConstraints,
+  // C1.1
+  dataClassification,
+  encryptionAtRest,
+  piiInFixtures,
+  // C1.2
+  lifecycleRules,
+  retentionSchedule,
 ];

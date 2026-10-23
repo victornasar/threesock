@@ -1,0 +1,3 @@
+# Passwords
+
+Use strong passwords.

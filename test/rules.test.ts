@@ -3,6 +3,7 @@ import { rmSync } from 'node:fs';
 import type { ScanReport } from '../src/engine/model.js';
 import { scan } from '../src/engine/scan.js';
 import { RULES } from '../src/rules/index.js';
+import { CATEGORIES } from '../src/engine/types.js';
 import { FIXED_NOW, materialize, type Materialized } from './helpers/fixtures.js';
 
 let insecure: Materialized;
@@ -16,8 +17,10 @@ const statusOf = (report: ScanReport, ruleId: string) =>
 beforeAll(async () => {
   insecure = materialize('insecure-app');
   compliant = materialize('compliant-app');
-  bad = (await scan({ root: insecure.dir, rules: RULES, now: FIXED_NOW })).report;
-  good = (await scan({ root: compliant.dir, rules: RULES, now: FIXED_NOW })).report;
+  bad = (await scan({ root: insecure.dir, rules: RULES, now: FIXED_NOW, scope: [...CATEGORIES] }))
+    .report;
+  good = (await scan({ root: compliant.dir, rules: RULES, now: FIXED_NOW, scope: [...CATEGORIES] }))
+    .report;
 });
 afterAll(() => {
   rmSync(insecure.dir, { recursive: true, force: true });
@@ -27,11 +30,23 @@ afterAll(() => {
 // Rules that can't prove a negative report "unknown" instead of failing.
 const INSECURE_STATUS: Record<string, string> = {
   'cc6.6/rate-limiting': 'unknown', // limits may live in a gateway or WAF
+  'pi1.2/idempotency': 'unknown', // dedup may happen downstream
+  'pi1.3/transactions': 'unknown', // single-statement writes may be fine
 };
+// Git-history rules need commits; fixtures are staged but never committed.
+// test/git.test.ts covers them with synthetic histories.
+const NEEDS_HISTORY = new Set(['cc1.5/commit-attribution', 'cc8.1/direct-pushes']);
 
 describe('every rule passes on the compliant fixture and fails on the insecure one', () => {
   for (const rule of RULES) {
     it(rule.id, () => {
+      if (NEEDS_HISTORY.has(rule.id)) {
+        expect([statusOf(good, rule.id), statusOf(bad, rule.id)]).toEqual([
+          'not_applicable',
+          'not_applicable',
+        ]);
+        return;
+      }
       expect(statusOf(good, rule.id)).toBe('pass');
       expect(statusOf(bad, rule.id)).toBe(INSECURE_STATUS[rule.id] ?? 'fail');
     });
@@ -134,7 +149,12 @@ describe('exceptions', () => {
     expires: 2025-12-31
 `,
     );
-    const { report } = await scan({ root: insecure.dir, rules: RULES, now: FIXED_NOW });
+    const { report } = await scan({
+      root: insecure.dir,
+      rules: RULES,
+      now: FIXED_NOW,
+      scope: [...CATEGORIES],
+    });
     rmSync(`${insecure.dir}/threesock.yaml`);
     const policy = report.findings.find((f) => f.ruleId === 'cc2.3/security-policy');
     expect(policy?.status).toBe('accepted');
@@ -151,7 +171,9 @@ describe('compliant fixture', () => {
     expect(good.findings).toEqual([]);
   });
   it('is deterministic across runs', async () => {
-    const again = (await scan({ root: compliant.dir, rules: RULES, now: FIXED_NOW })).report;
+    const again = (
+      await scan({ root: compliant.dir, rules: RULES, now: FIXED_NOW, scope: [...CATEGORIES] })
+    ).report;
     expect(again).toEqual(good);
   });
 });

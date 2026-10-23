@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process';
+import { readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { CRITERIA } from '../src/engine/criteria.generated.js';
 import { RULES } from '../src/rules/index.js';
@@ -44,6 +45,16 @@ describe('rule registry', () => {
       expect(r.id.split('/')[0]).toBe(r.criterion.toLowerCase());
       expect(ids.has(r.criterion), `${r.id} targets unknown ${r.criterion}`).toBe(true);
     }
+  });
+
+  it('registers every rule file under src/rules/<criterion>/', () => {
+    const dirs = readdirSync('src/rules').filter((d) => /^[a-z]+\d+\.\d+$/.test(d));
+    const files = dirs.flatMap((d) =>
+      readdirSync(`src/rules/${d}`)
+        .filter((f) => f.endsWith('.ts'))
+        .map((f) => `${d}/${f.slice(0, -3)}`),
+    );
+    expect(files.sort()).toEqual(RULES.map((r) => r.id).sort());
   });
 
   it('every rule has remediation, expected and risk text', () => {

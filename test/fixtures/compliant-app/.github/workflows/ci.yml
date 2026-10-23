@@ -3,6 +3,8 @@ on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'
 permissions:
   contents: read
 jobs:
@@ -26,3 +28,8 @@ jobs:
         with:
           image-ref: app:${{ github.sha }}
           exit-code: '1'
+      - run: trivy config --exit-code 1 infra k8s
+      - uses: github/codeql-action/analyze@aa578102511db1f4524ed59b8cc2bae4f6e88195 # v3.27.6
+      - uses: anchore/sbom-action@fc46e51fd3cb168ffb36c6d1915723c47db58abb # v0.17.7
+        with:
+          format: cyclonedx-json

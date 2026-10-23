@@ -14,6 +14,7 @@ import {
   type ScanReport,
   type TopFix,
 } from './model.js';
+import { lazyGitHistory } from './git.js';
 import { SecretVault } from './redact.js';
 import { labelFor, scoreCriterion, summarizeCategory, summarizeOverall } from './scoring.js';
 import {
@@ -159,7 +160,7 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
 
   const files = buildFileIndex(root, { ignore: config.ignore });
   const vault = new SecretVault();
-  const ctx: RuleContext = { files, config, secrets: vault };
+  const ctx: RuleContext = { files, config, secrets: vault, git: lazyGitHistory(root), now };
 
   const defs = new Map(CRITERIA.map((c) => [c.id, c]));
   const unknownCriterion = opts.rules.find((r) => !defs.has(r.criterion));
@@ -182,7 +183,18 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
   for (const rule of sortedRules) {
     if (!inScope.has((defs.get(rule.criterion) as CriterionDef).category)) continue;
     rulesRun++;
-    const { outcome, error } = await runRule(rule, ctx);
+    const link = rule.tags.includes('DOCS')
+      ? (config.evidenceLinks[rule.id] ?? config.evidenceLinks[rule.criterion])
+      : undefined;
+    const { outcome, error } = link
+      ? {
+          outcome: {
+            status: 'not_applicable' as const,
+            justification: `Documented externally at ${link}. threesock cannot read external evidence, so this check is not scored.`,
+          },
+          error: undefined,
+        }
+      : await runRule(rule, ctx);
     if (error) rulesErrored.push({ ruleId: rule.id, error });
     outcomes.set(rule.id, outcome);
     if (outcome.status === 'fail') for (const raw of outcome.findings) draft.push({ rule, raw });
@@ -303,6 +315,11 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       coverage: { automatedRules: checks.length, rubricChecks: def.checks.length },
       manualFollowUps,
     };
+    const links = [
+      config.evidenceLinks[def.id],
+      ...rules.map((r) => config.evidenceLinks[r.id]),
+    ].filter((l): l is string => Boolean(l));
+    if (links.length) result.evidenceLinks = [...new Set(links)];
     if (score === 'MANUAL') {
       result.owner = ownerFor(config, (p) => p === def.id) ?? suggestedOwner(def.id);
     }

@@ -2,12 +2,16 @@ threesock <version> · SOC 2 readiness scan
 Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
 
 Repository  <root>
-Scanned     19 files (git-aware) · 41 rules
-Scope       Security
+Scanned     37 files (git-aware) · 98 rules
+Scope       Security, Availability, Processing Integrity, Confidentiality, Privacy
 
 Readiness
-  Overall               ████████████████████  100.0%  Audit-ready · 8/33 criteria assessed
-  Security              ████████████████████  100.0%  Audit-ready · 8/33 criteria assessed
+  Overall               ████████████████████  100.0%  Audit-ready · 36/61 criteria assessed
+  Security              ████████████████████  100.0%  Audit-ready · 27/33 criteria assessed
+  Availability          ████████████████████  100.0%  Audit-ready · 3/3 criteria assessed
+  Processing Integrity  ████████████████████  100.0%  Audit-ready · 4/5 criteria assessed
+  Confidentiality       ████████████████████  100.0%  Audit-ready · 2/2 criteria assessed
+  Privacy               ····················      —  nothing assessable yet · 0/18 criteria assessed
 
 Findings    0 critical · 0 high · 0 medium · 0 low
 

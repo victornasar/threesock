@@ -26,10 +26,19 @@ resource "aws_security_group" "web" {
   }
 }
 
+resource "aws_kms_key" "data" {
+  enable_key_rotation     = true
+  deletion_window_in_days = 30
+}
+
 resource "aws_db_instance" "main" {
-  engine              = "postgres"
-  publicly_accessible = false
-  storage_encrypted   = true
+  engine                  = "postgres"
+  publicly_accessible     = false
+  storage_encrypted       = true
+  kms_key_id              = aws_kms_key.data.arn
+  backup_retention_period = 14
+  deletion_protection     = true
+  multi_az                = true
 }
 
 resource "aws_s3_bucket" "uploads" {
@@ -53,4 +62,27 @@ data "aws_iam_policy_document" "app" {
 
 resource "aws_iam_policy" "app" {
   policy = data.aws_iam_policy_document.app.json
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "uploads" {
+  bucket = aws_s3_bucket.uploads.id
+  rule {
+    id     = "expire"
+    status = "Enabled"
+    expiration {
+      days = 365
+    }
+  }
+}
+
+resource "aws_cloudwatch_log_group" "api" {
+  name              = "/compliant/api"
+  retention_in_days = 90
+}
+
+resource "aws_cloudwatch_metric_alarm" "login_failures" {
+  alarm_name          = "login-failure-spike"
+  metric_name         = "LoginFailures"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 20
 }

@@ -1,0 +1,1 @@
+[{ "email": "{{CONSUMER_EMAIL}}", "card": "{{CARD_NUMBER}}", "ssn": "{{SSN}}" }]
