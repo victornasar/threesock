@@ -1,7 +1,8 @@
 name: release
 
-# Publishes to npm from a v* tag only (decision 3), via npm trusted publishing:
-# OIDC instead of an npm token, with provenance generated automatically.
+# Stages releases on npm from a v* tag only (decisions 3 and 54), via npm trusted
+# publishing (OIDC, no token) with provenance. The maintainer then approves each
+# staged package with 2FA; only that makes it public.
 # Configure on npmjs.com, for both threesock and threesock-mcp: Trusted publisher →
 # GitHub Actions, repository victornasar/threesock, workflow release.yml, environment npm.
 on:
@@ -46,18 +47,23 @@ jobs:
           mkdir -p "$RUNNER_TEMP/pkgs"
           pnpm pack --pack-destination "$RUNNER_TEMP/pkgs"
           pnpm --filter threesock-mcp pack --pack-destination "$RUNNER_TEMP/pkgs"
-      # Decision 53: the first release uses a stage-only NPM_TOKEN on the npm environment.
-      # `npm stage publish` uploads without publishing; the maintainer then approves each
-      # package with their own 2FA (npmjs.com or `npm stage approve`). Once both packages
-      # have trusted publishers and the secret is deleted, this publishes through OIDC.
-      - name: Publish (stage with token, or trusted publishing)
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Decision 54: every release is staged, never published directly. The trusted
+      # publishers on npm allow staging only (createStagedPackage), so nothing reaches
+      # npm until the maintainer approves each package with their own 2FA:
+      #   npm stage list <package>   then   npm stage approve <id>
+      - name: Stage packages for 2FA approval (OIDC, provenance)
         run: |
-          if [ -n "$NODE_AUTH_TOKEN" ]; then cmd=(npm stage publish); else cmd=(npm publish); fi
+          {
+            echo '## Staged for approval'
+            echo
+            echo 'Approve each package with your 2FA (run with npm, logged in):'
+            echo
+            echo '```sh'
+          } >> "$GITHUB_STEP_SUMMARY"
           for tgz in "$RUNNER_TEMP"/pkgs/threesock-[0-9]*.tgz "$RUNNER_TEMP"/pkgs/threesock-mcp-*.tgz; do
-            "${cmd[@]}" "$tgz" --access public --provenance
+            out=$(npm stage publish "$tgz" --access public --provenance 2>&1) || { echo "$out"; exit 1; }
+            echo "$out"
+            id=$(printf '%s\n' "$out" | sed -nE 's/.*staged with id ([0-9a-f-]+).*/\1/p' | head -1)
+            echo "npm stage approve $id   # $(basename "$tgz" .tgz)" >> "$GITHUB_STEP_SUMMARY"
           done
-          if [ -n "$NODE_AUTH_TOKEN" ]; then
-            echo "::notice::Staged for approval. Approve both packages on npmjs.com (or npm stage approve) with your 2FA."
-          fi
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
