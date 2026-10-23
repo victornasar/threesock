@@ -243,9 +243,14 @@ function cmdInit(argv: string[]): number {
     options: { force: { type: 'boolean', default: false } },
   });
   const target = join(resolve(positionals[0] ?? '.'), 'threesock.yaml');
-  if (existsSync(target) && !values.force)
-    fail(`${target} already exists. Use --force to overwrite.`);
-  writeFileSync(target, INIT_TEMPLATE);
+  try {
+    // 'wx' creates the file only if it does not exist, atomically (no check-then-write race).
+    writeFileSync(target, INIT_TEMPLATE, { flag: values.force ? 'w' : 'wx' });
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === 'EEXIST')
+      fail(`${target} already exists. Use --force to overwrite.`);
+    throw err;
+  }
   process.stdout.write(
     `Created ${target}\nEdit scope, owners and thresholds to match your policies, then run \`threesock scan\`.\n`,
   );

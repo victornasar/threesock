@@ -4,7 +4,7 @@ import { basename, lineAt } from '../util.js';
 const ENV_FILE = /^\.env(\..+)?$/;
 const TEMPLATE_SUFFIX = /\.(example|sample|template|dist|defaults?|schema)$/i;
 const SECRET_NAME =
-  /SECRET|TOKEN|PASSWORD|PASSWD|PWD|PRIVATE|CREDENTIAL|API_?KEY|ACCESS_?KEY|DSN|DATABASE_URL|_KEY$/i;
+  /(?:SECRET|TOKEN|PASSWORD|PASSWD|PWD|PRIVATE|CREDENTIAL|API_?KEY|ACCESS_?KEY|DSN|DATABASE_URL)|(?:_KEY$)/i;
 const GITIGNORE_ENV = /^\s*\/?(\*\*\/)?\.env(\*|\.\*|\.local|\b)/m;
 
 export const envFiles: Rule = {

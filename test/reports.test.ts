@@ -141,3 +141,17 @@ describe('secret values never appear in output', () => {
     expect(bad.scrub(leaked)).not.toContain(insecure.secrets[0]);
   });
 });
+
+describe('markdown table escaping', () => {
+  it('escapes backslashes before pipes, so a trailing \\ cannot unescape a cell separator', () => {
+    const report = structuredClone(bad.report);
+    const target = report.criteria[0];
+    if (target) target.title = 'odd \\| title';
+    const row =
+      renderMarkdown(report)
+        .split('\n')
+        .find((l) => l.startsWith(`| ${target?.id} |`)) ?? '';
+    expect(row).toContain('odd \\\\\\| title');
+    expect(row.split(/(?<!\\)\|/).length).toBe(9); // 7 cells, plus the empty edges
+  });
+});

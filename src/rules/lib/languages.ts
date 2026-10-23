@@ -18,7 +18,8 @@ const EXTENSIONS: Record<Language, RegExp> = {
 const TEST_PATH =
   /(?:^|\/)(?:tests?|__tests__|__mocks__|specs?|testdata|fixtures?|e2e|cypress|playwright)\/|\.(?:test|spec)\.[cm]?[jt]sx?$|_test\.go$|(?:^|\/)test_[^/]*\.py$|_test\.py$|(?:^|\/)conftest\.py$|(?:^|\/)(?:playwright|vitest|jest|cypress|karma|wdio)\.conf(?:ig)?\.[cm]?[jt]s$/;
 
-const VENDORED = /(?:^|\/)(?:vendor|third_party|node_modules|dist|build|\.next|out)\/|\.min\.js$/;
+const VENDORED =
+  /(?:(?:^|\/)(?:vendor|third_party|node_modules|dist|build|\.next|out)\/)|(?:\.min\.js$)/;
 
 export function languageOf(path: string): Language | undefined {
   for (const [lang, re] of Object.entries(EXTENSIONS) as [Language, RegExp][]) {
