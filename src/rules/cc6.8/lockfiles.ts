@@ -31,7 +31,8 @@ const ECOSYSTEMS: Ecosystem[] = [
     name: 'Python',
     inherit: false,
     locks: ['poetry.lock', 'uv.lock', 'pdm.lock', 'Pipfile.lock', 'requirements.lock'],
-    hasDeps: (t) => /^\s*dependencies\s*=\s*\[\s*["']|\[tool\.poetry\.dependencies\]/m.test(t),
+    hasDeps: (t) =>
+      /(?:^\s*dependencies\s*=\s*\[\s*["'])|(?:\[tool\.poetry\.dependencies\])/m.test(t),
   },
   { manifest: /(?:^|\/)Pipfile$/, name: 'Pipenv', inherit: false, locks: ['Pipfile.lock'] },
   {

@@ -16,7 +16,7 @@ const DEFS = new Map(CRITERIA.map((c) => [c.id, c]));
 
 /** Escapes text for a Markdown table cell. */
 function cell(text: string): string {
-  return text.replace(/\|/g, '\\|').replace(/\r?\n/g, '<br>');
+  return text.replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\r?\n/g, '<br>');
 }
 
 /** A fence longer than any backtick run in the content. */

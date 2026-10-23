@@ -4,7 +4,7 @@ import { isTestPath, isVendored } from './languages.js';
 import { findAny } from '../util.js';
 
 export const ALERTS =
-  /^\s*-?\s*alert:\s*\S|aws_cloudwatch_metric_alarm|datadog_monitor|newrelic_(?:nrql_)?alert|grafana_rule_group|google_monitoring_alert_policy|azurerm_monitor_metric_alert|pagerduty_service|opsgenie_|alertmanager|AWS::CloudWatch::Alarm/m;
+  /(?:^\s*-?\s*alert:\s*\S)|aws_cloudwatch_metric_alarm|datadog_monitor|newrelic_(?:nrql_)?alert|grafana_rule_group|google_monitoring_alert_policy|azurerm_monitor_metric_alert|pagerduty_service|opsgenie_|alertmanager|AWS::CloudWatch::Alarm/m;
 export const OBSERVABILITY =
   /Sentry\.init|sentry_sdk\.init|@sentry\/|opentelemetry|dd-trace|datadog|newrelic|prometheus|grafana|honeycomb|"panels"\s*:|aws_cloudwatch_dashboard|AWS::CloudWatch::Dashboard/i;
 

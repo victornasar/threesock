@@ -4,7 +4,7 @@ import { CRITERIA } from '../engine/criteria.generated.js';
 import { CATEGORY_LABELS, CATEGORIES } from '../engine/types.js';
 import { RULES } from '../rules/index.js';
 
-const cell = (s: string) => s.replace(/\|/g, '\\|');
+const cell = (s: string) => s.replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
 
 export function renderRulesReference(): string {
   const out = [

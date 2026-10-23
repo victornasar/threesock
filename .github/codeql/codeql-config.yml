@@ -1,0 +1,5 @@
+name: threesock CodeQL config
+# test/fixtures holds deliberately insecure sample apps that threesock's own tests scan;
+# their alerts are intended and asserted by test/golden/insecure-app.json.
+paths-ignore:
+  - test/fixtures
