@@ -6,9 +6,9 @@ Releases are published to npm only by the release workflow, from a `v*` tag, usi
 
 npm trusted publishing is configured per package, so the first publish of `threesock` and `threesock-mcp` uses a short-lived token:
 
-1. On npmjs.com: Access Tokens → Generate New Token → Granular. Publish permission, expiry of 7 days or less.
+1. On npmjs.com: Access Tokens → Generate New Token → Granular, permission "Read and write (stage only)", all packages, expiry of 7 days or less.
 2. In the repository: Settings → Environments → `npm` (create it, with yourself as a required reviewer) → add the secret `NPM_TOKEN`.
-3. Tag `v0.1.0` and push the tag; approve the `npm` environment when the release job asks.
+3. Tag `v0.1.0` and push the tag; approve the `npm` environment when the release job asks. The job stages both packages; approve each on npmjs.com (or `npm stage list`, then `npm stage approve <id>`) with your 2FA to publish them.
 4. On npmjs.com, for both packages: Settings → Trusted publishing → GitHub Actions, repository `victornasar/threesock`, workflow `release.yml`, environment `npm`.
 5. Delete the `NPM_TOKEN` secret and revoke the token. Later releases publish through OIDC with no token.
 

@@ -46,15 +46,18 @@ jobs:
           mkdir -p "$RUNNER_TEMP/pkgs"
           pnpm pack --pack-destination "$RUNNER_TEMP/pkgs"
           pnpm --filter threesock-mcp pack --pack-destination "$RUNNER_TEMP/pkgs"
-      # Decision 53: the very first publish uses a short-lived NPM_TOKEN on the npm
-      # environment, because trusted publishing is configured per existing package.
-      # Once both packages exist and have trusted publishers, delete the secret and
-      # this falls back to OIDC with no token. Provenance is requested either way.
-      - name: Publish threesock (provenance)
+      # Decision 53: the first release uses a stage-only NPM_TOKEN on the npm environment.
+      # `npm stage publish` uploads without publishing; the maintainer then approves each
+      # package with their own 2FA (npmjs.com or `npm stage approve`). Once both packages
+      # have trusted publishers and the secret is deleted, this publishes through OIDC.
+      - name: Publish (stage with token, or trusted publishing)
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish "$RUNNER_TEMP"/pkgs/threesock-[0-9]*.tgz --access public --provenance
-      - name: Publish threesock-mcp (provenance)
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish "$RUNNER_TEMP"/pkgs/threesock-mcp-*.tgz --access public --provenance
+        run: |
+          if [ -n "$NODE_AUTH_TOKEN" ]; then cmd=(npm stage publish); else cmd=(npm publish); fi
+          for tgz in "$RUNNER_TEMP"/pkgs/threesock-[0-9]*.tgz "$RUNNER_TEMP"/pkgs/threesock-mcp-*.tgz; do
+            "${cmd[@]}" "$tgz" --access public --provenance
+          done
+          if [ -n "$NODE_AUTH_TOKEN" ]; then
+            echo "::notice::Staged for approval. Approve both packages on npmjs.com (or npm stage approve) with your 2FA."
+          fi
