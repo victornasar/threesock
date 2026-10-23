@@ -2035,6 +2035,33 @@
               }
             },
             {
+              "id": "cc7.2/pii-in-logs",
+              "name": "PiiInLogs",
+              "shortDescription": {
+                "text": "Personal data is not written to logs"
+              },
+              "fullDescription": {
+                "text": "Logs identify people by internal id, never by email, phone, address, date of birth or IP-linked profile data."
+              },
+              "help": {
+                "text": "Log a pseudonymous user id instead, and configure logger redaction for personal fields.\n\nRisk: Personal data in logs is copied to log platforms and backups with long retention, outside deletion and access-request processes.",
+                "markdown": "**CC7.2**: Logs identify people by internal id, never by email, phone, address, date of birth or IP-linked profile data.\n\n**Risk:** Personal data in logs is copied to log platforms and backups with long retention, outside deletion and access-request processes.\n\n**Fix:** Log a pseudonymous user id instead, and configure logger redaction for personal fields.\n\nExample:\n\n```\nlog.info({ userId: user.id }, 'signup complete');\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "CC7.2"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "CC7.2"
+              }
+            },
+            {
               "id": "cc7.2/sensitive-logging",
               "name": "SensitiveLogging",
               "shortDescription": {
@@ -2383,6 +2410,411 @@
                 "precision": "high",
                 "security-severity": "5.5",
                 "criterion": "CC9.2"
+              }
+            },
+            {
+              "id": "p1.1/privacy-notice",
+              "name": "PrivacyNotice",
+              "shortDescription": {
+                "text": "The product links to a privacy notice"
+              },
+              "fullDescription": {
+                "text": "A privacy notice is reachable from the product (signup, footer, settings) and describes collection, use, retention, disclosure and disposal."
+              },
+              "help": {
+                "text": "Publish a privacy notice and link it from signup and the site footer; keep prior versions.\n\nRisk: Collecting personal data without an accessible notice breaches transparency obligations and the SOC 2 privacy commitments.",
+                "markdown": "**P1.1**: A privacy notice is reachable from the product (signup, footer, settings) and describes collection, use, retention, disclosure and disposal.\n\n**Risk:** Collecting personal data without an accessible notice breaches transparency obligations and the SOC 2 privacy commitments.\n\n**Fix:** Publish a privacy notice and link it from signup and the site footer; keep prior versions.\n\nExample:\n\n```\n<footer><a href=\"/privacy\">Privacy notice</a></footer>\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P1.1"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P1.1"
+              }
+            },
+            {
+              "id": "p2.1/consent-gating",
+              "name": "ConsentGating",
+              "shortDescription": {
+                "text": "Analytics and tracking load only after consent"
+              },
+              "fullDescription": {
+                "text": "Non-essential trackers (analytics, advertising, session recording) are gated on recorded consent, and Global Privacy Control is respected where required."
+              },
+              "help": {
+                "text": "Load trackers only after the visitor opts in (a consent manager or your own gate), default to opted-out, and honour navigator.globalPrivacyControl.\n\nRisk: Trackers firing before consent breach ePrivacy and GDPR rules and the privacy notice, and are a rubric red flag.",
+                "markdown": "**P2.1**: Non-essential trackers (analytics, advertising, session recording) are gated on recorded consent, and Global Privacy Control is respected where required.\n\n**Risk:** Trackers firing before consent breach ePrivacy and GDPR rules and the privacy notice, and are a rubric red flag.\n\n**Fix:** Load trackers only after the visitor opts in (a consent manager or your own gate), default to opted-out, and honour navigator.globalPrivacyControl.\n\nExample:\n\n```\nposthog.init(KEY, { opt_out_capturing_by_default: true });\nif (consent.analytics && !navigator.globalPrivacyControl) posthog.opt_in_capturing();\n```"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P2.1"
+                ],
+                "precision": "high",
+                "security-severity": "8.0",
+                "criterion": "P2.1"
+              }
+            },
+            {
+              "id": "p3.1/data-map",
+              "name": "DataMap",
+              "shortDescription": {
+                "text": "A data map records personal data fields and their purpose"
+              },
+              "fullDescription": {
+                "text": "A data map lists the personal data collected, where it is stored, why (purpose or legal basis) and for how long."
+              },
+              "help": {
+                "text": "Keep a data map: each personal data field or category, its purpose, where it is stored, who receives it and its retention.\n\nRisk: Without a data map, collection drifts from the privacy notice and access or deletion requests miss data.",
+                "markdown": "**P3.1**: A data map lists the personal data collected, where it is stored, why (purpose or legal basis) and for how long.\n\n**Risk:** Without a data map, collection drifts from the privacy notice and access or deletion requests miss data.\n\n**Fix:** Keep a data map: each personal data field or category, its purpose, where it is stored, who receives it and its retention.\n\nExample:\n\n```\n| Data | Purpose | Stored in | Retention |\n|---|---|---|---|\n| Email | Login, receipts | Postgres users | Account lifetime + 30 days |\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P3.1"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P3.1"
+              }
+            },
+            {
+              "id": "p3.2/sensitive-fields",
+              "name": "SensitiveFields",
+              "shortDescription": {
+                "text": "Sensitive personal data has field-level protection"
+              },
+              "fullDescription": {
+                "text": "Sensitive categories (government IDs, health, biometrics, precise location, date of birth, ...) are encrypted at field level or tokenized, beyond disk encryption."
+              },
+              "help": {
+                "text": "Encrypt sensitive fields at the application layer (envelope encryption with KMS) or tokenize them, and restrict access to the decrypting service.\n\nRisk: Sensitive data in plain columns is exposed to every query, backup, replica and analyst with database access.",
+                "markdown": "**P3.2**: Sensitive categories (government IDs, health, biometrics, precise location, date of birth, ...) are encrypted at field level or tokenized, beyond disk encryption.\n\n**Risk:** Sensitive data in plain columns is exposed to every query, backup, replica and analyst with database access.\n\n**Fix:** Encrypt sensitive fields at the application layer (envelope encryption with KMS) or tokenize them, and restrict access to the decrypting service.\n\nExample:\n\n```\nALTER TABLE patients ADD COLUMN ssn_encrypted bytea;  -- pgp_sym_encrypt with a KMS-managed key\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P3.2"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P3.2"
+              }
+            },
+            {
+              "id": "p4.2/retention-jobs",
+              "name": "RetentionJobs",
+              "shortDescription": {
+                "text": "Retention is enforced by purge jobs or TTLs"
+              },
+              "fullDescription": {
+                "text": "Personal data past its retention period is removed automatically by scheduled purge jobs, TTL indexes or lifecycle rules."
+              },
+              "help": {
+                "text": "Add a scheduled job (or TTL index) that deletes or anonymizes personal data once its retention period ends, and alert if it fails.\n\nRisk: Without automated deletion, personal data accumulates past its purpose, breaching the privacy notice and enlarging every breach.",
+                "markdown": "**P4.2**: Personal data past its retention period is removed automatically by scheduled purge jobs, TTL indexes or lifecycle rules.\n\n**Risk:** Without automated deletion, personal data accumulates past its purpose, breaching the privacy notice and enlarging every breach.\n\n**Fix:** Add a scheduled job (or TTL index) that deletes or anonymizes personal data once its retention period ends, and alert if it fails.\n\nExample:\n\n```\n// nightly\nawait db.query(\"DELETE FROM sessions WHERE created_at < now() - interval '90 days'\");\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P4.2"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P4.2"
+              }
+            },
+            {
+              "id": "p4.3/deletion-path",
+              "name": "DeletionPath",
+              "shortDescription": {
+                "text": "Personal data can be deleted, and soft-deleted data is purged"
+              },
+              "fullDescription": {
+                "text": "An account or data deletion path exists (self-service or request-based), and records that are soft-deleted are purged after their retention period."
+              },
+              "help": {
+                "text": "Implement deletion (or irreversible anonymization) for a data subject across all stores, and a scheduled job that purges soft-deleted rows.\n\nRisk: Without a deletion path, erasure requests cannot be honoured on time; soft deletes that are never purged keep personal data forever.",
+                "markdown": "**P4.3**: An account or data deletion path exists (self-service or request-based), and records that are soft-deleted are purged after their retention period.\n\n**Risk:** Without a deletion path, erasure requests cannot be honoured on time; soft deletes that are never purged keep personal data forever.\n\n**Fix:** Implement deletion (or irreversible anonymization) for a data subject across all stores, and a scheduled job that purges soft-deleted rows.\n\nExample:\n\n```\napp.delete('/me', requireAuth, async (req, res) => {\n  await accounts.eraseSubject(req.user.id); // primary DB, search index, analytics, vendors\n  res.sendStatus(204);\n});\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P4.3"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P4.3"
+              }
+            },
+            {
+              "id": "p5.1/data-export",
+              "name": "DataExport",
+              "shortDescription": {
+                "text": "Data subjects can get a copy of their data"
+              },
+              "fullDescription": {
+                "text": "An authenticated export (self-service or support-driven) returns a subject's personal data in a machine-readable format."
+              },
+              "help": {
+                "text": "Add an authenticated export that gathers the subject's data from every store into JSON, and track requests with a response deadline.\n\nRisk: Access requests cannot be answered within the legal deadline (often 30 days) without tooling to gather the data.",
+                "markdown": "**P5.1**: An authenticated export (self-service or support-driven) returns a subject's personal data in a machine-readable format.\n\n**Risk:** Access requests cannot be answered within the legal deadline (often 30 days) without tooling to gather the data.\n\n**Fix:** Add an authenticated export that gathers the subject's data from every store into JSON, and track requests with a response deadline.\n\nExample:\n\n```\napp.get('/me/export', requireAuth, async (req, res) => res.json(await dsar.export(req.user.id)));\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P5.1"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P5.1"
+              }
+            },
+            {
+              "id": "p5.2/data-correction",
+              "name": "DataCorrection",
+              "shortDescription": {
+                "text": "Data subjects can correct their data"
+              },
+              "fullDescription": {
+                "text": "Users can update their own personal data (profile or account settings), or request correction through support tooling."
+              },
+              "help": {
+                "text": "Provide an authenticated profile update (with validation and an audit trail) and propagate changes to downstream systems.\n\nRisk: Inaccurate personal data cannot be corrected on request, and errors propagate to downstream systems.",
+                "markdown": "**P5.2**: Users can update their own personal data (profile or account settings), or request correction through support tooling.\n\n**Risk:** Inaccurate personal data cannot be corrected on request, and errors propagate to downstream systems.\n\n**Fix:** Provide an authenticated profile update (with validation and an audit trail) and propagate changes to downstream systems.\n\nExample:\n\n```\napp.patch('/me', requireAuth, async (req, res) => res.json(await users.update(req.user.id, ProfileSchema.parse(req.body))));\n```"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P5.2"
+                ],
+                "precision": "high",
+                "security-severity": "3.0",
+                "criterion": "P5.2"
+              }
+            },
+            {
+              "id": "p6.1/sdk-inventory",
+              "name": "SdkInventory",
+              "shortDescription": {
+                "text": "Third-party SDKs that receive personal data are inventoried"
+              },
+              "fullDescription": {
+                "text": "Every analytics, advertising, support or session-recording SDK is listed in the third-party or subprocessor inventory, with the data it receives."
+              },
+              "help": {
+                "text": "Add each SDK vendor to the third-party inventory (vendor, purpose, data shared), or remove the SDK.\n\nRisk: Unlisted SDKs collect personal data nobody approved, which the privacy notice then misdescribes.",
+                "markdown": "**P6.1**: Every analytics, advertising, support or session-recording SDK is listed in the third-party or subprocessor inventory, with the data it receives.\n\n**Risk:** Unlisted SDKs collect personal data nobody approved, which the privacy notice then misdescribes.\n\n**Fix:** Add each SDK vendor to the third-party inventory (vendor, purpose, data shared), or remove the SDK.\n\nExample:\n\n```\n| Vendor | Purpose | Data shared |\n|---|---|---|\n| PostHog | Product analytics | Pseudonymous user id, page views |\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P6.1"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P6.1"
+              }
+            },
+            {
+              "id": "p6.1/user-objects-to-third-parties",
+              "name": "UserObjectsToThirdParties",
+              "shortDescription": {
+                "text": "Only minimal identifiers are sent to analytics and support tools"
+              },
+              "fullDescription": {
+                "text": "Calls to analytics, error-tracking and support SDKs send a pseudonymous id and only the fields the purpose needs, never whole user objects."
+              },
+              "help": {
+                "text": "Send a pseudonymous id and an explicit allow-list of properties.\n\nRisk: Whole user objects leak every field (email, address, flags) to vendors, a rubric red flag and usually a breach of the privacy notice.",
+                "markdown": "**P6.1**: Calls to analytics, error-tracking and support SDKs send a pseudonymous id and only the fields the purpose needs, never whole user objects.\n\n**Risk:** Whole user objects leak every field (email, address, flags) to vendors, a rubric red flag and usually a breach of the privacy notice.\n\n**Fix:** Send a pseudonymous id and an explicit allow-list of properties.\n\nExample:\n\n```\nanalytics.identify(user.id, { plan: user.plan });\nSentry.setUser({ id: user.id });\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P6.1"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P6.1"
+              }
+            },
+            {
+              "id": "p6.3/incident-register",
+              "name": "IncidentRegister",
+              "shortDescription": {
+                "text": "Unauthorized disclosures are recorded in a register"
+              },
+              "fullDescription": {
+                "text": "Every detected or reported unauthorized disclosure is recorded with scope, affected subjects, root cause and remediation, and linked to incident response."
+              },
+              "help": {
+                "text": "Keep an incident register (a table is enough) and fill it in for every suspected disclosure, even ones that turn out minor.\n\nRisk: Without a register you cannot show regulators or auditors what happened, to whom, and what was fixed.",
+                "markdown": "**P6.3**: Every detected or reported unauthorized disclosure is recorded with scope, affected subjects, root cause and remediation, and linked to incident response.\n\n**Risk:** Without a register you cannot show regulators or auditors what happened, to whom, and what was fixed.\n\n**Fix:** Keep an incident register (a table is enough) and fill it in for every suspected disclosure, even ones that turn out minor.\n\nExample:\n\n```\n| Date | Scope | Affected subjects | Root cause | Remediation |\n|---|---|---|---|---|\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P6.3"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P6.3"
+              }
+            },
+            {
+              "id": "p6.5/vendor-breach-intake",
+              "name": "VendorBreachIntake",
+              "shortDescription": {
+                "text": "Breach notices from vendors feed incident response"
+              },
+              "fullDescription": {
+                "text": "There is a documented intake for breach or incident notices from vendors and subprocessors, routed into incident response."
+              },
+              "help": {
+                "text": "Name the address vendors must notify, who monitors it, and that notices open an incident.\n\nRisk: A vendor's breach notice sent to an unmonitored inbox starts your own notification clock without anyone knowing.",
+                "markdown": "**P6.5**: There is a documented intake for breach or incident notices from vendors and subprocessors, routed into incident response.\n\n**Risk:** A vendor's breach notice sent to an unmonitored inbox starts your own notification clock without anyone knowing.\n\n**Fix:** Name the address vendors must notify, who monitors it, and that notices open an incident.\n\nExample:\n\n```\n## Vendor incident notices\nSubprocessors notify security@example.com within 48 hours (per the DPA). Each notice opens an incident and is triaged as SEV2 or higher.\n```"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P6.5"
+                ],
+                "precision": "high",
+                "security-severity": "3.0",
+                "criterion": "P6.5"
+              }
+            },
+            {
+              "id": "p6.6/breach-notification",
+              "name": "BreachNotification",
+              "shortDescription": {
+                "text": "A breach notification procedure sets deadlines and audiences"
+              },
+              "fullDescription": {
+                "text": "A breach procedure sets notification deadlines (e.g. 72 hours to regulators), who is notified (regulators, customers, data subjects), and keeps message templates."
+              },
+              "help": {
+                "text": "Document breach notification deadlines per jurisdiction and contract, who decides, and ready-to-use templates.\n\nRisk: Missing a statutory notification deadline turns an incident into a regulatory violation.",
+                "markdown": "**P6.6**: A breach procedure sets notification deadlines (e.g. 72 hours to regulators), who is notified (regulators, customers, data subjects), and keeps message templates.\n\n**Risk:** Missing a statutory notification deadline turns an incident into a regulatory violation.\n\n**Fix:** Document breach notification deadlines per jurisdiction and contract, who decides, and ready-to-use templates.\n\nExample:\n\n```\n## Breach notification\nRegulators: within 72 hours of awareness (GDPR Art. 33). Customers: per contract, within 48 hours.\nTemplates: docs/security/templates/breach-customer.md\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P6.6"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P6.6"
+              }
+            },
+            {
+              "id": "p7.1/pii-validation",
+              "name": "PiiValidation",
+              "shortDescription": {
+                "text": "Personal data fields are validated"
+              },
+              "fullDescription": {
+                "text": "Personal data fields are validated for format and completeness (e.g. email and phone formats) when collected."
+              },
+              "help": {
+                "text": "Validate personal data at the boundary with a schema (email, phone, dates) and normalize before storing.\n\nRisk: Malformed contact data makes notification, access and deletion requests fail to reach or match the right person.",
+                "markdown": "**P7.1**: Personal data fields are validated for format and completeness (e.g. email and phone formats) when collected.\n\n**Risk:** Malformed contact data makes notification, access and deletion requests fail to reach or match the right person.\n\n**Fix:** Validate personal data at the boundary with a schema (email, phone, dates) and normalize before storing.\n\nExample:\n\n```\nconst Signup = z.object({ email: z.string().email(), name: z.string().min(1).max(200) });\n```"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P7.1"
+                ],
+                "precision": "high",
+                "security-severity": "3.0",
+                "criterion": "P7.1"
+              }
+            },
+            {
+              "id": "p8.1/privacy-contact",
+              "name": "PrivacyContact",
+              "shortDescription": {
+                "text": "A privacy contact is published and privacy review is part of the SDLC"
+              },
+              "fullDescription": {
+                "text": "A privacy contact (email or form) is published, and new features handling personal data get a privacy review (the PR template asks about personal data)."
+              },
+              "help": {
+                "text": "Publish a privacy contact in the privacy notice and README, and add a personal-data question to the PR template.\n\nRisk: Data subjects cannot raise requests or complaints, and features that change data collection ship without review.",
+                "markdown": "**P8.1**: A privacy contact (email or form) is published, and new features handling personal data get a privacy review (the PR template asks about personal data).\n\n**Risk:** Data subjects cannot raise requests or complaints, and features that change data collection ship without review.\n\n**Fix:** Publish a privacy contact in the privacy notice and README, and add a personal-data question to the PR template.\n\nExample:\n\n```\nPrivacy questions and requests: privacy@example.com (answered within 30 days).\n```"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "soc2",
+                  "P8.1"
+                ],
+                "precision": "high",
+                "security-severity": "5.5",
+                "criterion": "P8.1"
               }
             },
             {
@@ -3726,7 +4158,7 @@
         },
         {
           "ruleId": "cc7.2/sensitive-logging",
-          "ruleIndex": 75,
+          "ruleIndex": 76,
           "level": "error",
           "message": {
             "text": "Request body or headers passed to a logger. Request body or headers passed to a logger in src/auth.js at line 16."
@@ -3764,7 +4196,7 @@
         },
         {
           "ruleId": "cc7.4/incident-response-plan",
-          "ruleIndex": 77,
+          "ruleIndex": 78,
           "level": "error",
           "message": {
             "text": "No incident response plan. No incident response plan was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -3801,7 +4233,7 @@
         },
         {
           "ruleId": "cc8.1/ci-on-pull-requests",
-          "ruleIndex": 80,
+          "ruleIndex": 81,
           "level": "error",
           "message": {
             "text": "Tests do not run on pull requests. No workflow is triggered by pull_request. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -3841,7 +4273,7 @@
         },
         {
           "ruleId": "cc8.1/terraform-state",
-          "ruleIndex": 85,
+          "ruleIndex": 86,
           "level": "error",
           "message": {
             "text": "Terraform uses local state. No backend or cloud block was found in 1 Terraform file(s) (detected by threesock's lightweight Terraform scanner), so state is local to whoever runs apply. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -3960,6 +4392,43 @@
           }
         },
         {
+          "ruleId": "p2.1/consent-gating",
+          "ruleIndex": 90,
+          "level": "error",
+          "message": {
+            "text": "Trackers load without a consent check. Mixpanel is loaded, but no consent manager or consent check was found."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "package.json",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "a558be091df652c6"
+          },
+          "properties": {
+            "findingId": "F-036",
+            "criterion": "P2.1",
+            "severity": "high",
+            "dueDate": "2026-02-14",
+            "repositoryLevel": false,
+            "controls": [
+              "Data Privacy"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
           "ruleId": "cc1.3/codeowners",
           "ruleIndex": 14,
           "level": "warning",
@@ -3983,7 +4452,7 @@
             "threesock/v1": "3c1304ef0ce0a8d3"
           },
           "properties": {
-            "findingId": "F-036",
+            "findingId": "F-037",
             "criterion": "CC1.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4023,7 +4492,7 @@
             "threesock/v1": "9f8fe6464cbd7a34"
           },
           "properties": {
-            "findingId": "F-037",
+            "findingId": "F-038",
             "criterion": "CC2.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4065,7 +4534,7 @@
             "threesock/v1": "77e4d97527a22b7e"
           },
           "properties": {
-            "findingId": "F-038",
+            "findingId": "F-039",
             "criterion": "CC3.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4104,7 +4573,7 @@
             "threesock/v1": "6ae91c3bc21beb3a"
           },
           "properties": {
-            "findingId": "F-039",
+            "findingId": "F-040",
             "criterion": "CC3.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4143,7 +4612,7 @@
             "threesock/v1": "8b2c446528141102"
           },
           "properties": {
-            "findingId": "F-040",
+            "findingId": "F-041",
             "criterion": "CC4.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4184,7 +4653,7 @@
             "threesock/v1": "e0d61d296e682e2d"
           },
           "properties": {
-            "findingId": "F-041",
+            "findingId": "F-042",
             "criterion": "CC4.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4225,7 +4694,7 @@
             "threesock/v1": "1a04e51ee5fb35fd"
           },
           "properties": {
-            "findingId": "F-042",
+            "findingId": "F-043",
             "criterion": "CC4.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4264,7 +4733,7 @@
             "threesock/v1": "851e178537973934"
           },
           "properties": {
-            "findingId": "F-043",
+            "findingId": "F-044",
             "criterion": "CC4.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4303,7 +4772,7 @@
             "threesock/v1": "1ccc5bcdef082ee4"
           },
           "properties": {
-            "findingId": "F-044",
+            "findingId": "F-045",
             "criterion": "CC4.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4342,7 +4811,7 @@
             "threesock/v1": "17afa8e513c40558"
           },
           "properties": {
-            "findingId": "F-045",
+            "findingId": "F-046",
             "criterion": "CC4.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4381,7 +4850,7 @@
             "threesock/v1": "b286c79acb36cf93"
           },
           "properties": {
-            "findingId": "F-046",
+            "findingId": "F-047",
             "criterion": "CC5.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4424,7 +4893,7 @@
             "threesock/v1": "9b80fea4d7c398f9"
           },
           "properties": {
-            "findingId": "F-047",
+            "findingId": "F-048",
             "criterion": "CC5.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4467,7 +4936,7 @@
             "threesock/v1": "f4fd96f0ec240f17"
           },
           "properties": {
-            "findingId": "F-048",
+            "findingId": "F-049",
             "criterion": "CC5.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4505,7 +4974,7 @@
             "threesock/v1": "867f41806c1540c5"
           },
           "properties": {
-            "findingId": "F-049",
+            "findingId": "F-050",
             "criterion": "CC6.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4547,7 +5016,7 @@
             "threesock/v1": "f62b4c3dcce53a1e"
           },
           "properties": {
-            "findingId": "F-050",
+            "findingId": "F-051",
             "criterion": "CC6.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4589,7 +5058,7 @@
             "threesock/v1": "690d9982717aee72"
           },
           "properties": {
-            "findingId": "F-051",
+            "findingId": "F-052",
             "criterion": "CC6.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4631,7 +5100,7 @@
             "threesock/v1": "8d143efb3eb76cc7"
           },
           "properties": {
-            "findingId": "F-052",
+            "findingId": "F-053",
             "criterion": "CC6.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4671,7 +5140,7 @@
             "threesock/v1": "8418b171847a6f9f"
           },
           "properties": {
-            "findingId": "F-053",
+            "findingId": "F-054",
             "criterion": "CC6.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4711,7 +5180,7 @@
             "threesock/v1": "b1b961b9dd42774a"
           },
           "properties": {
-            "findingId": "F-054",
+            "findingId": "F-055",
             "criterion": "CC6.6",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4751,7 +5220,7 @@
             "threesock/v1": "252663a1cc6ca858"
           },
           "properties": {
-            "findingId": "F-055",
+            "findingId": "F-056",
             "criterion": "CC6.6",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4791,7 +5260,7 @@
             "threesock/v1": "058f7cfbcedb5e93"
           },
           "properties": {
-            "findingId": "F-056",
+            "findingId": "F-057",
             "criterion": "CC6.7",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4830,7 +5299,7 @@
             "threesock/v1": "a190bb6b318d0b0c"
           },
           "properties": {
-            "findingId": "F-057",
+            "findingId": "F-058",
             "criterion": "CC6.8",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4872,7 +5341,7 @@
             "threesock/v1": "1f84927c8fe3b5df"
           },
           "properties": {
-            "findingId": "F-058",
+            "findingId": "F-059",
             "criterion": "CC6.8",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4914,7 +5383,7 @@
             "threesock/v1": "64cedb67b78b3910"
           },
           "properties": {
-            "findingId": "F-059",
+            "findingId": "F-060",
             "criterion": "CC6.8",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4956,7 +5425,7 @@
             "threesock/v1": "12cd005a083794da"
           },
           "properties": {
-            "findingId": "F-060",
+            "findingId": "F-061",
             "criterion": "CC7.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -4997,7 +5466,7 @@
             "threesock/v1": "031b1135912c21cc"
           },
           "properties": {
-            "findingId": "F-061",
+            "findingId": "F-062",
             "criterion": "CC7.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5038,7 +5507,7 @@
             "threesock/v1": "a79d3b3ef70c6b25"
           },
           "properties": {
-            "findingId": "F-062",
+            "findingId": "F-063",
             "criterion": "CC7.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5053,8 +5522,46 @@
           }
         },
         {
+          "ruleId": "cc7.2/pii-in-logs",
+          "ruleIndex": 75,
+          "level": "warning",
+          "message": {
+            "text": "Personal data field passed to a logger. Personal data field passed to a logger in public/tracking.js at line 12."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "public/tracking.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "e6921935753ad03a"
+          },
+          "properties": {
+            "findingId": "F-064",
+            "criterion": "CC7.2",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": false,
+            "controls": [
+              "Security Monitoring & Detection",
+              "Security Logging"
+            ],
+            "policies": [
+              "Logging, Monitoring & Audit"
+            ]
+          }
+        },
+        {
           "ruleId": "cc7.3/triage-criteria",
-          "ruleIndex": 76,
+          "ruleIndex": 77,
           "level": "warning",
           "message": {
             "text": "No severity and triage criteria. No severity and triage criteria was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -5076,7 +5583,7 @@
             "threesock/v1": "3dc942ce851cbe84"
           },
           "properties": {
-            "findingId": "F-063",
+            "findingId": "F-065",
             "criterion": "CC7.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5092,7 +5599,7 @@
         },
         {
           "ruleId": "cc7.4/incident-runbooks",
-          "ruleIndex": 78,
+          "ruleIndex": 79,
           "level": "warning",
           "message": {
             "text": "No runbook for credential leak, data exposure, compromised dependency, outage or DDoS. Runbooks found for 0 of 4 common scenarios; missing: credential leak, data exposure, compromised dependency, outage or DDoS. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -5114,7 +5621,7 @@
             "threesock/v1": "2ed0b4d82201c82c"
           },
           "properties": {
-            "findingId": "F-064",
+            "findingId": "F-066",
             "criterion": "CC7.4",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5129,7 +5636,7 @@
         },
         {
           "ruleId": "cc7.5/key-rotation",
-          "ruleIndex": 79,
+          "ruleIndex": 80,
           "level": "warning",
           "message": {
             "text": "No key rotation procedure. No key rotation procedure was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -5151,7 +5658,7 @@
             "threesock/v1": "1cd4f93fec683e49"
           },
           "properties": {
-            "findingId": "F-065",
+            "findingId": "F-067",
             "criterion": "CC7.5",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5169,10 +5676,10 @@
         },
         {
           "ruleId": "cc8.1/codeowners-sensitive-paths",
-          "ruleIndex": 81,
+          "ruleIndex": 82,
           "level": "warning",
           "message": {
-            "text": "Sensitive paths have no code owners. 4 sensitive files exist but there is no CODEOWNERS file. (Repository-level finding; shown on this file because code scanning needs a location.)"
+            "text": "Sensitive paths have no code owners. 5 sensitive files exist but there is no CODEOWNERS file. (Repository-level finding; shown on this file because code scanning needs a location.)"
           },
           "locations": [
             {
@@ -5191,7 +5698,7 @@
             "threesock/v1": "96725e2faf218099"
           },
           "properties": {
-            "findingId": "F-066",
+            "findingId": "F-068",
             "criterion": "CC8.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5209,7 +5716,7 @@
         },
         {
           "ruleId": "cc8.1/migrations-reversible",
-          "ruleIndex": 83,
+          "ruleIndex": 84,
           "level": "warning",
           "message": {
             "text": "Migration without a down step. migrations/001_init.up.sql has no matching 001_init.down.sql."
@@ -5231,7 +5738,47 @@
             "threesock/v1": "65588b3df01f4147"
           },
           "properties": {
-            "findingId": "F-067",
+            "findingId": "F-069",
+            "criterion": "CC8.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": false,
+            "controls": [
+              "Change management",
+              "Secure SDLC Integration",
+              "Segregation of duties"
+            ],
+            "policies": [
+              "Change & Release Management",
+              "Secure Software Development Lifecycle"
+            ]
+          }
+        },
+        {
+          "ruleId": "cc8.1/migrations-reversible",
+          "ruleIndex": 84,
+          "level": "warning",
+          "message": {
+            "text": "Migration without a down step. migrations/002_customers.up.sql has no matching 002_customers.down.sql."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "migrations/002_customers.up.sql",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "50a45a9a3823771f"
+          },
+          "properties": {
+            "findingId": "F-070",
             "criterion": "CC8.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5249,7 +5796,7 @@
         },
         {
           "ruleId": "cc9.1/continuity-plan",
-          "ruleIndex": 86,
+          "ruleIndex": 87,
           "level": "warning",
           "message": {
             "text": "No business continuity / disaster recovery plan. No business continuity / disaster recovery plan was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -5271,7 +5818,7 @@
             "threesock/v1": "07d989501a867971"
           },
           "properties": {
-            "findingId": "F-068",
+            "findingId": "F-071",
             "criterion": "CC9.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5289,7 +5836,7 @@
         },
         {
           "ruleId": "cc9.2/vendor-inventory",
-          "ruleIndex": 87,
+          "ruleIndex": 88,
           "level": "warning",
           "message": {
             "text": "Missing a third-party services inventory and an SBOM. No a third-party services inventory and an SBOM was found. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -5311,7 +5858,7 @@
             "threesock/v1": "d4dbc3c2328936e8"
           },
           "properties": {
-            "findingId": "F-069",
+            "findingId": "F-072",
             "criterion": "CC9.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5349,7 +5896,7 @@
             "threesock/v1": "8148fd6d6bd46101"
           },
           "properties": {
-            "findingId": "F-070",
+            "findingId": "F-073",
             "criterion": "A1.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5388,7 +5935,7 @@
             "threesock/v1": "bec52221fd33da0d"
           },
           "properties": {
-            "findingId": "F-071",
+            "findingId": "F-074",
             "criterion": "A1.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5427,7 +5974,7 @@
             "threesock/v1": "5555ec23a1e53ab8"
           },
           "properties": {
-            "findingId": "F-072",
+            "findingId": "F-075",
             "criterion": "A1.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5466,7 +6013,7 @@
             "threesock/v1": "ab5e59a7b452607b"
           },
           "properties": {
-            "findingId": "F-073",
+            "findingId": "F-076",
             "criterion": "A1.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5505,7 +6052,7 @@
             "threesock/v1": "60dd5b2951849fe6"
           },
           "properties": {
-            "findingId": "F-074",
+            "findingId": "F-077",
             "criterion": "A1.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5542,7 +6089,7 @@
             "threesock/v1": "6098614b792829db"
           },
           "properties": {
-            "findingId": "F-075",
+            "findingId": "F-078",
             "criterion": "A1.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5557,7 +6104,7 @@
         },
         {
           "ruleId": "pi1.2/input-validation",
-          "ruleIndex": 90,
+          "ruleIndex": 106,
           "level": "warning",
           "message": {
             "text": "No schema validation library. HTTP server or web framework detected in package.json, but no schema validation library (Zod, Joi, Pydantic, validator, ...) is used."
@@ -5579,7 +6126,7 @@
             "threesock/v1": "ad6f9b2c6e653388"
           },
           "properties": {
-            "findingId": "F-076",
+            "findingId": "F-079",
             "criterion": "PI1.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5594,7 +6141,7 @@
         },
         {
           "ruleId": "pi1.3/job-retries",
-          "ruleIndex": 91,
+          "ruleIndex": 107,
           "level": "warning",
           "message": {
             "text": "Jobs have no retry limits or dead-letter queue. Job queues are used, but no retry limits, backoff or dead-letter configuration was found. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -5616,7 +6163,7 @@
             "threesock/v1": "ee49649f32de1b4d"
           },
           "properties": {
-            "findingId": "F-077",
+            "findingId": "F-080",
             "criterion": "PI1.3",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5632,10 +6179,10 @@
         },
         {
           "ruleId": "pi1.5/db-constraints",
-          "ruleIndex": 92,
+          "ruleIndex": 108,
           "level": "warning",
           "message": {
-            "text": "Schemas declare no integrity constraints. 1 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints."
+            "text": "Schemas declare no integrity constraints. 2 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints."
           },
           "locations": [
             {
@@ -5654,7 +6201,7 @@
             "threesock/v1": "97da2166fc43d3c7"
           },
           "properties": {
-            "findingId": "F-078",
+            "findingId": "F-081",
             "criterion": "PI1.5",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5694,7 +6241,7 @@
             "threesock/v1": "d88ba9bf23694c7f"
           },
           "properties": {
-            "findingId": "F-079",
+            "findingId": "F-082",
             "criterion": "C1.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5735,7 +6282,7 @@
             "threesock/v1": "64db513299b3c82f"
           },
           "properties": {
-            "findingId": "F-080",
+            "findingId": "F-083",
             "criterion": "C1.1",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5776,7 +6323,7 @@
             "threesock/v1": "838be99c20f0bf44"
           },
           "properties": {
-            "findingId": "F-081",
+            "findingId": "F-084",
             "criterion": "C1.2",
             "severity": "medium",
             "dueDate": "2026-04-15",
@@ -5786,6 +6333,471 @@
             ],
             "policies": [
               "Retention & Secure Disposal"
+            ]
+          }
+        },
+        {
+          "ruleId": "p1.1/privacy-notice",
+          "ruleIndex": 89,
+          "level": "warning",
+          "message": {
+            "text": "No privacy notice in the product. The application stores personal data (e.g. migrations/001_init.up.sql:1), but no privacy notice page or link was found. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "c53dc39cf01453ce"
+          },
+          "properties": {
+            "findingId": "F-085",
+            "criterion": "P1.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy",
+              "Regulatory Liaison"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p3.1/data-map",
+          "ruleIndex": 91,
+          "level": "warning",
+          "message": {
+            "text": "No personal data map. No personal data map was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "8f2f1bdc5e5cbc2d"
+          },
+          "properties": {
+            "findingId": "F-086",
+            "criterion": "P3.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy",
+              "Information Classification"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights",
+              "Data Classification & Handling"
+            ]
+          }
+        },
+        {
+          "ruleId": "p3.2/sensitive-fields",
+          "ruleIndex": 92,
+          "level": "warning",
+          "message": {
+            "text": "Sensitive personal data without field-level protection. migrations/002_customers.up.sql defines a sensitive field at line 4, and no field-level encryption or tokenization was found."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "migrations/002_customers.up.sql",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "f416644c628934e3"
+          },
+          "properties": {
+            "findingId": "F-087",
+            "criterion": "P3.2",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": false,
+            "controls": [
+              "Data Privacy",
+              "Information Classification",
+              "Encrypted Data at Rest"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights",
+              "Data Classification & Handling"
+            ]
+          }
+        },
+        {
+          "ruleId": "p4.2/retention-jobs",
+          "ruleIndex": 93,
+          "level": "warning",
+          "message": {
+            "text": "No retention purge job or TTL. The application stores personal data (e.g. migrations/001_init.up.sql:1), but no retention purge job or TTL was found in the code. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "5772dc7a995648b7"
+          },
+          "properties": {
+            "findingId": "F-088",
+            "criterion": "P4.2",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Retention & Destruction",
+              "Data Privacy"
+            ],
+            "policies": [
+              "Retention & Secure Disposal",
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p4.3/deletion-path",
+          "ruleIndex": 94,
+          "level": "warning",
+          "message": {
+            "text": "No personal data deletion path. The application stores personal data (e.g. migrations/001_init.up.sql:1), but no account deletion, erasure or anonymization code was found. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "17d3f247aa79af47"
+          },
+          "properties": {
+            "findingId": "F-089",
+            "criterion": "P4.3",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Retention & Destruction"
+            ],
+            "policies": [
+              "Retention & Secure Disposal"
+            ]
+          }
+        },
+        {
+          "ruleId": "p4.3/deletion-path",
+          "ruleIndex": 94,
+          "level": "warning",
+          "message": {
+            "text": "Soft-deleted records are never purged. Soft deletion is used (migrations/002_customers.up.sql:5), but no job purges soft-deleted rows."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "migrations/002_customers.up.sql",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "cfabe99581a819ea"
+          },
+          "properties": {
+            "findingId": "F-090",
+            "criterion": "P4.3",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": false,
+            "controls": [
+              "Data Retention & Destruction"
+            ],
+            "policies": [
+              "Retention & Secure Disposal"
+            ]
+          }
+        },
+        {
+          "ruleId": "p5.1/data-export",
+          "ruleIndex": 95,
+          "level": "warning",
+          "message": {
+            "text": "No personal data export path. The application stores personal data (e.g. migrations/001_init.up.sql:1), but no personal data export path was found in the code. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "94c229a993c65b11"
+          },
+          "properties": {
+            "findingId": "F-091",
+            "criterion": "P5.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy",
+              "Access Rights"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p6.1/sdk-inventory",
+          "ruleIndex": 97,
+          "level": "warning",
+          "message": {
+            "text": "Undocumented third-party SDKs: Mixpanel. Mixpanel is used but not named in any third-party or privacy document. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "d51f823da457bee5"
+          },
+          "properties": {
+            "findingId": "F-092",
+            "criterion": "P6.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy",
+              "Supplier Security",
+              "Secure Data Transfer"
+            ],
+            "policies": [
+              "Information Sharing & Transfer",
+              "Vendor & Third-Party Risk",
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p6.1/user-objects-to-third-parties",
+          "ruleIndex": 98,
+          "level": "warning",
+          "message": {
+            "text": "Whole user object sent to a third-party SDK. Whole user object sent to a third-party SDK in public/tracking.js at line 8."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "public/tracking.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "9db84cfdce522dd3"
+          },
+          "properties": {
+            "findingId": "F-093",
+            "criterion": "P6.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": false,
+            "controls": [
+              "Data Privacy",
+              "Supplier Security",
+              "Secure Data Transfer"
+            ],
+            "policies": [
+              "Information Sharing & Transfer",
+              "Vendor & Third-Party Risk",
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p6.3/incident-register",
+          "ruleIndex": 99,
+          "level": "warning",
+          "message": {
+            "text": "No incident and disclosure register. No incident and disclosure register was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "fb64822078295023"
+          },
+          "properties": {
+            "findingId": "F-094",
+            "criterion": "P6.3",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Security Incident Management",
+              "Data Privacy"
+            ],
+            "policies": [
+              "Incident Response & Breach Notification"
+            ]
+          }
+        },
+        {
+          "ruleId": "p6.6/breach-notification",
+          "ruleIndex": 101,
+          "level": "warning",
+          "message": {
+            "text": "No breach notification procedure. No breach notification procedure was found in the repository's documentation. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "03fb6e367246cbed"
+          },
+          "properties": {
+            "findingId": "F-095",
+            "criterion": "P6.6",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Security Incident Management",
+              "Regulatory Liaison"
+            ],
+            "policies": [
+              "Incident Response & Breach Notification"
+            ]
+          }
+        },
+        {
+          "ruleId": "p8.1/privacy-contact",
+          "ruleIndex": 103,
+          "level": "warning",
+          "message": {
+            "text": "No privacy contact published. No privacy contact (privacy@ address, DPO or privacy request channel) was found in the docs or the product. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "2c1bf025ffa933b1"
+          },
+          "properties": {
+            "findingId": "F-096",
+            "criterion": "P8.1",
+            "severity": "medium",
+            "dueDate": "2026-04-15",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy",
+              "Regulatory Liaison"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights",
+              "Compliance & Regulatory Monitoring"
             ]
           }
         },
@@ -5813,7 +6825,7 @@
             "threesock/v1": "2572b71906218fe6"
           },
           "properties": {
-            "findingId": "F-082",
+            "findingId": "F-097",
             "criterion": "CC2.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -5853,7 +6865,7 @@
             "threesock/v1": "83f7ff6461ca3144"
           },
           "properties": {
-            "findingId": "F-083",
+            "findingId": "F-098",
             "criterion": "CC2.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -5893,7 +6905,7 @@
             "threesock/v1": "d0279ff1b06f9a97"
           },
           "properties": {
-            "findingId": "F-084",
+            "findingId": "F-099",
             "criterion": "CC2.2",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -5933,7 +6945,7 @@
             "threesock/v1": "c5a9d1a2bcd044ac"
           },
           "properties": {
-            "findingId": "F-085",
+            "findingId": "F-100",
             "criterion": "CC2.2",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -5973,7 +6985,7 @@
             "threesock/v1": "3fc01bac0142f0ab"
           },
           "properties": {
-            "findingId": "F-086",
+            "findingId": "F-101",
             "criterion": "CC3.2",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6012,7 +7024,7 @@
             "threesock/v1": "22c479d23700fd83"
           },
           "properties": {
-            "findingId": "F-087",
+            "findingId": "F-102",
             "criterion": "CC3.4",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6052,7 +7064,7 @@
             "threesock/v1": "3a02c1fb6200cd9a"
           },
           "properties": {
-            "findingId": "F-088",
+            "findingId": "F-103",
             "criterion": "CC4.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6093,7 +7105,7 @@
             "threesock/v1": "7a0903a4b8ad240f"
           },
           "properties": {
-            "findingId": "F-089",
+            "findingId": "F-104",
             "criterion": "CC5.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6132,7 +7144,7 @@
             "threesock/v1": "5ef979bfa230d62f"
           },
           "properties": {
-            "findingId": "F-090",
+            "findingId": "F-105",
             "criterion": "CC5.3",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6170,7 +7182,7 @@
             "threesock/v1": "c3119a20058b5edf"
           },
           "properties": {
-            "findingId": "F-091",
+            "findingId": "F-106",
             "criterion": "CC6.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6212,7 +7224,7 @@
             "threesock/v1": "fe0aa376e16bf539"
           },
           "properties": {
-            "findingId": "F-092",
+            "findingId": "F-107",
             "criterion": "CC6.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6254,7 +7266,7 @@
             "threesock/v1": "6cfd9e32872f265f"
           },
           "properties": {
-            "findingId": "F-093",
+            "findingId": "F-108",
             "criterion": "CC6.5",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6293,7 +7305,7 @@
             "threesock/v1": "2953e1da21b438da"
           },
           "properties": {
-            "findingId": "F-094",
+            "findingId": "F-109",
             "criterion": "CC6.8",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6335,7 +7347,7 @@
             "threesock/v1": "de36fac6296f0bde"
           },
           "properties": {
-            "findingId": "F-095",
+            "findingId": "F-110",
             "criterion": "CC6.8",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6377,7 +7389,7 @@
             "threesock/v1": "a9d8df233ec64892"
           },
           "properties": {
-            "findingId": "F-096",
+            "findingId": "F-111",
             "criterion": "CC7.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6396,7 +7408,7 @@
         },
         {
           "ruleId": "cc8.1/emergency-change",
-          "ruleIndex": 82,
+          "ruleIndex": 83,
           "level": "note",
           "message": {
             "text": "No documented emergency change process. No document describes an emergency, hotfix or break-glass change process. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -6418,7 +7430,7 @@
             "threesock/v1": "add910b5218ba2ce"
           },
           "properties": {
-            "findingId": "F-097",
+            "findingId": "F-112",
             "criterion": "CC8.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6436,7 +7448,7 @@
         },
         {
           "ruleId": "cc8.1/rollback-procedure",
-          "ruleIndex": 84,
+          "ruleIndex": 85,
           "level": "note",
           "message": {
             "text": "No documented rollback procedure. No runbook or document describing how to roll back a deployment was found. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -6458,7 +7470,7 @@
             "threesock/v1": "d97d88987bf8548d"
           },
           "properties": {
-            "findingId": "F-098",
+            "findingId": "F-113",
             "criterion": "CC8.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6498,7 +7510,7 @@
             "threesock/v1": "3704b993535764be"
           },
           "properties": {
-            "findingId": "F-099",
+            "findingId": "F-114",
             "criterion": "A1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6537,7 +7549,7 @@
             "threesock/v1": "6b97411e28ba84a2"
           },
           "properties": {
-            "findingId": "F-100",
+            "findingId": "F-115",
             "criterion": "A1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6554,7 +7566,7 @@
         },
         {
           "ruleId": "pi1.1/api-contracts",
-          "ruleIndex": 88,
+          "ruleIndex": 104,
           "level": "note",
           "message": {
             "text": "No API contract. The repository serves an API but has no OpenAPI, GraphQL or protobuf contract. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -6576,7 +7588,7 @@
             "threesock/v1": "403ea7999f4ef693"
           },
           "properties": {
-            "findingId": "F-101",
+            "findingId": "F-116",
             "criterion": "PI1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6593,7 +7605,7 @@
         },
         {
           "ruleId": "pi1.1/changelog",
-          "ruleIndex": 89,
+          "ruleIndex": 105,
           "level": "note",
           "message": {
             "text": "No changelog. No CHANGELOG, CHANGES, HISTORY or release notes file at the repository root. (Repository-level finding; shown on this file because code scanning needs a location.)"
@@ -6615,7 +7627,7 @@
             "threesock/v1": "d11928f11f6871b8"
           },
           "properties": {
-            "findingId": "F-102",
+            "findingId": "F-117",
             "criterion": "PI1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6654,7 +7666,7 @@
             "threesock/v1": "ff79c698e87e8c4a"
           },
           "properties": {
-            "findingId": "F-103",
+            "findingId": "F-118",
             "criterion": "C1.2",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6664,6 +7676,158 @@
             ],
             "policies": [
               "Retention & Secure Disposal"
+            ]
+          }
+        },
+        {
+          "ruleId": "p5.2/data-correction",
+          "ruleIndex": 96,
+          "level": "note",
+          "message": {
+            "text": "No profile or account update path. The application stores personal data (e.g. migrations/001_init.up.sql:1), but no profile or account update path was found in the code. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "f7e245fd36e790bf"
+          },
+          "properties": {
+            "findingId": "F-119",
+            "criterion": "P5.2",
+            "severity": "low",
+            "dueDate": "2026-07-14",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p6.5/vendor-breach-intake",
+          "ruleIndex": 100,
+          "level": "note",
+          "message": {
+            "text": "No intake for vendor breach notices. No document describes how breach or incident notices from vendors and subprocessors are received and handled. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "f3028acecc4dcb7f"
+          },
+          "properties": {
+            "findingId": "F-120",
+            "criterion": "P6.5",
+            "severity": "low",
+            "dueDate": "2026-07-14",
+            "repositoryLevel": true,
+            "controls": [
+              "Supplier Security",
+              "Security Incident Management"
+            ],
+            "policies": [
+              "Vendor & Third-Party Risk",
+              "Incident Response & Breach Notification"
+            ]
+          }
+        },
+        {
+          "ruleId": "p7.1/pii-validation",
+          "ruleIndex": 102,
+          "level": "note",
+          "message": {
+            "text": "No validation of personal data fields. The application stores personal data (e.g. migrations/001_init.up.sql:1), but no validation of personal data fields was found in the code. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "a2fb940f3204ca77"
+          },
+          "properties": {
+            "findingId": "F-121",
+            "criterion": "P7.1",
+            "severity": "low",
+            "dueDate": "2026-07-14",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights"
+            ]
+          }
+        },
+        {
+          "ruleId": "p8.1/privacy-contact",
+          "ruleIndex": 103,
+          "level": "note",
+          "message": {
+            "text": "No privacy review in the change process. Neither the PR template nor a PIA/DPIA process asks about personal data. (Repository-level finding; shown on this file because code scanning needs a location.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "README.md",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "13c65c68f8e402d4"
+          },
+          "properties": {
+            "findingId": "F-122",
+            "criterion": "P8.1",
+            "severity": "low",
+            "dueDate": "2026-07-14",
+            "repositoryLevel": true,
+            "controls": [
+              "Data Privacy",
+              "Regulatory Liaison"
+            ],
+            "policies": [
+              "Privacy & Data-Subject Rights",
+              "Compliance & Regulatory Monitoring"
             ]
           }
         }

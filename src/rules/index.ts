@@ -70,6 +70,7 @@ import { driftDetection } from './cc7.1/drift-detection.js';
 import { githubDependabot } from './cc7.1/github-dependabot.js';
 import { vulnerabilityMonitoring } from './cc7.1/vulnerability-monitoring.js';
 import { alertRules } from './cc7.2/alert-rules.js';
+import { piiInLogs } from './cc7.2/pii-in-logs.js';
 import { sensitiveLogging } from './cc7.2/sensitive-logging.js';
 import { triageCriteria } from './cc7.3/triage-criteria.js';
 import { incidentResponsePlan } from './cc7.4/incident-response-plan.js';
@@ -107,6 +108,21 @@ import { encryptionAtRest } from './c1.1/encryption-at-rest.js';
 import { piiInFixtures } from './c1.1/pii-in-fixtures.js';
 import { lifecycleRules } from './c1.2/lifecycle-rules.js';
 import { retentionSchedule } from './c1.2/retention-schedule.js';
+import { privacyNotice } from './p1.1/privacy-notice.js';
+import { consentGating } from './p2.1/consent-gating.js';
+import { dataMap } from './p3.1/data-map.js';
+import { sensitiveFields } from './p3.2/sensitive-fields.js';
+import { retentionJobs } from './p4.2/retention-jobs.js';
+import { deletionPath } from './p4.3/deletion-path.js';
+import { dataExport } from './p5.1/data-export.js';
+import { dataCorrection } from './p5.2/data-correction.js';
+import { sdkInventory } from './p6.1/sdk-inventory.js';
+import { userObjectsToThirdParties } from './p6.1/user-objects-to-third-parties.js';
+import { incidentRegister } from './p6.3/incident-register.js';
+import { vendorBreachIntake } from './p6.5/vendor-breach-intake.js';
+import { breachNotification } from './p6.6/breach-notification.js';
+import { piiValidation } from './p7.1/pii-validation.js';
+import { privacyContact } from './p8.1/privacy-contact.js';
 
 export const RULES: readonly Rule[] = [
   // CC1.3
@@ -200,6 +216,7 @@ export const RULES: readonly Rule[] = [
   vulnerabilityMonitoring,
   // CC7.2
   alertRules,
+  piiInLogs,
   sensitiveLogging,
   // CC7.3
   triageCriteria,
@@ -252,4 +269,33 @@ export const RULES: readonly Rule[] = [
   // C1.2
   lifecycleRules,
   retentionSchedule,
+  // P1.1
+  privacyNotice,
+  // P2.1
+  consentGating,
+  // P3.1
+  dataMap,
+  // P3.2
+  sensitiveFields,
+  // P4.2
+  retentionJobs,
+  // P4.3
+  deletionPath,
+  // P5.1
+  dataExport,
+  // P5.2
+  dataCorrection,
+  // P6.1
+  sdkInventory,
+  userObjectsToThirdParties,
+  // P6.3
+  incidentRegister,
+  // P6.5
+  vendorBreachIntake,
+  // P6.6
+  breachNotification,
+  // P7.1
+  piiValidation,
+  // P8.1
+  privacyContact,
 ];

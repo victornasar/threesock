@@ -18,3 +18,11 @@ Application logs are kept for 90 days, then deleted by lifecycle rules. Closed a
 |---|---|---|
 | Stripe | Payments | Email, card token |
 | Sentry | Error tracking | Stack traces, no PII |
+| PostHog | Product analytics (after consent) | Pseudonymous user id, page views |
+
+## Data map
+| Data | Purpose | Stored in | Retention |
+|---|---|---|---|
+| Email | Login and receipts | Postgres users | Account lifetime + 30 days |
+| Name | Personalisation | Postgres users | Account lifetime + 30 days |
+| Date of birth | Age verification | Postgres users (encrypted field) | Account lifetime |

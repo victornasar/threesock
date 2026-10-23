@@ -19,9 +19,9 @@ External tools:      none (built-in rules only)
 | Availability | 3 | 0 | 6 | 0.0% | Not ready | 0 |
 | Processing Integrity | 4 | 0 | 8 | 0.0% | Not ready | 1 |
 | Confidentiality | 2 | 0 | 4 | 0.0% | Not ready | 0 |
-| Privacy | 0 | 0 | 0 | — | nothing assessable | 18 |
+| Privacy | 14 | 0 | 28 | 0.0% | Not ready | 4 |
 
-Open findings: 9 critical · 26 high · 46 medium · 22 low
+Open findings: 9 critical · 27 high · 60 medium · 26 low
 
 Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded from both sides of the ratio (rubric 1.1), so read it together with the number of criteria assessed.
 
@@ -39,65 +39,65 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 |---|---|---|---|---|---|---|
 | CC1.1 | Integrity and ethical values | MANUAL |  |  | Leadership and People Ops | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
 | CC1.2 | Board oversight | MANUAL |  |  | Board / executive leadership | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
-| CC1.3 | Organizational structure | 0 (Not Met) |  | F-036 |  | No automated check passed. |
+| CC1.3 | Organizational structure | 0 (Not Met) |  | F-037 |  | No automated check passed. |
 | CC1.4 | Competence | MANUAL |  |  | Leadership and People Ops | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
 | CC1.5 | Accountability | MANUAL |  |  | Leadership and People Ops | None of the automated checks apply to this repository. Confirm manually, or declare N/A with a justification in threesock.yaml. |
-| CC2.1 | Relevant, quality information | 0 (Not Met) |  | F-082, F-083 |  | No automated check passed. |
-| CC2.2 | Internal communication | 0 (Not Met) |  | F-084, F-085 |  | No automated check passed. |
-| CC2.3 | External communication | 0 (Not Met) |  | F-037 |  | No automated check passed. |
+| CC2.1 | Relevant, quality information | 0 (Not Met) |  | F-097, F-098 |  | No automated check passed. |
+| CC2.2 | Internal communication | 0 (Not Met) |  | F-099, F-100 |  | No automated check passed. |
+| CC2.3 | External communication | 0 (Not Met) |  | F-038 |  | No automated check passed. |
 | CC3.1 | Suitable objectives | MANUAL |  |  | Security and risk owner | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
-| CC3.2 | Risk identification and analysis | 0 (Not Met) |  | F-038, F-039, F-086 |  | No automated check passed. |
+| CC3.2 | Risk identification and analysis | 0 (Not Met) |  | F-039, F-040, F-101 |  | No automated check passed. |
 | CC3.3 | Fraud risk | 0 (Not Met) |  | F-010, F-011 |  | No automated check passed. |
-| CC3.4 | Significant changes | 0 (Not Met) |  | F-087 |  | No automated check passed. |
-| CC4.1 | Ongoing/separate evaluations | 0 (Not Met) |  | F-040, F-041, F-088 |  | No automated check passed. |
-| CC4.2 | Deficiency communication and remediation | 0 (Not Met) |  | F-042, F-043, F-044, F-045 |  | Red flag present: Unexplained entries in .trivyignore (F-044). |
-| CC5.1 | Control selection and design | 0 (Not Met) |  | F-089 |  | No automated check passed. |
-| CC5.2 | Technology general controls | 0 (Not Met) |  | F-001, F-012, F-013, F-014, F-015, F-046, F-047 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
-| CC5.3 | Policies and procedures | 0 (Not Met) |  | F-048, F-090 |  | No automated check passed. |
-| CC6.1 | Logical access security | 0 (Not Met) |  | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-049, F-050, F-051, F-091, F-092 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
+| CC3.4 | Significant changes | 0 (Not Met) |  | F-102 |  | No automated check passed. |
+| CC4.1 | Ongoing/separate evaluations | 0 (Not Met) |  | F-041, F-042, F-103 |  | No automated check passed. |
+| CC4.2 | Deficiency communication and remediation | 0 (Not Met) |  | F-043, F-044, F-045, F-046 |  | Red flag present: Unexplained entries in .trivyignore (F-045). |
+| CC5.1 | Control selection and design | 0 (Not Met) |  | F-104 |  | No automated check passed. |
+| CC5.2 | Technology general controls | 0 (Not Met) |  | F-001, F-012, F-013, F-014, F-015, F-047, F-048 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
+| CC5.3 | Policies and procedures | 0 (Not Met) |  | F-049, F-105 |  | No automated check passed. |
+| CC6.1 | Logical access security | 0 (Not Met) |  | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-050, F-051, F-052, F-106, F-107 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
 | CC6.2 | Registration and authorization before access | 0 (Not Met) |  | F-019 |  | No automated check passed. |
-| CC6.3 | Access removal and modification | 0 (Not Met) |  | F-052, F-053 |  | No automated check passed. |
+| CC6.3 | Access removal and modification | 0 (Not Met) |  | F-053, F-054 |  | No automated check passed. |
 | CC6.4 | Physical access | MANUAL |  |  | IT and facilities (inherit from cloud provider SOC 2 report) | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
-| CC6.5 | Secure disposal of assets | 0 (Not Met) |  | F-093 |  | No automated check passed. |
-| CC6.6 | Protection against external threats | 0 (Not Met) |  | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
-| CC6.7 | Protection of data in transmission | 0 (Not Met) |  | F-025, F-026, F-027, F-056 |  | Red flag present: Node TLS client with certificate rejection turned off (F-025). |
-| CC6.8 | Malicious/unauthorized software | 0 (Not Met) |  | F-028, F-029, F-057, F-058, F-059, F-094, F-095 |  | No automated check passed. |
-| CC7.1 | Detection of vulnerabilities and configuration changes | 0 (Not Met) |  | F-060, F-061, F-096 |  | No automated check passed. |
-| CC7.2 | Monitoring for anomalies | 0 (Not Met) |  | F-030, F-062 |  | No automated check passed. |
-| CC7.3 | Security event evaluation | 0 (Not Met) |  | F-063 |  | No automated check passed. |
-| CC7.4 | Incident response | 0 (Not Met) |  | F-031, F-064 |  | No automated check passed. |
-| CC7.5 | Recovery from incidents | 0 (Not Met) |  | F-065 |  | No automated check passed. |
-| CC8.1 | Authorized, tested, approved changes | 0 (Not Met) |  | F-032, F-033, F-066, F-067, F-097, F-098 |  | No automated check passed. |
-| CC9.1 | Business disruption risk | 0 (Not Met) |  | F-068 |  | No automated check passed. |
-| CC9.2 | Vendor and third-party risk | 0 (Not Met) |  | F-069 |  | No automated check passed. |
-| A1.1 | Capacity management | 0 (Not Met) |  | F-070, F-099, F-100 |  | No automated check passed. |
-| A1.2 | Environmental protection, backup, and recovery infrastructure | 0 (Not Met) |  | F-034, F-071, F-072, F-073 |  | Red flag present: No reliable backups for aws_db_instance.main (F-034). |
-| A1.3 | Recovery plan testing | 0 (Not Met) |  | F-074, F-075 |  | No automated check passed. |
-| PI1.1 | Processing objectives and specifications | 0 (Not Met) |  | F-101, F-102 |  | No automated check passed. |
-| PI1.2 | Input completeness and accuracy | 0 (Not Met) |  | F-076 |  | No automated check passed. |
-| PI1.3 | Processing completeness, accuracy, timeliness, authorization | 0 (Not Met) |  | F-077 |  | No automated check passed. |
+| CC6.5 | Secure disposal of assets | 0 (Not Met) |  | F-108 |  | No automated check passed. |
+| CC6.6 | Protection against external threats | 0 (Not Met) |  | F-009, F-020, F-021, F-022, F-023, F-024, F-055, F-056 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
+| CC6.7 | Protection of data in transmission | 0 (Not Met) |  | F-025, F-026, F-027, F-057 |  | Red flag present: Node TLS client with certificate rejection turned off (F-025). |
+| CC6.8 | Malicious/unauthorized software | 0 (Not Met) |  | F-028, F-029, F-058, F-059, F-060, F-109, F-110 |  | No automated check passed. |
+| CC7.1 | Detection of vulnerabilities and configuration changes | 0 (Not Met) |  | F-061, F-062, F-111 |  | No automated check passed. |
+| CC7.2 | Monitoring for anomalies | 0 (Not Met) |  | F-030, F-063, F-064 |  | No automated check passed. |
+| CC7.3 | Security event evaluation | 0 (Not Met) |  | F-065 |  | No automated check passed. |
+| CC7.4 | Incident response | 0 (Not Met) |  | F-031, F-066 |  | No automated check passed. |
+| CC7.5 | Recovery from incidents | 0 (Not Met) |  | F-067 |  | No automated check passed. |
+| CC8.1 | Authorized, tested, approved changes | 0 (Not Met) |  | F-032, F-033, F-068, F-069, F-070, F-112, F-113 |  | No automated check passed. |
+| CC9.1 | Business disruption risk | 0 (Not Met) |  | F-071 |  | No automated check passed. |
+| CC9.2 | Vendor and third-party risk | 0 (Not Met) |  | F-072 |  | No automated check passed. |
+| A1.1 | Capacity management | 0 (Not Met) |  | F-073, F-114, F-115 |  | No automated check passed. |
+| A1.2 | Environmental protection, backup, and recovery infrastructure | 0 (Not Met) |  | F-034, F-074, F-075, F-076 |  | Red flag present: No reliable backups for aws_db_instance.main (F-034). |
+| A1.3 | Recovery plan testing | 0 (Not Met) |  | F-077, F-078 |  | No automated check passed. |
+| PI1.1 | Processing objectives and specifications | 0 (Not Met) |  | F-116, F-117 |  | No automated check passed. |
+| PI1.2 | Input completeness and accuracy | 0 (Not Met) |  | F-079 |  | No automated check passed. |
+| PI1.3 | Processing completeness, accuracy, timeliness, authorization | 0 (Not Met) |  | F-080 |  | No automated check passed. |
 | PI1.4 | Output completeness, accuracy, timeliness | MANUAL |  |  | Engineering lead | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| PI1.5 | Storage completeness and accuracy | 0 (Not Met) |  | F-078 |  | No automated check passed. |
-| C1.1 | Identify and protect confidential information | 0 (Not Met) |  | F-035, F-079, F-080 |  | No automated check passed. |
-| C1.2 | Dispose of confidential information | 0 (Not Met) |  | F-081, F-103 |  | No automated check passed. |
-| P1.1 | Privacy notice | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P2.1 | Choice and consent | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P3.1 | Collection consistent with objectives | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P3.2 | Sensitive information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| PI1.5 | Storage completeness and accuracy | 0 (Not Met) |  | F-081 |  | No automated check passed. |
+| C1.1 | Identify and protect confidential information | 0 (Not Met) |  | F-035, F-082, F-083 |  | No automated check passed. |
+| C1.2 | Dispose of confidential information | 0 (Not Met) |  | F-084, F-118 |  | No automated check passed. |
+| P1.1 | Privacy notice | 0 (Not Met) |  | F-085 |  | No automated check passed. |
+| P2.1 | Choice and consent | 0 (Not Met) |  | F-036 |  | Red flag present: Trackers load without a consent check (F-036). |
+| P3.1 | Collection consistent with objectives | 0 (Not Met) |  | F-086 |  | No automated check passed. |
+| P3.2 | Sensitive information | 0 (Not Met) |  | F-087 |  | No automated check passed. |
 | P4.1 | Use of personal information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P4.2 | Retention of personal information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P4.3 | Disposal of personal information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P5.1 | Data subject access | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P5.2 | Correction and amendment | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.1 | Authorized disclosure to third parties | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P4.2 | Retention of personal information | 0 (Not Met) |  | F-088 |  | No automated check passed. |
+| P4.3 | Disposal of personal information | 0 (Not Met) |  | F-089, F-090 |  | Red flag present: Soft-deleted records are never purged (F-090). |
+| P5.1 | Data subject access | 0 (Not Met) |  | F-091 |  | No automated check passed. |
+| P5.2 | Correction and amendment | 0 (Not Met) |  | F-119 |  | No automated check passed. |
+| P6.1 | Authorized disclosure to third parties | 0 (Not Met) |  | F-092, F-093 |  | Red flag present: Whole user object sent to a third-party SDK (F-093). |
 | P6.2 | Records of authorized disclosures | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.3 | Records of unauthorized disclosures | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P6.3 | Records of unauthorized disclosures | 0 (Not Met) |  | F-094 |  | No automated check passed. |
 | P6.4 | Third-party privacy commitments | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.5 | Third-party notification of unauthorized disclosure | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.6 | Breach notification | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P6.5 | Third-party notification of unauthorized disclosure | 0 (Not Met) |  | F-120 |  | No automated check passed. |
+| P6.6 | Breach notification | 0 (Not Met) |  | F-095 |  | No automated check passed. |
 | P6.7 | Accounting of personal information held and disclosed | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P7.1 | Data quality | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P8.1 | Privacy inquiries, complaints, and disputes | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P7.1 | Data quality | 0 (Not Met) |  | F-121 |  | No automated check passed. |
+| P8.1 | Privacy inquiries, complaints, and disputes | 0 (Not Met) |  | F-096, F-122 |  | No automated check passed. |
 
 ## Findings (Appendix B)
 
@@ -1130,10 +1130,37 @@ resource "aws_db_instance" "main" {
 }
 ```
 
-### F-036 · Medium · CC1.3 · No CODEOWNERS file
+### F-036 · High · P2.1 · Trackers load without a consent check
 
 ```
 Finding ID:        F-036
+Criterion:         P2.1
+Severity:          High
+Title:             Trackers load without a consent check
+Location:          package.json:11
+Observed:          Mixpanel is loaded, but no consent manager or consent check was found.
+Expected:          Non-essential trackers (analytics, advertising, session recording) are gated on recorded consent, and Global Privacy Control is respected where required.
+Risk:              Trackers firing before consent breach ePrivacy and GDPR rules and the privacy notice, and are a rubric red flag.
+Recommendation:    Load trackers only after the visitor opts in (a consent manager or your own gate), default to opted-out, and honour navigator.globalPrivacyControl.
+Controls:          Data Privacy
+Policies:          Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-02-14
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is a558be091df652c6.
+```
+
+Example fix:
+
+```
+posthog.init(KEY, { opt_out_capturing_by_default: true });
+if (consent.analytics && !navigator.globalPrivacyControl) posthog.opt_in_capturing();
+```
+
+### F-037 · Medium · CC1.3 · No CODEOWNERS file
+
+```
+Finding ID:        F-037
 Criterion:         CC1.3
 Severity:          Medium
 Title:             No CODEOWNERS file
@@ -1159,10 +1186,10 @@ Example fix:
 /infra/           @your-org/platform
 ```
 
-### F-037 · Medium · CC2.3 · No vulnerability disclosure policy
+### F-038 · Medium · CC2.3 · No vulnerability disclosure policy
 
 ```
-Finding ID:        F-037
+Finding ID:        F-038
 Criterion:         CC2.3
 Severity:          Medium
 Title:             No vulnerability disclosure policy
@@ -1189,10 +1216,10 @@ Email security@example.com or use GitHub private vulnerability reporting.
 We acknowledge reports within 2 business days and aim to fix Critical issues within 7 days.
 ```
 
-### F-038 · Medium · CC3.2 · No risk register
+### F-039 · Medium · CC3.2 · No risk register
 
 ```
-Finding ID:        F-038
+Finding ID:        F-039
 Criterion:         CC3.2
 Severity:          Medium
 Title:             No risk register
@@ -1217,10 +1244,10 @@ Example fix:
 | Leaked deploy key | Low | High | @platform | Mitigate: OIDC, no stored keys |
 ```
 
-### F-039 · Medium · CC3.2 · No threat model
+### F-040 · Medium · CC3.2 · No threat model
 
 ```
-Finding ID:        F-039
+Finding ID:        F-040
 Criterion:         CC3.2
 Severity:          Medium
 Title:             No threat model
@@ -1251,10 +1278,10 @@ Public API, admin console, webhook endpoint.
 | Forged webhook | Signature verification |
 ```
 
-### F-040 · Medium · CC4.1 · Infrastructure code is not scanned
+### F-041 · Medium · CC4.1 · Infrastructure code is not scanned
 
 ```
-Finding ID:        F-040
+Finding ID:        F-041
 Criterion:         CC4.1
 Severity:          Medium
 Title:             Infrastructure code is not scanned
@@ -1277,10 +1304,10 @@ Example fix:
 - run: trivy config --exit-code 1 --severity HIGH,CRITICAL .
 ```
 
-### F-041 · Medium · CC4.1 · No static analysis in CI
+### F-042 · Medium · CC4.1 · No static analysis in CI
 
 ```
-Finding ID:        F-041
+Finding ID:        F-042
 Criterion:         CC4.1
 Severity:          Medium
 Title:             No static analysis in CI
@@ -1305,10 +1332,10 @@ Example fix:
 - uses: github/codeql-action/analyze@<sha>
 ```
 
-### F-042 · Medium · CC4.2 · Non-blocking security scan in .github/workflows/ci.yml
+### F-043 · Medium · CC4.2 · Non-blocking security scan in .github/workflows/ci.yml
 
 ```
-Finding ID:        F-042
+Finding ID:        F-043
 Criterion:         CC4.2
 Severity:          Medium
 Title:             Non-blocking security scan in .github/workflows/ci.yml
@@ -1331,10 +1358,10 @@ Example fix:
 - run: trivy fs --exit-code 1 --severity CRITICAL,HIGH .
 ```
 
-### F-043 · Medium · CC4.2 · No vulnerability remediation policy
+### F-044 · Medium · CC4.2 · No vulnerability remediation policy
 
 ```
-Finding ID:        F-043
+Finding ID:        F-044
 Criterion:         CC4.2
 Severity:          Medium
 Title:             No vulnerability remediation policy
@@ -1361,10 +1388,10 @@ Example fix:
 Overdue findings are escalated to the engineering lead; exceptions need an approver and expiry.
 ```
 
-### F-044 · Medium · CC4.2 · Unexplained entries in .trivyignore
+### F-045 · Medium · CC4.2 · Unexplained entries in .trivyignore
 
 ```
-Finding ID:        F-044
+Finding ID:        F-045
 Criterion:         CC4.2
 Severity:          Medium
 Title:             Unexplained entries in .trivyignore
@@ -1387,10 +1414,10 @@ Example fix:
 subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)
 ```
 
-### F-045 · Medium · CC4.2 · 1 unexplained security suppression in infra/main.tf
+### F-046 · Medium · CC4.2 · 1 unexplained security suppression in infra/main.tf
 
 ```
-Finding ID:        F-045
+Finding ID:        F-046
 Criterion:         CC4.2
 Severity:          Medium
 Title:             1 unexplained security suppression in infra/main.tf
@@ -1413,10 +1440,10 @@ Example fix:
 subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)
 ```
 
-### F-046 · Medium · CC5.2 · 3 actions not pinned to a SHA in .github/workflows/ci.yml
+### F-047 · Medium · CC5.2 · 3 actions not pinned to a SHA in .github/workflows/ci.yml
 
 ```
-Finding ID:        F-046
+Finding ID:        F-047
 Criterion:         CC5.2
 Severity:          Medium
 Title:             3 actions not pinned to a SHA in .github/workflows/ci.yml
@@ -1439,10 +1466,10 @@ Example fix:
 - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 ```
 
-### F-047 · Medium · CC5.2 · Deploy job without an environment: deploy
+### F-048 · Medium · CC5.2 · Deploy job without an environment: deploy
 
 ```
-Finding ID:        F-047
+Finding ID:        F-048
 Criterion:         CC5.2
 Severity:          Medium
 Title:             Deploy job without an environment: deploy
@@ -1468,10 +1495,10 @@ jobs:
     runs-on: ubuntu-latest
 ```
 
-### F-048 · Medium · CC5.3 · No documented procedure for onboarding, offboarding, deployment, rollback, incident response, key rotation, access reviews
+### F-049 · Medium · CC5.3 · No documented procedure for onboarding, offboarding, deployment, rollback, incident response, key rotation, access reviews
 
 ```
-Finding ID:        F-048
+Finding ID:        F-049
 Criterion:         CC5.3
 Severity:          Medium
 Title:             No documented procedure for onboarding, offboarding, deployment, rollback, incident response, key rotation, access reviews
@@ -1498,10 +1525,10 @@ docs/runbooks/
   secrets.md    # key rotation
 ```
 
-### F-049 · Medium · CC6.1 · Session cookie is readable from JavaScript (HttpOnly disabled)
+### F-050 · Medium · CC6.1 · Session cookie is readable from JavaScript (HttpOnly disabled)
 
 ```
-Finding ID:        F-049
+Finding ID:        F-050
 Criterion:         CC6.1
 Severity:          Medium
 Title:             Session cookie is readable from JavaScript (HttpOnly disabled)
@@ -1526,10 +1553,10 @@ app.use(session({
 }));
 ```
 
-### F-050 · Medium · CC6.1 · JWT decoded without verifying its signature
+### F-051 · Medium · CC6.1 · JWT decoded without verifying its signature
 
 ```
-Finding ID:        F-050
+Finding ID:        F-051
 Criterion:         CC6.1
 Severity:          Medium
 Title:             JWT decoded without verifying its signature
@@ -1554,10 +1581,10 @@ const claims = jwt.verify(token, publicKey, {
 });
 ```
 
-### F-051 · Medium · CC6.1 · No automated secret scanning
+### F-052 · Medium · CC6.1 · No automated secret scanning
 
 ```
-Finding ID:        F-051
+Finding ID:        F-052
 Criterion:         CC6.1
 Severity:          Medium
 Title:             No automated secret scanning
@@ -1589,10 +1616,10 @@ jobs:
       - uses: gitleaks/gitleaks-action@<sha>
 ```
 
-### F-052 · Medium · CC6.3 · No offboarding procedure
+### F-053 · Medium · CC6.3 · No offboarding procedure
 
 ```
-Finding ID:        F-052
+Finding ID:        F-053
 Criterion:         CC6.3
 Severity:          Medium
 Title:             No offboarding procedure
@@ -1618,10 +1645,10 @@ Example fix:
 - [ ] Revoke personal cloud credentials and tokens
 ```
 
-### F-053 · Medium · CC6.3 · Token issued without an expiry
+### F-054 · Medium · CC6.3 · Token issued without an expiry
 
 ```
-Finding ID:        F-053
+Finding ID:        F-054
 Criterion:         CC6.3
 Severity:          Medium
 Title:             Token issued without an expiry
@@ -1644,10 +1671,10 @@ Example fix:
 jwt.sign(claims, key, { algorithm: 'RS256', expiresIn: '15m' });
 ```
 
-### F-054 · Medium · CC6.6 · No HTTP security headers configured
+### F-055 · Medium · CC6.6 · No HTTP security headers configured
 
 ```
-Finding ID:        F-054
+Finding ID:        F-055
 Criterion:         CC6.6
 Severity:          Medium
 Title:             No HTTP security headers configured
@@ -1671,10 +1698,10 @@ import helmet from 'helmet';
 app.use(helmet({ hsts: { maxAge: 31536000, includeSubDomains: true } }));
 ```
 
-### F-055 · Medium · CC6.6 · DOM innerHTML/outerHTML assigned without visible sanitization
+### F-056 · Medium · CC6.6 · DOM innerHTML/outerHTML assigned without visible sanitization
 
 ```
-Finding ID:        F-055
+Finding ID:        F-056
 Criterion:         CC6.6
 Severity:          Medium
 Title:             DOM innerHTML/outerHTML assigned without visible sanitization
@@ -1697,10 +1724,10 @@ Example fix:
 <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
 ```
 
-### F-056 · Medium · CC6.7 · Plain HTTP URL to api.partner-service.com
+### F-057 · Medium · CC6.7 · Plain HTTP URL to api.partner-service.com
 
 ```
-Finding ID:        F-056
+Finding ID:        F-057
 Criterion:         CC6.7
 Severity:          Medium
 Title:             Plain HTTP URL to api.partner-service.com
@@ -1723,10 +1750,10 @@ Example fix:
 const API_URL = process.env.API_URL ?? 'https://api.example.com';
 ```
 
-### F-057 · Medium · CC6.8 · Unpinned base image node:latest
+### F-058 · Medium · CC6.8 · Unpinned base image node:latest
 
 ```
-Finding ID:        F-057
+Finding ID:        F-058
 Criterion:         CC6.8
 Severity:          Medium
 Title:             Unpinned base image node:latest
@@ -1749,10 +1776,10 @@ Example fix:
 FROM node:22.11.0-bookworm-slim@sha256:<digest>
 ```
 
-### F-058 · Medium · CC6.8 · Container images are not scanned
+### F-059 · Medium · CC6.8 · Container images are not scanned
 
 ```
-Finding ID:        F-058
+Finding ID:        F-059
 Criterion:         CC6.8
 Severity:          Medium
 Title:             Container images are not scanned
@@ -1776,10 +1803,10 @@ Example fix:
   with: { image-ref: 'app:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true }
 ```
 
-### F-059 · Medium · CC6.8 · `npm install` used in a build
+### F-060 · Medium · CC6.8 · `npm install` used in a build
 
 ```
-Finding ID:        F-059
+Finding ID:        F-060
 Criterion:         CC6.8
 Severity:          Medium
 Title:             `npm install` used in a build
@@ -1804,10 +1831,10 @@ RUN npm ci --omit=dev
 RUN pnpm install --frozen-lockfile --prod
 ```
 
-### F-060 · Medium · CC7.1 · Container runs as root: Dockerfile
+### F-061 · Medium · CC7.1 · Container runs as root: Dockerfile
 
 ```
-Finding ID:        F-060
+Finding ID:        F-061
 Criterion:         CC7.1
 Severity:          Medium
 Title:             Container runs as root: Dockerfile
@@ -1831,10 +1858,10 @@ RUN addgroup --system app && adduser --system --ingroup app app
 USER app
 ```
 
-### F-061 · Medium · CC7.1 · No continuous vulnerability monitoring
+### F-062 · Medium · CC7.1 · No continuous vulnerability monitoring
 
 ```
-Finding ID:        F-061
+Finding ID:        F-062
 Criterion:         CC7.1
 Severity:          Medium
 Title:             No continuous vulnerability monitoring
@@ -1862,10 +1889,10 @@ updates:
     schedule: { interval: weekly }
 ```
 
-### F-062 · Medium · CC7.2 · No alert rules defined in code
+### F-063 · Medium · CC7.2 · No alert rules defined in code
 
 ```
-Finding ID:        F-062
+Finding ID:        F-063
 Criterion:         CC7.2
 Severity:          Medium
 Title:             No alert rules defined in code
@@ -1890,10 +1917,36 @@ Example fix:
   labels: { severity: page }
 ```
 
-### F-063 · Medium · CC7.3 · No severity and triage criteria
+### F-064 · Medium · CC7.2 · Personal data field passed to a logger
 
 ```
-Finding ID:        F-063
+Finding ID:        F-064
+Criterion:         CC7.2
+Severity:          Medium
+Title:             Personal data field passed to a logger
+Location:          public/tracking.js:12
+Observed:          Personal data field passed to a logger in public/tracking.js at line 12.
+Expected:          Logs identify people by internal id, never by email, phone, address, date of birth or IP-linked profile data.
+Risk:              Personal data in logs is copied to log platforms and backups with long retention, outside deletion and access-request processes.
+Recommendation:    Log a pseudonymous user id instead, and configure logger redaction for personal fields.
+Controls:          Security Monitoring & Detection; Security Logging
+Policies:          Logging, Monitoring & Audit
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is e6921935753ad03a.
+```
+
+Example fix:
+
+```
+log.info({ userId: user.id }, 'signup complete');
+```
+
+### F-065 · Medium · CC7.3 · No severity and triage criteria
+
+```
+Finding ID:        F-065
 Criterion:         CC7.3
 Severity:          Medium
 Title:             No severity and triage criteria
@@ -1919,10 +1972,10 @@ Example fix:
 Triage outcome (true/false positive, incident yes/no) is recorded on the ticket.
 ```
 
-### F-064 · Medium · CC7.4 · No runbook for credential leak, data exposure, compromised dependency, outage or DDoS
+### F-066 · Medium · CC7.4 · No runbook for credential leak, data exposure, compromised dependency, outage or DDoS
 
 ```
-Finding ID:        F-064
+Finding ID:        F-066
 Criterion:         CC7.4
 Severity:          Medium
 Title:             No runbook for credential leak, data exposure, compromised dependency, outage or DDoS
@@ -1948,10 +2001,10 @@ Example fix:
 3. Rotate dependent secrets and record the incident.
 ```
 
-### F-065 · Medium · CC7.5 · No key rotation procedure
+### F-067 · Medium · CC7.5 · No key rotation procedure
 
 ```
-Finding ID:        F-065
+Finding ID:        F-067
 Criterion:         CC7.5
 Severity:          Medium
 Title:             No key rotation procedure
@@ -1977,15 +2030,15 @@ Example fix:
 | Database password | AWS Secrets Manager | Automatic rotation Lambda | Every 30 days |
 ```
 
-### F-066 · Medium · CC8.1 · Sensitive paths have no code owners
+### F-068 · Medium · CC8.1 · Sensitive paths have no code owners
 
 ```
-Finding ID:        F-066
+Finding ID:        F-068
 Criterion:         CC8.1
 Severity:          Medium
 Title:             Sensitive paths have no code owners
 Location:          repository
-Observed:          4 sensitive files exist but there is no CODEOWNERS file.
+Observed:          5 sensitive files exist but there is no CODEOWNERS file.
 Expected:          Security-sensitive paths (auth, IAM, crypto, payments, infrastructure, workflows, migrations, lockfiles) have a specific CODEOWNERS entry, not just the catch-all.
 Risk:              Changes to the riskiest code can be approved by any reviewer instead of the people accountable for it.
 Recommendation:    Add explicit CODEOWNERS entries for sensitive paths and require code owner review. Adjust what counts as sensitive with sensitivePaths in threesock.yaml.
@@ -2005,10 +2058,10 @@ Example fix:
 /.github/workflows/   @your-org/platform
 ```
 
-### F-067 · Medium · CC8.1 · Migration without a down step
+### F-069 · Medium · CC8.1 · Migration without a down step
 
 ```
-Finding ID:        F-067
+Finding ID:        F-069
 Criterion:         CC8.1
 Severity:          Medium
 Title:             Migration without a down step
@@ -2032,10 +2085,37 @@ Example fix:
 ALTER TABLE orders DROP COLUMN status;
 ```
 
-### F-068 · Medium · CC9.1 · No business continuity / disaster recovery plan
+### F-070 · Medium · CC8.1 · Migration without a down step
 
 ```
-Finding ID:        F-068
+Finding ID:        F-070
+Criterion:         CC8.1
+Severity:          Medium
+Title:             Migration without a down step
+Location:          migrations/002_customers.up.sql
+Observed:          migrations/002_customers.up.sql has no matching 002_customers.down.sql.
+Expected:          Each migration has a down/downgrade step, or the repository documents how schema changes are rolled back.
+Risk:              A bad migration without a way back turns a deploy rollback into a data-recovery incident.
+Recommendation:    Write a down migration for each change, or document the expand/contract and restore procedure used instead.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 50a45a9a3823771f.
+```
+
+Example fix:
+
+```
+-- 20261022_add_status.down.sql
+ALTER TABLE orders DROP COLUMN status;
+```
+
+### F-071 · Medium · CC9.1 · No business continuity / disaster recovery plan
+
+```
+Finding ID:        F-071
 Criterion:         CC9.1
 Severity:          Medium
 Title:             No business continuity / disaster recovery plan
@@ -2063,10 +2143,10 @@ Example fix:
 Rebuild from IaC in the secondary region; restore the latest snapshot.
 ```
 
-### F-069 · Medium · CC9.2 · Missing a third-party services inventory and an SBOM
+### F-072 · Medium · CC9.2 · Missing a third-party services inventory and an SBOM
 
 ```
-Finding ID:        F-069
+Finding ID:        F-072
 Criterion:         CC9.2
 Severity:          Medium
 Title:             Missing a third-party services inventory and an SBOM
@@ -2091,10 +2171,10 @@ Example fix:
 | Stripe | Payments | Name, email, card token | @billing |
 ```
 
-### F-070 · Medium · A1.1 · Containers without resource limits in k8s/deployment.yaml
+### F-073 · Medium · A1.1 · Containers without resource limits in k8s/deployment.yaml
 
 ```
-Finding ID:        F-070
+Finding ID:        F-073
 Criterion:         A1.1
 Severity:          Medium
 Title:             Containers without resource limits in k8s/deployment.yaml
@@ -2119,10 +2199,10 @@ resources:
   limits:   { cpu: 500m, memory: 512Mi }
 ```
 
-### F-071 · Medium · A1.2 · No deletion protection on aws_db_instance.main
+### F-074 · Medium · A1.2 · No deletion protection on aws_db_instance.main
 
 ```
-Finding ID:        F-071
+Finding ID:        F-074
 Criterion:         A1.2
 Severity:          Medium
 Title:             No deletion protection on aws_db_instance.main
@@ -2147,10 +2227,10 @@ resource "aws_db_instance" "main" {
 }
 ```
 
-### F-072 · Medium · A1.2 · No probes in k8s/deployment.yaml
+### F-075 · Medium · A1.2 · No probes in k8s/deployment.yaml
 
 ```
-Finding ID:        F-072
+Finding ID:        F-075
 Criterion:         A1.2
 Severity:          Medium
 Title:             No probes in k8s/deployment.yaml
@@ -2174,10 +2254,10 @@ readinessProbe: { httpGet: { path: /healthz, port: 8080 }, periodSeconds: 10 }
 livenessProbe:  { httpGet: { path: /healthz, port: 8080 }, initialDelaySeconds: 15 }
 ```
 
-### F-073 · Medium · A1.2 · Single-zone data store: aws_db_instance.main
+### F-076 · Medium · A1.2 · Single-zone data store: aws_db_instance.main
 
 ```
-Finding ID:        F-073
+Finding ID:        F-076
 Criterion:         A1.2
 Severity:          Medium
 Title:             Single-zone data store: aws_db_instance.main
@@ -2202,10 +2282,10 @@ resource "aws_db_instance" "main" {
 }
 ```
 
-### F-074 · Medium · A1.3 · No record of restore or DR tests
+### F-077 · Medium · A1.3 · No record of restore or DR tests
 
 ```
-Finding ID:        F-074
+Finding ID:        F-077
 Criterion:         A1.3
 Severity:          Medium
 Title:             No record of restore or DR tests
@@ -2231,10 +2311,10 @@ Example fix:
 | 2026-09-30 | Postgres | Pass | 42 min | none |
 ```
 
-### F-075 · Medium · A1.3 · No recovery objectives (RTO/RPO)
+### F-078 · Medium · A1.3 · No recovery objectives (RTO/RPO)
 
 ```
-Finding ID:        F-075
+Finding ID:        F-078
 Criterion:         A1.3
 Severity:          Medium
 Title:             No recovery objectives (RTO/RPO)
@@ -2259,10 +2339,10 @@ Example fix:
 | API | 1 hour | 15 minutes |
 ```
 
-### F-076 · Medium · PI1.2 · No schema validation library
+### F-079 · Medium · PI1.2 · No schema validation library
 
 ```
-Finding ID:        F-076
+Finding ID:        F-079
 Criterion:         PI1.2
 Severity:          Medium
 Title:             No schema validation library
@@ -2286,10 +2366,10 @@ const Order = z.object({ sku: z.string().min(1), quantity: z.number().int().posi
 const order = Order.parse(req.body);
 ```
 
-### F-077 · Medium · PI1.3 · Jobs have no retry limits or dead-letter queue
+### F-080 · Medium · PI1.3 · Jobs have no retry limits or dead-letter queue
 
 ```
-Finding ID:        F-077
+Finding ID:        F-080
 Criterion:         PI1.3
 Severity:          Medium
 Title:             Jobs have no retry limits or dead-letter queue
@@ -2312,15 +2392,15 @@ Example fix:
 await queue.add('send-invoice', data, { attempts: 5, backoff: { type: 'exponential', delay: 1000 } });
 ```
 
-### F-078 · Medium · PI1.5 · Schemas declare no integrity constraints
+### F-081 · Medium · PI1.5 · Schemas declare no integrity constraints
 
 ```
-Finding ID:        F-078
+Finding ID:        F-081
 Criterion:         PI1.5
 Severity:          Medium
 Title:             Schemas declare no integrity constraints
 Location:          migrations/001_init.up.sql
-Observed:          1 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints.
+Observed:          2 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints.
 Expected:          Schemas declare NOT NULL, UNIQUE, foreign key and check constraints, so the database rejects invalid data even when application code misses it.
 Risk:              Without constraints, a single bug writes orphaned or duplicate records that corrupt reports and billing.
 Recommendation:    Declare constraints in the schema for required fields, uniqueness and relationships.
@@ -2342,10 +2422,10 @@ CREATE TABLE orders (
 );
 ```
 
-### F-079 · Medium · C1.1 · No data classification scheme
+### F-082 · Medium · C1.1 · No data classification scheme
 
 ```
-Finding ID:        F-079
+Finding ID:        F-082
 Criterion:         C1.1
 Severity:          Medium
 Title:             No data classification scheme
@@ -2371,10 +2451,10 @@ Example fix:
 | Confidential | Customer PII | Encrypted at rest, access logged |
 ```
 
-### F-080 · Medium · C1.1 · Possible real personal data in seeds/customers.json
+### F-083 · Medium · C1.1 · Possible real personal data in seeds/customers.json
 
 ```
-Finding ID:        F-080
+Finding ID:        F-083
 Criterion:         C1.1
 Severity:          Medium
 Title:             Possible real personal data in seeds/customers.json
@@ -2397,10 +2477,10 @@ Example fix:
 { "email": "ada@example.com", "card": "4242424242424242", "ssn": "000-00-0000" }
 ```
 
-### F-081 · Medium · C1.2 · No data retention schedule
+### F-084 · Medium · C1.2 · No data retention schedule
 
 ```
-Finding ID:        F-081
+Finding ID:        F-084
 Criterion:         C1.2
 Severity:          Medium
 Title:             No data retention schedule
@@ -2426,10 +2506,337 @@ Example fix:
 | Closed accounts | 30 days | Nightly purge job |
 ```
 
-### F-082 · Low · CC2.1 · No monitoring defined in code
+### F-085 · Medium · P1.1 · No privacy notice in the product
 
 ```
-Finding ID:        F-082
+Finding ID:        F-085
+Criterion:         P1.1
+Severity:          Medium
+Title:             No privacy notice in the product
+Location:          repository
+Observed:          The application stores personal data (e.g. migrations/001_init.up.sql:1), but no privacy notice page or link was found.
+Expected:          A privacy notice is reachable from the product (signup, footer, settings) and describes collection, use, retention, disclosure and disposal.
+Risk:              Collecting personal data without an accessible notice breaches transparency obligations and the SOC 2 privacy commitments.
+Recommendation:    Publish a privacy notice and link it from signup and the site footer; keep prior versions.
+Controls:          Data Privacy; Regulatory Liaison
+Policies:          Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is c53dc39cf01453ce.
+```
+
+Example fix:
+
+```
+<footer><a href="/privacy">Privacy notice</a></footer>
+```
+
+### F-086 · Medium · P3.1 · No personal data map
+
+```
+Finding ID:        F-086
+Criterion:         P3.1
+Severity:          Medium
+Title:             No personal data map
+Location:          repository
+Observed:          No personal data map was found in the repository's documentation.
+Expected:          A data map lists the personal data collected, where it is stored, why (purpose or legal basis) and for how long.
+Risk:              Without a data map, collection drifts from the privacy notice and access or deletion requests miss data.
+Recommendation:    Keep a data map: each personal data field or category, its purpose, where it is stored, who receives it and its retention.
+Controls:          Data Privacy; Information Classification
+Policies:          Privacy & Data-Subject Rights; Data Classification & Handling
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 8f2f1bdc5e5cbc2d.
+```
+
+Example fix:
+
+```
+| Data | Purpose | Stored in | Retention |
+|---|---|---|---|
+| Email | Login, receipts | Postgres users | Account lifetime + 30 days |
+```
+
+### F-087 · Medium · P3.2 · Sensitive personal data without field-level protection
+
+```
+Finding ID:        F-087
+Criterion:         P3.2
+Severity:          Medium
+Title:             Sensitive personal data without field-level protection
+Location:          migrations/002_customers.up.sql:4
+Observed:          migrations/002_customers.up.sql defines a sensitive field at line 4, and no field-level encryption or tokenization was found.
+Expected:          Sensitive categories (government IDs, health, biometrics, precise location, date of birth, ...) are encrypted at field level or tokenized, beyond disk encryption.
+Risk:              Sensitive data in plain columns is exposed to every query, backup, replica and analyst with database access.
+Recommendation:    Encrypt sensitive fields at the application layer (envelope encryption with KMS) or tokenize them, and restrict access to the decrypting service.
+Controls:          Data Privacy; Information Classification; Encrypted Data at Rest
+Policies:          Privacy & Data-Subject Rights; Data Classification & Handling
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is f416644c628934e3.
+```
+
+Example fix:
+
+```
+ALTER TABLE patients ADD COLUMN ssn_encrypted bytea;  -- pgp_sym_encrypt with a KMS-managed key
+```
+
+### F-088 · Medium · P4.2 · No retention purge job or TTL
+
+```
+Finding ID:        F-088
+Criterion:         P4.2
+Severity:          Medium
+Title:             No retention purge job or TTL
+Location:          repository
+Observed:          The application stores personal data (e.g. migrations/001_init.up.sql:1), but no retention purge job or TTL was found in the code.
+Expected:          Personal data past its retention period is removed automatically by scheduled purge jobs, TTL indexes or lifecycle rules.
+Risk:              Without automated deletion, personal data accumulates past its purpose, breaching the privacy notice and enlarging every breach.
+Recommendation:    Add a scheduled job (or TTL index) that deletes or anonymizes personal data once its retention period ends, and alert if it fails.
+Controls:          Data Retention & Destruction; Data Privacy
+Policies:          Retention & Secure Disposal; Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 5772dc7a995648b7.
+```
+
+Example fix:
+
+```
+// nightly
+await db.query("DELETE FROM sessions WHERE created_at < now() - interval '90 days'");
+```
+
+### F-089 · Medium · P4.3 · No personal data deletion path
+
+```
+Finding ID:        F-089
+Criterion:         P4.3
+Severity:          Medium
+Title:             No personal data deletion path
+Location:          repository
+Observed:          The application stores personal data (e.g. migrations/001_init.up.sql:1), but no account deletion, erasure or anonymization code was found.
+Expected:          An account or data deletion path exists (self-service or request-based), and records that are soft-deleted are purged after their retention period.
+Risk:              Without a deletion path, erasure requests cannot be honoured on time; soft deletes that are never purged keep personal data forever.
+Recommendation:    Implement deletion (or irreversible anonymization) for a data subject across all stores, and a scheduled job that purges soft-deleted rows.
+Controls:          Data Retention & Destruction
+Policies:          Retention & Secure Disposal
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 17d3f247aa79af47.
+```
+
+Example fix:
+
+```
+app.delete('/me', requireAuth, async (req, res) => {
+  await accounts.eraseSubject(req.user.id); // primary DB, search index, analytics, vendors
+  res.sendStatus(204);
+});
+```
+
+### F-090 · Medium · P4.3 · Soft-deleted records are never purged
+
+```
+Finding ID:        F-090
+Criterion:         P4.3
+Severity:          Medium
+Title:             Soft-deleted records are never purged
+Location:          migrations/002_customers.up.sql:5
+Observed:          Soft deletion is used (migrations/002_customers.up.sql:5), but no job purges soft-deleted rows.
+Expected:          An account or data deletion path exists (self-service or request-based), and records that are soft-deleted are purged after their retention period.
+Risk:              Without a deletion path, erasure requests cannot be honoured on time; soft deletes that are never purged keep personal data forever.
+Recommendation:    Implement deletion (or irreversible anonymization) for a data subject across all stores, and a scheduled job that purges soft-deleted rows.
+Controls:          Data Retention & Destruction
+Policies:          Retention & Secure Disposal
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is cfabe99581a819ea.
+```
+
+Example fix:
+
+```
+app.delete('/me', requireAuth, async (req, res) => {
+  await accounts.eraseSubject(req.user.id); // primary DB, search index, analytics, vendors
+  res.sendStatus(204);
+});
+```
+
+### F-091 · Medium · P5.1 · No personal data export path
+
+```
+Finding ID:        F-091
+Criterion:         P5.1
+Severity:          Medium
+Title:             No personal data export path
+Location:          repository
+Observed:          The application stores personal data (e.g. migrations/001_init.up.sql:1), but no personal data export path was found in the code.
+Expected:          An authenticated export (self-service or support-driven) returns a subject's personal data in a machine-readable format.
+Risk:              Access requests cannot be answered within the legal deadline (often 30 days) without tooling to gather the data.
+Recommendation:    Add an authenticated export that gathers the subject's data from every store into JSON, and track requests with a response deadline.
+Controls:          Data Privacy; Access Rights
+Policies:          Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 94c229a993c65b11.
+```
+
+Example fix:
+
+```
+app.get('/me/export', requireAuth, async (req, res) => res.json(await dsar.export(req.user.id)));
+```
+
+### F-092 · Medium · P6.1 · Undocumented third-party SDKs: Mixpanel
+
+```
+Finding ID:        F-092
+Criterion:         P6.1
+Severity:          Medium
+Title:             Undocumented third-party SDKs: Mixpanel
+Location:          repository
+Observed:          Mixpanel is used but not named in any third-party or privacy document.
+Expected:          Every analytics, advertising, support or session-recording SDK is listed in the third-party or subprocessor inventory, with the data it receives.
+Risk:              Unlisted SDKs collect personal data nobody approved, which the privacy notice then misdescribes.
+Recommendation:    Add each SDK vendor to the third-party inventory (vendor, purpose, data shared), or remove the SDK.
+Controls:          Data Privacy; Supplier Security; Secure Data Transfer
+Policies:          Information Sharing & Transfer; Vendor & Third-Party Risk; Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is d51f823da457bee5.
+```
+
+Example fix:
+
+```
+| Vendor | Purpose | Data shared |
+|---|---|---|
+| PostHog | Product analytics | Pseudonymous user id, page views |
+```
+
+### F-093 · Medium · P6.1 · Whole user object sent to a third-party SDK
+
+```
+Finding ID:        F-093
+Criterion:         P6.1
+Severity:          Medium
+Title:             Whole user object sent to a third-party SDK
+Location:          public/tracking.js:8
+Observed:          Whole user object sent to a third-party SDK in public/tracking.js at line 8.
+Expected:          Calls to analytics, error-tracking and support SDKs send a pseudonymous id and only the fields the purpose needs, never whole user objects.
+Risk:              Whole user objects leak every field (email, address, flags) to vendors, a rubric red flag and usually a breach of the privacy notice.
+Recommendation:    Send a pseudonymous id and an explicit allow-list of properties.
+Controls:          Data Privacy; Supplier Security; Secure Data Transfer
+Policies:          Information Sharing & Transfer; Vendor & Third-Party Risk; Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 9db84cfdce522dd3.
+```
+
+Example fix:
+
+```
+analytics.identify(user.id, { plan: user.plan });
+Sentry.setUser({ id: user.id });
+```
+
+### F-094 · Medium · P6.3 · No incident and disclosure register
+
+```
+Finding ID:        F-094
+Criterion:         P6.3
+Severity:          Medium
+Title:             No incident and disclosure register
+Location:          repository
+Observed:          No incident and disclosure register was found in the repository's documentation.
+Expected:          Every detected or reported unauthorized disclosure is recorded with scope, affected subjects, root cause and remediation, and linked to incident response.
+Risk:              Without a register you cannot show regulators or auditors what happened, to whom, and what was fixed.
+Recommendation:    Keep an incident register (a table is enough) and fill it in for every suspected disclosure, even ones that turn out minor.
+Controls:          Security Incident Management; Data Privacy
+Policies:          Incident Response & Breach Notification
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is fb64822078295023.
+```
+
+Example fix:
+
+```
+| Date | Scope | Affected subjects | Root cause | Remediation |
+|---|---|---|---|---|
+```
+
+### F-095 · Medium · P6.6 · No breach notification procedure
+
+```
+Finding ID:        F-095
+Criterion:         P6.6
+Severity:          Medium
+Title:             No breach notification procedure
+Location:          repository
+Observed:          No breach notification procedure was found in the repository's documentation.
+Expected:          A breach procedure sets notification deadlines (e.g. 72 hours to regulators), who is notified (regulators, customers, data subjects), and keeps message templates.
+Risk:              Missing a statutory notification deadline turns an incident into a regulatory violation.
+Recommendation:    Document breach notification deadlines per jurisdiction and contract, who decides, and ready-to-use templates.
+Controls:          Security Incident Management; Regulatory Liaison
+Policies:          Incident Response & Breach Notification
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 03fb6e367246cbed.
+```
+
+Example fix:
+
+```
+## Breach notification
+Regulators: within 72 hours of awareness (GDPR Art. 33). Customers: per contract, within 48 hours.
+Templates: docs/security/templates/breach-customer.md
+```
+
+### F-096 · Medium · P8.1 · No privacy contact published
+
+```
+Finding ID:        F-096
+Criterion:         P8.1
+Severity:          Medium
+Title:             No privacy contact published
+Location:          repository
+Observed:          No privacy contact (privacy@ address, DPO or privacy request channel) was found in the docs or the product.
+Expected:          A privacy contact (email or form) is published, and new features handling personal data get a privacy review (the PR template asks about personal data).
+Risk:              Data subjects cannot raise requests or complaints, and features that change data collection ship without review.
+Recommendation:    Publish a privacy contact in the privacy notice and README, and add a personal-data question to the PR template.
+Controls:          Data Privacy; Regulatory Liaison
+Policies:          Privacy & Data-Subject Rights; Compliance & Regulatory Monitoring
+Owner:             Unassigned
+Due date:          2026-04-15
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 2c1bf025ffa933b1.
+```
+
+Example fix:
+
+```
+Privacy questions and requests: privacy@example.com (answered within 30 days).
+```
+
+### F-097 · Low · CC2.1 · No monitoring defined in code
+
+```
+Finding ID:        F-097
 Criterion:         CC2.1
 Severity:          Low
 Title:             No monitoring defined in code
@@ -2453,10 +2860,10 @@ import * as Sentry from '@sentry/node';
 Sentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 0.1 });
 ```
 
-### F-083 · Low · CC2.1 · No SBOM generated
+### F-098 · Low · CC2.1 · No SBOM generated
 
 ```
-Finding ID:        F-083
+Finding ID:        F-098
 Criterion:         CC2.1
 Severity:          Low
 Title:             No SBOM generated
@@ -2480,10 +2887,10 @@ Example fix:
   with: { format: cyclonedx-json, output-file: sbom.cdx.json }
 ```
 
-### F-084 · Low · CC2.2 · No pull request template
+### F-099 · Low · CC2.2 · No pull request template
 
 ```
-Finding ID:        F-084
+Finding ID:        F-099
 Criterion:         CC2.2
 Severity:          Low
 Title:             No pull request template
@@ -2509,10 +2916,10 @@ Example fix:
 - [ ] Changes infrastructure, network or IAM
 ```
 
-### F-085 · Low · CC2.2 · README does not link security documentation
+### F-100 · Low · CC2.2 · README does not link security documentation
 
 ```
-Finding ID:        F-085
+Finding ID:        F-100
 Criterion:         CC2.2
 Severity:          Low
 Title:             README does not link security documentation
@@ -2536,10 +2943,10 @@ Example fix:
 See [SECURITY.md](SECURITY.md) to report a vulnerability, and [docs/security](docs/security) for policies and runbooks.
 ```
 
-### F-086 · Low · CC3.2 · No architecture decision records
+### F-101 · Low · CC3.2 · No architecture decision records
 
 ```
-Finding ID:        F-086
+Finding ID:        F-101
 Criterion:         CC3.2
 Severity:          Low
 Title:             No architecture decision records
@@ -2568,10 +2975,10 @@ CI assumes a deploy role through OIDC.
 No long-lived keys in CI; role scoped to the deploy bucket.
 ```
 
-### F-087 · Low · CC3.4 · Dependency and infrastructure changes have no specific reviewer
+### F-102 · Low · CC3.4 · Dependency and infrastructure changes have no specific reviewer
 
 ```
-Finding ID:        F-087
+Finding ID:        F-102
 Criterion:         CC3.4
 Severity:          Low
 Title:             Dependency and infrastructure changes have no specific reviewer
@@ -2595,10 +3002,10 @@ Example fix:
 /infra/         @your-org/platform
 ```
 
-### F-088 · Low · CC4.1 · No scheduled security scans
+### F-103 · Low · CC4.1 · No scheduled security scans
 
 ```
-Finding ID:        F-088
+Finding ID:        F-103
 Criterion:         CC4.1
 Severity:          Low
 Title:             No scheduled security scans
@@ -2624,10 +3031,10 @@ on:
     - cron: '17 6 * * 1'  # weekly
 ```
 
-### F-089 · Low · CC5.1 · No risk-to-control mapping
+### F-104 · Low · CC5.1 · No risk-to-control mapping
 
 ```
-Finding ID:        F-089
+Finding ID:        F-104
 Criterion:         CC5.1
 Severity:          Low
 Title:             No risk-to-control mapping
@@ -2652,10 +3059,10 @@ Example fix:
 | Malicious dependency | Lockfiles, minimumReleaseAge, dependency review |
 ```
 
-### F-090 · Low · CC5.3 · Policy review metadata incomplete: docs/security/old-policy.md
+### F-105 · Low · CC5.3 · Policy review metadata incomplete: docs/security/old-policy.md
 
 ```
-Finding ID:        F-090
+Finding ID:        F-105
 Criterion:         CC5.3
 Severity:          Low
 Title:             Policy review metadata incomplete: docs/security/old-policy.md
@@ -2679,10 +3086,10 @@ Owner: @security-lead
 Last reviewed: 2026-10-01
 ```
 
-### F-091 · Low · CC6.1 · .gitignore does not exclude .env files
+### F-106 · Low · CC6.1 · .gitignore does not exclude .env files
 
 ```
-Finding ID:        F-091
+Finding ID:        F-106
 Criterion:         CC6.1
 Severity:          Low
 Title:             .gitignore does not exclude .env files
@@ -2708,10 +3115,10 @@ Example fix:
 !.env.example
 ```
 
-### F-092 · Low · CC6.1 · Possible literal credential: smtpPassword
+### F-107 · Low · CC6.1 · Possible literal credential: smtpPassword
 
 ```
-Finding ID:        F-092
+Finding ID:        F-107
 Criterion:         CC6.1
 Severity:          Low
 Title:             Possible literal credential: smtpPassword
@@ -2735,10 +3142,10 @@ Example fix:
 const client = new Client({ password: process.env.SMTP_PASSWORD });
 ```
 
-### F-093 · Low · CC6.5 · No customer-managed key for aws_db_instance.main
+### F-108 · Low · CC6.5 · No customer-managed key for aws_db_instance.main
 
 ```
-Finding ID:        F-093
+Finding ID:        F-108
 Criterion:         CC6.5
 Severity:          Low
 Title:             No customer-managed key for aws_db_instance.main
@@ -2767,10 +3174,10 @@ resource "aws_db_instance" "main" {
 }
 ```
 
-### F-094 · Low · CC6.8 · Missing automated dependency updates (Dependabot or Renovate)
+### F-109 · Low · CC6.8 · Missing automated dependency updates (Dependabot or Renovate)
 
 ```
-Finding ID:        F-094
+Finding ID:        F-109
 Criterion:         CC6.8
 Severity:          Low
 Title:             Missing automated dependency updates (Dependabot or Renovate)
@@ -2801,10 +3208,10 @@ updates:
     schedule: { interval: weekly }
 ```
 
-### F-095 · Low · CC6.8 · Python requirements not hash-pinned in legacy/requirements.txt
+### F-110 · Low · CC6.8 · Python requirements not hash-pinned in legacy/requirements.txt
 
 ```
-Finding ID:        F-095
+Finding ID:        F-110
 Criterion:         CC6.8
 Severity:          Low
 Title:             Python requirements not hash-pinned in legacy/requirements.txt
@@ -2829,10 +3236,10 @@ uv lock && git add uv.lock                    # Python
 pip-compile --generate-hashes requirements.in # pip
 ```
 
-### F-096 · Low · CC7.1 · No infrastructure drift detection
+### F-111 · Low · CC7.1 · No infrastructure drift detection
 
 ```
-Finding ID:        F-096
+Finding ID:        F-111
 Criterion:         CC7.1
 Severity:          Low
 Title:             No infrastructure drift detection
@@ -2857,10 +3264,10 @@ on: { schedule: [{ cron: '0 6 * * *' }] }
       - run: terraform plan -detailed-exitcode -lock=false
 ```
 
-### F-097 · Low · CC8.1 · No documented emergency change process
+### F-112 · Low · CC8.1 · No documented emergency change process
 
 ```
-Finding ID:        F-097
+Finding ID:        F-112
 Criterion:         CC8.1
 Severity:          Low
 Title:             No documented emergency change process
@@ -2885,10 +3292,10 @@ Use only for active incidents. An on-call engineer may merge with one approval f
 A retroactive review PR is opened within 2 business days and linked from the incident ticket.
 ```
 
-### F-098 · Low · CC8.1 · No documented rollback procedure
+### F-113 · Low · CC8.1 · No documented rollback procedure
 
 ```
-Finding ID:        F-098
+Finding ID:        F-113
 Criterion:         CC8.1
 Severity:          Low
 Title:             No documented rollback procedure
@@ -2914,10 +3321,10 @@ Example fix:
 3. Confirm health checks and error rates recover; post in #incidents.
 ```
 
-### F-099 · Low · A1.1 · No autoscaling or capacity plan
+### F-114 · Low · A1.1 · No autoscaling or capacity plan
 
 ```
-Finding ID:        F-099
+Finding ID:        F-114
 Criterion:         A1.1
 Severity:          Low
 Title:             No autoscaling or capacity plan
@@ -2942,10 +3349,10 @@ kind: HorizontalPodAutoscaler
 spec: { minReplicas: 2, maxReplicas: 10, metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } } }] }
 ```
 
-### F-100 · Low · A1.1 · No load tests
+### F-115 · Low · A1.1 · No load tests
 
 ```
-Finding ID:        F-100
+Finding ID:        F-115
 Criterion:         A1.1
 Severity:          Low
 Title:             No load tests
@@ -2970,10 +3377,10 @@ export const options = { vus: 50, duration: '2m' };
 export default () => http.get(`${__ENV.BASE_URL}/health`);
 ```
 
-### F-101 · Low · PI1.1 · No API contract
+### F-116 · Low · PI1.1 · No API contract
 
 ```
-Finding ID:        F-101
+Finding ID:        F-116
 Criterion:         PI1.1
 Severity:          Low
 Title:             No API contract
@@ -2998,10 +3405,10 @@ info: { title: Orders API, version: 2.3.0 }
 paths: { /v2/orders: { get: { ... } } }
 ```
 
-### F-102 · Low · PI1.1 · No changelog
+### F-117 · Low · PI1.1 · No changelog
 
 ```
-Finding ID:        F-102
+Finding ID:        F-117
 Criterion:         PI1.1
 Severity:          Low
 Title:             No changelog
@@ -3026,10 +3433,10 @@ Example fix:
 - `/v1/orders` removed; use `/v2/orders`.
 ```
 
-### F-103 · Low · C1.2 · No lifecycle rule for aws_s3_bucket.exports
+### F-118 · Low · C1.2 · No lifecycle rule for aws_s3_bucket.exports
 
 ```
-Finding ID:        F-103
+Finding ID:        F-118
 Criterion:         C1.2
 Severity:          Low
 Title:             No lifecycle rule for aws_s3_bucket.exports
@@ -3059,70 +3466,175 @@ resource "aws_s3_bucket_lifecycle_configuration" "exports" {
 }
 ```
 
+### F-119 · Low · P5.2 · No profile or account update path
+
+```
+Finding ID:        F-119
+Criterion:         P5.2
+Severity:          Low
+Title:             No profile or account update path
+Location:          repository
+Observed:          The application stores personal data (e.g. migrations/001_init.up.sql:1), but no profile or account update path was found in the code.
+Expected:          Users can update their own personal data (profile or account settings), or request correction through support tooling.
+Risk:              Inaccurate personal data cannot be corrected on request, and errors propagate to downstream systems.
+Recommendation:    Provide an authenticated profile update (with validation and an audit trail) and propagate changes to downstream systems.
+Controls:          Data Privacy
+Policies:          Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-07-14
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is f7e245fd36e790bf.
+```
+
+Example fix:
+
+```
+app.patch('/me', requireAuth, async (req, res) => res.json(await users.update(req.user.id, ProfileSchema.parse(req.body))));
+```
+
+### F-120 · Low · P6.5 · No intake for vendor breach notices
+
+```
+Finding ID:        F-120
+Criterion:         P6.5
+Severity:          Low
+Title:             No intake for vendor breach notices
+Location:          repository
+Observed:          No document describes how breach or incident notices from vendors and subprocessors are received and handled.
+Expected:          There is a documented intake for breach or incident notices from vendors and subprocessors, routed into incident response.
+Risk:              A vendor's breach notice sent to an unmonitored inbox starts your own notification clock without anyone knowing.
+Recommendation:    Name the address vendors must notify, who monitors it, and that notices open an incident.
+Controls:          Supplier Security; Security Incident Management
+Policies:          Vendor & Third-Party Risk; Incident Response & Breach Notification
+Owner:             Unassigned
+Due date:          2026-07-14
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is f3028acecc4dcb7f.
+```
+
+Example fix:
+
+```
+## Vendor incident notices
+Subprocessors notify security@example.com within 48 hours (per the DPA). Each notice opens an incident and is triaged as SEV2 or higher.
+```
+
+### F-121 · Low · P7.1 · No validation of personal data fields
+
+```
+Finding ID:        F-121
+Criterion:         P7.1
+Severity:          Low
+Title:             No validation of personal data fields
+Location:          repository
+Observed:          The application stores personal data (e.g. migrations/001_init.up.sql:1), but no validation of personal data fields was found in the code.
+Expected:          Personal data fields are validated for format and completeness (e.g. email and phone formats) when collected.
+Risk:              Malformed contact data makes notification, access and deletion requests fail to reach or match the right person.
+Recommendation:    Validate personal data at the boundary with a schema (email, phone, dates) and normalize before storing.
+Controls:          Data Privacy
+Policies:          Privacy & Data-Subject Rights
+Owner:             Unassigned
+Due date:          2026-07-14
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is a2fb940f3204ca77.
+```
+
+Example fix:
+
+```
+const Signup = z.object({ email: z.string().email(), name: z.string().min(1).max(200) });
+```
+
+### F-122 · Low · P8.1 · No privacy review in the change process
+
+```
+Finding ID:        F-122
+Criterion:         P8.1
+Severity:          Low
+Title:             No privacy review in the change process
+Location:          repository
+Observed:          Neither the PR template nor a PIA/DPIA process asks about personal data.
+Expected:          A privacy contact (email or form) is published, and new features handling personal data get a privacy review (the PR template asks about personal data).
+Risk:              Data subjects cannot raise requests or complaints, and features that change data collection ship without review.
+Recommendation:    Publish a privacy contact in the privacy notice and README, and add a personal-data question to the PR template.
+Controls:          Data Privacy; Regulatory Liaison
+Policies:          Privacy & Data-Subject Rights; Compliance & Regulatory Monitoring
+Owner:             Unassigned
+Due date:          2026-07-14
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is 13c65c68f8e402d4.
+```
+
+Example fix:
+
+```
+Privacy questions and requests: privacy@example.com (answered within 30 days).
+```
+
 ## Controls and policies affected
 
 Mapping: threesock default catalogue (mappings/controls.yaml).
 
 | Control | Open findings | Criteria |
 |---|---|---|
-| Network Security | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-009, F-016, F-017, F-018, F-020, F-021, F-022, F-023, F-024, F-025, F-026, F-027, F-049, F-050, F-051, F-054, F-055, F-056, F-091, F-092 | CC6.1, CC6.6, CC6.7 |
-| Credential Management | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-046, F-047, F-049, F-050, F-051, F-052, F-053, F-065, F-091, F-092 | CC5.2, CC6.1, CC6.3, CC7.5 |
-| Access Rights | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-019, F-035, F-040, F-041, F-049, F-050, F-051, F-052, F-053, F-079, F-080, F-088, F-091, F-092 | CC6.1, CC6.2, C1.1, CC4.1, CC6.3 |
-| Secure SDLC Integration | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-095, F-097, F-098, F-101, F-102 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
-| Vulnerability Management | F-009, F-020, F-021, F-022, F-023, F-024, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-054, F-055, F-060, F-061, F-082, F-083, F-086, F-088, F-096 | CC6.6, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
-| Encryption Key Management | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-035, F-049, F-050, F-051, F-079, F-080, F-091, F-092, F-093 | CC6.1, C1.1, CC6.5 |
-| Configuration & Patch Management | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-060, F-061, F-094, F-095, F-096 | CC5.2, CC6.8, CC7.1 |
-| Endpoint Protection | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-094, F-095 | CC5.2, CC6.8 |
-| Policy Compliance | F-040, F-041, F-042, F-043, F-044, F-045, F-048, F-084, F-085, F-088, F-089, F-090 | CC4.1, CC4.2, CC5.3, CC2.2, CC5.1 |
-| Security Monitoring & Detection | F-030, F-040, F-041, F-062, F-063, F-070, F-077, F-082, F-083, F-088, F-099, F-100 | CC7.2, CC4.1, CC7.3, A1.1, PI1.3, CC2.1 |
-| Supplier Security | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-087, F-094, F-095 | CC6.8, CC2.3, CC9.2, CC3.4 |
-| Change management | F-032, F-033, F-066, F-067, F-087, F-097, F-098, F-101, F-102 | CC8.1, CC3.4, PI1.1 |
-| Disaster Recovery Planning | F-034, F-065, F-068, F-071, F-072, F-073, F-074, F-075, F-078 | A1.2, CC7.5, CC9.1, A1.3, PI1.5 |
-| Segregation of duties | F-010, F-011, F-032, F-033, F-036, F-066, F-067, F-097, F-098 | CC3.3, CC8.1, CC1.3 |
-| Remote-Work Security | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 | CC6.6 |
-| Risk Management | F-010, F-011, F-038, F-039, F-068, F-086, F-087, F-089 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
-| Security Logging | F-010, F-011, F-030, F-060, F-061, F-062, F-078, F-096 | CC3.3, CC7.2, CC7.1, PI1.5 |
-| Endpoint Security | F-001, F-012, F-013, F-014, F-015, F-046, F-047 | CC5.2 |
-| Security Incident Management | F-031, F-037, F-063, F-064, F-065, F-084, F-085 | CC7.4, CC2.3, CC7.3, CC7.5, CC2.2 |
-| Asset Inventory | F-069, F-082, F-083, F-093 | CC9.2, CC2.1, CC6.5 |
-| Data Retention & Destruction | F-078, F-081, F-093, F-103 | PI1.5, C1.2, CC6.5 |
-| Physical Access Control | F-034, F-071, F-072, F-073 | A1.2 |
-| Resource Capacity Management | F-068, F-070, F-099, F-100 | CC9.1, A1.1 |
-| Secure Data Transfer | F-025, F-026, F-027, F-056 | CC6.7 |
-| Standard Operating Procedures (SOPs) | F-048, F-084, F-085, F-090 | CC5.3, CC2.2 |
-| Encrypted Data at Rest | F-035, F-079, F-080 | C1.1 |
-| Information Classification | F-035, F-079, F-080 | C1.1 |
-| Personnel Security | F-019, F-052, F-053 | CC6.2, CC6.3 |
-| Data Privacy | F-037 | CC2.3 |
-| Organization Structure & Reporting Lines | F-036 | CC1.3 |
-| Regulatory Liaison | F-037 | CC2.3 |
-| Security Governance Roles | F-036 | CC1.3 |
+| Network Security | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-009, F-016, F-017, F-018, F-020, F-021, F-022, F-023, F-024, F-025, F-026, F-027, F-050, F-051, F-052, F-055, F-056, F-057, F-106, F-107 | CC6.1, CC6.6, CC6.7 |
+| Access Rights | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-019, F-035, F-041, F-042, F-050, F-051, F-052, F-053, F-054, F-082, F-083, F-091, F-103, F-106, F-107 | CC6.1, CC6.2, C1.1, CC4.1, CC6.3, P5.1 |
+| Credential Management | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-047, F-048, F-050, F-051, F-052, F-053, F-054, F-067, F-106, F-107 | CC5.2, CC6.1, CC6.3, CC7.5 |
+| Secure SDLC Integration | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-047, F-048, F-058, F-059, F-060, F-068, F-069, F-070, F-079, F-080, F-109, F-110, F-112, F-113, F-116, F-117 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
+| Vulnerability Management | F-009, F-020, F-021, F-022, F-023, F-024, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-046, F-055, F-056, F-061, F-062, F-097, F-098, F-101, F-103, F-111 | CC6.6, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
+| Encryption Key Management | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-035, F-050, F-051, F-052, F-082, F-083, F-106, F-107, F-108 | CC6.1, C1.1, CC6.5 |
+| Configuration & Patch Management | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-047, F-048, F-058, F-059, F-060, F-061, F-062, F-109, F-110, F-111 | CC5.2, CC6.8, CC7.1 |
+| Data Privacy | F-036, F-038, F-085, F-086, F-087, F-088, F-091, F-092, F-093, F-094, F-096, F-119, F-121, F-122 | P2.1, CC2.3, P1.1, P3.1, P3.2, P4.2, P5.1, P6.1, P6.3, P8.1, P5.2, P7.1 |
+| Endpoint Protection | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-047, F-048, F-058, F-059, F-060, F-109, F-110 | CC5.2, CC6.8 |
+| Security Monitoring & Detection | F-030, F-041, F-042, F-063, F-064, F-065, F-073, F-080, F-097, F-098, F-103, F-114, F-115 | CC7.2, CC4.1, CC7.3, A1.1, PI1.3, CC2.1 |
+| Supplier Security | F-028, F-029, F-038, F-058, F-059, F-060, F-072, F-092, F-093, F-102, F-109, F-110, F-120 | CC6.8, CC2.3, CC9.2, P6.1, CC3.4, P6.5 |
+| Policy Compliance | F-041, F-042, F-043, F-044, F-045, F-046, F-049, F-099, F-100, F-103, F-104, F-105 | CC4.1, CC4.2, CC5.3, CC2.2, CC5.1 |
+| Change management | F-032, F-033, F-068, F-069, F-070, F-102, F-112, F-113, F-116, F-117 | CC8.1, CC3.4, PI1.1 |
+| Security Incident Management | F-031, F-038, F-065, F-066, F-067, F-094, F-095, F-099, F-100, F-120 | CC7.4, CC2.3, CC7.3, CC7.5, P6.3, P6.6, CC2.2, P6.5 |
+| Segregation of duties | F-010, F-011, F-032, F-033, F-037, F-068, F-069, F-070, F-112, F-113 | CC3.3, CC8.1, CC1.3 |
+| Disaster Recovery Planning | F-034, F-067, F-071, F-074, F-075, F-076, F-077, F-078, F-081 | A1.2, CC7.5, CC9.1, A1.3, PI1.5 |
+| Security Logging | F-010, F-011, F-030, F-061, F-062, F-063, F-064, F-081, F-111 | CC3.3, CC7.2, CC7.1, PI1.5 |
+| Remote-Work Security | F-009, F-020, F-021, F-022, F-023, F-024, F-055, F-056 | CC6.6 |
+| Risk Management | F-010, F-011, F-039, F-040, F-071, F-101, F-102, F-104 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
+| Data Retention & Destruction | F-081, F-084, F-088, F-089, F-090, F-108, F-118 | PI1.5, C1.2, P4.2, P4.3, CC6.5 |
+| Endpoint Security | F-001, F-012, F-013, F-014, F-015, F-047, F-048 | CC5.2 |
+| Secure Data Transfer | F-025, F-026, F-027, F-057, F-092, F-093 | CC6.7, P6.1 |
+| Information Classification | F-035, F-082, F-083, F-086, F-087 | C1.1, P3.1, P3.2 |
+| Regulatory Liaison | F-038, F-085, F-095, F-096, F-122 | CC2.3, P1.1, P6.6, P8.1 |
+| Asset Inventory | F-072, F-097, F-098, F-108 | CC9.2, CC2.1, CC6.5 |
+| Encrypted Data at Rest | F-035, F-082, F-083, F-087 | C1.1, P3.2 |
+| Physical Access Control | F-034, F-074, F-075, F-076 | A1.2 |
+| Resource Capacity Management | F-071, F-073, F-114, F-115 | CC9.1, A1.1 |
+| Standard Operating Procedures (SOPs) | F-049, F-099, F-100, F-105 | CC5.3, CC2.2 |
+| Personnel Security | F-019, F-053, F-054 | CC6.2, CC6.3 |
+| Organization Structure & Reporting Lines | F-037 | CC1.3 |
+| Security Governance Roles | F-037 | CC1.3 |
 
 | Policy | Open findings | Criteria |
 |---|---|---|
-| Secure Software Development Lifecycle | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-095, F-097, F-098, F-101, F-102 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
-| Authentication & Password | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-046, F-047, F-049, F-050, F-051, F-091, F-092 | CC5.2, CC6.1 |
-| Encryption & Crypto Controls | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-025, F-026, F-027, F-035, F-049, F-050, F-051, F-056, F-079, F-080, F-091, F-092 | CC6.1, CC6.7, C1.1 |
-| Vulnerability & Patch Management | F-028, F-029, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-057, F-058, F-059, F-060, F-061, F-082, F-083, F-086, F-088, F-094, F-095, F-096 | CC6.8, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
-| Access Control & Least Privilege | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-010, F-011, F-016, F-017, F-018, F-019, F-036, F-049, F-050, F-051, F-052, F-053, F-091, F-092 | CC6.1, CC3.3, CC6.2, CC1.3, CC6.3 |
-| Secure Configuration & Hardening | F-001, F-009, F-012, F-013, F-014, F-015, F-020, F-021, F-022, F-023, F-024, F-046, F-047, F-054, F-055, F-060, F-061, F-096 | CC5.2, CC6.6, CC7.1 |
-| Backup, Business Continuity & Disaster Recovery | F-034, F-065, F-068, F-070, F-071, F-072, F-073, F-074, F-075, F-078, F-099, F-100 | A1.2, CC7.5, CC9.1, A1.1, A1.3, PI1.5 |
-| Logging, Monitoring & Audit | F-010, F-011, F-030, F-060, F-061, F-062, F-070, F-082, F-083, F-096, F-099, F-100 | CC3.3, CC7.2, CC7.1, A1.1, CC2.1 |
-| Change & Release Management | F-032, F-033, F-066, F-067, F-087, F-097, F-098, F-101, F-102 | CC8.1, CC3.4, PI1.1 |
-| Vendor & Third-Party Risk | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-094, F-095 | CC6.8, CC2.3, CC9.2 |
-| Policy Management & Exception Handling | F-042, F-043, F-044, F-045, F-048, F-084, F-085, F-090 | CC4.2, CC5.3, CC2.2 |
-| Remote Access & BYOD | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 | CC6.6 |
-| Risk Management | F-010, F-011, F-038, F-039, F-068, F-086, F-087, F-089 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
-| Incident Response & Breach Notification | F-031, F-037, F-063, F-064, F-065 | CC7.4, CC2.3, CC7.3, CC7.5 |
-| Data Classification & Handling | F-035, F-078, F-079, F-080 | C1.1, PI1.5 |
-| Information Sharing & Transfer | F-025, F-026, F-027, F-056 | CC6.7 |
-| Physical Security & Environmental | F-034, F-071, F-072, F-073 | A1.2 |
-| Background Screening & On/Off-boarding | F-019, F-052, F-053 | CC6.2, CC6.3 |
-| Compliance & Regulatory Monitoring | F-040, F-041, F-088 | CC4.1 |
-| Retention & Secure Disposal | F-081, F-093, F-103 | C1.2, CC6.5 |
-| Information Security & Privacy Governance | F-036, F-089 | CC1.3, CC5.1 |
-| Security & Privacy Awareness Training | F-084, F-085 | CC2.2 |
-| Privacy & Data-Subject Rights | F-037 | CC2.3 |
+| Secure Software Development Lifecycle | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-047, F-048, F-058, F-059, F-060, F-068, F-069, F-070, F-079, F-080, F-109, F-110, F-112, F-113, F-116, F-117 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
+| Authentication & Password | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-047, F-048, F-050, F-051, F-052, F-106, F-107 | CC5.2, CC6.1 |
+| Encryption & Crypto Controls | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-025, F-026, F-027, F-035, F-050, F-051, F-052, F-057, F-082, F-083, F-106, F-107 | CC6.1, CC6.7, C1.1 |
+| Vulnerability & Patch Management | F-028, F-029, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-046, F-058, F-059, F-060, F-061, F-062, F-097, F-098, F-101, F-103, F-109, F-110, F-111 | CC6.8, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
+| Access Control & Least Privilege | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-010, F-011, F-016, F-017, F-018, F-019, F-037, F-050, F-051, F-052, F-053, F-054, F-106, F-107 | CC6.1, CC3.3, CC6.2, CC1.3, CC6.3 |
+| Secure Configuration & Hardening | F-001, F-009, F-012, F-013, F-014, F-015, F-020, F-021, F-022, F-023, F-024, F-047, F-048, F-055, F-056, F-061, F-062, F-111 | CC5.2, CC6.6, CC7.1 |
+| Logging, Monitoring & Audit | F-010, F-011, F-030, F-061, F-062, F-063, F-064, F-073, F-097, F-098, F-111, F-114, F-115 | CC3.3, CC7.2, CC7.1, A1.1, CC2.1 |
+| Privacy & Data-Subject Rights | F-036, F-038, F-085, F-086, F-087, F-088, F-091, F-092, F-093, F-096, F-119, F-121, F-122 | P2.1, CC2.3, P1.1, P3.1, P3.2, P4.2, P5.1, P6.1, P8.1, P5.2, P7.1 |
+| Backup, Business Continuity & Disaster Recovery | F-034, F-067, F-071, F-073, F-074, F-075, F-076, F-077, F-078, F-081, F-114, F-115 | A1.2, CC7.5, CC9.1, A1.1, A1.3, PI1.5 |
+| Vendor & Third-Party Risk | F-028, F-029, F-038, F-058, F-059, F-060, F-072, F-092, F-093, F-109, F-110, F-120 | CC6.8, CC2.3, CC9.2, P6.1, P6.5 |
+| Change & Release Management | F-032, F-033, F-068, F-069, F-070, F-102, F-112, F-113, F-116, F-117 | CC8.1, CC3.4, PI1.1 |
+| Incident Response & Breach Notification | F-031, F-038, F-065, F-066, F-067, F-094, F-095, F-120 | CC7.4, CC2.3, CC7.3, CC7.5, P6.3, P6.6, P6.5 |
+| Policy Management & Exception Handling | F-043, F-044, F-045, F-046, F-049, F-099, F-100, F-105 | CC4.2, CC5.3, CC2.2 |
+| Remote Access & BYOD | F-009, F-020, F-021, F-022, F-023, F-024, F-055, F-056 | CC6.6 |
+| Risk Management | F-010, F-011, F-039, F-040, F-071, F-101, F-102, F-104 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
+| Data Classification & Handling | F-035, F-081, F-082, F-083, F-086, F-087 | C1.1, PI1.5, P3.1, P3.2 |
+| Information Sharing & Transfer | F-025, F-026, F-027, F-057, F-092, F-093 | CC6.7, P6.1 |
+| Retention & Secure Disposal | F-084, F-088, F-089, F-090, F-108, F-118 | C1.2, P4.2, P4.3, CC6.5 |
+| Compliance & Regulatory Monitoring | F-041, F-042, F-096, F-103, F-122 | CC4.1, P8.1 |
+| Physical Security & Environmental | F-034, F-074, F-075, F-076 | A1.2 |
+| Background Screening & On/Off-boarding | F-019, F-053, F-054 | CC6.2, CC6.3 |
+| Information Security & Privacy Governance | F-037, F-104 | CC1.3, CC5.1 |
+| Security & Privacy Awareness Training | F-099, F-100 | CC2.2 |
 
 ## Manual evidence checklist
 
@@ -3210,56 +3722,6 @@ Requirement: The entity implements policies and procedures to make available or 
 - [ ] Output access is authorized and scoped to the recipient
 - [ ] Delivery timeliness is measured against specification
 
-### P1.1 · Privacy notice
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity provides notice to data subjects about its privacy practices to meet its objectives.
-
-- [ ] Privacy notice is accessible from the product (signup, footer, app settings)
-- [ ] Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal
-- [ ] Changes are communicated to affected users; prior versions are retained
-- [ ] Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)
-
-### P2.1 · Choice and consent
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity communicates choices available regarding the collection, use, retention, disclosure, and disposal of personal information and obtains consent where required.
-
-- [ ] Consent captured with timestamp, policy/notice version, purpose, and channel
-- [ ] Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)
-- [ ] Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required
-- [ ] Re-consent triggered for new purposes or material changes
-- [ ] Explicit consent for sensitive data and cross-border transfers where required
-
-### P3.1 · Collection consistent with objectives
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: Personal information is collected consistent with the entity's objectives related to privacy.
-
-- [ ] Data minimization: each collected field has a documented purpose
-- [ ] PII fields identified in schemas/APIs and tracked in a data map
-- [ ] Collected data matches what the notice says
-- [ ] Third-party SDKs and analytics events reviewed for unintended PII collection
-- [ ] Legal basis/purpose recorded where applicable
-
-### P3.2 · Sensitive information
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: For information requiring explicit consent, the entity communicates the need for consent and obtains it before collection.
-
-- [ ] Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)
-- [ ] Explicit consent obtained before collection
-- [ ] Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls
-- [ ] Age-gating/parental-consent logic where minors' data is possible
-
 ### P4.1 · Use of personal information
 
 Suggested owner: Privacy / legal  
@@ -3271,67 +3733,6 @@ Requirement: The entity limits the use of personal information to the purposes i
 - [ ] No secondary use without basis (e.g., production PII in analytics, ML training, or marketing without consent)
 - [ ] Data-use documented for pipelines and internal tools; internal access is justified and logged
 
-### P4.2 · Retention of personal information
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity retains personal information consistent with its objectives.
-
-- [ ] Retention schedule defined per data type
-- [ ] TTLs/purge jobs implemented and monitored
-- [ ] Backup and log retention aligned with schedule
-- [ ] Legal-hold process exists and is honored by purge jobs
-
-### P4.3 · Disposal of personal information
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity securely disposes of personal information to meet its objectives.
-
-- [ ] Secure deletion or irreversible anonymization implemented
-- [ ] Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)
-- [ ] Deletion is verified and audit-logged
-- [ ] P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)
-
-### P5.1 · Data subject access
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity grants identified and authenticated data subjects the ability to access their stored personal information.
-
-- [ ] Self-service or request-based access/export endpoint exists
-- [ ] Requester identity is authenticated before disclosure; export is scoped to that subject only
-- [ ] Machine-readable export format
-- [ ] Export covers all stores holding the subject's data, including vendors
-- [ ] Requests are tracked with response-time SLA and audit logs
-- [ ] Endpoint is rate-limited and abuse-resistant
-
-### P5.2 · Correction and amendment
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity corrects, amends, or appends personal information based on information provided by data subjects and communicates such information to third parties.
-
-- [ ] Users can update or request correction of their data
-- [ ] Corrections propagate to downstream systems and relevant third parties
-- [ ] Change history/audit trail retained; denials documented with rationale
-
-### P6.1 · Authorized disclosure to third parties
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity discloses personal information to third parties with the explicit consent of data subjects, and such consent is obtained prior to disclosure.
-
-- [ ] Disclosure paths to third parties are inventoried (subprocessors, analytics, support tools, integrations)
-- [ ] Consent/authorization checked in code before sending PI to third parties
-- [ ] Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)
-- [ ] Cross-border transfer mechanisms documented where applicable
-
 ### P6.2 · Records of authorized disclosures
 
 Suggested owner: Privacy / legal  
@@ -3341,17 +3742,6 @@ Requirement: The entity creates and retains a complete, accurate, and timely rec
 
 - [ ] Disclosure events are logged (subject, recipient, data categories, purpose, timestamp, authorization basis)
 - [ ] Records are retained per policy and queryable by data subject
-
-### P6.3 · Records of unauthorized disclosures
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity creates and retains a complete, accurate, and timely record of detected or reported unauthorized disclosures (including breaches) of personal information.
-
-- [ ] Incident register captures unauthorized disclosures with scope, affected subjects, root cause, and remediation
-- [ ] Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)
-- [ ] Records link to the incident-response process (CC7.3–CC7.4)
 
 ### P6.4 · Third-party privacy commitments
 
@@ -3364,28 +3754,6 @@ Requirement: The entity obtains privacy commitments from vendors and other third
 - [ ] Technical scopes limit vendor access to necessary data
 - [ ] Vendor compliance is monitored (SOC reports, reviews)
 
-### P6.5 · Third-party notification of unauthorized disclosure
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity obtains commitments from vendors and other third parties to notify the entity of actual or suspected unauthorized disclosures of personal information.
-
-- [ ] Contracts specify notification timelines
-- [ ] Intake channel/process exists for vendor breach notices and feeds incident response
-
-### P6.6 · Breach notification
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity provides notification of breaches and incidents to affected data subjects, regulators, and others to meet its objectives.
-
-- [ ] Breach notification runbook and templates exist, with regulator/customer deadlines documented (e.g., 72h where applicable)
-- [ ] Affected data subjects can be identified quickly through queries and tooling
-- [ ] Contact data and notification tooling available for affected populations
-- [ ] Notification decisions recorded
-
 ### P6.7 · Accounting of personal information held and disclosed
 
 Suggested owner: Privacy / legal  
@@ -3395,30 +3763,6 @@ Requirement: The entity provides data subjects with an accounting of the persona
 
 - [ ] DSAR output includes what is held (P5.1) and to whom it was disclosed (P6.2)
 - [ ] Accounting can be produced within the response SLA
-
-### P7.1 · Data quality
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity collects and maintains accurate, up-to-date, complete, and relevant personal information to meet its objectives.
-
-- [ ] Validation on PI fields (format, completeness); duplicate detection and merge handling
-- [ ] Users can review and update their own data
-- [ ] Data-quality checks or stale-data flagging run on a schedule
-- [ ] Irrelevant or unnecessary fields are removed
-
-### P8.1 · Privacy inquiries, complaints, and disputes
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity implements a process for receiving, addressing, resolving, and communicating the resolution of inquiries, complaints, and disputes from data subjects, and monitors compliance.
-
-- [ ] Privacy contact channel published (email/form) and monitored
-- [ ] Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester
-- [ ] Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI
-- [ ] Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)
 
 ## Checks threesock did not verify
 
@@ -3642,6 +3986,89 @@ These criteria were scored on their automated checks. The rubric checks below st
 - [ ] Backups age out per policy; cryptographic erasure used where feasible
 - [ ] Deletion is verified and logged (job outputs, audit records)
 - [ ] Media/device disposal records exist
+
+**P1.1 · Privacy notice** (scored 0 (Not Met))
+
+- [ ] Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal
+- [ ] Changes are communicated to affected users; prior versions are retained
+- [ ] Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)
+
+**P2.1 · Choice and consent** (scored 0 (Not Met))
+
+- [ ] Consent captured with timestamp, policy/notice version, purpose, and channel
+- [ ] Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)
+- [ ] Re-consent triggered for new purposes or material changes
+- [ ] Explicit consent for sensitive data and cross-border transfers where required
+
+**P3.1 · Collection consistent with objectives** (scored 0 (Not Met))
+
+- [ ] Data minimization: each collected field has a documented purpose
+- [ ] Collected data matches what the notice says
+- [ ] Third-party SDKs and analytics events reviewed for unintended PII collection
+- [ ] Legal basis/purpose recorded where applicable
+
+**P3.2 · Sensitive information** (scored 0 (Not Met))
+
+- [ ] Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)
+- [ ] Explicit consent obtained before collection
+- [ ] Age-gating/parental-consent logic where minors' data is possible
+
+**P4.2 · Retention of personal information** (scored 0 (Not Met))
+
+- [ ] Retention schedule defined per data type
+- [ ] Backup and log retention aligned with schedule
+- [ ] Legal-hold process exists and is honored by purge jobs
+
+**P4.3 · Disposal of personal information** (scored 0 (Not Met))
+
+- [ ] Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)
+- [ ] Deletion is verified and audit-logged
+- [ ] P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)
+
+**P5.1 · Data subject access** (scored 0 (Not Met))
+
+- [ ] Requester identity is authenticated before disclosure; export is scoped to that subject only
+- [ ] Machine-readable export format
+- [ ] Export covers all stores holding the subject's data, including vendors
+- [ ] Requests are tracked with response-time SLA and audit logs
+- [ ] Endpoint is rate-limited and abuse-resistant
+
+**P5.2 · Correction and amendment** (scored 0 (Not Met))
+
+- [ ] Corrections propagate to downstream systems and relevant third parties
+- [ ] Change history/audit trail retained; denials documented with rationale
+
+**P6.1 · Authorized disclosure to third parties** (scored 0 (Not Met))
+
+- [ ] Consent/authorization checked in code before sending PI to third parties
+- [ ] Cross-border transfer mechanisms documented where applicable
+
+**P6.3 · Records of unauthorized disclosures** (scored 0 (Not Met))
+
+- [ ] Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)
+- [ ] Records link to the incident-response process (CC7.3–CC7.4)
+
+**P6.5 · Third-party notification of unauthorized disclosure** (scored 0 (Not Met))
+
+- [ ] Contracts specify notification timelines
+
+**P6.6 · Breach notification** (scored 0 (Not Met))
+
+- [ ] Affected data subjects can be identified quickly through queries and tooling
+- [ ] Contact data and notification tooling available for affected populations
+- [ ] Notification decisions recorded
+
+**P7.1 · Data quality** (scored 0 (Not Met))
+
+- [ ] Users can review and update their own data
+- [ ] Data-quality checks or stale-data flagging run on a schedule
+- [ ] Irrelevant or unnecessary fields are removed
+
+**P8.1 · Privacy inquiries, complaints, and disputes** (scored 0 (Not Met))
+
+- [ ] Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester
+- [ ] Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI
+- [ ] Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)
 
 ---
 

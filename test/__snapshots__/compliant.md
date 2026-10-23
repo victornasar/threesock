@@ -19,7 +19,7 @@ External tools:      none (built-in rules only)
 | Availability | 3 | 6 | 6 | 100.0% | Audit-ready | 0 |
 | Processing Integrity | 4 | 8 | 8 | 100.0% | Audit-ready | 1 |
 | Confidentiality | 2 | 4 | 4 | 100.0% | Audit-ready | 0 |
-| Privacy | 0 | 0 | 0 | — | nothing assessable | 18 |
+| Privacy | 14 | 28 | 28 | 100.0% | Audit-ready | 4 |
 
 Open findings: 0 critical · 0 high · 0 medium · 0 low
 
@@ -39,57 +39,57 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 | CC2.3 | External communication | 2 (Met) | `SECURITY.md:5` SECURITY.md gives a reporting channel. |  |  | The automated check passed with evidence. |
 | CC3.1 | Suitable objectives | MANUAL |  |  | Security and risk owner | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
 | CC3.2 | Risk identification and analysis | 2 (Met) | `docs/adr/0001-oidc-for-ci.md` 1 ADR, 1 with a security section.<br>`docs/security/risk-register.md:6` docs/security/risk-register.md covers likelihood, impact, owner, treatment (structure checked, quality not judged).<br>`docs/security/threat-model.md:6` docs/security/threat-model.md covers assets or data, trust boundaries or entry points, threats, mitigations (structure checked, quality not judged). |  |  | All 3 automated checks passed with evidence. |
-| CC3.3 | Fraud risk | 2 (Met) | Checked 8 files (JS/TS, Python, Go source and related config); no auth-bypass flags or hard-coded privileged usernames. |  |  | The automated check passed with evidence. |
+| CC3.3 | Fraud risk | 2 (Met) | Checked 10 files (JS/TS, Python, Go source and related config); no auth-bypass flags or hard-coded privileged usernames. |  |  | The automated check passed with evidence. |
 | CC3.4 | Significant changes | 2 (Met) | `.github/CODEOWNERS` All 3 manifests and IaC files have specific code owners. |  |  | The automated check passed with evidence. |
 | CC4.1 | Ongoing/separate evaluations | 2 (Met) | `.github/workflows/ci.yml:31` Infrastructure code is scanned.<br>`.github/workflows/ci.yml:32` A SAST tool runs in CI.<br>`.github/workflows/ci.yml:6` Security scans run on a schedule. |  |  | All 3 automated checks passed with evidence. |
-| CC4.2 | Deficiency communication and remediation | 2 (Met) | 5 security scan steps in CI, none configured to ignore failures.<br>`docs/security/vulnerability-management.md:8` docs/security/vulnerability-management.md covers per-severity deadlines, escalation of overdue findings (structure checked, quality not judged).<br>Checked 9 source files and scanner ignore files; every suppression has a reason. |  |  | All 3 automated checks passed with evidence. |
+| CC4.2 | Deficiency communication and remediation | 2 (Met) | 5 security scan steps in CI, none configured to ignore failures.<br>`docs/security/vulnerability-management.md:8` docs/security/vulnerability-management.md covers per-severity deadlines, escalation of overdue findings (structure checked, quality not judged).<br>Checked 11 source files and scanner ignore files; every suppression has a reason. |  |  | All 3 automated checks passed with evidence. |
 | CC5.1 | Control selection and design | 2 (Met) | `docs/security/risk-register.md:6` docs/security/risk-register.md covers a risks column, a controls column (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
 | CC5.2 | Technology general controls | 2 (Met) | `.github/workflows/ci.yml` All actions are pinned to commit SHAs.<br>`.github/workflows/deploy.yml` All actions are pinned to commit SHAs.<br>`.github/workflows/drift.yml` All actions are pinned to commit SHAs.<br>+8 more |  |  | All 7 automated checks passed with evidence. |
-| CC5.3 | Policies and procedures | 2 (Met) | `docs/security/access-management.md` Owner set, last reviewed 2025-11-01.<br>`docs/security/business-continuity.md` Owner set, last reviewed 2025-11-01.<br>`docs/security/data-handling.md` Owner set, last reviewed 2025-11-01.<br>+10 more |  |  | All 2 automated checks passed with evidence. |
-| CC6.1 | Logical access security | 2 (Met) | `src/server.js:14` Cookie security flags are set explicitly.<br>`.gitignore:2` .gitignore excludes .env files (`.env`).<br>No .env files (other than templates) are present among 37 files.<br>+7 more |  |  | All 9 automated checks passed with evidence. |
-| CC6.2 | Registration and authorization before access | 2 (Met) | Checked 8 files (JS/TS, Python source and related config); no request bodies spread into models and no client-supplied roles. |  |  | The automated check passed with evidence. |
+| CC5.3 | Policies and procedures | 2 (Met) | `docs/security/access-management.md` Owner set, last reviewed 2025-11-01.<br>`docs/security/breach-notification.md` Owner set, last reviewed 2025-11-01.<br>`docs/security/business-continuity.md` Owner set, last reviewed 2025-11-01.<br>+10 more |  |  | All 2 automated checks passed with evidence. |
+| CC6.1 | Logical access security | 2 (Met) | `src/server.js:14` Cookie security flags are set explicitly.<br>`.gitignore:2` .gitignore excludes .env files (`.env`).<br>No .env files (other than templates) are present among 43 files.<br>+7 more |  |  | All 9 automated checks passed with evidence. |
+| CC6.2 | Registration and authorization before access | 2 (Met) | Checked 10 files (JS/TS, Python source and related config); no request bodies spread into models and no client-supplied roles. |  |  | The automated check passed with evidence. |
 | CC6.3 | Access removal and modification | 2 (Met) | `docs/security/access-management.md:10` docs/security/access-management.md covers access revocation, systems covered (SSO, source control, cloud, CI), deadline (structure checked, quality not judged).<br>1 token issuing call set an expiry. |  |  | All 2 automated checks passed with evidence. |
 | CC6.4 | Physical access | MANUAL |  |  | IT and facilities (inherit from cloud provider SOC 2 report) | The rubric marks this criterion as manual evidence; any repository signals are supporting evidence only. |
 | CC6.5 | Secure disposal of assets | 2 (Met) | `infra/main.tf:34` aws_db_instance.main uses a customer-managed key (detected by threesock's lightweight Terraform scanner). |  |  | The automated check passed with evidence. |
-| CC6.6 | Protection against external threats | 2 (Met) | `src/server.js` CORS configuration does not combine a wildcard origin with credentials.<br>Checked 8 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization.<br>`infra/main.tf:11` aws_security_group.web exposes no admin or data ports to the internet (detected by threesock's lightweight Terraform scanner).<br>+6 more |  |  | All 8 automated checks passed with evidence. |
-| CC6.7 | Protection of data in transmission | 2 (Met) | Checked 16 files; no plain http:// URLs to non-local hosts.<br>Checked 12 files (JS/TS, Python, Go source and related config); certificate verification is never disabled.<br>Checked 9 files; no TLS below 1.2 and no legacy ciphers found.<br>+1 more |  |  | All 4 automated checks passed with evidence. |
+| CC6.6 | Protection against external threats | 2 (Met) | `src/server.js` CORS configuration does not combine a wildcard origin with credentials.<br>Checked 10 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization.<br>`infra/main.tf:11` aws_security_group.web exposes no admin or data ports to the internet (detected by threesock's lightweight Terraform scanner).<br>+6 more |  |  | All 8 automated checks passed with evidence. |
+| CC6.7 | Protection of data in transmission | 2 (Met) | Checked 18 files; no plain http:// URLs to non-local hosts.<br>Checked 14 files (JS/TS, Python, Go source and related config); certificate verification is never disabled.<br>Checked 11 files; no TLS below 1.2 and no legacy ciphers found.<br>+1 more |  |  | All 4 automated checks passed with evidence. |
 | CC6.8 | Malicious/unauthorized software | 2 (Met) | `Dockerfile:1` node:22.11.0-bookworm-slim is pinned by digest.<br>`.github/workflows/ci.yml:27` A container image scanner runs in CI.<br>Checked 4 build files; no remote scripts piped to a shell.<br>+4 more |  |  | All 6 automated checks passed with evidence. |
 | CC7.1 | Detection of vulnerabilities and configuration changes | 2 (Met) | `Dockerfile:6` Final stage runs as node.<br>`.github/workflows/drift.yml` Scheduled terraform plan detects drift.<br>`.github/dependabot.yml` Dependency update and alert bot configured. |  |  | All 3 automated checks passed with evidence. |
-| CC7.2 | Monitoring for anomalies | 2 (Met) | `infra/main.tf:83` Alert rules are defined in code.<br>Checked 8 files (JS/TS, Python, Go source and related config); no credentials, auth headers or request bodies passed to loggers. |  |  | All 2 automated checks passed with evidence. |
+| CC7.2 | Monitoring for anomalies | 2 (Met) | `infra/main.tf:83` Alert rules are defined in code.<br>Checked 10 files (JS/TS, Python, Go source and related config); no personal data fields passed to loggers.<br>Checked 10 files (JS/TS, Python, Go source and related config); no credentials, auth headers or request bodies passed to loggers. |  |  | All 3 automated checks passed with evidence. |
 | CC7.3 | Security event evaluation | 2 (Met) | `docs/security/incident-response.md:9` docs/security/incident-response.md covers severity levels, classification criteria, outcome recording (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
 | CC7.4 | Incident response | 2 (Met) | `docs/security/incident-response.md:6` docs/security/incident-response.md covers roles, severity levels, escalation, communication (structure checked, quality not judged).<br>`docs/security/incident-response.md:25` Runbook for credential leak.<br>`docs/security/incident-response.md:12` Runbook for data exposure.<br>+2 more |  |  | All 2 automated checks passed with evidence. |
 | CC7.5 | Recovery from incidents | 2 (Met) | `docs/security/access-management.md:15` docs/security/access-management.md covers what is rotated, when (schedule or trigger) (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
-| CC8.1 | Authorized, tested, approved changes | 2 (Met) | `.github/workflows/ci.yml:17` Tests run on every pull request.<br>`.github/workflows/ci.yml:16` Lint runs on every pull request.<br>`.github/CODEOWNERS` All 15 sensitive files have a specific code owner.<br>+4 more |  |  | All 6 automated checks passed with evidence. |
+| CC8.1 | Authorized, tested, approved changes | 2 (Met) | `.github/workflows/ci.yml:17` Tests run on every pull request.<br>`.github/workflows/ci.yml:16` Lint runs on every pull request.<br>`.github/CODEOWNERS` All 18 sensitive files have a specific code owner.<br>+4 more |  |  | All 6 automated checks passed with evidence. |
 | CC9.1 | Business disruption risk | 2 (Met) | `docs/security/business-continuity.md:6` docs/security/business-continuity.md covers critical dependencies and fallbacks, recovery steps, provider or regional outages (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
-| CC9.2 | Vendor and third-party risk | 2 (Met) | `docs/security/data-handling.md:16` Third-party inventory.<br>`.github/workflows/ci.yml:33` SBOM generated in CI. |  |  | The automated check passed with evidence. |
+| CC9.2 | Vendor and third-party risk | 2 (Met) | `docs/security/breach-notification.md:12` Third-party inventory.<br>`.github/workflows/ci.yml:33` SBOM generated in CI. |  |  | The automated check passed with evidence. |
 | A1.1 | Capacity management | 2 (Met) | `k8s/deployment.yaml:21` Autoscaling is configured.<br>`k6/smoke.js` Load test definitions exist.<br>`k8s/deployment.yaml` All containers set resource limits. |  |  | All 3 automated checks passed with evidence. |
 | A1.2 | Environmental protection, backup, and recovery infrastructure | 2 (Met) | `infra/main.tf:34` aws_db_instance.main keeps backups for 14 days.<br>`infra/main.tf:34` aws_db_instance.main is deletion-protected (detected by threesock's lightweight Terraform scanner).<br>`k8s/deployment.yaml` Probes are defined.<br>+1 more |  |  | All 4 automated checks passed with evidence. |
 | A1.3 | Recovery plan testing | 2 (Met) | `docs/security/business-continuity.md:21` Dated restore or DR test results are recorded.<br>`docs/security/business-continuity.md:19` docs/security/business-continuity.md covers RTO, RPO (structure checked, quality not judged). |  |  | All 2 automated checks passed with evidence. |
 | PI1.1 | Processing objectives and specifications | 2 (Met) | `openapi.yaml` API contract file.<br>`CHANGELOG.md` Changes are recorded in a changelog. |  |  | All 2 automated checks passed with evidence. |
-| PI1.2 | Input completeness and accuracy | 2 (Met) | `src/webhooks.js:13` Idempotency or deduplication is implemented.<br>`package.json:21` A schema validation library is used. |  |  | All 2 automated checks passed with evidence. |
+| PI1.2 | Input completeness and accuracy | 2 (Met) | `src/webhooks.js:13` Idempotency or deduplication is implemented.<br>`package.json:22` A schema validation library is used. |  |  | All 2 automated checks passed with evidence. |
 | PI1.3 | Processing completeness, accuracy, timeliness, authorization | 2 (Met) | `src/jobs.js:6` Retry limits or dead-letter handling are configured.<br>`src/webhooks.js:12` Database transactions are used. |  |  | All 2 automated checks passed with evidence. |
 | PI1.4 | Output completeness, accuracy, timeliness | MANUAL |  |  | Engineering lead | threesock has no automated checks for this criterion yet. Gather evidence manually. |
 | PI1.5 | Storage completeness and accuracy | 2 (Met) | `migrations/001_init.up.sql:1` Schemas declare integrity constraints. |  |  | The automated check passed with evidence. |
 | C1.1 | Identify and protect confidential information | 2 (Met) | `docs/security/data-handling.md:8` docs/security/data-handling.md covers classification levels, handling rules (structure checked, quality not judged).<br>`infra/main.tf:34` aws_db_instance.main sets storage_encrypted = true (detected by threesock's lightweight Terraform scanner).<br>`infra/main.tf:44` aws_s3_bucket.uploads is encrypted at rest by the provider by default.<br>+1 more |  |  | All 3 automated checks passed with evidence. |
 | C1.2 | Dispose of confidential information | 2 (Met) | `infra/main.tf:44` aws_s3_bucket.uploads has lifecycle rules (detected by threesock's lightweight Terraform scanner).<br>`infra/main.tf:78` aws_cloudwatch_log_group.api retains logs for 90 days.<br>`docs/security/data-handling.md:14` docs/security/data-handling.md covers retention periods, deletion or disposal (structure checked, quality not judged). |  |  | All 2 automated checks passed with evidence. |
-| P1.1 | Privacy notice | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P2.1 | Choice and consent | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P3.1 | Collection consistent with objectives | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P3.2 | Sensitive information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P1.1 | Privacy notice | 2 (Met) | `public/privacy.html` A privacy notice page exists. |  |  | The automated check passed with evidence. |
+| P2.1 | Choice and consent | 2 (Met) | `public/analytics.js:4` Consent gating found for PostHog. |  |  | The automated check passed with evidence. |
+| P3.1 | Collection consistent with objectives | 2 (Met) | `docs/security/data-handling.md:19` docs/security/data-handling.md covers personal data fields or categories, purpose, retention (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
+| P3.2 | Sensitive information | 2 (Met) | `migrations/002_profile.down.sql:1` Field-level encryption or tokenization is used for sensitive data. |  |  | The automated check passed with evidence. |
 | P4.1 | Use of personal information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P4.2 | Retention of personal information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P4.3 | Disposal of personal information | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P5.1 | Data subject access | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P5.2 | Correction and amendment | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.1 | Authorized disclosure to third parties | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P4.2 | Retention of personal information | 2 (Met) | `src/jobs.js:9` A purge job, TTL or retention routine exists. |  |  | The automated check passed with evidence. |
+| P4.3 | Disposal of personal information | 2 (Met) | `src/account/routes.js:9` A deletion or anonymization path exists. |  |  | The automated check passed with evidence. |
+| P5.1 | Data subject access | 2 (Met) | `src/account/routes.js:7` A personal data export path exists. |  |  | The automated check passed with evidence. |
+| P5.2 | Correction and amendment | 2 (Met) | `src/account/routes.js:8` A profile or account update path exists. |  |  | The automated check passed with evidence. |
+| P6.1 | Authorized disclosure to third parties | 2 (Met) | All 1 SDK vendor(s) in use are named in the documentation: PostHog.<br>Checked 10 files (JS/TS, Python source and related config); no whole user objects or email addresses passed to analytics or support SDKs. |  |  | All 2 automated checks passed with evidence. |
 | P6.2 | Records of authorized disclosures | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.3 | Records of unauthorized disclosures | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P6.3 | Records of unauthorized disclosures | 2 (Met) | `docs/security/breach-notification.md:16` docs/security/breach-notification.md covers scope, affected subjects, root cause, remediation (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
 | P6.4 | Third-party privacy commitments | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.5 | Third-party notification of unauthorized disclosure | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P6.6 | Breach notification | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P6.5 | Third-party notification of unauthorized disclosure | 2 (Met) | `docs/security/breach-notification.md:12` Vendor breach notices have a documented intake. |  |  | The automated check passed with evidence. |
+| P6.6 | Breach notification | 2 (Met) | `docs/security/breach-notification.md:7` docs/security/breach-notification.md covers notification deadlines, regulators and affected people, templates (structure checked, quality not judged). |  |  | The automated check passed with evidence. |
 | P6.7 | Accounting of personal information held and disclosed | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P7.1 | Data quality | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
-| P8.1 | Privacy inquiries, complaints, and disputes | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
+| P7.1 | Data quality | 2 (Met) | `src/account/routes.js:4` Personal data fields are validated. |  |  | The automated check passed with evidence. |
+| P8.1 | Privacy inquiries, complaints, and disputes | 2 (Met) | `public/privacy.html:4` A privacy contact is published.<br>`.github/pull_request_template.md:4` Changes are reviewed for personal data impact. |  |  | The automated check passed with evidence. |
 
 ## Findings (Appendix B)
 
@@ -187,56 +187,6 @@ Requirement: The entity implements policies and procedures to make available or 
 - [ ] Output access is authorized and scoped to the recipient
 - [ ] Delivery timeliness is measured against specification
 
-### P1.1 · Privacy notice
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity provides notice to data subjects about its privacy practices to meet its objectives.
-
-- [ ] Privacy notice is accessible from the product (signup, footer, app settings)
-- [ ] Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal
-- [ ] Changes are communicated to affected users; prior versions are retained
-- [ ] Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)
-
-### P2.1 · Choice and consent
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity communicates choices available regarding the collection, use, retention, disclosure, and disposal of personal information and obtains consent where required.
-
-- [ ] Consent captured with timestamp, policy/notice version, purpose, and channel
-- [ ] Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)
-- [ ] Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required
-- [ ] Re-consent triggered for new purposes or material changes
-- [ ] Explicit consent for sensitive data and cross-border transfers where required
-
-### P3.1 · Collection consistent with objectives
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: Personal information is collected consistent with the entity's objectives related to privacy.
-
-- [ ] Data minimization: each collected field has a documented purpose
-- [ ] PII fields identified in schemas/APIs and tracked in a data map
-- [ ] Collected data matches what the notice says
-- [ ] Third-party SDKs and analytics events reviewed for unintended PII collection
-- [ ] Legal basis/purpose recorded where applicable
-
-### P3.2 · Sensitive information
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: For information requiring explicit consent, the entity communicates the need for consent and obtains it before collection.
-
-- [ ] Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)
-- [ ] Explicit consent obtained before collection
-- [ ] Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls
-- [ ] Age-gating/parental-consent logic where minors' data is possible
-
 ### P4.1 · Use of personal information
 
 Suggested owner: Privacy / legal  
@@ -248,67 +198,6 @@ Requirement: The entity limits the use of personal information to the purposes i
 - [ ] No secondary use without basis (e.g., production PII in analytics, ML training, or marketing without consent)
 - [ ] Data-use documented for pipelines and internal tools; internal access is justified and logged
 
-### P4.2 · Retention of personal information
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity retains personal information consistent with its objectives.
-
-- [ ] Retention schedule defined per data type
-- [ ] TTLs/purge jobs implemented and monitored
-- [ ] Backup and log retention aligned with schedule
-- [ ] Legal-hold process exists and is honored by purge jobs
-
-### P4.3 · Disposal of personal information
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity securely disposes of personal information to meet its objectives.
-
-- [ ] Secure deletion or irreversible anonymization implemented
-- [ ] Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)
-- [ ] Deletion is verified and audit-logged
-- [ ] P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)
-
-### P5.1 · Data subject access
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity grants identified and authenticated data subjects the ability to access their stored personal information.
-
-- [ ] Self-service or request-based access/export endpoint exists
-- [ ] Requester identity is authenticated before disclosure; export is scoped to that subject only
-- [ ] Machine-readable export format
-- [ ] Export covers all stores holding the subject's data, including vendors
-- [ ] Requests are tracked with response-time SLA and audit logs
-- [ ] Endpoint is rate-limited and abuse-resistant
-
-### P5.2 · Correction and amendment
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity corrects, amends, or appends personal information based on information provided by data subjects and communicates such information to third parties.
-
-- [ ] Users can update or request correction of their data
-- [ ] Corrections propagate to downstream systems and relevant third parties
-- [ ] Change history/audit trail retained; denials documented with rationale
-
-### P6.1 · Authorized disclosure to third parties
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity discloses personal information to third parties with the explicit consent of data subjects, and such consent is obtained prior to disclosure.
-
-- [ ] Disclosure paths to third parties are inventoried (subprocessors, analytics, support tools, integrations)
-- [ ] Consent/authorization checked in code before sending PI to third parties
-- [ ] Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)
-- [ ] Cross-border transfer mechanisms documented where applicable
-
 ### P6.2 · Records of authorized disclosures
 
 Suggested owner: Privacy / legal  
@@ -318,17 +207,6 @@ Requirement: The entity creates and retains a complete, accurate, and timely rec
 
 - [ ] Disclosure events are logged (subject, recipient, data categories, purpose, timestamp, authorization basis)
 - [ ] Records are retained per policy and queryable by data subject
-
-### P6.3 · Records of unauthorized disclosures
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity creates and retains a complete, accurate, and timely record of detected or reported unauthorized disclosures (including breaches) of personal information.
-
-- [ ] Incident register captures unauthorized disclosures with scope, affected subjects, root cause, and remediation
-- [ ] Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)
-- [ ] Records link to the incident-response process (CC7.3–CC7.4)
 
 ### P6.4 · Third-party privacy commitments
 
@@ -341,28 +219,6 @@ Requirement: The entity obtains privacy commitments from vendors and other third
 - [ ] Technical scopes limit vendor access to necessary data
 - [ ] Vendor compliance is monitored (SOC reports, reviews)
 
-### P6.5 · Third-party notification of unauthorized disclosure
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity obtains commitments from vendors and other third parties to notify the entity of actual or suspected unauthorized disclosures of personal information.
-
-- [ ] Contracts specify notification timelines
-- [ ] Intake channel/process exists for vendor breach notices and feeds incident response
-
-### P6.6 · Breach notification
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity provides notification of breaches and incidents to affected data subjects, regulators, and others to meet its objectives.
-
-- [ ] Breach notification runbook and templates exist, with regulator/customer deadlines documented (e.g., 72h where applicable)
-- [ ] Affected data subjects can be identified quickly through queries and tooling
-- [ ] Contact data and notification tooling available for affected populations
-- [ ] Notification decisions recorded
-
 ### P6.7 · Accounting of personal information held and disclosed
 
 Suggested owner: Privacy / legal  
@@ -372,30 +228,6 @@ Requirement: The entity provides data subjects with an accounting of the persona
 
 - [ ] DSAR output includes what is held (P5.1) and to whom it was disclosed (P6.2)
 - [ ] Accounting can be produced within the response SLA
-
-### P7.1 · Data quality
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity collects and maintains accurate, up-to-date, complete, and relevant personal information to meet its objectives.
-
-- [ ] Validation on PI fields (format, completeness); duplicate detection and merge handling
-- [ ] Users can review and update their own data
-- [ ] Data-quality checks or stale-data flagging run on a schedule
-- [ ] Irrelevant or unnecessary fields are removed
-
-### P8.1 · Privacy inquiries, complaints, and disputes
-
-Suggested owner: Privacy / legal  
-Why manual: threesock has no automated checks for this criterion yet. Gather evidence manually.
-
-Requirement: The entity implements a process for receiving, addressing, resolving, and communicating the resolution of inquiries, complaints, and disputes from data subjects, and monitors compliance.
-
-- [ ] Privacy contact channel published (email/form) and monitored
-- [ ] Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester
-- [ ] Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI
-- [ ] Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)
 
 ## Checks threesock did not verify
 
@@ -619,6 +451,89 @@ These criteria were scored on their automated checks. The rubric checks below st
 - [ ] Backups age out per policy; cryptographic erasure used where feasible
 - [ ] Deletion is verified and logged (job outputs, audit records)
 - [ ] Media/device disposal records exist
+
+**P1.1 · Privacy notice** (scored 2 (Met))
+
+- [ ] Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal
+- [ ] Changes are communicated to affected users; prior versions are retained
+- [ ] Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)
+
+**P2.1 · Choice and consent** (scored 2 (Met))
+
+- [ ] Consent captured with timestamp, policy/notice version, purpose, and channel
+- [ ] Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)
+- [ ] Re-consent triggered for new purposes or material changes
+- [ ] Explicit consent for sensitive data and cross-border transfers where required
+
+**P3.1 · Collection consistent with objectives** (scored 2 (Met))
+
+- [ ] Data minimization: each collected field has a documented purpose
+- [ ] Collected data matches what the notice says
+- [ ] Third-party SDKs and analytics events reviewed for unintended PII collection
+- [ ] Legal basis/purpose recorded where applicable
+
+**P3.2 · Sensitive information** (scored 2 (Met))
+
+- [ ] Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)
+- [ ] Explicit consent obtained before collection
+- [ ] Age-gating/parental-consent logic where minors' data is possible
+
+**P4.2 · Retention of personal information** (scored 2 (Met))
+
+- [ ] Retention schedule defined per data type
+- [ ] Backup and log retention aligned with schedule
+- [ ] Legal-hold process exists and is honored by purge jobs
+
+**P4.3 · Disposal of personal information** (scored 2 (Met))
+
+- [ ] Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)
+- [ ] Deletion is verified and audit-logged
+- [ ] P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)
+
+**P5.1 · Data subject access** (scored 2 (Met))
+
+- [ ] Requester identity is authenticated before disclosure; export is scoped to that subject only
+- [ ] Machine-readable export format
+- [ ] Export covers all stores holding the subject's data, including vendors
+- [ ] Requests are tracked with response-time SLA and audit logs
+- [ ] Endpoint is rate-limited and abuse-resistant
+
+**P5.2 · Correction and amendment** (scored 2 (Met))
+
+- [ ] Corrections propagate to downstream systems and relevant third parties
+- [ ] Change history/audit trail retained; denials documented with rationale
+
+**P6.1 · Authorized disclosure to third parties** (scored 2 (Met))
+
+- [ ] Consent/authorization checked in code before sending PI to third parties
+- [ ] Cross-border transfer mechanisms documented where applicable
+
+**P6.3 · Records of unauthorized disclosures** (scored 2 (Met))
+
+- [ ] Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)
+- [ ] Records link to the incident-response process (CC7.3–CC7.4)
+
+**P6.5 · Third-party notification of unauthorized disclosure** (scored 2 (Met))
+
+- [ ] Contracts specify notification timelines
+
+**P6.6 · Breach notification** (scored 2 (Met))
+
+- [ ] Affected data subjects can be identified quickly through queries and tooling
+- [ ] Contact data and notification tooling available for affected populations
+- [ ] Notification decisions recorded
+
+**P7.1 · Data quality** (scored 2 (Met))
+
+- [ ] Users can review and update their own data
+- [ ] Data-quality checks or stale-data flagging run on a schedule
+- [ ] Irrelevant or unnecessary fields are removed
+
+**P8.1 · Privacy inquiries, complaints, and disputes** (scored 2 (Met))
+
+- [ ] Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester
+- [ ] Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI
+- [ ] Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)
 
 ---
 

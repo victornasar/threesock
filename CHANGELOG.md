@@ -5,6 +5,8 @@ All notable changes to threesock are recorded here. The JSON report has its own 
 ## Unreleased
 
 ### Added
+- Privacy rules (P1.1, P2.1, P3.1, P3.2, P4.2, P4.3, P5.1, P5.2, P6.1, P6.3, P6.5, P6.6, P7.1, P8.1): consent before trackers, third-party SDK inventory, whole user objects sent to vendors, field-level protection of sensitive data, retention purge jobs, deletion paths and soft-delete purging, data export and correction, personal data validation, privacy notice, data map, breach notification, incident register, vendor breach intake and privacy contact. Code-path rules are not applicable when no personal data is handled.
+- `cc7.2/pii-in-logs`: personal data fields passed to loggers.
 - External scanners: Gitleaks (full history), zizmor, Checkov and Semgrep (local rules) run automatically when installed; OSV-Scanner, Trivy and Semgrep registry rules need `--network`. `--tools`, `--no-tools`, `THREESOCK_TOOLS`; 60-second timeout per tool; findings de-duplicated against built-in rules ("also found by"); Checkov/Trivy misconfigurations mapped to criteria by topic. JSON schema 1.4.0 (`findings[].source`, `alsoFoundBy`, tool versions in `coverage.externalTools`).
 - `tools.yml` CI job running the adapters against pinned, checksum-verified scanner versions.
 - Control and policy mapping (`mappings/controls.yaml`): 35 controls and 25 policies mapped to all 61 criteria; findings and reports list what each gap affects; replaceable with `mappings:` in `threesock.yaml`.

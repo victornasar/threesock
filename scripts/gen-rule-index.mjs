@@ -26,9 +26,7 @@ for (const dir of dirs) {
     .sort()) {
     const src = readFileSync(join(base, dir, file), 'utf8');
     const names = [
-      ...src.matchAll(
-        /^export const (\w+) = (?:codePatternRule|docRule)\(|^export const (\w+): Rule = \{/gm,
-      ),
+      ...src.matchAll(/^export const (\w+) = [a-zA-Z]+Rule\(|^export const (\w+): Rule = \{/gm),
     ].map((m) => m[1] ?? m[2]);
     if (names.length !== 1)
       throw new Error(`${dir}/${file}: expected exactly one exported rule, found ${names.length}`);

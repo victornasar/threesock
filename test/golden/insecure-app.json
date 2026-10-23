@@ -8,7 +8,7 @@
   "generatedAt": "2026-01-15T12:00:00.000Z",
   "repository": {
     "root": "<root>",
-    "filesScanned": 21,
+    "filesScanned": 23,
     "gitAware": true
   },
   "config": {
@@ -22,13 +22,13 @@
   },
   "summary": {
     "overall": {
-      "assessable": 36,
+      "assessable": 50,
       "earned": 0,
-      "possible": 72,
+      "possible": 100,
       "percent": 0,
       "band": "not-ready",
       "capped": true,
-      "manualOpen": 25,
+      "manualOpen": 11,
       "notApplicable": 0
     },
     "categories": [
@@ -88,25 +88,25 @@
         "category": "privacy",
         "label": "Privacy",
         "inScope": true,
-        "assessable": 0,
+        "assessable": 14,
         "earned": 0,
-        "possible": 0,
-        "percent": null,
-        "band": null,
+        "possible": 28,
+        "percent": 0,
+        "band": "not-ready",
         "capped": false,
-        "manualOpen": 18,
+        "manualOpen": 4,
         "notApplicable": 0
       }
     ],
     "severityCounts": {
       "critical": 9,
-      "high": 26,
-      "medium": 46,
-      "low": 22
+      "high": 27,
+      "medium": 60,
+      "low": 26
     },
     "acceptedFindings": 0,
     "staleExceptions": [],
-    "manualOpen": 25,
+    "manualOpen": 11,
     "topFixes": [
       {
         "ruleId": "cc6.1/hardcoded-secrets",
@@ -243,12 +243,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-036"
+            "F-037"
           ]
         }
       ],
       "findingIds": [
-        "F-036"
+        "F-037"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -373,7 +373,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-082"
+            "F-097"
           ]
         },
         {
@@ -382,13 +382,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-083"
+            "F-098"
           ]
         }
       ],
       "findingIds": [
-        "F-082",
-        "F-083"
+        "F-097",
+        "F-098"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -430,7 +430,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-084"
+            "F-099"
           ]
         },
         {
@@ -439,13 +439,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-085"
+            "F-100"
           ]
         }
       ],
       "findingIds": [
-        "F-084",
-        "F-085"
+        "F-099",
+        "F-100"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -487,12 +487,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-037"
+            "F-038"
           ]
         }
       ],
       "findingIds": [
-        "F-037"
+        "F-038"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -571,7 +571,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-086"
+            "F-101"
           ]
         },
         {
@@ -580,7 +580,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-038"
+            "F-039"
           ]
         },
         {
@@ -589,14 +589,14 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-039"
+            "F-040"
           ]
         }
       ],
       "findingIds": [
-        "F-038",
         "F-039",
-        "F-086"
+        "F-040",
+        "F-101"
       ],
       "coverage": {
         "automatedRules": 3,
@@ -686,12 +686,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-087"
+            "F-102"
           ]
         }
       ],
       "findingIds": [
-        "F-087"
+        "F-102"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -732,7 +732,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-040"
+            "F-041"
           ]
         },
         {
@@ -741,7 +741,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-041"
+            "F-042"
           ]
         },
         {
@@ -750,14 +750,14 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-088"
+            "F-103"
           ]
         }
       ],
       "findingIds": [
-        "F-040",
         "F-041",
-        "F-088"
+        "F-042",
+        "F-103"
       ],
       "coverage": {
         "automatedRules": 3,
@@ -791,7 +791,7 @@
       "inScope": true,
       "score": 0,
       "label": "Not Met",
-      "rationale": "Red flag present: Unexplained entries in .trivyignore (F-044).",
+      "rationale": "Red flag present: Unexplained entries in .trivyignore (F-045).",
       "capped": false,
       "evidence": [],
       "checks": [
@@ -801,7 +801,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-042"
+            "F-043"
           ]
         },
         {
@@ -810,7 +810,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-043"
+            "F-044"
           ]
         },
         {
@@ -819,16 +819,16 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-044",
-            "F-045"
+            "F-045",
+            "F-046"
           ]
         }
       ],
       "findingIds": [
-        "F-042",
         "F-043",
         "F-044",
-        "F-045"
+        "F-045",
+        "F-046"
       ],
       "coverage": {
         "automatedRules": 3,
@@ -868,12 +868,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-089"
+            "F-104"
           ]
         }
       ],
       "findingIds": [
-        "F-089"
+        "F-104"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -913,7 +913,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-046"
+            "F-047"
           ]
         },
         {
@@ -931,7 +931,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-047"
+            "F-048"
           ]
         },
         {
@@ -977,8 +977,8 @@
         "F-013",
         "F-014",
         "F-015",
-        "F-046",
-        "F-047"
+        "F-047",
+        "F-048"
       ],
       "coverage": {
         "automatedRules": 7,
@@ -1022,7 +1022,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-090"
+            "F-105"
           ]
         },
         {
@@ -1031,13 +1031,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-048"
+            "F-049"
           ]
         }
       ],
       "findingIds": [
-        "F-048",
-        "F-090"
+        "F-049",
+        "F-105"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -1076,7 +1076,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-049"
+            "F-050"
           ]
         },
         {
@@ -1086,7 +1086,7 @@
           "evidence": [],
           "findingIds": [
             "F-002",
-            "F-091"
+            "F-106"
           ]
         },
         {
@@ -1095,7 +1095,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-092"
+            "F-107"
           ]
         },
         {
@@ -1127,7 +1127,7 @@
           "evidence": [],
           "findingIds": [
             "F-007",
-            "F-050"
+            "F-051"
           ]
         },
         {
@@ -1154,7 +1154,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-051"
+            "F-052"
           ]
         }
       ],
@@ -1169,11 +1169,11 @@
         "F-016",
         "F-017",
         "F-018",
-        "F-049",
         "F-050",
         "F-051",
-        "F-091",
-        "F-092"
+        "F-052",
+        "F-106",
+        "F-107"
       ],
       "coverage": {
         "automatedRules": 9,
@@ -1263,7 +1263,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-052"
+            "F-053"
           ]
         },
         {
@@ -1272,13 +1272,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-053"
+            "F-054"
           ]
         }
       ],
       "findingIds": [
-        "F-052",
-        "F-053"
+        "F-053",
+        "F-054"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -1352,12 +1352,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-093"
+            "F-108"
           ]
         }
       ],
       "findingIds": [
-        "F-093"
+        "F-108"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -1443,7 +1443,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-054"
+            "F-055"
           ]
         },
         {
@@ -1461,7 +1461,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-055"
+            "F-056"
           ]
         }
       ],
@@ -1472,8 +1472,8 @@
         "F-022",
         "F-023",
         "F-024",
-        "F-054",
-        "F-055"
+        "F-055",
+        "F-056"
       ],
       "coverage": {
         "automatedRules": 8,
@@ -1514,7 +1514,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-056"
+            "F-057"
           ]
         },
         {
@@ -1549,7 +1549,7 @@
         "F-025",
         "F-026",
         "F-027",
-        "F-056"
+        "F-057"
       ],
       "coverage": {
         "automatedRules": 4,
@@ -1589,7 +1589,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-057"
+            "F-058"
           ]
         },
         {
@@ -1598,7 +1598,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-058"
+            "F-059"
           ]
         },
         {
@@ -1623,7 +1623,7 @@
             }
           ],
           "findingIds": [
-            "F-094"
+            "F-109"
           ]
         },
         {
@@ -1633,7 +1633,7 @@
           "evidence": [],
           "findingIds": [
             "F-029",
-            "F-095"
+            "F-110"
           ]
         },
         {
@@ -1642,18 +1642,18 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-059"
+            "F-060"
           ]
         }
       ],
       "findingIds": [
         "F-028",
         "F-029",
-        "F-057",
         "F-058",
         "F-059",
-        "F-094",
-        "F-095"
+        "F-060",
+        "F-109",
+        "F-110"
       ],
       "coverage": {
         "automatedRules": 6,
@@ -1697,7 +1697,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-060"
+            "F-061"
           ]
         },
         {
@@ -1706,7 +1706,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-096"
+            "F-111"
           ]
         },
         {
@@ -1715,14 +1715,14 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-061"
+            "F-062"
           ]
         }
       ],
       "findingIds": [
-        "F-060",
         "F-061",
-        "F-096"
+        "F-062",
+        "F-111"
       ],
       "coverage": {
         "automatedRules": 3,
@@ -1764,7 +1764,16 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-062"
+            "F-063"
+          ]
+        },
+        {
+          "ruleId": "cc7.2/pii-in-logs",
+          "title": "Personal data is not written to logs",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-064"
           ]
         },
         {
@@ -1779,10 +1788,11 @@
       ],
       "findingIds": [
         "F-030",
-        "F-062"
+        "F-063",
+        "F-064"
       ],
       "coverage": {
-        "automatedRules": 2,
+        "automatedRules": 3,
         "rubricChecks": 5
       },
       "manualFollowUps": [
@@ -1819,12 +1829,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-063"
+            "F-065"
           ]
         }
       ],
       "findingIds": [
-        "F-063"
+        "F-065"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -1872,13 +1882,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-064"
+            "F-066"
           ]
         }
       ],
       "findingIds": [
         "F-031",
-        "F-064"
+        "F-066"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -1917,12 +1927,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-065"
+            "F-067"
           ]
         }
       ],
       "findingIds": [
-        "F-065"
+        "F-067"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -1973,7 +1983,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-066"
+            "F-068"
           ]
         },
         {
@@ -1990,7 +2000,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-097"
+            "F-112"
           ]
         },
         {
@@ -1999,7 +2009,8 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-067"
+            "F-069",
+            "F-070"
           ]
         },
         {
@@ -2008,7 +2019,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-098"
+            "F-113"
           ]
         },
         {
@@ -2024,10 +2035,11 @@
       "findingIds": [
         "F-032",
         "F-033",
-        "F-066",
-        "F-067",
-        "F-097",
-        "F-098"
+        "F-068",
+        "F-069",
+        "F-070",
+        "F-112",
+        "F-113"
       ],
       "coverage": {
         "automatedRules": 7,
@@ -2070,12 +2082,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-068"
+            "F-071"
           ]
         }
       ],
       "findingIds": [
-        "F-068"
+        "F-071"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -2118,12 +2130,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-069"
+            "F-072"
           ]
         }
       ],
       "findingIds": [
-        "F-069"
+        "F-072"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -2165,7 +2177,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-099"
+            "F-114"
           ]
         },
         {
@@ -2174,7 +2186,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-100"
+            "F-115"
           ]
         },
         {
@@ -2183,14 +2195,14 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-070"
+            "F-073"
           ]
         }
       ],
       "findingIds": [
-        "F-070",
-        "F-099",
-        "F-100"
+        "F-073",
+        "F-114",
+        "F-115"
       ],
       "coverage": {
         "automatedRules": 3,
@@ -2239,7 +2251,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-071"
+            "F-074"
           ]
         },
         {
@@ -2248,7 +2260,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-072"
+            "F-075"
           ]
         },
         {
@@ -2257,15 +2269,15 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-073"
+            "F-076"
           ]
         }
       ],
       "findingIds": [
         "F-034",
-        "F-071",
-        "F-072",
-        "F-073"
+        "F-074",
+        "F-075",
+        "F-076"
       ],
       "coverage": {
         "automatedRules": 4,
@@ -2306,7 +2318,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-074"
+            "F-077"
           ]
         },
         {
@@ -2315,13 +2327,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-075"
+            "F-078"
           ]
         }
       ],
       "findingIds": [
-        "F-074",
-        "F-075"
+        "F-077",
+        "F-078"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -2359,7 +2371,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-101"
+            "F-116"
           ]
         },
         {
@@ -2368,13 +2380,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-102"
+            "F-117"
           ]
         }
       ],
       "findingIds": [
-        "F-101",
-        "F-102"
+        "F-116",
+        "F-117"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -2421,12 +2433,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-076"
+            "F-079"
           ]
         }
       ],
       "findingIds": [
-        "F-076"
+        "F-079"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -2464,7 +2476,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-077"
+            "F-080"
           ]
         },
         {
@@ -2477,7 +2489,7 @@
         }
       ],
       "findingIds": [
-        "F-077"
+        "F-080"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -2554,12 +2566,12 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-078"
+            "F-081"
           ]
         }
       ],
       "findingIds": [
-        "F-078"
+        "F-081"
       ],
       "coverage": {
         "automatedRules": 1,
@@ -2604,7 +2616,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-079"
+            "F-082"
           ]
         },
         {
@@ -2629,14 +2641,14 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-080"
+            "F-083"
           ]
         }
       ],
       "findingIds": [
         "F-035",
-        "F-079",
-        "F-080"
+        "F-082",
+        "F-083"
       ],
       "coverage": {
         "automatedRules": 3,
@@ -2681,7 +2693,7 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-103"
+            "F-118"
           ]
         },
         {
@@ -2690,13 +2702,13 @@
           "status": "fail",
           "evidence": [],
           "findingIds": [
-            "F-081"
+            "F-084"
           ]
         }
       ],
       "findingIds": [
-        "F-081",
-        "F-103"
+        "F-084",
+        "F-118"
       ],
       "coverage": {
         "automatedRules": 2,
@@ -2724,19 +2736,30 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p1.1/privacy-notice",
+          "title": "The product links to a privacy notice",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-085"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-085"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Privacy notice is accessible from the product (signup, footer, app settings)",
         "Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal",
         "Changes are communicated to affected users; prior versions are retained",
         "Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)"
@@ -2747,8 +2770,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P2.1",
@@ -2758,21 +2780,32 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "Red flag present: Trackers load without a consent check (F-036).",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p2.1/consent-gating",
+          "title": "Analytics and tracking load only after consent",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-036"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-036"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Consent captured with timestamp, policy/notice version, purpose, and channel",
         "Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)",
-        "Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required",
         "Re-consent triggered for new purposes or material changes",
         "Explicit consent for sensitive data and cross-border transfers where required"
       ],
@@ -2781,8 +2814,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P3.1",
@@ -2793,20 +2825,31 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p3.1/data-map",
+          "title": "A data map records personal data fields and their purpose",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-086"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-086"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Data minimization: each collected field has a documented purpose",
-        "PII fields identified in schemas/APIs and tracked in a data map",
         "Collected data matches what the notice says",
         "Third-party SDKs and analytics events reviewed for unintended PII collection",
         "Legal basis/purpose recorded where applicable"
@@ -2818,8 +2861,7 @@
       "policies": [
         "Privacy & Data-Subject Rights",
         "Data Classification & Handling"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P3.2",
@@ -2830,21 +2872,32 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p3.2/sensitive-fields",
+          "title": "Sensitive personal data has field-level protection",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-087"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-087"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)",
         "Explicit consent obtained before collection",
-        "Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls",
         "Age-gating/parental-consent logic where minors' data is possible"
       ],
       "controls": [
@@ -2855,8 +2908,7 @@
       "policies": [
         "Privacy & Data-Subject Rights",
         "Data Classification & Handling"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P4.1",
@@ -2901,20 +2953,31 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p4.2/retention-jobs",
+          "title": "Retention is enforced by purge jobs or TTLs",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-088"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-088"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Retention schedule defined per data type",
-        "TTLs/purge jobs implemented and monitored",
         "Backup and log retention aligned with schedule",
         "Legal-hold process exists and is honored by purge jobs"
       ],
@@ -2925,8 +2988,7 @@
       "policies": [
         "Retention & Secure Disposal",
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P4.3",
@@ -2937,19 +2999,32 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "Red flag present: Soft-deleted records are never purged (F-090).",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p4.3/deletion-path",
+          "title": "Personal data can be deleted, and soft-deleted data is purged",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-089",
+            "F-090"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-089",
+        "F-090"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Secure deletion or irreversible anonymization implemented",
         "Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)",
         "Deletion is verified and audit-logged",
         "P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)"
@@ -2959,8 +3034,7 @@
       ],
       "policies": [
         "Retention & Secure Disposal"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P5.1",
@@ -2970,19 +3044,30 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p5.1/data-export",
+          "title": "Data subjects can get a copy of their data",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-091"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-091"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 6
       },
       "manualFollowUps": [
-        "Self-service or request-based access/export endpoint exists",
         "Requester identity is authenticated before disclosure; export is scoped to that subject only",
         "Machine-readable export format",
         "Export covers all stores holding the subject's data, including vendors",
@@ -2995,8 +3080,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P5.2",
@@ -3006,19 +3090,30 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p5.2/data-correction",
+          "title": "Data subjects can correct their data",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-119"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-119"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 3
       },
       "manualFollowUps": [
-        "Users can update or request correction of their data",
         "Corrections propagate to downstream systems and relevant third parties",
         "Change history/audit trail retained; denials documented with rationale"
       ],
@@ -3027,8 +3122,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.1",
@@ -3039,21 +3133,41 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "Red flag present: Whole user object sent to a third-party SDK (F-093).",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p6.1/sdk-inventory",
+          "title": "Third-party SDKs that receive personal data are inventoried",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-092"
+          ]
+        },
+        {
+          "ruleId": "p6.1/user-objects-to-third-parties",
+          "title": "Only minimal identifiers are sent to analytics and support tools",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-093"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-092",
+        "F-093"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Disclosure paths to third parties are inventoried (subprocessors, analytics, support tools, integrations)",
         "Consent/authorization checked in code before sending PI to third parties",
-        "Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)",
         "Cross-border transfer mechanisms documented where applicable"
       ],
       "controls": [
@@ -3065,8 +3179,7 @@
         "Information Sharing & Transfer",
         "Vendor & Third-Party Risk",
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.2",
@@ -3110,19 +3223,30 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p6.3/incident-register",
+          "title": "Unauthorized disclosures are recorded in a register",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-094"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-094"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 3
       },
       "manualFollowUps": [
-        "Incident register captures unauthorized disclosures with scope, affected subjects, root cause, and remediation",
         "Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)",
         "Records link to the incident-response process (CC7.3–CC7.4)"
       ],
@@ -3132,8 +3256,7 @@
       ],
       "policies": [
         "Incident Response & Breach Notification"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.4",
@@ -3177,20 +3300,31 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p6.5/vendor-breach-intake",
+          "title": "Breach notices from vendors feed incident response",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-120"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-120"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 2
       },
       "manualFollowUps": [
-        "Contracts specify notification timelines",
-        "Intake channel/process exists for vendor breach notices and feeds incident response"
+        "Contracts specify notification timelines"
       ],
       "controls": [
         "Supplier Security",
@@ -3199,8 +3333,7 @@
       "policies": [
         "Vendor & Third-Party Risk",
         "Incident Response & Breach Notification"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.6",
@@ -3211,19 +3344,30 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p6.6/breach-notification",
+          "title": "A breach notification procedure sets deadlines and audiences",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-095"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-095"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Breach notification runbook and templates exist, with regulator/customer deadlines documented (e.g., 72h where applicable)",
         "Affected data subjects can be identified quickly through queries and tooling",
         "Contact data and notification tooling available for affected populations",
         "Notification decisions recorded"
@@ -3234,8 +3378,7 @@
       ],
       "policies": [
         "Incident Response & Breach Notification"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.7",
@@ -3277,19 +3420,30 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p7.1/pii-validation",
+          "title": "Personal data fields are validated",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-121"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-121"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Validation on PI fields (format, completeness); duplicate detection and merge handling",
         "Users can review and update their own data",
         "Data-quality checks or stale-data flagging run on a schedule",
         "Irrelevant or unnecessary fields are removed"
@@ -3299,8 +3453,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P8.1",
@@ -3311,19 +3464,32 @@
         "ORG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 0,
+      "label": "Not Met",
+      "rationale": "No automated check passed.",
       "capped": false,
       "evidence": [],
-      "checks": [],
-      "findingIds": [],
+      "checks": [
+        {
+          "ruleId": "p8.1/privacy-contact",
+          "title": "A privacy contact is published and privacy review is part of the SDLC",
+          "status": "fail",
+          "evidence": [],
+          "findingIds": [
+            "F-096",
+            "F-122"
+          ]
+        }
+      ],
+      "findingIds": [
+        "F-096",
+        "F-122"
+      ],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Privacy contact channel published (email/form) and monitored",
         "Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester",
         "Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI",
         "Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)"
@@ -3335,8 +3501,7 @@
       "policies": [
         "Privacy & Data-Subject Rights",
         "Compliance & Regulatory Monitoring"
-      ],
-      "owner": "Privacy / legal"
+      ]
     }
   ],
   "findings": [
@@ -4416,6 +4581,33 @@
     },
     {
       "id": "F-036",
+      "ruleId": "p2.1/consent-gating",
+      "criterion": "P2.1",
+      "severity": "high",
+      "title": "Trackers load without a consent check",
+      "location": {
+        "description": "package.json:11",
+        "path": "package.json",
+        "line": 11
+      },
+      "observed": "Mixpanel is loaded, but no consent manager or consent check was found.",
+      "expected": "Non-essential trackers (analytics, advertising, session recording) are gated on recorded consent, and Global Privacy Control is respected where required.",
+      "risk": "Trackers firing before consent breach ePrivacy and GDPR rules and the privacy notice, and are a rubric red flag.",
+      "recommendation": "Load trackers only after the visitor opts in (a consent manager or your own gate), default to opted-out, and honour navigator.globalPrivacyControl.",
+      "dueDate": "2026-02-14",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "a558be091df652c6",
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "posthog.init(KEY, { opt_out_capturing_by_default: true });\nif (consent.analytics && !navigator.globalPrivacyControl) posthog.opt_in_capturing();"
+    },
+    {
+      "id": "F-037",
       "ruleId": "cc1.3/codeowners",
       "criterion": "CC1.3",
       "severity": "medium",
@@ -4443,7 +4635,7 @@
       "example": "# .github/CODEOWNERS\n*                 @your-org/engineering\n/src/auth/        @your-org/security\n/infra/           @your-org/platform"
     },
     {
-      "id": "F-037",
+      "id": "F-038",
       "ruleId": "cc2.3/security-policy",
       "criterion": "CC2.3",
       "severity": "medium",
@@ -4473,7 +4665,7 @@
       "example": "# Security policy\n\n## Reporting a vulnerability\nEmail security@example.com or use GitHub private vulnerability reporting.\nWe acknowledge reports within 2 business days and aim to fix Critical issues within 7 days."
     },
     {
-      "id": "F-038",
+      "id": "F-039",
       "ruleId": "cc3.2/risk-register",
       "criterion": "CC3.2",
       "severity": "medium",
@@ -4500,7 +4692,7 @@
       "example": "| Risk | Likelihood | Impact | Owner | Treatment |\n|---|---|---|---|---|\n| Leaked deploy key | Low | High | @platform | Mitigate: OIDC, no stored keys |"
     },
     {
-      "id": "F-039",
+      "id": "F-040",
       "ruleId": "cc3.2/threat-model",
       "criterion": "CC3.2",
       "severity": "medium",
@@ -4527,7 +4719,7 @@
       "example": "# Threat model\n## Assets\nCustomer PII in Postgres; API keys for payment providers.\n## Trust boundaries\nPublic API, admin console, webhook endpoint.\n## Threats and mitigations\n| Threat | Mitigation |\n|---|---|\n| Forged webhook | Signature verification |"
     },
     {
-      "id": "F-040",
+      "id": "F-041",
       "ruleId": "cc4.1/iac-scanning",
       "criterion": "CC4.1",
       "severity": "medium",
@@ -4556,7 +4748,7 @@
       "example": "- run: trivy config --exit-code 1 --severity HIGH,CRITICAL ."
     },
     {
-      "id": "F-041",
+      "id": "F-042",
       "ruleId": "cc4.1/sast",
       "criterion": "CC4.1",
       "severity": "medium",
@@ -4585,7 +4777,7 @@
       "example": "- uses: github/codeql-action/init@<sha>  # pin to a commit SHA\n  with: { languages: javascript-typescript }\n- uses: github/codeql-action/analyze@<sha>"
     },
     {
-      "id": "F-042",
+      "id": "F-043",
       "ruleId": "cc4.2/blocking-scans",
       "criterion": "CC4.2",
       "severity": "medium",
@@ -4614,7 +4806,7 @@
       "example": "- run: trivy fs --exit-code 1 --severity CRITICAL,HIGH ."
     },
     {
-      "id": "F-043",
+      "id": "F-044",
       "ruleId": "cc4.2/remediation-sla",
       "criterion": "CC4.2",
       "severity": "medium",
@@ -4641,7 +4833,7 @@
       "example": "| Severity | Fix within |\n|---|---|\n| Critical | 7 days |\n| High | 30 days |\nOverdue findings are escalated to the engineering lead; exceptions need an approver and expiry."
     },
     {
-      "id": "F-044",
+      "id": "F-045",
       "ruleId": "cc4.2/suppressions",
       "criterion": "CC4.2",
       "severity": "medium",
@@ -4670,7 +4862,7 @@
       "example": "subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)"
     },
     {
-      "id": "F-045",
+      "id": "F-046",
       "ruleId": "cc4.2/suppressions",
       "criterion": "CC4.2",
       "severity": "medium",
@@ -4699,7 +4891,7 @@
       "example": "subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)"
     },
     {
-      "id": "F-046",
+      "id": "F-047",
       "ruleId": "cc5.2/actions-pinned",
       "criterion": "CC5.2",
       "severity": "medium",
@@ -4732,7 +4924,7 @@
       "example": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2"
     },
     {
-      "id": "F-047",
+      "id": "F-048",
       "ruleId": "cc5.2/deploy-environments",
       "criterion": "CC5.2",
       "severity": "medium",
@@ -4765,7 +4957,7 @@
       "example": "jobs:\n  deploy:\n    environment: production\n    runs-on: ubuntu-latest"
     },
     {
-      "id": "F-048",
+      "id": "F-049",
       "ruleId": "cc5.3/runbooks",
       "criterion": "CC5.3",
       "severity": "medium",
@@ -4791,7 +4983,7 @@
       "example": "docs/runbooks/\n  access.md     # onboarding, offboarding, access reviews\n  release.md    # deployment and rollback\n  incidents.md  # incident response\n  secrets.md    # key rotation"
     },
     {
-      "id": "F-049",
+      "id": "F-050",
       "ruleId": "cc6.1/cookie-flags",
       "criterion": "CC6.1",
       "severity": "medium",
@@ -4823,7 +5015,7 @@
       "example": "app.use(session({\n  cookie: { httpOnly: true, secure: true, sameSite: 'lax', maxAge: 8 * 60 * 60 * 1000 },\n}));"
     },
     {
-      "id": "F-050",
+      "id": "F-051",
       "ruleId": "cc6.1/jwt-verification",
       "criterion": "CC6.1",
       "severity": "medium",
@@ -4855,7 +5047,7 @@
       "example": "const claims = jwt.verify(token, publicKey, {\n  algorithms: ['RS256'], audience: 'api.example.com', issuer: 'https://auth.example.com/',\n});"
     },
     {
-      "id": "F-051",
+      "id": "F-052",
       "ruleId": "cc6.1/secret-scanning",
       "criterion": "CC6.1",
       "severity": "medium",
@@ -4885,7 +5077,7 @@
       "example": "# .github/workflows/secrets.yml\non: [push, pull_request]\npermissions: { contents: read }\njobs:\n  gitleaks:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>  # pin to a commit SHA\n        with: { fetch-depth: 0 }\n      - uses: gitleaks/gitleaks-action@<sha>"
     },
     {
-      "id": "F-052",
+      "id": "F-053",
       "ruleId": "cc6.3/offboarding",
       "criterion": "CC6.3",
       "severity": "medium",
@@ -4913,7 +5105,7 @@
       "example": "## Offboarding (within 24 hours)\n- [ ] Disable SSO account (cascades to apps via SCIM)\n- [ ] Remove from GitHub org and npm org\n- [ ] Revoke personal cloud credentials and tokens"
     },
     {
-      "id": "F-053",
+      "id": "F-054",
       "ruleId": "cc6.3/token-expiry",
       "criterion": "CC6.3",
       "severity": "medium",
@@ -4943,7 +5135,7 @@
       "example": "jwt.sign(claims, key, { algorithm: 'RS256', expiresIn: '15m' });"
     },
     {
-      "id": "F-054",
+      "id": "F-055",
       "ruleId": "cc6.6/security-headers",
       "criterion": "CC6.6",
       "severity": "medium",
@@ -4972,7 +5164,7 @@
       "example": "import helmet from 'helmet';\napp.use(helmet({ hsts: { maxAge: 31536000, includeSubDomains: true } }));"
     },
     {
-      "id": "F-055",
+      "id": "F-056",
       "ruleId": "cc6.6/xss-sinks",
       "criterion": "CC6.6",
       "severity": "medium",
@@ -5002,7 +5194,7 @@
       "example": "<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />"
     },
     {
-      "id": "F-056",
+      "id": "F-057",
       "ruleId": "cc6.7/plain-http-urls",
       "criterion": "CC6.7",
       "severity": "medium",
@@ -5031,7 +5223,7 @@
       "example": "const API_URL = process.env.API_URL ?? 'https://api.example.com';"
     },
     {
-      "id": "F-057",
+      "id": "F-058",
       "ruleId": "cc6.8/base-images",
       "criterion": "CC6.8",
       "severity": "medium",
@@ -5063,7 +5255,7 @@
       "example": "FROM node:22.11.0-bookworm-slim@sha256:<digest>"
     },
     {
-      "id": "F-058",
+      "id": "F-059",
       "ruleId": "cc6.8/container-scanning",
       "criterion": "CC6.8",
       "severity": "medium",
@@ -5093,7 +5285,7 @@
       "example": "- uses: aquasecurity/trivy-action@<sha>  # pin to a commit SHA\n  with: { image-ref: 'app:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true }"
     },
     {
-      "id": "F-059",
+      "id": "F-060",
       "ruleId": "cc6.8/reproducible-installs",
       "criterion": "CC6.8",
       "severity": "medium",
@@ -5125,7 +5317,7 @@
       "example": "RUN npm ci --omit=dev\n# or\nRUN pnpm install --frozen-lockfile --prod"
     },
     {
-      "id": "F-060",
+      "id": "F-061",
       "ruleId": "cc7.1/container-user",
       "criterion": "CC7.1",
       "severity": "medium",
@@ -5156,7 +5348,7 @@
       "example": "RUN addgroup --system app && adduser --system --ingroup app app\nUSER app"
     },
     {
-      "id": "F-061",
+      "id": "F-062",
       "ruleId": "cc7.1/vulnerability-monitoring",
       "criterion": "CC7.1",
       "severity": "medium",
@@ -5185,7 +5377,7 @@
       "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }"
     },
     {
-      "id": "F-062",
+      "id": "F-063",
       "ruleId": "cc7.2/alert-rules",
       "criterion": "CC7.2",
       "severity": "medium",
@@ -5211,7 +5403,35 @@
       "example": "- alert: LoginFailureSpike\n  expr: sum(rate(auth_login_failures_total[5m])) > 20\n  labels: { severity: page }"
     },
     {
-      "id": "F-063",
+      "id": "F-064",
+      "ruleId": "cc7.2/pii-in-logs",
+      "criterion": "CC7.2",
+      "severity": "medium",
+      "title": "Personal data field passed to a logger",
+      "location": {
+        "description": "public/tracking.js:12",
+        "path": "public/tracking.js",
+        "line": 12
+      },
+      "observed": "Personal data field passed to a logger in public/tracking.js at line 12.",
+      "expected": "Logs identify people by internal id, never by email, phone, address, date of birth or IP-linked profile data.",
+      "risk": "Personal data in logs is copied to log platforms and backups with long retention, outside deletion and access-request processes.",
+      "recommendation": "Log a pseudonymous user id instead, and configure logger redaction for personal fields.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "e6921935753ad03a",
+      "controls": [
+        "Security Monitoring & Detection",
+        "Security Logging"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit"
+      ],
+      "example": "log.info({ userId: user.id }, 'signup complete');"
+    },
+    {
+      "id": "F-065",
       "ruleId": "cc7.3/triage-criteria",
       "criterion": "CC7.3",
       "severity": "medium",
@@ -5237,7 +5457,7 @@
       "example": "| Severity | Criteria | Example |\n|---|---|---|\n| Critical | Confirmed data exposure or active exploitation | Leaked production key used by a third party |\nTriage outcome (true/false positive, incident yes/no) is recorded on the ticket."
     },
     {
-      "id": "F-064",
+      "id": "F-066",
       "ruleId": "cc7.4/incident-runbooks",
       "criterion": "CC7.4",
       "severity": "medium",
@@ -5262,7 +5482,7 @@
       "example": "## Credential leak\n1. Revoke the credential at the provider.\n2. Search logs for use since the leak.\n3. Rotate dependent secrets and record the incident."
     },
     {
-      "id": "F-065",
+      "id": "F-067",
       "ruleId": "cc7.5/key-rotation",
       "criterion": "CC7.5",
       "severity": "medium",
@@ -5290,7 +5510,7 @@
       "example": "## Rotating secrets\n| Secret | Where | How | When |\n|---|---|---|---|\n| Database password | AWS Secrets Manager | Automatic rotation Lambda | Every 30 days |"
     },
     {
-      "id": "F-066",
+      "id": "F-068",
       "ruleId": "cc8.1/codeowners-sensitive-paths",
       "criterion": "CC8.1",
       "severity": "medium",
@@ -5298,7 +5518,7 @@
       "location": {
         "description": "repository"
       },
-      "observed": "4 sensitive files exist but there is no CODEOWNERS file.",
+      "observed": "5 sensitive files exist but there is no CODEOWNERS file.",
       "expected": "Security-sensitive paths (auth, IAM, crypto, payments, infrastructure, workflows, migrations, lockfiles) have a specific CODEOWNERS entry, not just the catch-all.",
       "risk": "Changes to the riskiest code can be approved by any reviewer instead of the people accountable for it.",
       "recommendation": "Add explicit CODEOWNERS entries for sensitive paths and require code owner review. Adjust what counts as sensitive with sensitivePaths in threesock.yaml.",
@@ -5318,7 +5538,7 @@
       "example": "/src/auth/            @your-org/security\n/infra/               @your-org/platform\n/.github/workflows/   @your-org/platform"
     },
     {
-      "id": "F-067",
+      "id": "F-069",
       "ruleId": "cc8.1/migrations-reversible",
       "criterion": "CC8.1",
       "severity": "medium",
@@ -5347,7 +5567,36 @@
       "example": "-- 20261022_add_status.down.sql\nALTER TABLE orders DROP COLUMN status;"
     },
     {
-      "id": "F-068",
+      "id": "F-070",
+      "ruleId": "cc8.1/migrations-reversible",
+      "criterion": "CC8.1",
+      "severity": "medium",
+      "title": "Migration without a down step",
+      "location": {
+        "description": "migrations/002_customers.up.sql",
+        "path": "migrations/002_customers.up.sql"
+      },
+      "observed": "migrations/002_customers.up.sql has no matching 002_customers.down.sql.",
+      "expected": "Each migration has a down/downgrade step, or the repository documents how schema changes are rolled back.",
+      "risk": "A bad migration without a way back turns a deploy rollback into a data-recovery incident.",
+      "recommendation": "Write a down migration for each change, or document the expand/contract and restore procedure used instead.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "50a45a9a3823771f",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
+      "example": "-- 20261022_add_status.down.sql\nALTER TABLE orders DROP COLUMN status;"
+    },
+    {
+      "id": "F-071",
       "ruleId": "cc9.1/continuity-plan",
       "criterion": "CC9.1",
       "severity": "medium",
@@ -5375,7 +5624,7 @@
       "example": "## Critical dependencies\n| Dependency | If unavailable |\n|---|---|\n| Auth provider | Existing sessions continue; new logins fail with a status banner |\n## Recovery\nRebuild from IaC in the secondary region; restore the latest snapshot."
     },
     {
-      "id": "F-069",
+      "id": "F-072",
       "ruleId": "cc9.2/vendor-inventory",
       "criterion": "CC9.2",
       "severity": "medium",
@@ -5401,7 +5650,7 @@
       "example": "| Service | Purpose | Data shared | Owner |\n|---|---|---|---|\n| Stripe | Payments | Name, email, card token | @billing |"
     },
     {
-      "id": "F-070",
+      "id": "F-073",
       "ruleId": "a1.1/resource-limits",
       "criterion": "A1.1",
       "severity": "medium",
@@ -5429,7 +5678,7 @@
       "example": "resources:\n  requests: { cpu: 100m, memory: 128Mi }\n  limits:   { cpu: 500m, memory: 512Mi }"
     },
     {
-      "id": "F-071",
+      "id": "F-074",
       "ruleId": "a1.2/deletion-protection",
       "criterion": "A1.2",
       "severity": "medium",
@@ -5458,7 +5707,7 @@
       "example": "resource \"aws_db_instance\" \"main\" {\n  deletion_protection = true\n}"
     },
     {
-      "id": "F-072",
+      "id": "F-075",
       "ruleId": "a1.2/health-checks",
       "criterion": "A1.2",
       "severity": "medium",
@@ -5486,7 +5735,7 @@
       "example": "readinessProbe: { httpGet: { path: /healthz, port: 8080 }, periodSeconds: 10 }\nlivenessProbe:  { httpGet: { path: /healthz, port: 8080 }, initialDelaySeconds: 15 }"
     },
     {
-      "id": "F-073",
+      "id": "F-076",
       "ruleId": "a1.2/multi-az",
       "criterion": "A1.2",
       "severity": "medium",
@@ -5515,7 +5764,7 @@
       "example": "resource \"aws_db_instance\" \"main\" {\n  multi_az = true\n}"
     },
     {
-      "id": "F-074",
+      "id": "F-077",
       "ruleId": "a1.3/restore-tests",
       "criterion": "A1.3",
       "severity": "medium",
@@ -5540,7 +5789,7 @@
       "example": "## Restore test log\n| Date | System | Result | Time | Follow-up |\n|---|---|---|---|---|\n| 2026-09-30 | Postgres | Pass | 42 min | none |"
     },
     {
-      "id": "F-075",
+      "id": "F-078",
       "ruleId": "a1.3/rto-rpo",
       "criterion": "A1.3",
       "severity": "medium",
@@ -5565,7 +5814,7 @@
       "example": "| System | RTO | RPO |\n|---|---|---|\n| API | 1 hour | 15 minutes |"
     },
     {
-      "id": "F-076",
+      "id": "F-079",
       "ruleId": "pi1.2/input-validation",
       "criterion": "PI1.2",
       "severity": "medium",
@@ -5591,7 +5840,7 @@
       "example": "const Order = z.object({ sku: z.string().min(1), quantity: z.number().int().positive().max(100) });\nconst order = Order.parse(req.body);"
     },
     {
-      "id": "F-077",
+      "id": "F-080",
       "ruleId": "pi1.3/job-retries",
       "criterion": "PI1.3",
       "severity": "medium",
@@ -5617,7 +5866,7 @@
       "example": "await queue.add('send-invoice', data, { attempts: 5, backoff: { type: 'exponential', delay: 1000 } });"
     },
     {
-      "id": "F-078",
+      "id": "F-081",
       "ruleId": "pi1.5/db-constraints",
       "criterion": "PI1.5",
       "severity": "medium",
@@ -5626,7 +5875,7 @@
         "description": "migrations/001_init.up.sql",
         "path": "migrations/001_init.up.sql"
       },
-      "observed": "1 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints.",
+      "observed": "2 schema or migration file(s) contain no NOT NULL, UNIQUE, foreign key or check constraints.",
       "expected": "Schemas declare NOT NULL, UNIQUE, foreign key and check constraints, so the database rejects invalid data even when application code misses it.",
       "risk": "Without constraints, a single bug writes orphaned or duplicate records that corrupt reports and billing.",
       "recommendation": "Declare constraints in the schema for required fields, uniqueness and relationships.",
@@ -5646,7 +5895,7 @@
       "example": "CREATE TABLE orders (\n  id uuid PRIMARY KEY,\n  customer_id uuid NOT NULL REFERENCES customers(id),\n  total_cents integer NOT NULL CHECK (total_cents >= 0)\n);"
     },
     {
-      "id": "F-079",
+      "id": "F-082",
       "ruleId": "c1.1/data-classification",
       "criterion": "C1.1",
       "severity": "medium",
@@ -5675,7 +5924,7 @@
       "example": "| Level | Examples | Handling |\n|---|---|---|\n| Restricted | Card data, credentials | Encrypted fields, no logs, no lower environments |\n| Confidential | Customer PII | Encrypted at rest, access logged |"
     },
     {
-      "id": "F-080",
+      "id": "F-083",
       "ruleId": "c1.1/pii-in-fixtures",
       "criterion": "C1.1",
       "severity": "medium",
@@ -5705,7 +5954,7 @@
       "example": "{ \"email\": \"ada@example.com\", \"card\": \"4242424242424242\", \"ssn\": \"000-00-0000\" }"
     },
     {
-      "id": "F-081",
+      "id": "F-084",
       "ruleId": "c1.2/retention-schedule",
       "criterion": "C1.2",
       "severity": "medium",
@@ -5730,7 +5979,334 @@
       "example": "| Data | Retention | Deletion |\n|---|---|---|\n| Application logs | 90 days hot, 12 months archive | Bucket lifecycle rule |\n| Closed accounts | 30 days | Nightly purge job |"
     },
     {
-      "id": "F-082",
+      "id": "F-085",
+      "ruleId": "p1.1/privacy-notice",
+      "criterion": "P1.1",
+      "severity": "medium",
+      "title": "No privacy notice in the product",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The application stores personal data (e.g. migrations/001_init.up.sql:1), but no privacy notice page or link was found.",
+      "expected": "A privacy notice is reachable from the product (signup, footer, settings) and describes collection, use, retention, disclosure and disposal.",
+      "risk": "Collecting personal data without an accessible notice breaches transparency obligations and the SOC 2 privacy commitments.",
+      "recommendation": "Publish a privacy notice and link it from signup and the site footer; keep prior versions.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "c53dc39cf01453ce",
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "<footer><a href=\"/privacy\">Privacy notice</a></footer>"
+    },
+    {
+      "id": "F-086",
+      "ruleId": "p3.1/data-map",
+      "criterion": "P3.1",
+      "severity": "medium",
+      "title": "No personal data map",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No personal data map was found in the repository's documentation.",
+      "expected": "A data map lists the personal data collected, where it is stored, why (purpose or legal basis) and for how long.",
+      "risk": "Without a data map, collection drifts from the privacy notice and access or deletion requests miss data.",
+      "recommendation": "Keep a data map: each personal data field or category, its purpose, where it is stored, who receives it and its retention.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "8f2f1bdc5e5cbc2d",
+      "controls": [
+        "Data Privacy",
+        "Information Classification"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
+      ],
+      "example": "| Data | Purpose | Stored in | Retention |\n|---|---|---|---|\n| Email | Login, receipts | Postgres users | Account lifetime + 30 days |"
+    },
+    {
+      "id": "F-087",
+      "ruleId": "p3.2/sensitive-fields",
+      "criterion": "P3.2",
+      "severity": "medium",
+      "title": "Sensitive personal data without field-level protection",
+      "location": {
+        "description": "migrations/002_customers.up.sql:4",
+        "path": "migrations/002_customers.up.sql",
+        "line": 4
+      },
+      "observed": "migrations/002_customers.up.sql defines a sensitive field at line 4, and no field-level encryption or tokenization was found.",
+      "expected": "Sensitive categories (government IDs, health, biometrics, precise location, date of birth, ...) are encrypted at field level or tokenized, beyond disk encryption.",
+      "risk": "Sensitive data in plain columns is exposed to every query, backup, replica and analyst with database access.",
+      "recommendation": "Encrypt sensitive fields at the application layer (envelope encryption with KMS) or tokenize them, and restrict access to the decrypting service.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "f416644c628934e3",
+      "controls": [
+        "Data Privacy",
+        "Information Classification",
+        "Encrypted Data at Rest"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
+      ],
+      "example": "ALTER TABLE patients ADD COLUMN ssn_encrypted bytea;  -- pgp_sym_encrypt with a KMS-managed key"
+    },
+    {
+      "id": "F-088",
+      "ruleId": "p4.2/retention-jobs",
+      "criterion": "P4.2",
+      "severity": "medium",
+      "title": "No retention purge job or TTL",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The application stores personal data (e.g. migrations/001_init.up.sql:1), but no retention purge job or TTL was found in the code.",
+      "expected": "Personal data past its retention period is removed automatically by scheduled purge jobs, TTL indexes or lifecycle rules.",
+      "risk": "Without automated deletion, personal data accumulates past its purpose, breaching the privacy notice and enlarging every breach.",
+      "recommendation": "Add a scheduled job (or TTL index) that deletes or anonymizes personal data once its retention period ends, and alert if it fails.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "5772dc7a995648b7",
+      "controls": [
+        "Data Retention & Destruction",
+        "Data Privacy"
+      ],
+      "policies": [
+        "Retention & Secure Disposal",
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "// nightly\nawait db.query(\"DELETE FROM sessions WHERE created_at < now() - interval '90 days'\");"
+    },
+    {
+      "id": "F-089",
+      "ruleId": "p4.3/deletion-path",
+      "criterion": "P4.3",
+      "severity": "medium",
+      "title": "No personal data deletion path",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The application stores personal data (e.g. migrations/001_init.up.sql:1), but no account deletion, erasure or anonymization code was found.",
+      "expected": "An account or data deletion path exists (self-service or request-based), and records that are soft-deleted are purged after their retention period.",
+      "risk": "Without a deletion path, erasure requests cannot be honoured on time; soft deletes that are never purged keep personal data forever.",
+      "recommendation": "Implement deletion (or irreversible anonymization) for a data subject across all stores, and a scheduled job that purges soft-deleted rows.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "17d3f247aa79af47",
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
+      ],
+      "example": "app.delete('/me', requireAuth, async (req, res) => {\n  await accounts.eraseSubject(req.user.id); // primary DB, search index, analytics, vendors\n  res.sendStatus(204);\n});"
+    },
+    {
+      "id": "F-090",
+      "ruleId": "p4.3/deletion-path",
+      "criterion": "P4.3",
+      "severity": "medium",
+      "title": "Soft-deleted records are never purged",
+      "location": {
+        "description": "migrations/002_customers.up.sql:5",
+        "path": "migrations/002_customers.up.sql",
+        "line": 5
+      },
+      "observed": "Soft deletion is used (migrations/002_customers.up.sql:5), but no job purges soft-deleted rows.",
+      "expected": "An account or data deletion path exists (self-service or request-based), and records that are soft-deleted are purged after their retention period.",
+      "risk": "Without a deletion path, erasure requests cannot be honoured on time; soft deletes that are never purged keep personal data forever.",
+      "recommendation": "Implement deletion (or irreversible anonymization) for a data subject across all stores, and a scheduled job that purges soft-deleted rows.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "cfabe99581a819ea",
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
+      ],
+      "example": "app.delete('/me', requireAuth, async (req, res) => {\n  await accounts.eraseSubject(req.user.id); // primary DB, search index, analytics, vendors\n  res.sendStatus(204);\n});"
+    },
+    {
+      "id": "F-091",
+      "ruleId": "p5.1/data-export",
+      "criterion": "P5.1",
+      "severity": "medium",
+      "title": "No personal data export path",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The application stores personal data (e.g. migrations/001_init.up.sql:1), but no personal data export path was found in the code.",
+      "expected": "An authenticated export (self-service or support-driven) returns a subject's personal data in a machine-readable format.",
+      "risk": "Access requests cannot be answered within the legal deadline (often 30 days) without tooling to gather the data.",
+      "recommendation": "Add an authenticated export that gathers the subject's data from every store into JSON, and track requests with a response deadline.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "94c229a993c65b11",
+      "controls": [
+        "Data Privacy",
+        "Access Rights"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "app.get('/me/export', requireAuth, async (req, res) => res.json(await dsar.export(req.user.id)));"
+    },
+    {
+      "id": "F-092",
+      "ruleId": "p6.1/sdk-inventory",
+      "criterion": "P6.1",
+      "severity": "medium",
+      "title": "Undocumented third-party SDKs: Mixpanel",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Mixpanel is used but not named in any third-party or privacy document.",
+      "expected": "Every analytics, advertising, support or session-recording SDK is listed in the third-party or subprocessor inventory, with the data it receives.",
+      "risk": "Unlisted SDKs collect personal data nobody approved, which the privacy notice then misdescribes.",
+      "recommendation": "Add each SDK vendor to the third-party inventory (vendor, purpose, data shared), or remove the SDK.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "d51f823da457bee5",
+      "controls": [
+        "Data Privacy",
+        "Supplier Security",
+        "Secure Data Transfer"
+      ],
+      "policies": [
+        "Information Sharing & Transfer",
+        "Vendor & Third-Party Risk",
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "| Vendor | Purpose | Data shared |\n|---|---|---|\n| PostHog | Product analytics | Pseudonymous user id, page views |"
+    },
+    {
+      "id": "F-093",
+      "ruleId": "p6.1/user-objects-to-third-parties",
+      "criterion": "P6.1",
+      "severity": "medium",
+      "title": "Whole user object sent to a third-party SDK",
+      "location": {
+        "description": "public/tracking.js:8",
+        "path": "public/tracking.js",
+        "line": 8
+      },
+      "observed": "Whole user object sent to a third-party SDK in public/tracking.js at line 8.",
+      "expected": "Calls to analytics, error-tracking and support SDKs send a pseudonymous id and only the fields the purpose needs, never whole user objects.",
+      "risk": "Whole user objects leak every field (email, address, flags) to vendors, a rubric red flag and usually a breach of the privacy notice.",
+      "recommendation": "Send a pseudonymous id and an explicit allow-list of properties.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": true,
+      "fingerprint": "9db84cfdce522dd3",
+      "controls": [
+        "Data Privacy",
+        "Supplier Security",
+        "Secure Data Transfer"
+      ],
+      "policies": [
+        "Information Sharing & Transfer",
+        "Vendor & Third-Party Risk",
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "analytics.identify(user.id, { plan: user.plan });\nSentry.setUser({ id: user.id });"
+    },
+    {
+      "id": "F-094",
+      "ruleId": "p6.3/incident-register",
+      "criterion": "P6.3",
+      "severity": "medium",
+      "title": "No incident and disclosure register",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No incident and disclosure register was found in the repository's documentation.",
+      "expected": "Every detected or reported unauthorized disclosure is recorded with scope, affected subjects, root cause and remediation, and linked to incident response.",
+      "risk": "Without a register you cannot show regulators or auditors what happened, to whom, and what was fixed.",
+      "recommendation": "Keep an incident register (a table is enough) and fill it in for every suspected disclosure, even ones that turn out minor.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "fb64822078295023",
+      "controls": [
+        "Security Incident Management",
+        "Data Privacy"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
+      "example": "| Date | Scope | Affected subjects | Root cause | Remediation |\n|---|---|---|---|---|"
+    },
+    {
+      "id": "F-095",
+      "ruleId": "p6.6/breach-notification",
+      "criterion": "P6.6",
+      "severity": "medium",
+      "title": "No breach notification procedure",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No breach notification procedure was found in the repository's documentation.",
+      "expected": "A breach procedure sets notification deadlines (e.g. 72 hours to regulators), who is notified (regulators, customers, data subjects), and keeps message templates.",
+      "risk": "Missing a statutory notification deadline turns an incident into a regulatory violation.",
+      "recommendation": "Document breach notification deadlines per jurisdiction and contract, who decides, and ready-to-use templates.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "03fb6e367246cbed",
+      "controls": [
+        "Security Incident Management",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
+      "example": "## Breach notification\nRegulators: within 72 hours of awareness (GDPR Art. 33). Customers: per contract, within 48 hours.\nTemplates: docs/security/templates/breach-customer.md"
+    },
+    {
+      "id": "F-096",
+      "ruleId": "p8.1/privacy-contact",
+      "criterion": "P8.1",
+      "severity": "medium",
+      "title": "No privacy contact published",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No privacy contact (privacy@ address, DPO or privacy request channel) was found in the docs or the product.",
+      "expected": "A privacy contact (email or form) is published, and new features handling personal data get a privacy review (the PR template asks about personal data).",
+      "risk": "Data subjects cannot raise requests or complaints, and features that change data collection ship without review.",
+      "recommendation": "Publish a privacy contact in the privacy notice and README, and add a personal-data question to the PR template.",
+      "dueDate": "2026-04-15",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "2c1bf025ffa933b1",
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Compliance & Regulatory Monitoring"
+      ],
+      "example": "Privacy questions and requests: privacy@example.com (answered within 30 days)."
+    },
+    {
+      "id": "F-097",
       "ruleId": "cc2.1/observability",
       "criterion": "CC2.1",
       "severity": "low",
@@ -5758,7 +6334,7 @@
       "example": "import * as Sentry from '@sentry/node';\nSentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 0.1 });"
     },
     {
-      "id": "F-083",
+      "id": "F-098",
       "ruleId": "cc2.1/sbom",
       "criterion": "CC2.1",
       "severity": "low",
@@ -5786,7 +6362,7 @@
       "example": "- uses: anchore/sbom-action@<sha>  # pin to a commit SHA\n  with: { format: cyclonedx-json, output-file: sbom.cdx.json }"
     },
     {
-      "id": "F-084",
+      "id": "F-099",
       "ruleId": "cc2.2/pr-template-security",
       "criterion": "CC2.2",
       "severity": "low",
@@ -5814,7 +6390,7 @@
       "example": "## Security impact\n- [ ] Touches auth, permissions, secrets or personal data\n- [ ] Adds a dependency or third-party service\n- [ ] Changes infrastructure, network or IAM"
     },
     {
-      "id": "F-085",
+      "id": "F-100",
       "ruleId": "cc2.2/security-docs-linked",
       "criterion": "CC2.2",
       "severity": "low",
@@ -5843,7 +6419,7 @@
       "example": "## Security\nSee [SECURITY.md](SECURITY.md) to report a vulnerability, and [docs/security](docs/security) for policies and runbooks."
     },
     {
-      "id": "F-086",
+      "id": "F-101",
       "ruleId": "cc3.2/adrs",
       "criterion": "CC3.2",
       "severity": "low",
@@ -5870,7 +6446,7 @@
       "example": "# 0003. Use OIDC for CI cloud access\n## Status\nAccepted\n## Decision\nCI assumes a deploy role through OIDC.\n## Security considerations\nNo long-lived keys in CI; role scoped to the deploy bucket."
     },
     {
-      "id": "F-087",
+      "id": "F-102",
       "ruleId": "cc3.4/manifest-ownership",
       "criterion": "CC3.4",
       "severity": "low",
@@ -5898,7 +6474,7 @@
       "example": "/package.json   @your-org/platform\n/infra/         @your-org/platform"
     },
     {
-      "id": "F-088",
+      "id": "F-103",
       "ruleId": "cc4.1/scheduled-scans",
       "criterion": "CC4.1",
       "severity": "low",
@@ -5927,7 +6503,7 @@
       "example": "on:\n  pull_request:\n  schedule:\n    - cron: '17 6 * * 1'  # weekly"
     },
     {
-      "id": "F-089",
+      "id": "F-104",
       "ruleId": "cc5.1/control-matrix",
       "criterion": "CC5.1",
       "severity": "low",
@@ -5954,7 +6530,7 @@
       "example": "| Risk | Controls |\n|---|---|\n| Malicious dependency | Lockfiles, minimumReleaseAge, dependency review |"
     },
     {
-      "id": "F-090",
+      "id": "F-105",
       "ruleId": "cc5.3/policy-review",
       "criterion": "CC5.3",
       "severity": "low",
@@ -5981,7 +6557,7 @@
       "example": "Owner: @security-lead\nLast reviewed: 2026-10-01"
     },
     {
-      "id": "F-091",
+      "id": "F-106",
       "ruleId": "cc6.1/env-files",
       "criterion": "CC6.1",
       "severity": "low",
@@ -6012,7 +6588,7 @@
       "example": "# .gitignore\n.env\n.env.*\n!.env.example"
     },
     {
-      "id": "F-092",
+      "id": "F-107",
       "ruleId": "cc6.1/generic-password",
       "criterion": "CC6.1",
       "severity": "low",
@@ -6044,7 +6620,7 @@
       "example": "// After\nconst client = new Client({ password: process.env.SMTP_PASSWORD });"
     },
     {
-      "id": "F-093",
+      "id": "F-108",
       "ruleId": "cc6.5/managed-keys",
       "criterion": "CC6.5",
       "severity": "low",
@@ -6073,7 +6649,7 @@
       "example": "resource \"aws_kms_key\" \"data\" {\n  enable_key_rotation     = true\n  deletion_window_in_days = 30\n}\nresource \"aws_db_instance\" \"main\" {\n  kms_key_id = aws_kms_key.data.arn\n}"
     },
     {
-      "id": "F-094",
+      "id": "F-109",
       "ruleId": "cc6.8/dependency-scanning",
       "criterion": "CC6.8",
       "severity": "low",
@@ -6103,7 +6679,7 @@
       "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }\n  - package-ecosystem: github-actions\n    directory: /\n    schedule: { interval: weekly }"
     },
     {
-      "id": "F-095",
+      "id": "F-110",
       "ruleId": "cc6.8/lockfiles",
       "criterion": "CC6.8",
       "severity": "low",
@@ -6134,7 +6710,7 @@
       "example": "pnpm install && git add pnpm-lock.yaml       # Node\nuv lock && git add uv.lock                    # Python\npip-compile --generate-hashes requirements.in # pip"
     },
     {
-      "id": "F-096",
+      "id": "F-111",
       "ruleId": "cc7.1/drift-detection",
       "criterion": "CC7.1",
       "severity": "low",
@@ -6163,7 +6739,7 @@
       "example": "on: { schedule: [{ cron: '0 6 * * *' }] }\n...\n      - run: terraform plan -detailed-exitcode -lock=false"
     },
     {
-      "id": "F-097",
+      "id": "F-112",
       "ruleId": "cc8.1/emergency-change",
       "criterion": "CC8.1",
       "severity": "low",
@@ -6191,7 +6767,7 @@
       "example": "## Emergency changes\nUse only for active incidents. An on-call engineer may merge with one approval from the incident commander.\nA retroactive review PR is opened within 2 business days and linked from the incident ticket."
     },
     {
-      "id": "F-098",
+      "id": "F-113",
       "ruleId": "cc8.1/rollback-procedure",
       "criterion": "CC8.1",
       "severity": "low",
@@ -6219,7 +6795,7 @@
       "example": "## Rolling back a release\n1. Find the last good deployment in the Deployments tab.\n2. Promote it: `vercel promote <deployment-url>` (or re-run the deploy workflow for the previous tag).\n3. Confirm health checks and error rates recover; post in #incidents."
     },
     {
-      "id": "F-099",
+      "id": "F-114",
       "ruleId": "a1.1/autoscaling",
       "criterion": "A1.1",
       "severity": "low",
@@ -6246,7 +6822,7 @@
       "example": "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nspec: { minReplicas: 2, maxReplicas: 10, metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } } }] }"
     },
     {
-      "id": "F-100",
+      "id": "F-115",
       "ruleId": "a1.1/load-tests",
       "criterion": "A1.1",
       "severity": "low",
@@ -6273,7 +6849,7 @@
       "example": "import http from 'k6/http';\nexport const options = { vus: 50, duration: '2m' };\nexport default () => http.get(`${__ENV.BASE_URL}/health`);"
     },
     {
-      "id": "F-101",
+      "id": "F-116",
       "ruleId": "pi1.1/api-contracts",
       "criterion": "PI1.1",
       "severity": "low",
@@ -6300,7 +6876,7 @@
       "example": "openapi: 3.1.0\ninfo: { title: Orders API, version: 2.3.0 }\npaths: { /v2/orders: { get: { ... } } }"
     },
     {
-      "id": "F-102",
+      "id": "F-117",
       "ruleId": "pi1.1/changelog",
       "criterion": "PI1.1",
       "severity": "low",
@@ -6327,7 +6903,7 @@
       "example": "## 2.0.0\n### Breaking\n- `/v1/orders` removed; use `/v2/orders`."
     },
     {
-      "id": "F-103",
+      "id": "F-118",
       "ruleId": "c1.2/lifecycle-rules",
       "criterion": "C1.2",
       "severity": "low",
@@ -6352,6 +6928,110 @@
         "Retention & Secure Disposal"
       ],
       "example": "resource \"aws_s3_bucket_lifecycle_configuration\" \"exports\" {\n  bucket = aws_s3_bucket.exports.id\n  rule {\n    id     = \"expire-exports\"\n    status = \"Enabled\"\n    expiration { days = 30 }\n  }\n}"
+    },
+    {
+      "id": "F-119",
+      "ruleId": "p5.2/data-correction",
+      "criterion": "P5.2",
+      "severity": "low",
+      "title": "No profile or account update path",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The application stores personal data (e.g. migrations/001_init.up.sql:1), but no profile or account update path was found in the code.",
+      "expected": "Users can update their own personal data (profile or account settings), or request correction through support tooling.",
+      "risk": "Inaccurate personal data cannot be corrected on request, and errors propagate to downstream systems.",
+      "recommendation": "Provide an authenticated profile update (with validation and an audit trail) and propagate changes to downstream systems.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "f7e245fd36e790bf",
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "app.patch('/me', requireAuth, async (req, res) => res.json(await users.update(req.user.id, ProfileSchema.parse(req.body))));"
+    },
+    {
+      "id": "F-120",
+      "ruleId": "p6.5/vendor-breach-intake",
+      "criterion": "P6.5",
+      "severity": "low",
+      "title": "No intake for vendor breach notices",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "No document describes how breach or incident notices from vendors and subprocessors are received and handled.",
+      "expected": "There is a documented intake for breach or incident notices from vendors and subprocessors, routed into incident response.",
+      "risk": "A vendor's breach notice sent to an unmonitored inbox starts your own notification clock without anyone knowing.",
+      "recommendation": "Name the address vendors must notify, who monitors it, and that notices open an incident.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "f3028acecc4dcb7f",
+      "controls": [
+        "Supplier Security",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk",
+        "Incident Response & Breach Notification"
+      ],
+      "example": "## Vendor incident notices\nSubprocessors notify security@example.com within 48 hours (per the DPA). Each notice opens an incident and is triaged as SEV2 or higher."
+    },
+    {
+      "id": "F-121",
+      "ruleId": "p7.1/pii-validation",
+      "criterion": "P7.1",
+      "severity": "low",
+      "title": "No validation of personal data fields",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "The application stores personal data (e.g. migrations/001_init.up.sql:1), but no validation of personal data fields was found in the code.",
+      "expected": "Personal data fields are validated for format and completeness (e.g. email and phone formats) when collected.",
+      "risk": "Malformed contact data makes notification, access and deletion requests fail to reach or match the right person.",
+      "recommendation": "Validate personal data at the boundary with a schema (email, phone, dates) and normalize before storing.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "a2fb940f3204ca77",
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
+      "example": "const Signup = z.object({ email: z.string().email(), name: z.string().min(1).max(200) });"
+    },
+    {
+      "id": "F-122",
+      "ruleId": "p8.1/privacy-contact",
+      "criterion": "P8.1",
+      "severity": "low",
+      "title": "No privacy review in the change process",
+      "location": {
+        "description": "repository"
+      },
+      "observed": "Neither the PR template nor a PIA/DPIA process asks about personal data.",
+      "expected": "A privacy contact (email or form) is published, and new features handling personal data get a privacy review (the PR template asks about personal data).",
+      "risk": "Data subjects cannot raise requests or complaints, and features that change data collection ship without review.",
+      "recommendation": "Publish a privacy contact in the privacy notice and README, and add a personal-data question to the PR template.",
+      "dueDate": "2026-07-14",
+      "status": "open",
+      "redFlag": false,
+      "fingerprint": "13c65c68f8e402d4",
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Compliance & Regulatory Monitoring"
+      ],
+      "example": "Privacy questions and requests: privacy@example.com (answered within 30 days)."
     }
   ],
   "mapping": {
@@ -6359,7 +7039,7 @@
     "source": "default"
   },
   "coverage": {
-    "rulesRun": 98,
+    "rulesRun": 114,
     "rulesErrored": [],
     "externalTools": []
   }

@@ -8,7 +8,7 @@
   "generatedAt": "2026-01-15T12:00:00.000Z",
   "repository": {
     "root": "<root>",
-    "filesScanned": 37,
+    "filesScanned": 43,
     "gitAware": true
   },
   "config": {
@@ -22,13 +22,13 @@
   },
   "summary": {
     "overall": {
-      "assessable": 36,
-      "earned": 72,
-      "possible": 72,
+      "assessable": 50,
+      "earned": 100,
+      "possible": 100,
       "percent": 100,
       "band": "audit-ready",
       "capped": false,
-      "manualOpen": 25,
+      "manualOpen": 11,
       "notApplicable": 0
     },
     "categories": [
@@ -88,13 +88,13 @@
         "category": "privacy",
         "label": "Privacy",
         "inScope": true,
-        "assessable": 0,
-        "earned": 0,
-        "possible": 0,
-        "percent": null,
-        "band": null,
+        "assessable": 14,
+        "earned": 28,
+        "possible": 28,
+        "percent": 100,
+        "band": "audit-ready",
         "capped": false,
-        "manualOpen": 18,
+        "manualOpen": 4,
         "notApplicable": 0
       }
     ],
@@ -106,7 +106,7 @@
     },
     "acceptedFindings": 0,
     "staleExceptions": [],
-    "manualOpen": 25,
+    "manualOpen": 11,
     "topFixes": []
   },
   "criteria": [
@@ -677,7 +677,7 @@
       "evidence": [
         {
           "kind": "absence",
-          "description": "Checked 8 files (JS/TS, Python, Go source and related config); no auth-bypass flags or hard-coded privileged usernames."
+          "description": "Checked 10 files (JS/TS, Python, Go source and related config); no auth-bypass flags or hard-coded privileged usernames."
         }
       ],
       "checks": [
@@ -688,7 +688,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 8 files (JS/TS, Python, Go source and related config); no auth-bypass flags or hard-coded privileged usernames."
+              "description": "Checked 10 files (JS/TS, Python, Go source and related config); no auth-bypass flags or hard-coded privileged usernames."
             }
           ],
           "findingIds": []
@@ -895,7 +895,7 @@
         },
         {
           "kind": "absence",
-          "description": "Checked 9 source files and scanner ignore files; every suppression has a reason."
+          "description": "Checked 11 source files and scanner ignore files; every suppression has a reason."
         }
       ],
       "checks": [
@@ -932,7 +932,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 9 source files and scanner ignore files; every suppression has a reason."
+              "description": "Checked 11 source files and scanner ignore files; every suppression has a reason."
             }
           ],
           "findingIds": []
@@ -1241,6 +1241,11 @@
         },
         {
           "kind": "file",
+          "path": "docs/security/breach-notification.md",
+          "description": "Owner set, last reviewed 2025-11-01."
+        },
+        {
+          "kind": "file",
           "path": "docs/security/business-continuity.md",
           "description": "Owner set, last reviewed 2025-11-01."
         },
@@ -1257,12 +1262,7 @@
         {
           "kind": "file",
           "path": "docs/security/risk-register.md",
-          "description": "Owner set, last reviewed 2025-11-01."
-        },
-        {
-          "kind": "file",
-          "path": "docs/security/threat-model.md",
-          "description": "...and 2 more policies."
+          "description": "...and 3 more policies."
         },
         {
           "kind": "file",
@@ -1290,8 +1290,8 @@
         },
         {
           "kind": "file",
-          "path": "docs/security/incident-response.md",
-          "line": 1,
+          "path": "docs/security/breach-notification.md",
+          "line": 12,
           "description": "Procedure for incident response."
         },
         {
@@ -1320,6 +1320,11 @@
             },
             {
               "kind": "file",
+              "path": "docs/security/breach-notification.md",
+              "description": "Owner set, last reviewed 2025-11-01."
+            },
+            {
+              "kind": "file",
               "path": "docs/security/business-continuity.md",
               "description": "Owner set, last reviewed 2025-11-01."
             },
@@ -1336,12 +1341,7 @@
             {
               "kind": "file",
               "path": "docs/security/risk-register.md",
-              "description": "Owner set, last reviewed 2025-11-01."
-            },
-            {
-              "kind": "file",
-              "path": "docs/security/threat-model.md",
-              "description": "...and 2 more policies."
+              "description": "...and 3 more policies."
             }
           ],
           "findingIds": []
@@ -1377,8 +1377,8 @@
             },
             {
               "kind": "file",
-              "path": "docs/security/incident-response.md",
-              "line": 1,
+              "path": "docs/security/breach-notification.md",
+              "line": 12,
               "description": "Procedure for incident response."
             },
             {
@@ -1442,15 +1442,15 @@
         },
         {
           "kind": "absence",
-          "description": "No .env files (other than templates) are present among 37 files."
+          "description": "No .env files (other than templates) are present among 43 files."
         },
         {
           "kind": "absence",
-          "description": "No literal credential assignments found in 11 source or config files (tests excluded)."
+          "description": "No literal credential assignments found in 13 source or config files (tests excluded)."
         },
         {
           "kind": "absence",
-          "description": "No high-confidence secret patterns (13 patterns) matched in 37 files."
+          "description": "No high-confidence secret patterns (13 patterns) matched in 43 files."
         },
         {
           "kind": "file",
@@ -1510,7 +1510,7 @@
             },
             {
               "kind": "absence",
-              "description": "No .env files (other than templates) are present among 37 files."
+              "description": "No .env files (other than templates) are present among 43 files."
             }
           ],
           "findingIds": []
@@ -1522,7 +1522,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "No literal credential assignments found in 11 source or config files (tests excluded)."
+              "description": "No literal credential assignments found in 13 source or config files (tests excluded)."
             }
           ],
           "findingIds": []
@@ -1534,7 +1534,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "No high-confidence secret patterns (13 patterns) matched in 37 files."
+              "description": "No high-confidence secret patterns (13 patterns) matched in 43 files."
             }
           ],
           "findingIds": []
@@ -1646,7 +1646,7 @@
       "evidence": [
         {
           "kind": "absence",
-          "description": "Checked 8 files (JS/TS, Python source and related config); no request bodies spread into models and no client-supplied roles."
+          "description": "Checked 10 files (JS/TS, Python source and related config); no request bodies spread into models and no client-supplied roles."
         }
       ],
       "checks": [
@@ -1657,7 +1657,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 8 files (JS/TS, Python source and related config); no request bodies spread into models and no client-supplied roles."
+              "description": "Checked 10 files (JS/TS, Python source and related config); no request bodies spread into models and no client-supplied roles."
             }
           ],
           "findingIds": []
@@ -1865,7 +1865,7 @@
         },
         {
           "kind": "absence",
-          "description": "Checked 8 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization."
+          "description": "Checked 10 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization."
         },
         {
           "kind": "file",
@@ -1899,11 +1899,11 @@
         },
         {
           "kind": "absence",
-          "description": "Checked 8 production files; no SQL built by interpolation, concatenation or formatting."
+          "description": "Checked 10 production files; no SQL built by interpolation, concatenation or formatting."
         },
         {
           "kind": "absence",
-          "description": "Checked 8 files (JS/TS, Python, Go source and related config); no raw-HTML rendering sinks without visible sanitization."
+          "description": "Checked 11 files (JS/TS, Python, Go source and related config); no raw-HTML rendering sinks without visible sanitization."
         }
       ],
       "checks": [
@@ -1927,7 +1927,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 8 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization."
+              "description": "Checked 10 files (JS/TS, Python, Go source and related config); no dynamic code execution, shell-string commands or unsafe deserialization."
             }
           ],
           "findingIds": []
@@ -2001,7 +2001,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 8 production files; no SQL built by interpolation, concatenation or formatting."
+              "description": "Checked 10 production files; no SQL built by interpolation, concatenation or formatting."
             }
           ],
           "findingIds": []
@@ -2013,7 +2013,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 8 files (JS/TS, Python, Go source and related config); no raw-HTML rendering sinks without visible sanitization."
+              "description": "Checked 11 files (JS/TS, Python, Go source and related config); no raw-HTML rendering sinks without visible sanitization."
             }
           ],
           "findingIds": []
@@ -2054,15 +2054,15 @@
       "evidence": [
         {
           "kind": "absence",
-          "description": "Checked 16 files; no plain http:// URLs to non-local hosts."
+          "description": "Checked 18 files; no plain http:// URLs to non-local hosts."
         },
         {
           "kind": "absence",
-          "description": "Checked 12 files (JS/TS, Python, Go source and related config); certificate verification is never disabled."
+          "description": "Checked 14 files (JS/TS, Python, Go source and related config); certificate verification is never disabled."
         },
         {
           "kind": "absence",
-          "description": "Checked 9 files; no TLS below 1.2 and no legacy ciphers found."
+          "description": "Checked 11 files; no TLS below 1.2 and no legacy ciphers found."
         },
         {
           "kind": "file",
@@ -2079,7 +2079,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 16 files; no plain http:// URLs to non-local hosts."
+              "description": "Checked 18 files; no plain http:// URLs to non-local hosts."
             }
           ],
           "findingIds": []
@@ -2091,7 +2091,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 12 files (JS/TS, Python, Go source and related config); certificate verification is never disabled."
+              "description": "Checked 14 files (JS/TS, Python, Go source and related config); certificate verification is never disabled."
             }
           ],
           "findingIds": []
@@ -2103,7 +2103,7 @@
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 9 files; no TLS below 1.2 and no legacy ciphers found."
+              "description": "Checked 11 files; no TLS below 1.2 and no legacy ciphers found."
             }
           ],
           "findingIds": []
@@ -2408,7 +2408,7 @@
       "inScope": true,
       "score": 2,
       "label": "Met",
-      "rationale": "All 2 automated checks passed with evidence.",
+      "rationale": "All 3 automated checks passed with evidence.",
       "capped": false,
       "evidence": [
         {
@@ -2419,7 +2419,11 @@
         },
         {
           "kind": "absence",
-          "description": "Checked 8 files (JS/TS, Python, Go source and related config); no credentials, auth headers or request bodies passed to loggers."
+          "description": "Checked 10 files (JS/TS, Python, Go source and related config); no personal data fields passed to loggers."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 10 files (JS/TS, Python, Go source and related config); no credentials, auth headers or request bodies passed to loggers."
         }
       ],
       "checks": [
@@ -2438,13 +2442,25 @@
           "findingIds": []
         },
         {
+          "ruleId": "cc7.2/pii-in-logs",
+          "title": "Personal data is not written to logs",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 10 files (JS/TS, Python, Go source and related config); no personal data fields passed to loggers."
+            }
+          ],
+          "findingIds": []
+        },
+        {
           "ruleId": "cc7.2/sensitive-logging",
           "title": "Credentials and request bodies are not logged",
           "status": "pass",
           "evidence": [
             {
               "kind": "absence",
-              "description": "Checked 8 files (JS/TS, Python, Go source and related config); no credentials, auth headers or request bodies passed to loggers."
+              "description": "Checked 10 files (JS/TS, Python, Go source and related config); no credentials, auth headers or request bodies passed to loggers."
             }
           ],
           "findingIds": []
@@ -2452,7 +2468,7 @@
       ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 2,
+        "automatedRules": 3,
         "rubricChecks": 5
       },
       "manualFollowUps": [
@@ -2718,7 +2734,7 @@
         {
           "kind": "file",
           "path": ".github/CODEOWNERS",
-          "description": "All 15 sensitive files have a specific code owner."
+          "description": "All 18 sensitive files have a specific code owner."
         },
         {
           "kind": "file",
@@ -2729,7 +2745,7 @@
         {
           "kind": "file",
           "path": "migrations/001_init.up.sql",
-          "description": "All 1 up migrations have down migrations."
+          "description": "All 2 up migrations have down migrations."
         },
         {
           "kind": "file",
@@ -2773,7 +2789,7 @@
             {
               "kind": "file",
               "path": ".github/CODEOWNERS",
-              "description": "All 15 sensitive files have a specific code owner."
+              "description": "All 18 sensitive files have a specific code owner."
             }
           ],
           "findingIds": []
@@ -2808,7 +2824,7 @@
             {
               "kind": "file",
               "path": "migrations/001_init.up.sql",
-              "description": "All 1 up migrations have down migrations."
+              "description": "All 2 up migrations have down migrations."
             }
           ],
           "findingIds": []
@@ -2937,8 +2953,8 @@
       "evidence": [
         {
           "kind": "file",
-          "path": "docs/security/data-handling.md",
-          "line": 16,
+          "path": "docs/security/breach-notification.md",
+          "line": 12,
           "description": "Third-party inventory."
         },
         {
@@ -2956,8 +2972,8 @@
           "evidence": [
             {
               "kind": "file",
-              "path": "docs/security/data-handling.md",
-              "line": 16,
+              "path": "docs/security/breach-notification.md",
+              "line": 12,
               "description": "Third-party inventory."
             },
             {
@@ -3361,7 +3377,7 @@
         {
           "kind": "file",
           "path": "package.json",
-          "line": 21,
+          "line": 22,
           "description": "A schema validation library is used."
         }
       ],
@@ -3388,7 +3404,7 @@
             {
               "kind": "file",
               "path": "package.json",
-              "line": 21,
+              "line": 22,
               "description": "A schema validation library is used."
             }
           ],
@@ -3787,19 +3803,38 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "public/privacy.html",
+          "description": "A privacy notice page exists."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p1.1/privacy-notice",
+          "title": "The product links to a privacy notice",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "public/privacy.html",
+              "description": "A privacy notice page exists."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Privacy notice is accessible from the product (signup, footer, app settings)",
         "Notice is current, versioned, and describes collection, use, retention, disclosure, and disposal",
         "Changes are communicated to affected users; prior versions are retained",
         "Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)"
@@ -3810,8 +3845,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P2.1",
@@ -3821,21 +3855,42 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "public/analytics.js",
+          "line": 4,
+          "description": "Consent gating found for PostHog."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p2.1/consent-gating",
+          "title": "Analytics and tracking load only after consent",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "public/analytics.js",
+              "line": 4,
+              "description": "Consent gating found for PostHog."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Consent captured with timestamp, policy/notice version, purpose, and channel",
         "Opt-in/opt-out and withdrawal mechanisms exist and are honored in code (analytics, marketing, sharing gates check consent state before executing)",
-        "Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required",
         "Re-consent triggered for new purposes or material changes",
         "Explicit consent for sensitive data and cross-border transfers where required"
       ],
@@ -3844,8 +3899,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P3.1",
@@ -3856,20 +3910,41 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/security/data-handling.md",
+          "line": 19,
+          "description": "docs/security/data-handling.md covers personal data fields or categories, purpose, retention (structure checked, quality not judged)."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p3.1/data-map",
+          "title": "A data map records personal data fields and their purpose",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "docs/security/data-handling.md",
+              "line": 19,
+              "description": "docs/security/data-handling.md covers personal data fields or categories, purpose, retention (structure checked, quality not judged)."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 5
       },
       "manualFollowUps": [
         "Data minimization: each collected field has a documented purpose",
-        "PII fields identified in schemas/APIs and tracked in a data map",
         "Collected data matches what the notice says",
         "Third-party SDKs and analytics events reviewed for unintended PII collection",
         "Legal basis/purpose recorded where applicable"
@@ -3881,8 +3956,7 @@
       "policies": [
         "Privacy & Data-Subject Rights",
         "Data Classification & Handling"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P3.2",
@@ -3893,21 +3967,42 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "migrations/002_profile.down.sql",
+          "line": 1,
+          "description": "Field-level encryption or tokenization is used for sensitive data."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p3.2/sensitive-fields",
+          "title": "Sensitive personal data has field-level protection",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "migrations/002_profile.down.sql",
+              "line": 1,
+              "description": "Field-level encryption or tokenization is used for sensitive data."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Sensitive categories identified (health, biometric, government ID, financial, precise location, children's data, etc.)",
         "Explicit consent obtained before collection",
-        "Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls",
         "Age-gating/parental-consent logic where minors' data is possible"
       ],
       "controls": [
@@ -3918,8 +4013,7 @@
       "policies": [
         "Privacy & Data-Subject Rights",
         "Data Classification & Handling"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P4.1",
@@ -3964,20 +4058,41 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "src/jobs.js",
+          "line": 9,
+          "description": "A purge job, TTL or retention routine exists."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p4.2/retention-jobs",
+          "title": "Retention is enforced by purge jobs or TTLs",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/jobs.js",
+              "line": 9,
+              "description": "A purge job, TTL or retention routine exists."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
         "Retention schedule defined per data type",
-        "TTLs/purge jobs implemented and monitored",
         "Backup and log retention aligned with schedule",
         "Legal-hold process exists and is honored by purge jobs"
       ],
@@ -3988,8 +4103,7 @@
       "policies": [
         "Retention & Secure Disposal",
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P4.3",
@@ -4000,19 +4114,40 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "src/account/routes.js",
+          "line": 9,
+          "description": "A deletion or anonymization path exists."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p4.3/deletion-path",
+          "title": "Personal data can be deleted, and soft-deleted data is purged",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/account/routes.js",
+              "line": 9,
+              "description": "A deletion or anonymization path exists."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Secure deletion or irreversible anonymization implemented",
         "Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)",
         "Deletion is verified and audit-logged",
         "P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)"
@@ -4022,8 +4157,7 @@
       ],
       "policies": [
         "Retention & Secure Disposal"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P5.1",
@@ -4033,19 +4167,40 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "src/account/routes.js",
+          "line": 7,
+          "description": "A personal data export path exists."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p5.1/data-export",
+          "title": "Data subjects can get a copy of their data",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/account/routes.js",
+              "line": 7,
+              "description": "A personal data export path exists."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 6
       },
       "manualFollowUps": [
-        "Self-service or request-based access/export endpoint exists",
         "Requester identity is authenticated before disclosure; export is scoped to that subject only",
         "Machine-readable export format",
         "Export covers all stores holding the subject's data, including vendors",
@@ -4058,8 +4213,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P5.2",
@@ -4069,19 +4223,40 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "src/account/routes.js",
+          "line": 8,
+          "description": "A profile or account update path exists."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p5.2/data-correction",
+          "title": "Data subjects can correct their data",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/account/routes.js",
+              "line": 8,
+              "description": "A profile or account update path exists."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 3
       },
       "manualFollowUps": [
-        "Users can update or request correction of their data",
         "Corrections propagate to downstream systems and relevant third parties",
         "Change history/audit trail retained; denials documented with rationale"
       ],
@@ -4090,8 +4265,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.1",
@@ -4102,21 +4276,53 @@
         "CONFIG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "All 2 automated checks passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "absence",
+          "description": "All 1 SDK vendor(s) in use are named in the documentation: PostHog."
+        },
+        {
+          "kind": "absence",
+          "description": "Checked 10 files (JS/TS, Python source and related config); no whole user objects or email addresses passed to analytics or support SDKs."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p6.1/sdk-inventory",
+          "title": "Third-party SDKs that receive personal data are inventoried",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "All 1 SDK vendor(s) in use are named in the documentation: PostHog."
+            }
+          ],
+          "findingIds": []
+        },
+        {
+          "ruleId": "p6.1/user-objects-to-third-parties",
+          "title": "Only minimal identifiers are sent to analytics and support tools",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "absence",
+              "description": "Checked 10 files (JS/TS, Python source and related config); no whole user objects or email addresses passed to analytics or support SDKs."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 2,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Disclosure paths to third parties are inventoried (subprocessors, analytics, support tools, integrations)",
         "Consent/authorization checked in code before sending PI to third parties",
-        "Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)",
         "Cross-border transfer mechanisms documented where applicable"
       ],
       "controls": [
@@ -4128,8 +4334,7 @@
         "Information Sharing & Transfer",
         "Vendor & Third-Party Risk",
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.2",
@@ -4173,19 +4378,40 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/security/breach-notification.md",
+          "line": 16,
+          "description": "docs/security/breach-notification.md covers scope, affected subjects, root cause, remediation (structure checked, quality not judged)."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p6.3/incident-register",
+          "title": "Unauthorized disclosures are recorded in a register",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "docs/security/breach-notification.md",
+              "line": 16,
+              "description": "docs/security/breach-notification.md covers scope, affected subjects, root cause, remediation (structure checked, quality not judged)."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 3
       },
       "manualFollowUps": [
-        "Incident register captures unauthorized disclosures with scope, affected subjects, root cause, and remediation",
         "Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)",
         "Records link to the incident-response process (CC7.3–CC7.4)"
       ],
@@ -4195,8 +4421,7 @@
       ],
       "policies": [
         "Incident Response & Breach Notification"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.4",
@@ -4240,20 +4465,41 @@
         "DOCS"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/security/breach-notification.md",
+          "line": 12,
+          "description": "Vendor breach notices have a documented intake."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p6.5/vendor-breach-intake",
+          "title": "Breach notices from vendors feed incident response",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "docs/security/breach-notification.md",
+              "line": 12,
+              "description": "Vendor breach notices have a documented intake."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 2
       },
       "manualFollowUps": [
-        "Contracts specify notification timelines",
-        "Intake channel/process exists for vendor breach notices and feeds incident response"
+        "Contracts specify notification timelines"
       ],
       "controls": [
         "Supplier Security",
@@ -4262,8 +4508,7 @@
       "policies": [
         "Vendor & Third-Party Risk",
         "Incident Response & Breach Notification"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.6",
@@ -4274,19 +4519,40 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/security/breach-notification.md",
+          "line": 7,
+          "description": "docs/security/breach-notification.md covers notification deadlines, regulators and affected people, templates (structure checked, quality not judged)."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p6.6/breach-notification",
+          "title": "A breach notification procedure sets deadlines and audiences",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "docs/security/breach-notification.md",
+              "line": 7,
+              "description": "docs/security/breach-notification.md covers notification deadlines, regulators and affected people, templates (structure checked, quality not judged)."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Breach notification runbook and templates exist, with regulator/customer deadlines documented (e.g., 72h where applicable)",
         "Affected data subjects can be identified quickly through queries and tooling",
         "Contact data and notification tooling available for affected populations",
         "Notification decisions recorded"
@@ -4297,8 +4563,7 @@
       ],
       "policies": [
         "Incident Response & Breach Notification"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P6.7",
@@ -4340,19 +4605,40 @@
         "CODE"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "src/account/routes.js",
+          "line": 4,
+          "description": "Personal data fields are validated."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p7.1/pii-validation",
+          "title": "Personal data fields are validated",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "src/account/routes.js",
+              "line": 4,
+              "description": "Personal data fields are validated."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Validation on PI fields (format, completeness); duplicate detection and merge handling",
         "Users can review and update their own data",
         "Data-quality checks or stale-data flagging run on a schedule",
         "Irrelevant or unnecessary fields are removed"
@@ -4362,8 +4648,7 @@
       ],
       "policies": [
         "Privacy & Data-Subject Rights"
-      ],
-      "owner": "Privacy / legal"
+      ]
     },
     {
       "id": "P8.1",
@@ -4374,19 +4659,52 @@
         "ORG"
       ],
       "inScope": true,
-      "score": "MANUAL",
-      "label": "Manual Evidence",
-      "rationale": "threesock has no automated checks for this criterion yet. Gather evidence manually.",
+      "score": 2,
+      "label": "Met",
+      "rationale": "The automated check passed with evidence.",
       "capped": false,
-      "evidence": [],
-      "checks": [],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "public/privacy.html",
+          "line": 4,
+          "description": "A privacy contact is published."
+        },
+        {
+          "kind": "file",
+          "path": ".github/pull_request_template.md",
+          "line": 4,
+          "description": "Changes are reviewed for personal data impact."
+        }
+      ],
+      "checks": [
+        {
+          "ruleId": "p8.1/privacy-contact",
+          "title": "A privacy contact is published and privacy review is part of the SDLC",
+          "status": "pass",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "public/privacy.html",
+              "line": 4,
+              "description": "A privacy contact is published."
+            },
+            {
+              "kind": "file",
+              "path": ".github/pull_request_template.md",
+              "line": 4,
+              "description": "Changes are reviewed for personal data impact."
+            }
+          ],
+          "findingIds": []
+        }
+      ],
       "findingIds": [],
       "coverage": {
-        "automatedRules": 0,
+        "automatedRules": 1,
         "rubricChecks": 4
       },
       "manualFollowUps": [
-        "Privacy contact channel published (email/form) and monitored",
         "Ticketed workflow with SLAs, investigation, resolution, and communication back to the requester",
         "Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI",
         "Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)"
@@ -4398,8 +4716,7 @@
       "policies": [
         "Privacy & Data-Subject Rights",
         "Compliance & Regulatory Monitoring"
-      ],
-      "owner": "Privacy / legal"
+      ]
     }
   ],
   "findings": [],
@@ -4408,7 +4725,7 @@
     "source": "default"
   },
   "coverage": {
-    "rulesRun": 98,
+    "rulesRun": 114,
     "rulesErrored": [],
     "externalTools": []
   }

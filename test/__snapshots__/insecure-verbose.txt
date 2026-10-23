@@ -2,19 +2,19 @@ threesock <version> · SOC 2 readiness scan
 Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
 
 Repository  <root>
-Scanned     21 files (git-aware) · 98 rules
+Scanned     23 files (git-aware) · 114 rules
 Tools       built-in rules only
 Scope       Security, Availability, Processing Integrity, Confidentiality, Privacy
 
 Readiness
-  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 36/61 criteria assessed, capped by open Critical
+  Overall               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 50/61 criteria assessed, capped by open Critical
   Security              ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 27/33 criteria assessed, capped by open Critical
   Availability          ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 3/3 criteria assessed
   Processing Integrity  ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 4/5 criteria assessed
   Confidentiality       ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 2/2 criteria assessed
-  Privacy               ····················      —  nothing assessable yet · 0/18 criteria assessed
+  Privacy               ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 14/18 criteria assessed
 
-Findings    9 critical · 26 high · 46 medium · 22 low
+Findings    9 critical · 27 high · 60 medium · 26 low
 
 Top fixes
   1. CRITICAL CC6.1  Hard-coded Stripe live key (+4 more)
@@ -59,7 +59,7 @@ Open findings
          .github/workflows/ci.yml:14 · due 2026-02-14
   F-015  HIGH     CC5.2  write-all token permissions in .github/workflows/ci.yml
          .github/workflows/ci.yml:3 · due 2026-02-14
-  ... and 88 more. Use --format json or markdown for the full list.
+  ... and 107 more. Use --format json or markdown for the full list.
 
 Criteria
   CC1.1  MANUAL  Manual Evidence  Integrity and ethical values
@@ -105,23 +105,23 @@ Criteria
   PI1.5  0       Not Met          Storage completeness and accuracy
   C1.1   0       Not Met          Identify and protect confidential information
   C1.2   0       Not Met          Dispose of confidential information
-  P1.1   MANUAL  Manual Evidence  Privacy notice
-  P2.1   MANUAL  Manual Evidence  Choice and consent
-  P3.1   MANUAL  Manual Evidence  Collection consistent with objectives
-  P3.2   MANUAL  Manual Evidence  Sensitive information
+  P1.1   0       Not Met          Privacy notice
+  P2.1   0       Not Met          Choice and consent
+  P3.1   0       Not Met          Collection consistent with objectives
+  P3.2   0       Not Met          Sensitive information
   P4.1   MANUAL  Manual Evidence  Use of personal information
-  P4.2   MANUAL  Manual Evidence  Retention of personal information
-  P4.3   MANUAL  Manual Evidence  Disposal of personal information
-  P5.1   MANUAL  Manual Evidence  Data subject access
-  P5.2   MANUAL  Manual Evidence  Correction and amendment
-  P6.1   MANUAL  Manual Evidence  Authorized disclosure to third parties
+  P4.2   0       Not Met          Retention of personal information
+  P4.3   0       Not Met          Disposal of personal information
+  P5.1   0       Not Met          Data subject access
+  P5.2   0       Not Met          Correction and amendment
+  P6.1   0       Not Met          Authorized disclosure to third parties
   P6.2   MANUAL  Manual Evidence  Records of authorized disclosures
-  P6.3   MANUAL  Manual Evidence  Records of unauthorized disclosures
+  P6.3   0       Not Met          Records of unauthorized disclosures
   P6.4   MANUAL  Manual Evidence  Third-party privacy commitments
-  P6.5   MANUAL  Manual Evidence  Third-party notification of unauthorized disclosure
-  P6.6   MANUAL  Manual Evidence  Breach notification
+  P6.5   0       Not Met          Third-party notification of unauthorized disclosure
+  P6.6   0       Not Met          Breach notification
   P6.7   MANUAL  Manual Evidence  Accounting of personal information held and disclosed
-  P7.1   MANUAL  Manual Evidence  Data quality
-  P8.1   MANUAL  Manual Evidence  Privacy inquiries, complaints, and disputes
+  P7.1   0       Not Met          Data quality
+  P8.1   0       Not Met          Privacy inquiries, complaints, and disputes
 
-Manual evidence: 25 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.
+Manual evidence: 11 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

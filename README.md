@@ -103,7 +103,7 @@ Category readiness = points earned ÷ (2 × assessable criteria), excluding N/A 
 
 ## Status
 
-threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 98 built-in rules across Security (CC1–CC9), Availability, Processing Integrity and Confidentiality. SARIF, HTML and baselines are in. Next: GitHub API checks, the control and policy mapping, Privacy rules, the GitHub Action and the MCP server. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
+threesock is pre-1.0. Done: the engine, scoring, configuration, text/JSON/Markdown output, and 122 built-in rules across all five categories: Security (CC1–CC9), Availability, Processing Integrity, Confidentiality and Privacy. SARIF, HTML, baselines, the control and policy mapping, opt-in GitHub API checks and external scanners are in. Next: the GitHub Action, the MCP server and npm publishing. See [CHANGELOG.md](CHANGELOG.md) and [docs/design.md](docs/design.md).
 
 ## Security
 

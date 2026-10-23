@@ -133,3 +133,7 @@ Agreed with the maintainer before Phase 2. Change them deliberately, not by drif
 41. Checkov and Trivy misconfigurations map to criteria by topic (network CC6.6, encryption at rest C1.1, in transit CC6.7, IAM CC6.1, logging CC7.2, backup A1.2), falling back to CC7.1.
 42. Secrets found only in git history are High, show the commit SHA, and are redacted.
 43. Adapters are tested with recorded tool output; a separate CI job installs pinned, checksum-verified tools and runs them for real.
+
+**5: privacy**
+
+44. Privacy rules that inspect code (deletion, export, correction, retention, validation, notice) are not applicable unless the repository defines personal-data fields; sensitive-category detection matches field definitions only, not prose.
