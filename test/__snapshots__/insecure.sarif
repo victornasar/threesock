@@ -7,7 +7,7 @@
         "driver": {
           "name": "threesock",
           "semanticVersion": "0.1.0",
-          "informationUri": "https://github.com/threesock/threesock",
+          "informationUri": "https://github.com/victornasar/threesock",
           "rules": [
             {
               "id": "a1.1/autoscaling",

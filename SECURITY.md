@@ -5,7 +5,7 @@ threesock scans repositories that may contain secrets, so we take its own securi
 ## Reporting a vulnerability
 
 Please report vulnerabilities privately through
-[GitHub private vulnerability reporting](https://github.com/threesock/threesock/security/advisories/new).
+[GitHub private vulnerability reporting](https://github.com/victornasar/threesock/security/advisories/new).
 Do not open a public issue.
 
 We aim to acknowledge reports within 2 business days, share an assessment within 7 days,

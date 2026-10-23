@@ -27,11 +27,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/threesock/threesock.git"
+    "url": "git+https://github.com/victornasar/threesock.git"
   },
-  "homepage": "https://github.com/threesock/threesock#readme",
+  "homepage": "https://github.com/victornasar/threesock#readme",
   "bugs": {
-    "url": "https://github.com/threesock/threesock/issues"
+    "url": "https://github.com/victornasar/threesock/issues"
   },
   "publishConfig": {
     "access": "public",

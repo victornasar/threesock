@@ -3,7 +3,7 @@ name: release
 # Publishes to npm from a v* tag only (decision 3), via npm trusted publishing:
 # OIDC instead of an npm token, with provenance generated automatically.
 # Configure on npmjs.com, for both threesock and threesock-mcp: Trusted publisher →
-# GitHub Actions, repository threesock/threesock, workflow release.yml, environment npm.
+# GitHub Actions, repository victornasar/threesock, workflow release.yml, environment npm.
 on:
   push:
     tags: ['v*']

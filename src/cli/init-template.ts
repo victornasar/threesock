@@ -1,4 +1,4 @@
-export const INIT_TEMPLATE = `# threesock configuration. See https://github.com/threesock/threesock#configuration
+export const INIT_TEMPLATE = `# threesock configuration. See https://github.com/victornasar/threesock#configuration
 version: 1
 
 # Security is always in scope. Add the optional categories your SOC 2 report covers.

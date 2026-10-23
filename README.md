@@ -59,7 +59,7 @@ Top fixes
 ## GitHub Action
 
 ```yaml
-- uses: threesock/threesock/action@<sha> # pin to a release commit
+- uses: victornasar/threesock/action@<sha> # pin to a release commit
   with:
     scope: security,availability
     fail-on: high

@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0 # full history for the git-history checks
           persist-credentials: false
-      - uses: threesock/threesock/action@<sha> # pin to a release commit SHA
+      - uses: victornasar/threesock/action@<sha> # pin to a release commit SHA
         with:
           scope: security,availability
           fail-on: high

@@ -3,19 +3,19 @@
 Owner: @victornasar
 Last reviewed: 2026-10-22
 
-Systems with privileged access: the `threesock` GitHub organization and the `threesock` npm package.
+Systems with privileged access: the `victornasar/threesock` GitHub repository and the `threesock` and `threesock-mcp` npm packages.
 
 ## Onboarding
 
-New maintainers are added to the `@threesock/maintainers` team after an approval recorded in an issue, must use hardware-key or app-based two-factor authentication, and are added to the npm package as maintainers. No shared accounts exist.
+New maintainers are added as repository collaborators (and to CODEOWNERS) after an approval recorded in an issue, must use hardware-key or app-based two-factor authentication, and are added to the npm package as maintainers. No shared accounts exist.
 
 ## Offboarding
 
-Within 24 hours of a maintainer stepping down: remove them from the GitHub organization and the npm package, revoke any personal access tokens they created for the project, and review the GitHub audit log for the previous 30 days.
+Within 24 hours of a maintainer stepping down: remove them as repository collaborators and as npm package maintainers, revoke any personal access tokens they created for the project, and review the GitHub audit log for the previous 30 days.
 
 ## Access reviews
 
-Quarterly, the owner reviews GitHub organization members, team membership, outside collaborators, installed GitHub Apps, and npm package maintainers, and records the date in this file.
+Quarterly, the owner reviews repository collaborators, deploy keys, installed GitHub Apps, and npm package maintainers, and records the date in this file.
 
 | Date | Reviewer | Result |
 |---|---|---|

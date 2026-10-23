@@ -1,18 +1,18 @@
 # Every path needs an owner (rubric CC1.3). Sensitive paths need named reviewers (CC8.1).
-*                        @threesock/maintainers
+*                        @victornasar
 
 # Detection and scoring logic: a mistake here changes every user's results.
-/src/engine/             @threesock/maintainers
-/src/rules/              @threesock/maintainers
-/docs/rubric/            @threesock/maintainers
-/docs/security/          @threesock/maintainers
-/docs/adr/               @threesock/maintainers
-/threesock.yaml          @threesock/maintainers
+/src/engine/             @victornasar
+/src/rules/              @victornasar
+/docs/rubric/            @victornasar
+/docs/security/          @victornasar
+/docs/adr/               @victornasar
+/threesock.yaml          @victornasar
 
 # Supply chain and release
-/.github/                @threesock/maintainers
-/package.json            @threesock/maintainers
-/pnpm-lock.yaml          @threesock/maintainers
-/pnpm-workspace.yaml     @threesock/maintainers
-/action/                 @threesock/maintainers
-/packages/               @threesock/maintainers
+/.github/                @victornasar
+/package.json            @victornasar
+/pnpm-lock.yaml          @victornasar
+/pnpm-workspace.yaml     @victornasar
+/action/                 @victornasar
+/packages/               @victornasar

@@ -97,7 +97,7 @@ export function renderSarif(report: ScanReport, rules: readonly Rule[]): string 
           driver: {
             name: 'threesock',
             semanticVersion: report.tool.version,
-            informationUri: 'https://github.com/threesock/threesock',
+            informationUri: 'https://github.com/victornasar/threesock',
             rules: used.map((id) => {
               const r = byId.get(id);
               const severity = r?.severity ?? 'medium';

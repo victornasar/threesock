@@ -145,3 +145,18 @@ Agreed with the maintainer before Phase 2. Change them deliberately, not by drif
 47. The `main` ruleset requires pull requests with 0 approvals while there is one maintainer, required checks, no force pushes or deletion, signed commits and no bypass. The resulting finding is an exception (by fingerprint) expiring 2027-01-20.
 48. Commits are signed with the maintainer's SSH key.
 49. v0.1 ships the control mapping as a labelled starting point and the docs in the repository; a hosted docs site comes later.
+
+## Launch and roadmap decisions (2026-10-22)
+
+50. The repository lives at `victornasar/threesock` (personal account; supersedes decision 1). CODEOWNERS names `@victornasar`. It can move to an organization later; GitHub redirects the old URLs.
+51. v0.1.0 ships first; new features follow in small releases, each grilled, built and stopped for review.
+52. Non-goals are recorded in ADR 0004 (no questionnaires, trust centers, vendor risk, HR/device monitoring or auditor marketplaces).
+
+Roadmap:
+
+- **v0.2 PR mode.** Scan the base ref in a temporary git worktree and compare by fingerprint ("+N new, M fixed"); in PR mode `--fail-on` gates only new findings; job summary always, one updated PR comment opt-in; `--diff-base` locally.
+- **v0.3 Evidence over time.** Append-only `threesock-evidence` branch, written on pushes to `main` and daily (never from PRs) by one job with write access to that branch only. Records: timestamp, commit, version, config hash, criterion scores, check statuses, finding fingerprints and severities (no finding text), and the previous record's hash; signed with GitHub artifact attestations on GitHub. `evidence verify` and `evidence report --from --to`. User-provided storage later.
+- **v0.4 AI/LLM rules.** Personal data in prompts (P6.1), LLM providers missing from the subprocessor list (CC9.2), model output reaching shell/SQL/path/eval sinks (CC6.6, High), no LLM tracing (CC7.2), no eval suite (PI1.3), floating model aliases (CC8.1); local models exempt from the subprocessor rule. ISO 42001 mapping.
+- **v0.5 Export.** Generic evidence bundle (JSON, CSVs, Markdown and HTML reports, evidence history, SHA-256 manifest); then `export vanta` (document upload API) and `export drata` (custom connections); credentials from environment variables.
+- **v0.6 `threesock fix`.** Diff by default, writes only with `--apply`: pin actions to SHAs (needs `GITHUB_TOKEN`), add workflow `permissions:`, add Dependabot config, add `.env` to `.gitignore`, add a SECURITY.md skeleton whose TODO keeps the check failing. Never secrets, infrastructure or application code.
+- **As room allows:** GitHub audit-log streaming check; ISO 27001 mapping (control IDs with our own short names, never ISO text). Later: HIPAA mapping, live AWS/GCP checks.
