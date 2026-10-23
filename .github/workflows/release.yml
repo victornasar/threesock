@@ -2,8 +2,8 @@ name: release
 
 # Publishes to npm from a v* tag only (decision 3), via npm trusted publishing:
 # OIDC instead of an npm token, with provenance generated automatically.
-# Configure on npmjs.com: package threesock → Trusted publisher → GitHub Actions,
-# repository threesock/threesock, workflow release.yml, environment npm.
+# Configure on npmjs.com, for both threesock and threesock-mcp: Trusted publisher →
+# GitHub Actions, repository threesock/threesock, workflow release.yml, environment npm.
 on:
   push:
     tags: ['v*']
@@ -30,12 +30,23 @@ jobs:
       - name: Use npm with trusted publishing support (>= 11.5.1)
         run: npm install --global npm@11.21.0
       - run: pnpm install --frozen-lockfile
-      - name: Tag must match package.json version
+      - name: Tag must match both package versions
         env:
           TAG: ${{ github.ref_name }}
         run: |
-          version="v$(node -p "require('./package.json').version")"
-          [ "$TAG" = "$version" ] || { echo "::error::tag $TAG does not match package.json $version"; exit 1; }
+          for pkg in package.json packages/mcp/package.json; do
+            version="v$(node -p "require('./$pkg').version")"
+            [ "$TAG" = "$version" ] || { echo "::error::tag $TAG does not match $pkg $version"; exit 1; }
+          done
       - run: pnpm run check
-      - name: Publish (OIDC, provenance)
-        run: npm publish --access public
+      # pnpm pack rewrites threesock-mcp's workspace dependency to the exact version;
+      # npm publish then uses trusted publishing (OIDC) and adds provenance.
+      - name: Pack
+        run: |
+          mkdir -p "$RUNNER_TEMP/pkgs"
+          pnpm pack --pack-destination "$RUNNER_TEMP/pkgs"
+          pnpm --filter threesock-mcp pack --pack-destination "$RUNNER_TEMP/pkgs"
+      - name: Publish threesock (OIDC, provenance)
+        run: npm publish "$RUNNER_TEMP"/pkgs/threesock-[0-9]*.tgz --access public
+      - name: Publish threesock-mcp (OIDC, provenance)
+        run: npm publish "$RUNNER_TEMP"/pkgs/threesock-mcp-*.tgz --access public

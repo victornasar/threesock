@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { createServer, guardPath } from '../src/mcp/server.js';
+import { createServer, guardPath } from '../packages/mcp/src/server.js';
 import { FIXED_NOW, materialize, type Materialized } from './helpers/fixtures.js';
 
 let repo: Materialized;

@@ -70,10 +70,10 @@ Uploads SARIF to code scanning, writes a job summary and fails on findings at or
 ## AI agents (MCP)
 
 ```sh
-claude mcp add threesock -- npx -y threesock@0.1.0 mcp
+claude mcp add threesock -- npx -y threesock-mcp@0.1.0
 ```
 
-Read-only tools for agents: `scan`, `list_findings`, `suggest_fix`, `explain_criterion` and `get_report`. See [docs/site/agents.md](docs/site/agents.md).
+A separate package, so `npx threesock` itself installs only two packages. Read-only tools for agents: `scan`, `list_findings`, `suggest_fix`, `explain_criterion` and `get_report`. See [docs/site/agents.md](docs/site/agents.md).
 
 ## GitHub checks (opt-in)
 

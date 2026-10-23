@@ -4,10 +4,10 @@ threesock includes an MCP server so agents can run the scan, fix, re-scan loop t
 
 ```sh
 # Claude Code
-claude mcp add threesock -- npx -y threesock@0.1.0 mcp
+claude mcp add threesock -- npx -y threesock-mcp@0.1.0
 ```
 
-Other MCP clients: run `npx -y threesock@0.1.0 mcp` as a stdio server in the repository directory.
+Other MCP clients: run `npx -y threesock-mcp@0.1.0` as a stdio server in the repository directory. The MCP server is its own package, `threesock-mcp`, so that `npx threesock` stays small: the MCP SDK and its dependencies are installed only when you use it.
 
 | Tool | Does |
 |---|---|

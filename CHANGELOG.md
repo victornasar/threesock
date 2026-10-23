@@ -6,7 +6,7 @@ All notable changes to threesock are recorded here. The JSON report has its own 
 
 ### Added
 - GitHub Action (`action/action.yml`): composite action that uploads SARIF, writes a job summary and gates on `fail-on`; inputs reach the shell only through environment variables.
-- MCP server (`threesock mcp`): read-only `scan`, `list_findings`, `suggest_fix`, `explain_criterion` and `get_report` tools; scans only under its working directory (`--allow-path` to widen).
+- MCP server, published separately as `threesock-mcp` so `npx threesock` stays at two packages (3 MB): read-only `scan`, `list_findings`, `suggest_fix`, `explain_criterion` and `get_report` tools; scans only under its working directory (`--allow-path` to widen).
 - `--output <format>=<file>` writes extra formats from one scan.
 - Release workflow: npm trusted publishing (OIDC, provenance) from `v*` tags in a protected environment.
 - Docs site content in `docs/site`, including a generated rule reference.

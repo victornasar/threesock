@@ -16,3 +16,9 @@ exceptions:
     approver: '@victornasar'
     justification: 'Pre-launch history committed directly to main before the GitHub repo and branch protection exist.'
     expires: 2027-01-20
+  # Decision 47: the ruleset requires pull requests but 0 approvals while there is one
+  # maintainer (risk R6). Matched by fingerprint so other branch-protection gaps still show.
+  - fingerprint: 7cfcf5c6ce94aabe
+    approver: '@victornasar'
+    justification: 'Solo maintainer: an approval from someone other than the author is not yet possible. Lapses when a second maintainer joins.'
+    expires: 2027-01-20

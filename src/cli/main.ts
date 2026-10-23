@@ -52,8 +52,7 @@ Usage
     --all                        Accept every open Medium and Low finding
     --fingerprint <fp>           Accept one finding (repeatable; any severity, within expiry caps)
     --prune                      Remove entries that no longer match a finding
-  threesock mcp                  Start the MCP server for AI agents (stdio; read-only)
-    --allow-path <dir>           Also allow scanning this directory (repeatable)
+  threesock mcp                  How to run the MCP server for AI agents (package threesock-mcp)
 
 Exit codes: 0 ok · 1 findings at or above --fail-on · 2 usage or configuration error
 
@@ -335,17 +334,13 @@ async function cmdBaseline(argv: string[]): Promise<number> {
   }
 }
 
-async function cmdMcp(argv: string[]): Promise<number> {
-  const { values } = parseArgs({
-    args: argv,
-    options: { 'allow-path': { type: 'string', multiple: true, default: [] } },
-  });
-  const roots = [process.cwd(), ...(values['allow-path'] as string[]).map((p) => resolve(p))];
-  for (const r of roots) if (!existsSync(r)) fail(`--allow-path ${r} does not exist.`);
-  // Loaded only here, so `scan` never imports the MCP SDK.
-  const { startStdio } = await import('../mcp/server.js');
-  await startStdio({ roots });
-  return new Promise<number>(() => undefined); // serve until the client disconnects
+function cmdMcp(): number {
+  // The MCP server lives in its own package so `npx threesock` stays small (decision 45).
+  process.stderr.write(
+    `The MCP server is a separate package: npx -y threesock-mcp@${VERSION}\n` +
+      `Claude Code: claude mcp add threesock -- npx -y threesock-mcp@${VERSION}\n`,
+  );
+  return 2;
 }
 
 export async function main(argv: string[]): Promise<number> {
@@ -373,7 +368,7 @@ export async function main(argv: string[]): Promise<number> {
       case 'baseline':
         return await cmdBaseline(rest);
       case 'mcp':
-        return await cmdMcp(rest);
+        return cmdMcp();
       default:
         // `threesock ./path --format json` is shorthand for scan.
         return await cmdScan(argv);

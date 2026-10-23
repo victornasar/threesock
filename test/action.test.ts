@@ -43,3 +43,18 @@ describe('GitHub Action', () => {
     expect(text).not.toMatch(/threesock@latest/);
   });
 });
+
+describe('packages', () => {
+  it('threesock and threesock-mcp share one version, and the main package has no MCP dependency', () => {
+    const mcp = JSON.parse(readFileSync('packages/mcp/package.json', 'utf8')) as {
+      version: string;
+      dependencies: Record<string, string>;
+    };
+    const main = JSON.parse(readFileSync('package.json', 'utf8')) as {
+      dependencies: Record<string, string>;
+    };
+    expect(mcp.version).toBe(pkg.version);
+    expect(mcp.dependencies.threesock).toBe('workspace:*');
+    expect(Object.keys(main.dependencies)).toEqual(['yaml']);
+  });
+});

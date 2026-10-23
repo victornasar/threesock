@@ -137,3 +137,11 @@ Agreed with the maintainer before Phase 2. Change them deliberately, not by drif
 **5: privacy**
 
 44. Privacy rules that inspect code (deletion, export, correction, retention, validation, notice) are not applicable unless the repository defines personal-data fields; sensitive-category detection matches field definitions only, not prose.
+
+## Release decisions (2026-10-22)
+
+45. The MCP server is a separate package, `threesock-mcp` (pnpm workspace, `packages/mcp`), so `npx threesock` installs 2 packages (3 MB) instead of 97 (29 MB). `threesock mcp` only prints how to run it; it never installs anything.
+46. `threesock` and `threesock-mcp` share one version and publish together from one `v*` tag; `pnpm pack` rewrites the workspace dependency, then `npm publish <tarball>` uses trusted publishing.
+47. The `main` ruleset requires pull requests with 0 approvals while there is one maintainer, required checks, no force pushes or deletion, signed commits and no bypass. The resulting finding is an exception (by fingerprint) expiring 2027-01-20.
+48. Commits are signed with the maintainer's SSH key.
+49. v0.1 ships the control mapping as a labelled starting point and the docs in the repository; a hosted docs site comes later.

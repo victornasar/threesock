@@ -27,7 +27,7 @@ threesock is a command-line tool, GitHub Action and MCP server that reads a repo
 | A crafted repository makes threesock run code (path tricks, symlinks, YAML tags) | threesock never executes repository content; symlinks are not followed; YAML is parsed without custom tags; files over 1 MB or binary are not read; only `git` is spawned, with fixed arguments |
 | A crafted repository makes threesock report "Met" falsely | A pass without evidence is downgraded to inconclusive; documentation checks require named sections; percentages always show how many criteria were assessed |
 | A malicious or compromised dependency ships in threesock | One runtime dependency; pnpm `minimumReleaseAge` of one day; lockfile with frozen installs; dependency review and audit in CI; Dependabot |
-| A compromised maintainer account or token publishes a malicious release | npm trusted publishing (no npm token exists); releases only from tagged CI runs with provenance; two-factor authentication on GitHub and npm |
+| A compromised maintainer account or token publishes a malicious release | npm trusted publishing (no npm token exists); releases only from tagged CI runs with provenance; two-factor authentication (hardware key or authenticator app) on GitHub and npm |
 | A compromised GitHub Action in threesock's CI | Every action pinned to a commit SHA; read-only default token; no `pull_request_target` |
 | An AI agent uses the MCP server to read files outside the project | The MCP server only scans paths under its working directory unless `--allow-path` is given, and never writes files |
 | Report data leaks over the network | No telemetry and no network calls unless the user enables an integration |

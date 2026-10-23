@@ -9,6 +9,13 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist",
     "docs/rubric",
@@ -40,7 +47,7 @@
     "mcp"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && pnpm --filter threesock-mcp run build",
     "gen:criteria": "node scripts/gen-criteria.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -55,12 +62,11 @@
   },
   "packageManager": "pnpm@12.15.0",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.32.1",
-    "yaml": "^2.9.1",
-    "zod": "^4.6.7"
+    "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@modelcontextprotocol/sdk": "1.32.1",
     "@types/node": "^22.20.5",
     "eslint": "^10.13.0",
     "prettier": "^3.9.10",

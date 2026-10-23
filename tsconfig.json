@@ -17,7 +17,8 @@
     "declaration": true,
     "sourceMap": false,
     "outDir": "dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "paths": { "threesock": ["./src/index.ts"] }
   },
-  "include": ["src", "test", "scripts"]
+  "include": ["src", "test", "scripts", "packages/*/src"]
 }

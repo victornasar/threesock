@@ -1,4 +1,4 @@
-// MCP server for AI coding agents (decision 22): scan, list findings, explain a
+// threesock-mcp: MCP server for AI coding agents (decisions 22 and 45): scan, list findings, explain a
 // criterion, suggest a fix, read the report. Read-only: it never writes files,
 // never uses the network, and only scans paths under its allowed roots.
 import { realpathSync } from 'node:fs';
@@ -6,14 +6,20 @@ import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-import { CRITERIA } from '../engine/criteria.generated.js';
-import type { Finding, ScanReport } from '../engine/model.js';
-import { nowFromEnv, scan } from '../engine/scan.js';
-import { CATEGORIES, SEVERITIES, type Category } from '../engine/types.js';
-import { renderJson } from '../reports/json.js';
-import { renderMarkdown } from '../reports/markdown.js';
-import { RULES } from '../rules/index.js';
-import { VERSION } from '../version.js';
+import {
+  CATEGORIES,
+  CRITERIA,
+  nowFromEnv,
+  renderJson,
+  renderMarkdown,
+  RULES,
+  scan,
+  SEVERITIES,
+  VERSION,
+  type Category,
+  type Finding,
+  type ScanReport,
+} from 'threesock';
 
 export interface McpOptions {
   /** Directories the server may scan. The first is the default for tools called without a path. */

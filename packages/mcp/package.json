@@ -1,0 +1,46 @@
+{
+  "name": "threesock-mcp",
+  "version": "0.1.0",
+  "description": "Read-only MCP server for threesock, the SOC 2 codebase readiness scanner. Lets AI coding agents scan, fix and re-scan.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "threesock-mcp": "dist/index.js"
+  },
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/threesock/threesock.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://github.com/threesock/threesock/blob/main/docs/site/agents.md",
+  "bugs": {
+    "url": "https://github.com/threesock/threesock/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "keywords": [
+    "soc2",
+    "mcp",
+    "model-context-protocol",
+    "security",
+    "compliance"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && chmod +x dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "threesock": "workspace:*",
+    "zod": "4.6.7"
+  }
+}
