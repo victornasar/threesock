@@ -2,7 +2,8 @@ threesock <version> · SOC 2 readiness scan
 Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
 
 Repository  <root>
-Scanned     19 files (git-aware) · 98 rules
+Scanned     21 files (git-aware) · 98 rules
+Tools       built-in rules only
 Scope       Security, Availability, Processing Integrity, Confidentiality, Privacy
 
 Readiness
@@ -13,7 +14,7 @@ Readiness
   Confidentiality       ░░░░░░░░░░░░░░░░░░░░    0.0%  Not ready · 2/2 criteria assessed
   Privacy               ····················      —  nothing assessable yet · 0/18 criteria assessed
 
-Findings    9 critical · 26 high · 46 medium · 21 low
+Findings    9 critical · 26 high · 46 medium · 22 low
 
 Top fixes
   1. CRITICAL CC6.1  Hard-coded Stripe live key (+4 more)
@@ -58,6 +59,6 @@ Open findings
          .github/workflows/ci.yml:14 · due 2026-02-14
   F-015  HIGH     CC5.2  write-all token permissions in .github/workflows/ci.yml
          .github/workflows/ci.yml:3 · due 2026-02-14
-  ... and 87 more. Use --format json or markdown for the full list.
+  ... and 88 more. Use --format json or markdown for the full list.
 
 Manual evidence: 25 in-scope criteria need evidence a human must gather. Run `threesock explain <criterion>` for guidance.

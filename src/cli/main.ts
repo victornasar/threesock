@@ -11,6 +11,7 @@ import { renderHtml } from '../reports/html.js';
 import { renderMarkdown } from '../reports/markdown.js';
 import { renderSarif } from '../reports/sarif.js';
 import { renderText } from '../reports/text.js';
+import { TOOL_NAMES } from '../integrations/tools/index.js';
 import { RULES } from '../rules/index.js';
 import { VERSION } from '../version.js';
 import { BaselineError, runBaseline } from './baseline.js';
@@ -35,6 +36,11 @@ Usage
     --config <file>              Use a specific threesock.yaml
     --github                     Enable read-only GitHub API checks (needs GITHUB_TOKEN)
     --github-repo <owner/name>   Repository to check (default: from the origin remote)
+    --tools <list>               External scanners to run: gitleaks,zizmor,checkov,semgrep,osv-scanner,trivy
+                                 (default: every installed tool that works offline)
+    --no-tools                   Run built-in rules only
+    --network                    Allow tools that need the network (OSV-Scanner, Trivy, Semgrep registry rules)
+                                 THREESOCK_TOOLS=auto|none|<list> sets the default for --tools
     --verbose                    List every in-scope criterion with its score
   threesock init [path]          Create threesock.yaml with scope, thresholds and owners
   threesock explain <criterion>  Explain a criterion, e.g. CC6.1
@@ -87,6 +93,9 @@ async function cmdScan(
       config: { type: 'string' },
       github: { type: 'boolean', default: false },
       'github-repo': { type: 'string' },
+      tools: { type: 'string' },
+      'no-tools': { type: 'boolean', default: false },
+      network: { type: 'boolean', default: false },
       verbose: { type: 'boolean', default: false },
       'min-readiness': { type: 'string' },
       'min-assessed': { type: 'string' },
@@ -135,11 +144,31 @@ async function cmdScan(
   }
 
   const scope = values.scope ? parseScope(values.scope.split(',')) : undefined;
+  if (values.tools !== undefined && values['no-tools'])
+    fail('use either --tools or --no-tools, not both.');
+  // THREESOCK_TOOLS (auto | none | a,b) sets the default, e.g. for CI.
+  const toolSpec = values.tools ?? (values['no-tools'] ? undefined : process.env.THREESOCK_TOOLS);
+  const noTools = values['no-tools'] || toolSpec === 'none';
+  const toolList =
+    toolSpec && toolSpec !== 'auto' && toolSpec !== 'none'
+      ? toolSpec
+          .split(',')
+          .map((t) => t.trim())
+          .filter(Boolean)
+      : undefined;
+  const unknownTool = toolList?.find((t) => !TOOL_NAMES.includes(t));
+  if (unknownTool) fail(`unknown tool "${unknownTool}". Use any of: ${TOOL_NAMES.join(', ')}.`);
+  const tools = {
+    mode: noTools ? ('none' as const) : (toolList ?? ('auto' as const)),
+    network: values.network,
+  };
+
   const { report, scrub } = await scan({
     root,
     configPath: values.config,
     scope,
     rules: RULES,
+    tools,
     ...(github ? { github } : {}),
   });
 

@@ -15,6 +15,7 @@ import {
   type TopFix,
 } from './model.js';
 import { GitHubClient, GitHubFacts, repoFromRemote } from '../integrations/github.js';
+import { prepareTools, type ToolOptions } from '../integrations/tools/index.js';
 import { lazyGitHistory } from './git.js';
 import { DEFAULT_MAPPING_PATH, loadMapping } from './mappings.js';
 import { SecretVault } from './redact.js';
@@ -41,6 +42,8 @@ export interface ScanOptions {
   /** Injectable clock for deterministic due dates and timestamps. */
   now?: Date;
   rules: readonly Rule[];
+  /** External scanners (decision 39). Defaults to none for library callers; the CLI defaults to auto. */
+  tools?: ToolOptions;
   /** Enables GitHub API checks (decision 34). */
   github?: { token: string; repo?: string; apiUrl?: string; fetch?: typeof fetch };
 }
@@ -196,7 +199,13 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
   const outcomes = new Map<string, RuleOutcome>();
   let rulesRun = 0;
 
-  const sortedRules = [...opts.rules].sort(
+  const tools = await prepareTools(opts.tools ?? { mode: 'none', network: false }, {
+    root,
+    files,
+    secrets: vault,
+    inScope: (criterion) => inScope.has((defs.get(criterion) as CriterionDef).category),
+  });
+  const sortedRules = [...opts.rules, ...tools.rules].sort(
     (a, b) =>
       (CRITERION_ORDER.get(a.criterion) ?? 0) - (CRITERION_ORDER.get(b.criterion) ?? 0) ||
       a.id.localeCompare(b.id),
@@ -231,6 +240,30 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
     if (outcome.status === 'fail') for (const raw of outcome.findings) draft.push({ rule, raw });
   }
 
+  tools.cleanup();
+
+  // De-duplicate external tool findings against built-in ones at the same location
+  // (decision 40): the built-in finding wins and notes the tool that also found it.
+  const builtinAt = new Map<string, RawFinding>();
+  for (const d of draft)
+    if (!d.rule.source && d.raw.path && d.raw.line)
+      builtinAt.set(`${d.raw.path}:${d.raw.line}`, d.raw);
+  const alsoFound = new Map<RawFinding, Set<string>>();
+  for (let i = draft.length - 1; i >= 0; i--) {
+    const d = draft[i] as (typeof draft)[number];
+    const twin =
+      d.rule.source && d.raw.path && d.raw.line
+        ? builtinAt.get(`${d.raw.path}:${d.raw.line}`)
+        : undefined;
+    if (twin && d.rule.source) {
+      alsoFound.set(
+        twin,
+        (alsoFound.get(twin) ?? new Set()).add(`${d.rule.source.tool} ${d.rule.source.version}`),
+      );
+      draft.splice(i, 1);
+    }
+  }
+
   // Finalize findings: order deterministically, then assign IDs.
   draft.sort(
     (a, b) =>
@@ -262,6 +295,12 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       status: 'open',
       redFlag: raw.redFlag ?? rule.redFlag ?? false,
       fingerprint,
+      ...(rule.source
+        ? { source: { ...rule.source, ...(raw.checkId ? { checkId: raw.checkId } : {}) } }
+        : {}),
+      ...(alsoFound.has(raw)
+        ? { alsoFoundBy: [...(alsoFound.get(raw) as Set<string>)].sort() }
+        : {}),
       controls: [...mapped(rule.criterion).controls],
       policies: [...mapped(rule.criterion).policies],
     };
@@ -409,7 +448,7 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       name: mapping.name,
       source: mapping.source === DEFAULT_MAPPING_PATH ? 'default' : mapping.source,
     },
-    coverage: { rulesRun, rulesErrored, externalTools: [] },
+    coverage: { rulesRun, rulesErrored, externalTools: tools.statuses },
   };
   if (opts.github)
     report.coverage.github = {

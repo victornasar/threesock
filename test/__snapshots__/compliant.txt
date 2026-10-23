@@ -3,6 +3,7 @@ Readiness aid, not an audit. A clean scan does not mean SOC 2 compliant.
 
 Repository  <root>
 Scanned     37 files (git-aware) · 98 rules
+Tools       built-in rules only
 Scope       Security, Availability, Processing Integrity, Confidentiality, Privacy
 
 Readiness

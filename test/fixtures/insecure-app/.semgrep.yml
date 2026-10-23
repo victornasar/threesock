@@ -1,0 +1,7 @@
+# Repository-local Semgrep rules: let Semgrep run offline (decision 39).
+rules:
+  - id: no-eval
+    languages: [javascript]
+    severity: ERROR
+    message: Avoid eval on request data
+    pattern: eval(...)

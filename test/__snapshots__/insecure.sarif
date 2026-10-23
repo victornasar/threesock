@@ -5993,7 +5993,7 @@
           "ruleIndex": 24,
           "level": "note",
           "message": {
-            "text": "Dependency and infrastructure changes have no specific reviewer. 3 manifest or IaC file(s) rely on the catch-all owner or none, e.g. Dockerfile, infra/main.tf, package.json. (Repository-level finding; shown on this file because code scanning needs a location.)"
+            "text": "Dependency and infrastructure changes have no specific reviewer. 4 manifest or IaC file(s) rely on the catch-all owner or none, e.g. Dockerfile, infra/main.tf, legacy/requirements.txt, package.json. (Repository-level finding; shown on this file because code scanning needs a location.)"
           },
           "locations": [
             {
@@ -6312,6 +6312,48 @@
           }
         },
         {
+          "ruleId": "cc6.8/lockfiles",
+          "ruleIndex": 69,
+          "level": "note",
+          "message": {
+            "text": "Python requirements not hash-pinned in legacy/requirements.txt. legacy/requirements.txt pins versions but not hashes, so a replaced package would install silently."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "legacy/requirements.txt",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "threesock/v1": "de36fac6296f0bde"
+          },
+          "properties": {
+            "findingId": "F-095",
+            "criterion": "CC6.8",
+            "severity": "low",
+            "dueDate": "2026-07-14",
+            "repositoryLevel": false,
+            "controls": [
+              "Configuration & Patch Management",
+              "Endpoint Protection",
+              "Secure SDLC Integration",
+              "Supplier Security"
+            ],
+            "policies": [
+              "Vulnerability & Patch Management",
+              "Secure Software Development Lifecycle",
+              "Vendor & Third-Party Risk"
+            ]
+          }
+        },
+        {
           "ruleId": "cc7.1/drift-detection",
           "ruleIndex": 72,
           "level": "note",
@@ -6335,7 +6377,7 @@
             "threesock/v1": "a9d8df233ec64892"
           },
           "properties": {
-            "findingId": "F-095",
+            "findingId": "F-096",
             "criterion": "CC7.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6376,7 +6418,7 @@
             "threesock/v1": "add910b5218ba2ce"
           },
           "properties": {
-            "findingId": "F-096",
+            "findingId": "F-097",
             "criterion": "CC8.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6416,7 +6458,7 @@
             "threesock/v1": "d97d88987bf8548d"
           },
           "properties": {
-            "findingId": "F-097",
+            "findingId": "F-098",
             "criterion": "CC8.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6456,7 +6498,7 @@
             "threesock/v1": "3704b993535764be"
           },
           "properties": {
-            "findingId": "F-098",
+            "findingId": "F-099",
             "criterion": "A1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6495,7 +6537,7 @@
             "threesock/v1": "6b97411e28ba84a2"
           },
           "properties": {
-            "findingId": "F-099",
+            "findingId": "F-100",
             "criterion": "A1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6534,7 +6576,7 @@
             "threesock/v1": "403ea7999f4ef693"
           },
           "properties": {
-            "findingId": "F-100",
+            "findingId": "F-101",
             "criterion": "PI1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6573,7 +6615,7 @@
             "threesock/v1": "d11928f11f6871b8"
           },
           "properties": {
-            "findingId": "F-101",
+            "findingId": "F-102",
             "criterion": "PI1.1",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6612,7 +6654,7 @@
             "threesock/v1": "ff79c698e87e8c4a"
           },
           "properties": {
-            "findingId": "F-102",
+            "findingId": "F-103",
             "criterion": "C1.2",
             "severity": "low",
             "dueDate": "2026-07-14",
@@ -6628,7 +6670,7 @@
       ],
       "properties": {
         "disclaimer": "threesock is an engineering readiness aid, not an audit. SOC 2 is attested by a licensed CPA firm against your organization's system description and commitments. A codebase can only demonstrate part of the criteria; the rest (board oversight, HR, vendor contracts, physical security) must be evidenced outside the repo. Use this report to find gaps early, not to claim compliance.",
-        "schemaVersion": "1.3.0"
+        "schemaVersion": "1.4.0"
       }
     }
   ]

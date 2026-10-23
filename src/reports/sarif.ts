@@ -67,6 +67,8 @@ function result(f: Finding, ruleIndex: number, anchor: string) {
       repositoryLevel: repoLevel,
       controls: f.controls,
       policies: f.policies,
+      ...(f.source ? { externalTool: f.source } : {}),
+      ...(f.alsoFoundBy ? { alsoFoundBy: f.alsoFoundBy } : {}),
     },
     ...(f.status === 'accepted' && f.exception
       ? {

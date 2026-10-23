@@ -68,6 +68,8 @@ export interface RawFinding {
   severity?: Severity;
   /** Stable content key used for the fingerprint (e.g. matched rule kind), never the secret itself. */
   key?: string;
+  /** The external tool's own check id, for findings from external tools. */
+  checkId?: string;
   /** Overrides the rule's redFlag for this finding (e.g. a hygiene sub-finding of a red-flag rule). */
   redFlag?: boolean;
 }
@@ -100,6 +102,8 @@ export interface Rule {
    * checks are listed in reports as manual follow-ups.
    */
   checks?: string[];
+  /** Set on checks generated from an external tool (decision 40). */
+  source?: { tool: string; version: string };
   /** Integrations the rule needs. Rules requiring 'github' run only with --github. */
   requires?: 'github'[];
   /** What the control requires, used as the finding's "Expected". */

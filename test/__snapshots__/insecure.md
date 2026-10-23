@@ -8,6 +8,7 @@ Commit / Release:    uncommitted working tree
 Assessor:            threesock <version> (automated)   Date: 2026-01-15
 Scope:  [x] Security  [x] Availability  [x] Processing Integrity  [x] Confidentiality  [x] Privacy
 Environment(s) reviewed: repository contents only (code, IaC, CI configuration)
+External tools:      none (built-in rules only)
 ```
 
 ## Summary
@@ -20,7 +21,7 @@ Environment(s) reviewed: repository contents only (code, IaC, CI configuration)
 | Confidentiality | 2 | 0 | 4 | 0.0% | Not ready | 0 |
 | Privacy | 0 | 0 | 0 | — | nothing assessable | 18 |
 
-Open findings: 9 critical · 26 high · 46 medium · 21 low
+Open findings: 9 critical · 26 high · 46 medium · 22 low
 
 Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded from both sides of the ratio (rubric 1.1), so read it together with the number of criteria assessed.
 
@@ -60,25 +61,25 @@ Readiness counts assessable criteria only. MANUAL and N/A criteria are excluded 
 | CC6.5 | Secure disposal of assets | 0 (Not Met) |  | F-093 |  | No automated check passed. |
 | CC6.6 | Protection against external threats | 0 (Not Met) |  | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 |  | An open Critical finding caps this criterion at 0 until it is resolved. |
 | CC6.7 | Protection of data in transmission | 0 (Not Met) |  | F-025, F-026, F-027, F-056 |  | Red flag present: Node TLS client with certificate rejection turned off (F-025). |
-| CC6.8 | Malicious/unauthorized software | 0 (Not Met) |  | F-028, F-029, F-057, F-058, F-059, F-094 |  | No automated check passed. |
-| CC7.1 | Detection of vulnerabilities and configuration changes | 0 (Not Met) |  | F-060, F-061, F-095 |  | No automated check passed. |
+| CC6.8 | Malicious/unauthorized software | 0 (Not Met) |  | F-028, F-029, F-057, F-058, F-059, F-094, F-095 |  | No automated check passed. |
+| CC7.1 | Detection of vulnerabilities and configuration changes | 0 (Not Met) |  | F-060, F-061, F-096 |  | No automated check passed. |
 | CC7.2 | Monitoring for anomalies | 0 (Not Met) |  | F-030, F-062 |  | No automated check passed. |
 | CC7.3 | Security event evaluation | 0 (Not Met) |  | F-063 |  | No automated check passed. |
 | CC7.4 | Incident response | 0 (Not Met) |  | F-031, F-064 |  | No automated check passed. |
 | CC7.5 | Recovery from incidents | 0 (Not Met) |  | F-065 |  | No automated check passed. |
-| CC8.1 | Authorized, tested, approved changes | 0 (Not Met) |  | F-032, F-033, F-066, F-067, F-096, F-097 |  | No automated check passed. |
+| CC8.1 | Authorized, tested, approved changes | 0 (Not Met) |  | F-032, F-033, F-066, F-067, F-097, F-098 |  | No automated check passed. |
 | CC9.1 | Business disruption risk | 0 (Not Met) |  | F-068 |  | No automated check passed. |
 | CC9.2 | Vendor and third-party risk | 0 (Not Met) |  | F-069 |  | No automated check passed. |
-| A1.1 | Capacity management | 0 (Not Met) |  | F-070, F-098, F-099 |  | No automated check passed. |
+| A1.1 | Capacity management | 0 (Not Met) |  | F-070, F-099, F-100 |  | No automated check passed. |
 | A1.2 | Environmental protection, backup, and recovery infrastructure | 0 (Not Met) |  | F-034, F-071, F-072, F-073 |  | Red flag present: No reliable backups for aws_db_instance.main (F-034). |
 | A1.3 | Recovery plan testing | 0 (Not Met) |  | F-074, F-075 |  | No automated check passed. |
-| PI1.1 | Processing objectives and specifications | 0 (Not Met) |  | F-100, F-101 |  | No automated check passed. |
+| PI1.1 | Processing objectives and specifications | 0 (Not Met) |  | F-101, F-102 |  | No automated check passed. |
 | PI1.2 | Input completeness and accuracy | 0 (Not Met) |  | F-076 |  | No automated check passed. |
 | PI1.3 | Processing completeness, accuracy, timeliness, authorization | 0 (Not Met) |  | F-077 |  | No automated check passed. |
 | PI1.4 | Output completeness, accuracy, timeliness | MANUAL |  |  | Engineering lead | threesock has no automated checks for this criterion yet. Gather evidence manually. |
 | PI1.5 | Storage completeness and accuracy | 0 (Not Met) |  | F-078 |  | No automated check passed. |
 | C1.1 | Identify and protect confidential information | 0 (Not Met) |  | F-035, F-079, F-080 |  | No automated check passed. |
-| C1.2 | Dispose of confidential information | 0 (Not Met) |  | F-081, F-102 |  | No automated check passed. |
+| C1.2 | Dispose of confidential information | 0 (Not Met) |  | F-081, F-103 |  | No automated check passed. |
 | P1.1 | Privacy notice | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
 | P2.1 | Choice and consent | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
 | P3.1 | Collection consistent with objectives | MANUAL |  |  | Privacy / legal | threesock has no automated checks for this criterion yet. Gather evidence manually. |
@@ -2575,7 +2576,7 @@ Criterion:         CC3.4
 Severity:          Low
 Title:             Dependency and infrastructure changes have no specific reviewer
 Location:          repository
-Observed:          3 manifest or IaC file(s) rely on the catch-all owner or none, e.g. Dockerfile, infra/main.tf, package.json.
+Observed:          4 manifest or IaC file(s) rely on the catch-all owner or none, e.g. Dockerfile, infra/main.tf, legacy/requirements.txt, package.json.
 Expected:          Dependency manifests, Dockerfiles and IaC have specific CODEOWNERS, so adding a dependency, service or datastore is reviewed by someone accountable.
 Risk:              New SDKs and services slip in through routine reviews, bringing data flows and vulnerabilities nobody assessed.
 Recommendation:    Give manifests, Dockerfiles and infrastructure directories specific CODEOWNERS and require code owner review.
@@ -2800,10 +2801,38 @@ updates:
     schedule: { interval: weekly }
 ```
 
-### F-095 · Low · CC7.1 · No infrastructure drift detection
+### F-095 · Low · CC6.8 · Python requirements not hash-pinned in legacy/requirements.txt
 
 ```
 Finding ID:        F-095
+Criterion:         CC6.8
+Severity:          Low
+Title:             Python requirements not hash-pinned in legacy/requirements.txt
+Location:          legacy/requirements.txt
+Observed:          legacy/requirements.txt pins versions but not hashes, so a replaced package would install silently.
+Expected:          Every dependency manifest has a committed lockfile (or hash-pinned requirements) so installs are reproducible.
+Risk:              Without a lockfile, each install can pull different, possibly compromised, versions, and a build cannot be reproduced.
+Recommendation:    Generate the lockfile with your package manager, commit it, and install with the frozen/ci mode in CI.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
+Owner:             Unassigned
+Due date:          2026-07-14
+Status:            Open
+Verification:      Re-run threesock; this finding's fingerprint is de36fac6296f0bde.
+```
+
+Example fix:
+
+```
+pnpm install && git add pnpm-lock.yaml       # Node
+uv lock && git add uv.lock                    # Python
+pip-compile --generate-hashes requirements.in # pip
+```
+
+### F-096 · Low · CC7.1 · No infrastructure drift detection
+
+```
+Finding ID:        F-096
 Criterion:         CC7.1
 Severity:          Low
 Title:             No infrastructure drift detection
@@ -2828,10 +2857,10 @@ on: { schedule: [{ cron: '0 6 * * *' }] }
       - run: terraform plan -detailed-exitcode -lock=false
 ```
 
-### F-096 · Low · CC8.1 · No documented emergency change process
+### F-097 · Low · CC8.1 · No documented emergency change process
 
 ```
-Finding ID:        F-096
+Finding ID:        F-097
 Criterion:         CC8.1
 Severity:          Low
 Title:             No documented emergency change process
@@ -2856,10 +2885,10 @@ Use only for active incidents. An on-call engineer may merge with one approval f
 A retroactive review PR is opened within 2 business days and linked from the incident ticket.
 ```
 
-### F-097 · Low · CC8.1 · No documented rollback procedure
+### F-098 · Low · CC8.1 · No documented rollback procedure
 
 ```
-Finding ID:        F-097
+Finding ID:        F-098
 Criterion:         CC8.1
 Severity:          Low
 Title:             No documented rollback procedure
@@ -2885,10 +2914,10 @@ Example fix:
 3. Confirm health checks and error rates recover; post in #incidents.
 ```
 
-### F-098 · Low · A1.1 · No autoscaling or capacity plan
+### F-099 · Low · A1.1 · No autoscaling or capacity plan
 
 ```
-Finding ID:        F-098
+Finding ID:        F-099
 Criterion:         A1.1
 Severity:          Low
 Title:             No autoscaling or capacity plan
@@ -2913,10 +2942,10 @@ kind: HorizontalPodAutoscaler
 spec: { minReplicas: 2, maxReplicas: 10, metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } } }] }
 ```
 
-### F-099 · Low · A1.1 · No load tests
+### F-100 · Low · A1.1 · No load tests
 
 ```
-Finding ID:        F-099
+Finding ID:        F-100
 Criterion:         A1.1
 Severity:          Low
 Title:             No load tests
@@ -2941,10 +2970,10 @@ export const options = { vus: 50, duration: '2m' };
 export default () => http.get(`${__ENV.BASE_URL}/health`);
 ```
 
-### F-100 · Low · PI1.1 · No API contract
+### F-101 · Low · PI1.1 · No API contract
 
 ```
-Finding ID:        F-100
+Finding ID:        F-101
 Criterion:         PI1.1
 Severity:          Low
 Title:             No API contract
@@ -2969,10 +2998,10 @@ info: { title: Orders API, version: 2.3.0 }
 paths: { /v2/orders: { get: { ... } } }
 ```
 
-### F-101 · Low · PI1.1 · No changelog
+### F-102 · Low · PI1.1 · No changelog
 
 ```
-Finding ID:        F-101
+Finding ID:        F-102
 Criterion:         PI1.1
 Severity:          Low
 Title:             No changelog
@@ -2997,10 +3026,10 @@ Example fix:
 - `/v1/orders` removed; use `/v2/orders`.
 ```
 
-### F-102 · Low · C1.2 · No lifecycle rule for aws_s3_bucket.exports
+### F-103 · Low · C1.2 · No lifecycle rule for aws_s3_bucket.exports
 
 ```
-Finding ID:        F-102
+Finding ID:        F-103
 Criterion:         C1.2
 Severity:          Low
 Title:             No lifecycle rule for aws_s3_bucket.exports
@@ -3039,26 +3068,26 @@ Mapping: threesock default catalogue (mappings/controls.yaml).
 | Network Security | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-009, F-016, F-017, F-018, F-020, F-021, F-022, F-023, F-024, F-025, F-026, F-027, F-049, F-050, F-051, F-054, F-055, F-056, F-091, F-092 | CC6.1, CC6.6, CC6.7 |
 | Credential Management | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-046, F-047, F-049, F-050, F-051, F-052, F-053, F-065, F-091, F-092 | CC5.2, CC6.1, CC6.3, CC7.5 |
 | Access Rights | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-019, F-035, F-040, F-041, F-049, F-050, F-051, F-052, F-053, F-079, F-080, F-088, F-091, F-092 | CC6.1, CC6.2, C1.1, CC4.1, CC6.3 |
-| Secure SDLC Integration | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-096, F-097, F-100, F-101 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
-| Vulnerability Management | F-009, F-020, F-021, F-022, F-023, F-024, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-054, F-055, F-060, F-061, F-082, F-083, F-086, F-088, F-095 | CC6.6, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
+| Secure SDLC Integration | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-095, F-097, F-098, F-101, F-102 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
+| Vulnerability Management | F-009, F-020, F-021, F-022, F-023, F-024, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-054, F-055, F-060, F-061, F-082, F-083, F-086, F-088, F-096 | CC6.6, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
 | Encryption Key Management | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-035, F-049, F-050, F-051, F-079, F-080, F-091, F-092, F-093 | CC6.1, C1.1, CC6.5 |
-| Configuration & Patch Management | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-060, F-061, F-094, F-095 | CC5.2, CC6.8, CC7.1 |
-| Endpoint Protection | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-094 | CC5.2, CC6.8 |
+| Configuration & Patch Management | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-060, F-061, F-094, F-095, F-096 | CC5.2, CC6.8, CC7.1 |
+| Endpoint Protection | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-094, F-095 | CC5.2, CC6.8 |
 | Policy Compliance | F-040, F-041, F-042, F-043, F-044, F-045, F-048, F-084, F-085, F-088, F-089, F-090 | CC4.1, CC4.2, CC5.3, CC2.2, CC5.1 |
-| Security Monitoring & Detection | F-030, F-040, F-041, F-062, F-063, F-070, F-077, F-082, F-083, F-088, F-098, F-099 | CC7.2, CC4.1, CC7.3, A1.1, PI1.3, CC2.1 |
-| Change management | F-032, F-033, F-066, F-067, F-087, F-096, F-097, F-100, F-101 | CC8.1, CC3.4, PI1.1 |
+| Security Monitoring & Detection | F-030, F-040, F-041, F-062, F-063, F-070, F-077, F-082, F-083, F-088, F-099, F-100 | CC7.2, CC4.1, CC7.3, A1.1, PI1.3, CC2.1 |
+| Supplier Security | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-087, F-094, F-095 | CC6.8, CC2.3, CC9.2, CC3.4 |
+| Change management | F-032, F-033, F-066, F-067, F-087, F-097, F-098, F-101, F-102 | CC8.1, CC3.4, PI1.1 |
 | Disaster Recovery Planning | F-034, F-065, F-068, F-071, F-072, F-073, F-074, F-075, F-078 | A1.2, CC7.5, CC9.1, A1.3, PI1.5 |
-| Segregation of duties | F-010, F-011, F-032, F-033, F-036, F-066, F-067, F-096, F-097 | CC3.3, CC8.1, CC1.3 |
-| Supplier Security | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-087, F-094 | CC6.8, CC2.3, CC9.2, CC3.4 |
+| Segregation of duties | F-010, F-011, F-032, F-033, F-036, F-066, F-067, F-097, F-098 | CC3.3, CC8.1, CC1.3 |
 | Remote-Work Security | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 | CC6.6 |
 | Risk Management | F-010, F-011, F-038, F-039, F-068, F-086, F-087, F-089 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
-| Security Logging | F-010, F-011, F-030, F-060, F-061, F-062, F-078, F-095 | CC3.3, CC7.2, CC7.1, PI1.5 |
+| Security Logging | F-010, F-011, F-030, F-060, F-061, F-062, F-078, F-096 | CC3.3, CC7.2, CC7.1, PI1.5 |
 | Endpoint Security | F-001, F-012, F-013, F-014, F-015, F-046, F-047 | CC5.2 |
 | Security Incident Management | F-031, F-037, F-063, F-064, F-065, F-084, F-085 | CC7.4, CC2.3, CC7.3, CC7.5, CC2.2 |
 | Asset Inventory | F-069, F-082, F-083, F-093 | CC9.2, CC2.1, CC6.5 |
-| Data Retention & Destruction | F-078, F-081, F-093, F-102 | PI1.5, C1.2, CC6.5 |
+| Data Retention & Destruction | F-078, F-081, F-093, F-103 | PI1.5, C1.2, CC6.5 |
 | Physical Access Control | F-034, F-071, F-072, F-073 | A1.2 |
-| Resource Capacity Management | F-068, F-070, F-098, F-099 | CC9.1, A1.1 |
+| Resource Capacity Management | F-068, F-070, F-099, F-100 | CC9.1, A1.1 |
 | Secure Data Transfer | F-025, F-026, F-027, F-056 | CC6.7 |
 | Standard Operating Procedures (SOPs) | F-048, F-084, F-085, F-090 | CC5.3, CC2.2 |
 | Encrypted Data at Rest | F-035, F-079, F-080 | C1.1 |
@@ -3071,26 +3100,26 @@ Mapping: threesock default catalogue (mappings/controls.yaml).
 
 | Policy | Open findings | Criteria |
 |---|---|---|
-| Secure Software Development Lifecycle | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-096, F-097, F-100, F-101 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
+| Secure Software Development Lifecycle | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-095, F-097, F-098, F-101, F-102 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
 | Authentication & Password | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-046, F-047, F-049, F-050, F-051, F-091, F-092 | CC5.2, CC6.1 |
 | Encryption & Crypto Controls | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-025, F-026, F-027, F-035, F-049, F-050, F-051, F-056, F-079, F-080, F-091, F-092 | CC6.1, CC6.7, C1.1 |
+| Vulnerability & Patch Management | F-028, F-029, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-057, F-058, F-059, F-060, F-061, F-082, F-083, F-086, F-088, F-094, F-095, F-096 | CC6.8, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
 | Access Control & Least Privilege | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-010, F-011, F-016, F-017, F-018, F-019, F-036, F-049, F-050, F-051, F-052, F-053, F-091, F-092 | CC6.1, CC3.3, CC6.2, CC1.3, CC6.3 |
-| Vulnerability & Patch Management | F-028, F-029, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-057, F-058, F-059, F-060, F-061, F-082, F-083, F-086, F-088, F-094, F-095 | CC6.8, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
-| Secure Configuration & Hardening | F-001, F-009, F-012, F-013, F-014, F-015, F-020, F-021, F-022, F-023, F-024, F-046, F-047, F-054, F-055, F-060, F-061, F-095 | CC5.2, CC6.6, CC7.1 |
-| Backup, Business Continuity & Disaster Recovery | F-034, F-065, F-068, F-070, F-071, F-072, F-073, F-074, F-075, F-078, F-098, F-099 | A1.2, CC7.5, CC9.1, A1.1, A1.3, PI1.5 |
-| Logging, Monitoring & Audit | F-010, F-011, F-030, F-060, F-061, F-062, F-070, F-082, F-083, F-095, F-098, F-099 | CC3.3, CC7.2, CC7.1, A1.1, CC2.1 |
-| Change & Release Management | F-032, F-033, F-066, F-067, F-087, F-096, F-097, F-100, F-101 | CC8.1, CC3.4, PI1.1 |
+| Secure Configuration & Hardening | F-001, F-009, F-012, F-013, F-014, F-015, F-020, F-021, F-022, F-023, F-024, F-046, F-047, F-054, F-055, F-060, F-061, F-096 | CC5.2, CC6.6, CC7.1 |
+| Backup, Business Continuity & Disaster Recovery | F-034, F-065, F-068, F-070, F-071, F-072, F-073, F-074, F-075, F-078, F-099, F-100 | A1.2, CC7.5, CC9.1, A1.1, A1.3, PI1.5 |
+| Logging, Monitoring & Audit | F-010, F-011, F-030, F-060, F-061, F-062, F-070, F-082, F-083, F-096, F-099, F-100 | CC3.3, CC7.2, CC7.1, A1.1, CC2.1 |
+| Change & Release Management | F-032, F-033, F-066, F-067, F-087, F-097, F-098, F-101, F-102 | CC8.1, CC3.4, PI1.1 |
+| Vendor & Third-Party Risk | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-094, F-095 | CC6.8, CC2.3, CC9.2 |
 | Policy Management & Exception Handling | F-042, F-043, F-044, F-045, F-048, F-084, F-085, F-090 | CC4.2, CC5.3, CC2.2 |
 | Remote Access & BYOD | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 | CC6.6 |
 | Risk Management | F-010, F-011, F-038, F-039, F-068, F-086, F-087, F-089 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
-| Vendor & Third-Party Risk | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-094 | CC6.8, CC2.3, CC9.2 |
 | Incident Response & Breach Notification | F-031, F-037, F-063, F-064, F-065 | CC7.4, CC2.3, CC7.3, CC7.5 |
 | Data Classification & Handling | F-035, F-078, F-079, F-080 | C1.1, PI1.5 |
 | Information Sharing & Transfer | F-025, F-026, F-027, F-056 | CC6.7 |
 | Physical Security & Environmental | F-034, F-071, F-072, F-073 | A1.2 |
 | Background Screening & On/Off-boarding | F-019, F-052, F-053 | CC6.2, CC6.3 |
 | Compliance & Regulatory Monitoring | F-040, F-041, F-088 | CC4.1 |
-| Retention & Secure Disposal | F-081, F-093, F-102 | C1.2, CC6.5 |
+| Retention & Secure Disposal | F-081, F-093, F-103 | C1.2, CC6.5 |
 | Information Security & Privacy Governance | F-036, F-089 | CC1.3, CC5.1 |
 | Security & Privacy Awareness Training | F-084, F-085 | CC2.2 |
 | Privacy & Data-Subject Rights | F-037 | CC2.3 |
@@ -3616,4 +3645,4 @@ These criteria were scored on their automated checks. The rubric checks below st
 
 ---
 
-Generated by threesock 0.1.0 on 2026-01-15 · JSON schema 1.3.0
+Generated by threesock 0.1.0 on 2026-01-15 · JSON schema 1.4.0

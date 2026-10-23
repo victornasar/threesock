@@ -125,6 +125,15 @@ function findingDetails(f: Finding): string {
     ['Criterion', f.criterion],
     ['Severity', SEVERITY_LABEL[f.severity]],
     ['Location', f.location.description],
+    ...(f.source
+      ? ([
+          [
+            'Source',
+            `${f.source.tool} ${f.source.version}${f.source.checkId ? ` (${f.source.checkId})` : ''}`,
+          ],
+        ] as [string, string][])
+      : []),
+    ...(f.alsoFoundBy ? ([['Also found by', f.alsoFoundBy.join(', ')]] as [string, string][]) : []),
     ['Observed', f.observed],
     ['Expected', f.expected],
     ['Risk', f.risk],
@@ -200,6 +209,12 @@ ${rows
 <dt>Commit</dt><dd><code>${esc(repository.commit ?? 'uncommitted working tree')}</code></dd>
 <dt>Generated</dt><dd>${esc(date)} by threesock ${esc(report.tool.version)} (automated)</dd>
 <dt>Scope</dt><dd>${summary.categories.map((c) => `${c.inScope ? '☑' : '☐'} ${esc(c.label)}`).join(' &nbsp; ')}</dd>
+<dt>Tools</dt><dd>${esc(
+    report.coverage.externalTools
+      .filter((t) => t.used)
+      .map((t) => `${t.name} ${t.version ?? ''}`.trim())
+      .join(', ') || 'Built-in rules only',
+  )}</dd>
 <dt>Reviewed</dt><dd>Repository contents only: code, IaC and CI configuration (${repository.filesScanned} files)</dd>
 </dl>
 

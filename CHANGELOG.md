@@ -5,6 +5,8 @@ All notable changes to threesock are recorded here. The JSON report has its own 
 ## Unreleased
 
 ### Added
+- External scanners: Gitleaks (full history), zizmor, Checkov and Semgrep (local rules) run automatically when installed; OSV-Scanner, Trivy and Semgrep registry rules need `--network`. `--tools`, `--no-tools`, `THREESOCK_TOOLS`; 60-second timeout per tool; findings de-duplicated against built-in rules ("also found by"); Checkov/Trivy misconfigurations mapped to criteria by topic. JSON schema 1.4.0 (`findings[].source`, `alsoFoundBy`, tool versions in `coverage.externalTools`).
+- `tools.yml` CI job running the adapters against pinned, checksum-verified scanner versions.
 - Control and policy mapping (`mappings/controls.yaml`): 35 controls and 25 policies mapped to all 61 criteria; findings and reports list what each gap affects; replaceable with `mappings:` in `threesock.yaml`.
 - `--github`: read-only GitHub API checks for branch protection and rulesets (CC8.1), code owner review, required signed commits (CC1.5), secret scanning and push protection (CC6.1), Dependabot alerts (CC7.1), alerts past the vulnerability SLA (CC4.2), production environment reviewers and organization 2FA/base permission (CC5.2). Direct pushes escalate to High when the branch is confirmed unprotected.
 - `thresholds.vulnerabilitySlaDays` (rubric 1.4) for alert age; `--github-repo`; `GITHUB_API_URL` support.

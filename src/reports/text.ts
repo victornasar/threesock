@@ -54,6 +54,11 @@ export function renderText(report: ScanReport, opts: TextOptions = {}): string {
   out.push(
     `Scanned     ${repository.filesScanned} files${repository.gitAware ? ' (git-aware)' : ''} · ${report.coverage.rulesRun} rules`,
   );
+  const used = report.coverage.externalTools.filter((t) => t.used);
+  const skipped = report.coverage.externalTools.filter((t) => t.available && !t.used);
+  out.push(
+    `Tools       ${used.length ? used.map((t) => `${t.name} ${t.version ?? ''}`.trim()).join(', ') : 'built-in rules only'}${skipped.length ? ` · skipped: ${skipped.map((t) => `${t.name} (${t.note})`).join(', ')}` : ''}`,
+  );
   out.push(
     `Scope       ${summary.categories
       .filter((c) => c.inScope)

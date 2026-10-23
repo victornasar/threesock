@@ -3,7 +3,7 @@
 // removals or renames) and record it in CHANGELOG.md.
 import type { Band, Category, Evidence, Score, Severity } from './types.js';
 
-export const SCHEMA_VERSION = '1.3.0';
+export const SCHEMA_VERSION = '1.4.0';
 
 export const DISCLAIMER =
   'threesock is an engineering readiness aid, not an audit. SOC 2 is attested by a licensed CPA firm ' +
@@ -96,6 +96,10 @@ export interface Finding {
   /** Internal controls and policies this finding affects, from the mapping (schema 1.3). */
   controls: string[];
   policies: string[];
+  /** Set when an external tool produced this finding (schema 1.4). */
+  source?: { tool: string; version: string; checkId?: string };
+  /** External tools that reported the same location (schema 1.4). */
+  alsoFoundBy?: string[];
 }
 
 export interface StaleException {
@@ -140,7 +144,14 @@ export interface ScanReport {
   coverage: {
     rulesRun: number;
     rulesErrored: { ruleId: string; error: string }[];
-    externalTools: { name: string; available: boolean; used: boolean }[];
+    /** External scanners: whether installed, whether run, version, and why not (schema 1.4). */
+    externalTools: {
+      name: string;
+      available: boolean;
+      used: boolean;
+      version?: string;
+      note?: string;
+    }[];
     /** Present when --github was used (schema 1.3). */
     github?: { repository: string | null; problems: string[] };
   };

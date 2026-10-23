@@ -1,0 +1,42 @@
+name: tools
+
+# Runs threesock's external-scanner adapters against real, pinned tool versions
+# (decision 43). Separate from ci.yml so the main suite stays fast and offline.
+on:
+  pull_request:
+    paths:
+      [
+        'src/integrations/tools/**',
+        'scripts/install-scanners.sh',
+        'test/tools-smoke.test.ts',
+        '.github/workflows/tools.yml',
+      ]
+  schedule:
+    - cron: '41 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install pinned scanners (checksum-verified)
+        run: |
+          scripts/install-scanners.sh "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Run adapters against real tools
+        run: pnpm exec vitest run test/tools-smoke.test.ts
+        env:
+          THREESOCK_TOOLS_SMOKE: '1'

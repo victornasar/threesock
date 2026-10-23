@@ -58,6 +58,15 @@ function findingBlock(f: Finding): string {
     ['Severity', SEVERITY_LABEL[f.severity]],
     ['Title', f.title],
     ['Location', f.location.description],
+    ...(f.source
+      ? ([
+          [
+            'Source',
+            `${f.source.tool} ${f.source.version}${f.source.checkId ? ` (${f.source.checkId})` : ''}`,
+          ],
+        ] as [string, string][])
+      : []),
+    ...(f.alsoFoundBy ? ([['Also found by', f.alsoFoundBy.join(', ')]] as [string, string][]) : []),
     ['Observed', f.observed],
     ['Expected', f.expected],
     ['Risk', f.risk],
@@ -95,6 +104,12 @@ export function renderMarkdown(report: ScanReport): string {
         `Assessor:            threesock ${report.tool.version} (automated)   Date: ${date}`,
         `Scope:  ${scope}`,
         'Environment(s) reviewed: repository contents only (code, IaC, CI configuration)',
+        `External tools:      ${
+          report.coverage.externalTools
+            .filter((t) => t.used)
+            .map((t) => `${t.name} ${t.version ?? ''}`.trim())
+            .join(', ') || 'none (built-in rules only)'
+        }`,
       ].join('\n'),
     ),
     '',

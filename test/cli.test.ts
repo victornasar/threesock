@@ -12,6 +12,7 @@ let stderr = '';
 beforeAll(() => {
   process.env.THREESOCK_NOW = '2026-01-15T12:00:00Z';
   process.env.NO_COLOR = '1';
+  process.env.THREESOCK_TOOLS = 'none'; // keep results independent of locally installed scanners
   insecure = materialize('insecure-app');
   compliant = materialize('compliant-app');
   vi.spyOn(process.stdout, 'write').mockImplementation((chunk) => {
@@ -45,7 +46,7 @@ describe('cli', () => {
   });
   it('--format json emits parseable JSON with a schema version', async () => {
     await main(['scan', insecure.dir, '--format', 'json']);
-    expect(JSON.parse(stdout).schemaVersion).toBe('1.3.0');
+    expect(JSON.parse(stdout).schemaVersion).toBe('1.4.0');
   });
   it('never prints secret values to stdout', async () => {
     for (const fmt of ['text', 'json']) {
