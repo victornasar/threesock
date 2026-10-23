@@ -40,6 +40,11 @@ const NEEDS_HISTORY = new Set(['cc1.5/commit-attribution', 'cc8.1/direct-pushes'
 describe('every rule passes on the compliant fixture and fails on the insecure one', () => {
   for (const rule of RULES) {
     it(rule.id, () => {
+      if (rule.requires?.includes('github')) {
+        // Runs only with --github; covered by test/github.test.ts.
+        expect([statusOf(good, rule.id), statusOf(bad, rule.id)]).toEqual([undefined, undefined]);
+        return;
+      }
       if (NEEDS_HISTORY.has(rule.id)) {
         expect([statusOf(good, rule.id), statusOf(bad, rule.id)]).toEqual([
           'not_applicable',

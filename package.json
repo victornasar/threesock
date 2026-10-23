@@ -27,7 +27,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "selfscan": "pnpm run build && node dist/cli/index.js scan . --fail-on high --min-readiness 90 --min-assessed 20",
-    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm test && pnpm run selfscan"
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm test && pnpm run selfscan",
+    "gen:rules": "node scripts/gen-rule-index.mjs"
   },
   "keywords": [
     "soc2",

@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 import { CRITERIA } from '../engine/criteria.generated.js';
 import type { CategorySummary, CriterionResult, Finding, ScanReport } from '../engine/model.js';
 import { BAND_LABELS } from '../engine/scoring.js';
+import { controlImpacts } from './controls.js';
 import { CATEGORIES, CATEGORY_LABELS, SEVERITIES, type Severity } from '../engine/types.js';
 
 const BRAND = new URL('../../assets/brand/', import.meta.url);
@@ -128,6 +129,8 @@ function findingDetails(f: Finding): string {
     ['Expected', f.expected],
     ['Risk', f.risk],
     ['Recommendation', f.recommendation],
+    ['Controls', f.controls.join('; ') || '(none mapped)'],
+    ['Policies', f.policies.join('; ') || '(none mapped)'],
     ['Owner', f.owner ?? 'Unassigned'],
     ['Due date', f.dueDate],
     ['Status', status],
@@ -213,6 +216,25 @@ ${
 <h2>Findings</h2>
 ${open.length ? open.map(findingDetails).join('\n') : '<p>Socks on. No open findings in this scope.</p>'}
 ${accepted.length ? `<h3 style="margin-top:24px">Accepted findings</h3>${accepted.map(findingDetails).join('\n')}` : ''}
+
+<h2>Controls and policies affected</h2>
+<p class="muted">Mapping: ${esc(report.mapping.name)}${report.mapping.source === 'default' ? '' : ` (${esc(report.mapping.source)})`}.</p>
+${(() => {
+  const impact = controlImpacts(report);
+  if (impact.controls.length === 0)
+    return '<p>No open findings affect a mapped control or policy.</p>';
+  return (['Control', 'Policy'] as const)
+    .map((title) => {
+      const rows = title === 'Control' ? impact.controls : impact.policies;
+      return `<div class="table-wrap"><table><thead><tr><th>${title}</th><th>Open findings</th><th>Criteria</th></tr></thead><tbody>${rows
+        .map(
+          (r) =>
+            `<tr><td>${esc(r.name)}</td><td>${r.findings.map((f) => `<a href="#${esc(f.id)}">${esc(f.id)}</a>`).join(' ')}</td><td>${esc(r.criteria.join(', '))}</td></tr>`,
+        )
+        .join('')}</tbody></table></div>`;
+    })
+    .join('<br>');
+})()}
 
 <h2>Scorecard</h2>
 ${scorecard}

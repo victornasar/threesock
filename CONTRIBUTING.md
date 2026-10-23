@@ -80,7 +80,7 @@ Helpers you'll want:
 
 ### 3. Register it
 
-Add the import and the rule to `src/rules/index.ts`. A test fails if a rule file is not registered.
+Run `pnpm gen:rules` to regenerate `src/rules/index.ts`. A test fails if a rule file is not registered.
 
 ### 4. Test it
 

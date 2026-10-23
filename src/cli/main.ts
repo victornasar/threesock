@@ -33,7 +33,8 @@ Usage
     --min-readiness <percent>    Exit 1 if any in-scope category is below this readiness
     --min-assessed <count>       Exit 1 if fewer criteria than this are scored (not N/A or MANUAL)
     --config <file>              Use a specific threesock.yaml
-    --github                     Enable GitHub API checks (needs GITHUB_TOKEN)
+    --github                     Enable read-only GitHub API checks (needs GITHUB_TOKEN)
+    --github-repo <owner/name>   Repository to check (default: from the origin remote)
     --verbose                    List every in-scope criterion with its score
   threesock init [path]          Create threesock.yaml with scope, thresholds and owners
   threesock explain <criterion>  Explain a criterion, e.g. CC6.1
@@ -85,6 +86,7 @@ async function cmdScan(
       'fail-on': { type: 'string', default: 'none' },
       config: { type: 'string' },
       github: { type: 'boolean', default: false },
+      'github-repo': { type: 'string' },
       verbose: { type: 'boolean', default: false },
       'min-readiness': { type: 'string' },
       'min-assessed': { type: 'string' },
@@ -112,14 +114,34 @@ async function cmdScan(
   if (failOn !== 'none' && !(SEVERITIES as readonly string[]).includes(failOn)) {
     fail(`unknown --fail-on "${failOn}". Use one of: ${SEVERITIES.join(', ')}, none.`);
   }
+  let github: { token: string; repo?: string; apiUrl?: string } | undefined;
   if (values.github) {
-    process.stderr.write(
-      'Note: GitHub API checks are not available in this version yet; continuing with file-based checks.\n',
-    );
+    const token = process.env.GITHUB_TOKEN;
+    if (!token) {
+      fail(
+        '--github needs a GITHUB_TOKEN with read access. For example: GITHUB_TOKEN=$(gh auth token) threesock scan --github',
+      );
+    }
+    const repo = values['github-repo'];
+    if (repo !== undefined && !/^[\w.-]+\/[\w.-]+$/.test(repo))
+      fail('--github-repo must look like owner/name.');
+    github = {
+      token,
+      ...(repo ? { repo } : {}),
+      ...(process.env.GITHUB_API_URL ? { apiUrl: process.env.GITHUB_API_URL } : {}),
+    };
+  } else if (values['github-repo']) {
+    fail('--github-repo only applies together with --github.');
   }
 
   const scope = values.scope ? parseScope(values.scope.split(',')) : undefined;
-  const { report, scrub } = await scan({ root, configPath: values.config, scope, rules: RULES });
+  const { report, scrub } = await scan({
+    root,
+    configPath: values.config,
+    scope,
+    rules: RULES,
+    ...(github ? { github } : {}),
+  });
 
   if (values.out === undefined && defaults.outBase)
     values.out = `${defaults.outBase}.${EXTENSIONS[format]}`;
@@ -212,7 +234,9 @@ function cmdExplain(argv: string[]): number {
   } else {
     out.push('Automated by threesock:');
     for (const r of rules) {
-      out.push(`  ${r.id} (${r.severity})`);
+      out.push(
+        `  ${r.id} (${r.severity})${r.requires?.includes('github') ? ' [needs --github]' : ''}`,
+      );
       out.push(`    ${r.title}`);
       out.push(`    Fix: ${r.remediation.summary}`);
     }

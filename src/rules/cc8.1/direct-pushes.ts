@@ -1,4 +1,5 @@
 import type { Rule } from '../../engine/types.js';
+import { protectionFor } from '../lib/github.js';
 import { plural } from '../util.js';
 
 // Evidence that a commit came through a pull/merge request.
@@ -23,7 +24,7 @@ export const directPushes: Rule = {
   -F required_pull_request_reviews.required_approving_review_count=1 \\
   -F enforce_admins=true -F required_status_checks=null -F restrictions=null`,
   },
-  detect(ctx) {
+  async detect(ctx) {
     const history = ctx.git();
     if (!history.available)
       return { status: 'not_applicable', justification: 'No git history to examine.' };
@@ -51,11 +52,16 @@ export const directPushes: Rule = {
         ],
       };
     }
+    // Decision 27: High when the GitHub API confirms nothing stops direct pushes.
+    const protection = await protectionFor(ctx);
+    const unprotected =
+      protection?.ok === true && !protection.data.protected && protection.data.gaps.length === 0;
     return {
       status: 'fail',
       findings: [
         {
-          title: `Direct pushes to ${branch.name}`,
+          ...(unprotected ? { severity: 'high' as const } : {}),
+          title: `Direct pushes to ${branch.name}${unprotected ? ' (branch is unprotected)' : ''}`,
           observed: `${direct.length} of the last ${plural(branch.commits.length, 'commit')} on ${branch.name} have no pull request trail (e.g. ${direct
             .slice(0, 5)
             .map((c) => c.sha.slice(0, 7))

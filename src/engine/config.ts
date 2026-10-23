@@ -21,6 +21,7 @@ export const DEFAULT_THRESHOLDS: Threshold = {
   sensitivePathApprovals: 2,
   minTlsVersion: '1.2',
   slaDays: { critical: 1, high: 30, medium: 90, low: 180 },
+  vulnerabilitySlaDays: { critical: 7, high: 30, medium: 90, low: 180 },
   maxExceptionDays: { critical: 7, high: 90 },
   logRetentionDays: 365,
   secretRotationDays: 90,
@@ -114,6 +115,7 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
   const thresholds: Threshold = {
     ...DEFAULT_THRESHOLDS,
     slaDays: { ...DEFAULT_THRESHOLDS.slaDays },
+    vulnerabilitySlaDays: { ...DEFAULT_THRESHOLDS.vulnerabilitySlaDays },
     maxExceptionDays: { ...DEFAULT_THRESHOLDS.maxExceptionDays },
   };
   if (data.thresholds !== undefined) {
@@ -172,6 +174,22 @@ export function resolveConfig(raw: unknown, configDir: string, file?: string): R
           throw new ConfigError(`thresholds.slaDays.${sev} must be a non-negative number.`, file);
         }
         thresholds.slaDays[sev as keyof Threshold['slaDays']] = days;
+      }
+    }
+    if (t.vulnerabilitySlaDays !== undefined) {
+      if (!isRecord(t.vulnerabilitySlaDays))
+        throw new ConfigError('thresholds.vulnerabilitySlaDays must be a mapping.', file);
+      for (const [sev, days] of Object.entries(t.vulnerabilitySlaDays)) {
+        if (!(SEVERITIES as readonly string[]).includes(sev)) {
+          throw new ConfigError(`thresholds.vulnerabilitySlaDays.${sev} is not a severity.`, file);
+        }
+        if (typeof days !== 'number' || days < 0) {
+          throw new ConfigError(
+            `thresholds.vulnerabilitySlaDays.${sev} must be a non-negative number.`,
+            file,
+          );
+        }
+        thresholds.vulnerabilitySlaDays[sev as keyof Threshold['vulnerabilitySlaDays']] = days;
       }
     }
   }

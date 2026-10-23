@@ -14,7 +14,9 @@ import {
   type ScanReport,
   type TopFix,
 } from './model.js';
+import { GitHubClient, GitHubFacts, repoFromRemote } from '../integrations/github.js';
 import { lazyGitHistory } from './git.js';
+import { DEFAULT_MAPPING_PATH, loadMapping } from './mappings.js';
 import { SecretVault } from './redact.js';
 import { labelFor, scoreCriterion, summarizeCategory, summarizeOverall } from './scoring.js';
 import {
@@ -39,6 +41,8 @@ export interface ScanOptions {
   /** Injectable clock for deterministic due dates and timestamps. */
   now?: Date;
   rules: readonly Rule[];
+  /** Enables GitHub API checks (decision 34). */
+  github?: { token: string; repo?: string; apiUrl?: string; fetch?: typeof fetch };
 }
 
 export interface ScanOutput {
@@ -158,9 +162,26 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
     config.scope = CATEGORIES.filter((c) => c === 'security' || opts.scope?.includes(c));
   const inScope = new Set(config.scope);
 
+  const mapping = loadMapping(config.mappingsPath ?? DEFAULT_MAPPING_PATH);
+  const mapped = (id: string) => mapping.criteria[id] ?? { controls: [], policies: [] };
   const files = buildFileIndex(root, { ignore: config.ignore });
   const vault = new SecretVault();
   const ctx: RuleContext = { files, config, secrets: vault, git: lazyGitHistory(root), now };
+  let github: GitHubClient | undefined;
+  let githubRepo: string | null = null;
+  if (opts.github) {
+    vault.register(opts.github.token); // never let the token reach output
+    githubRepo = opts.github.repo ?? repoFromRemote(root) ?? null;
+    if (githubRepo) {
+      github = new GitHubClient({
+        token: opts.github.token,
+        repo: githubRepo,
+        apiUrl: opts.github.apiUrl,
+        fetch: opts.github.fetch,
+      });
+      ctx.github = new GitHubFacts(github);
+    }
+  }
 
   const defs = new Map(CRITERIA.map((c) => [c.id, c]));
   const unknownCriterion = opts.rules.find((r) => !defs.has(r.criterion));
@@ -182,6 +203,7 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
   );
   for (const rule of sortedRules) {
     if (!inScope.has((defs.get(rule.criterion) as CriterionDef).category)) continue;
+    if (rule.requires?.includes('github') && !opts.github) continue;
     rulesRun++;
     const link = rule.tags.includes('DOCS')
       ? (config.evidenceLinks[rule.id] ?? config.evidenceLinks[rule.criterion])
@@ -194,7 +216,16 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
           },
           error: undefined,
         }
-      : await runRule(rule, ctx);
+      : rule.requires?.includes('github') && !ctx.github
+        ? {
+            outcome: {
+              status: 'unknown' as const,
+              reason:
+                'The GitHub repository could not be determined from the origin remote; pass --github-repo owner/name.',
+            },
+            error: undefined,
+          }
+        : await runRule(rule, ctx);
     if (error) rulesErrored.push({ ruleId: rule.id, error });
     outcomes.set(rule.id, outcome);
     if (outcome.status === 'fail') for (const raw of outcome.findings) draft.push({ rule, raw });
@@ -231,6 +262,8 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       status: 'open',
       redFlag: raw.redFlag ?? rule.redFlag ?? false,
       fingerprint,
+      controls: [...mapped(rule.criterion).controls],
+      policies: [...mapped(rule.criterion).policies],
     };
     if (raw.path) finding.location.path = raw.path;
     if (raw.line) finding.location.line = raw.line;
@@ -324,6 +357,8 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
       findingIds: criterionFindings.map((f) => f.id),
       coverage: { automatedRules: checks.length, rubricChecks: def.checks.length },
       manualFollowUps,
+      controls: [...mapped(def.id).controls],
+      policies: [...mapped(def.id).policies],
     };
     const links = [
       config.evidenceLinks[def.id],
@@ -370,8 +405,17 @@ export async function scan(opts: ScanOptions): Promise<ScanOutput> {
     },
     criteria,
     findings,
+    mapping: {
+      name: mapping.name,
+      source: mapping.source === DEFAULT_MAPPING_PATH ? 'default' : mapping.source,
+    },
     coverage: { rulesRun, rulesErrored, externalTools: [] },
   };
+  if (opts.github)
+    report.coverage.github = {
+      repository: githubRepo,
+      problems: [...(github?.problems ?? [])].sort(),
+    };
   const commit = gitHead(root);
   if (commit) report.repository.commit = commit;
   if (config.configPath) report.config.path = config.configPath;

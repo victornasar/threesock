@@ -3,6 +3,7 @@
 import { CRITERIA } from '../engine/criteria.generated.js';
 import type { CriterionResult, Finding, ScanReport } from '../engine/model.js';
 import { BAND_LABELS } from '../engine/scoring.js';
+import { controlImpacts } from './controls.js';
 import { SEVERITIES, type Evidence, type Severity } from '../engine/types.js';
 
 const SEVERITY_LABEL: Record<Severity, string> = {
@@ -61,6 +62,8 @@ function findingBlock(f: Finding): string {
     ['Expected', f.expected],
     ['Risk', f.risk],
     ['Recommendation', f.recommendation],
+    ['Controls', f.controls.join('; ') || '(none mapped)'],
+    ['Policies', f.policies.join('; ') || '(none mapped)'],
     ['Owner', f.owner ?? 'Unassigned'],
     ['Due date', f.dueDate],
     ['Status', status],
@@ -157,6 +160,28 @@ export function renderMarkdown(report: ScanReport): string {
   out.push('## Findings (Appendix B)', '');
   if (report.findings.length === 0) out.push('Socks on. No gaps found in this scope.', '');
   for (const f of report.findings) out.push(findingBlock(f), '');
+
+  const impact = controlImpacts(report);
+  out.push('## Controls and policies affected', '');
+  out.push(
+    `Mapping: ${report.mapping.name}${report.mapping.source === 'default' ? ' (mappings/controls.yaml)' : ` (${report.mapping.source})`}.`,
+    '',
+  );
+  if (impact.controls.length === 0) {
+    out.push('No open findings affect a mapped control or policy.', '');
+  } else {
+    for (const [title, rows] of [
+      ['Control', impact.controls],
+      ['Policy', impact.policies],
+    ] as const) {
+      out.push(`| ${title} | Open findings | Criteria |`, '|---|---|---|');
+      for (const r of rows)
+        out.push(
+          `| ${cell(r.name)} | ${r.findings.map((f) => f.id).join(', ')} | ${r.criteria.join(', ')} |`,
+        );
+      out.push('');
+    }
+  }
 
   const manual = report.criteria.filter((c) => c.inScope && c.score === 'MANUAL');
   out.push('## Manual evidence checklist', '');

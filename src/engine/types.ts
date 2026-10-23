@@ -1,4 +1,5 @@
 // Core types shared by the engine, rules and reporters.
+import type { GitHubFacts } from '../integrations/github.js';
 import type { GitHistory } from './git.js';
 
 export type Tag = 'CODE' | 'CONFIG' | 'DOCS' | 'ORG';
@@ -99,6 +100,8 @@ export interface Rule {
    * checks are listed in reports as manual follow-ups.
    */
   checks?: string[];
+  /** Integrations the rule needs. Rules requiring 'github' run only with --github. */
+  requires?: 'github'[];
   /** What the control requires, used as the finding's "Expected". */
   expected: string;
   /** Impact and likelihood, used as the finding's "Risk". */
@@ -135,6 +138,8 @@ export interface RuleContext {
   git: () => GitHistory;
   /** The scan's clock (THREESOCK_NOW / SOURCE_DATE_EPOCH in tests). */
   now: Date;
+  /** GitHub API facts; present only when the user enabled --github. */
+  github?: GitHubFacts;
 }
 
 export interface Threshold {
@@ -143,6 +148,8 @@ export interface Threshold {
   minTlsVersion: string;
   /** Remediation SLA in days per severity (rubric 1.3). */
   slaDays: Record<Severity, number>;
+  /** Vulnerability remediation SLA (rubric 1.4), used to age GitHub alerts (decision 36). */
+  vulnerabilitySlaDays: Record<Severity, number>;
   /** Longest an exception may run, by severity (decision 32). Unset means no limit. */
   maxExceptionDays: Partial<Record<Severity, number>>;
   logRetentionDays: number;

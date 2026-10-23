@@ -5,6 +5,11 @@ All notable changes to threesock are recorded here. The JSON report has its own 
 ## Unreleased
 
 ### Added
+- Control and policy mapping (`mappings/controls.yaml`): 35 controls and 25 policies mapped to all 61 criteria; findings and reports list what each gap affects; replaceable with `mappings:` in `threesock.yaml`.
+- `--github`: read-only GitHub API checks for branch protection and rulesets (CC8.1), code owner review, required signed commits (CC1.5), secret scanning and push protection (CC6.1), Dependabot alerts (CC7.1), alerts past the vulnerability SLA (CC4.2), production environment reviewers and organization 2FA/base permission (CC5.2). Direct pushes escalate to High when the branch is confirmed unprotected.
+- `thresholds.vulnerabilitySlaDays` (rubric 1.4) for alert age; `--github-repo`; `GITHUB_API_URL` support.
+- `pnpm gen:rules` regenerates the rule registry.
+- JSON schema 1.3.0: `findings[].controls` and `policies`, `criteria[].controls` and `policies`, `mapping`, `coverage.github`.
 - SARIF 2.1.0 output (`--format sarif`): severity levels and `security-severity`, criterion tags, stable `partialFingerprints`, accepted findings as suppressions, repository-level findings anchored to an existing file.
 - Single-file HTML report (`--format html`, `threesock report --format html`): no JavaScript, no network requests, inline logo and favicons, light and dark.
 - `threesock baseline`: writes `threesock-baseline.yaml`; `--all` accepts Medium and Low findings, `--fingerprint` accepts one finding of any severity, `--prune` removes stale entries.

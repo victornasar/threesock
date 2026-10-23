@@ -3,7 +3,7 @@
 // removals or renames) and record it in CHANGELOG.md.
 import type { Band, Category, Evidence, Score, Severity } from './types.js';
 
-export const SCHEMA_VERSION = '1.2.0';
+export const SCHEMA_VERSION = '1.3.0';
 
 export const DISCLAIMER =
   'threesock is an engineering readiness aid, not an audit. SOC 2 is attested by a licensed CPA firm ' +
@@ -44,6 +44,9 @@ export interface CriterionResult {
   manualFollowUps: string[];
   /** External evidence links from threesock.yaml (schema 1.1). Never counted as Met. */
   evidenceLinks?: string[];
+  /** Internal controls and policies mapped to this criterion (schema 1.3). */
+  controls: string[];
+  policies: string[];
   owner?: string;
 }
 
@@ -90,6 +93,9 @@ export interface Finding {
   rejectedException?: { approver: string; expires: string; reason: string };
   /** Stable across runs; use it in baselines and exceptions. */
   fingerprint: string;
+  /** Internal controls and policies this finding affects, from the mapping (schema 1.3). */
+  controls: string[];
+  policies: string[];
 }
 
 export interface StaleException {
@@ -129,9 +135,13 @@ export interface ScanReport {
   };
   criteria: CriterionResult[];
   findings: Finding[];
+  /** The control and policy catalogue used (schema 1.3). */
+  mapping: { name: string; source: string };
   coverage: {
     rulesRun: number;
     rulesErrored: { ruleId: string; error: string }[];
     externalTools: { name: string; available: boolean; used: boolean }[];
+    /** Present when --github was used (schema 1.3). */
+    github?: { repository: string | null; problems: string[] };
   };
 }

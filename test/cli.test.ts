@@ -45,7 +45,7 @@ describe('cli', () => {
   });
   it('--format json emits parseable JSON with a schema version', async () => {
     await main(['scan', insecure.dir, '--format', 'json']);
-    expect(JSON.parse(stdout).schemaVersion).toBe('1.2.0');
+    expect(JSON.parse(stdout).schemaVersion).toBe('1.3.0');
   });
   it('never prints secret values to stdout', async () => {
     for (const fmt of ['text', 'json']) {

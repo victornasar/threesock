@@ -112,6 +112,8 @@ Observed:          .github/workflows/ci.yml runs on pull_request_target and refe
 Expected:          Workflows triggered by pull_request_target or workflow_run do not check out or run code from the pull request.
 Risk:              These triggers run with secrets and a write token. Checking out the PR head lets anyone who opens a pull request run code with them ("pwn request").
 Recommendation:    Use the pull_request trigger for anything that builds or tests PR code. Keep pull_request_target for labelling or commenting, without checking out the head.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -138,6 +140,8 @@ Observed:          .env is tracked by git and assigns 3 variable(s). Secret-look
 Expected:          Environment files with real values stay out of version control. Only templates such as .env.example are committed, and .gitignore excludes .env files.
 Risk:              A committed .env file usually holds live credentials, which are then exposed to everyone with repository access and remain in git history.
 Recommendation:    Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -165,6 +169,8 @@ Observed:          A Stripe live key (sk_l********) is present in .env at line 3
 Expected:          No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.
 Risk:              Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.
 Recommendation:    Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -193,6 +199,8 @@ Observed:          A private key (key material) is present in config/deploy.pem 
 Expected:          No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.
 Risk:              Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.
 Recommendation:    Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -221,6 +229,8 @@ Observed:          An AWS access key ID (AKIA********) is present in src/config.
 Expected:          No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.
 Risk:              Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.
 Recommendation:    Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -249,6 +259,8 @@ Observed:          A GitHub token (ghp_********) is present in src/config.js at 
 Expected:          No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.
 Risk:              Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.
 Recommendation:    Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -277,6 +289,8 @@ Observed:          JWTs accepted with the "none" algorithm in src/server.js at l
 Expected:          JWTs are signed with strong algorithms and validated (alg, exp, aud, iss) on every request.
 Risk:              An unverified or "none"-algorithm token lets anyone forge a session for any user.
 Recommendation:    Always verify tokens with an explicit algorithm allow-list, and check exp, aud and iss. Use decode only for logging-free inspection of already-verified tokens.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -303,6 +317,8 @@ Observed:          aws_db_instance.main sets publicly_accessible = true (detecte
 Expected:          Data stores sit in private networks, are not publicly reachable, and require authentication.
 Risk:              A publicly reachable database is one leaked or weak password away from a full data breach, and is scanned for continuously.
 Recommendation:    Turn off public accessibility, place the database in private subnets, and reach it through the application, a bastion or a private endpoint.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -331,6 +347,8 @@ Observed:          aws_s3_bucket.exports sets acl = "public-read" (detected by t
 Expected:          Object storage is private by default, with public access blocks enabled; public content is served through a CDN with origin access control.
 Risk:              Public buckets are one of the most common causes of large data exposures and are discovered by automated scanners.
 Recommendation:    Remove public ACLs and allUsers bindings, enable the public access block, and serve intentionally public assets through a CDN with origin access control.
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-01-16
 Status:            Open
@@ -361,6 +379,8 @@ Observed:          Authentication can be switched off by an environment variable
 Expected:          Authentication cannot be switched off by a flag or environment variable, and no code grants privileges to a hard-coded username.
 Risk:              A bypass meant for debugging reaches production sooner or later, giving anyone who finds it full access.
 Recommendation:    Remove the bypass. For local development, use a seeded test user against the real auth path, and authorize by role, never by username.
+Controls:          Risk Management; Segregation of duties; Security Logging
+Policies:          Risk Management; Access Control & Least Privilege; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -385,6 +405,8 @@ Observed:          Privileges granted by comparing to a hard-coded username in s
 Expected:          Authentication cannot be switched off by a flag or environment variable, and no code grants privileges to a hard-coded username.
 Risk:              A bypass meant for debugging reaches production sooner or later, giving anyone who finds it full access.
 Recommendation:    Remove the bypass. For local development, use a seeded test user against the real auth path, and authorize by role, never by username.
+Controls:          Risk Management; Segregation of duties; Security Logging
+Policies:          Risk Management; Access Control & Least Privilege; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -409,6 +431,8 @@ Observed:          .github/workflows/ci.yml passes stored cloud keys to the work
 Expected:          Workflows assume cloud roles through OIDC federation (id-token: write), so no long-lived cloud keys are stored as CI secrets.
 Risk:              Long-lived cloud keys in CI leak through logs, forks and compromised actions, and stay valid until someone remembers to rotate them.
 Recommendation:    Configure an OIDC trust between GitHub and your cloud, assume a scoped role in the workflow, and delete the stored keys.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -440,6 +464,8 @@ Observed:          A run step in .github/workflows/ci.yml interpolates attacker-
 Expected:          run: steps pass attacker-controllable values (issue titles, PR bodies, branch names) through environment variables, never `${{ }}` interpolation.
 Risk:              A crafted issue title or branch name becomes shell code running in your workflow, with its token and secrets.
 Recommendation:    Move the value into an environment variable and reference it as a quoted shell variable.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -466,6 +492,8 @@ Observed:          A run step prints a secret in .github/workflows/ci.yml at lin
 Expected:          Workflows never print secrets; they pass them to tools through environment variables or files.
 Risk:              Masking is best-effort: transformed or partial values slip through, and logs are readable by everyone with repository read access.
 Recommendation:    Remove the echo. Pass the secret through env and let the tool read it, or write it to a file with restricted permissions.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -492,6 +520,8 @@ Observed:          .github/workflows/ci.yml grants permissions: write-all at lin
 Expected:          Each workflow declares `permissions:` (read-only by default) and grants write scopes only to the jobs that need them. Nothing uses write-all.
 Risk:              A broad GITHUB_TOKEN lets any compromised step push code, create releases or change repository settings.
 Recommendation:    Set a read-only default at the top of each workflow and grant specific write scopes per job.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -522,6 +552,8 @@ Observed:          A database URL with password (Vq8********) is present in .env
 Expected:          No secrets in source, config files, images or history. Secrets are loaded at runtime from a secrets manager or environment.
 Risk:              Anyone with read access to the repository, its forks or its history can use the credential. Leaked keys are routinely harvested within minutes of a public push.
 Recommendation:    Revoke and rotate the credential first, then remove it from the code and load it from a secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -550,6 +582,8 @@ Observed:          IAM policy allows every action ("*") in infra/main.tf at line
 Expected:          IAM roles and policies grant specific actions on specific resources; no "*" actions and no primitive owner/editor roles.
 Risk:              A wildcard policy turns any compromise of that identity into full control of the account.
 Recommendation:    Replace wildcards with the specific actions the workload needs. IAM Access Analyzer or CloudTrail-based policy generation can produce a least-privilege policy from real usage.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -579,6 +613,8 @@ Observed:          Password hashed with a fast, general-purpose hash function in
 Expected:          Passwords are hashed with Argon2id, bcrypt or scrypt (rubric 1.4). Fast hashes such as MD5, SHA-1 or SHA-256 are never used for passwords.
 Risk:              Fast hashes can be brute-forced at billions of guesses per second, so a database leak becomes a credential leak.
 Recommendation:    Hash passwords with Argon2id (preferred), bcrypt or scrypt through a maintained library, and rehash on next login when migrating.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -605,6 +641,8 @@ Observed:          Whole request body spread into a database write in src/auth.j
 Expected:          Create and update handlers copy only allow-listed fields from requests; roles and permissions are set by privileged code paths only.
 Risk:              Mass assignment lets a user send `"role": "admin"` in a signup or profile update and become an administrator.
 Recommendation:    Validate request bodies against a schema of allowed fields and set roles explicitly on the server.
+Controls:          Access Rights; Personnel Security
+Policies:          Access Control & Least Privilege; Background Screening & On/Off-boarding
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -630,6 +668,8 @@ Observed:          src/server.js allows any (or reflected) origin at line 12 and
 Expected:          Credentialed CORS is limited to an explicit allow-list of origins; wildcard or reflected origins are only used for public, credential-less APIs.
 Risk:              Any website a user visits can make authenticated requests to the API and read the responses.
 Recommendation:    Replace the wildcard or reflected origin with an explicit list of trusted origins, or drop credentials for truly public endpoints.
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -654,6 +694,8 @@ Observed:          Dynamic evaluation of a string as code in src/server.js at li
 Expected:          Code never evaluates strings as code, never builds shell commands from strings, and never deserializes untrusted data with unsafe loaders.
 Risk:              If any part of the evaluated string or command can be influenced by a user, the result is remote code execution.
 Recommendation:    Replace dynamic evaluation with explicit logic, pass command arguments as an array without a shell, and use safe loaders (json, yaml.safe_load).
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -682,6 +724,8 @@ Observed:          Shell command built with string interpolation in src/server.j
 Expected:          Code never evaluates strings as code, never builds shell commands from strings, and never deserializes untrusted data with unsafe loaders.
 Risk:              If any part of the evaluated string or command can be influenced by a user, the result is remote code execution.
 Recommendation:    Replace dynamic evaluation with explicit logic, pass command arguments as an array without a shell, and use safe loaders (json, yaml.safe_load).
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -710,6 +754,8 @@ Observed:          aws_security_group.bastion allows ingress from 0.0.0.0/0 to S
 Expected:          Firewall rules never allow 0.0.0.0/0 or ::/0 to admin ports (SSH, RDP) or data ports (PostgreSQL, MySQL, Redis, MongoDB, ...).
 Risk:              Internet-exposed admin and database ports are scanned constantly and are a leading entry point for breaches and ransomware.
 Recommendation:    Restrict ingress to known CIDRs or security groups, and reach admin interfaces through a VPN, bastion, SSM Session Manager or an identity-aware proxy.
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -739,6 +785,8 @@ Observed:          SQL query built with template literal interpolation in src/se
 Expected:          Queries use bound parameters or a query builder; user input is never concatenated or interpolated into SQL.
 Risk:              String-built SQL is the classic injection flaw: one unescaped value can read, change or delete the whole database.
 Recommendation:    Pass values as bound parameters (placeholders) or use a tagged template or query builder that parameterizes for you.
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -767,6 +815,8 @@ Observed:          Node TLS client with certificate rejection turned off in src/
 Expected:          Every TLS client validates certificates and hostnames. Private CAs are trusted explicitly instead of turning validation off.
 Risk:              With validation off, anyone on the network path can impersonate the server and read or alter traffic, including credentials.
 Recommendation:    Remove the override. For internal or self-signed services, trust the specific CA bundle instead.
+Controls:          Secure Data Transfer; Network Security
+Policies:          Encryption & Crypto Controls; Information Sharing & Transfer
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -795,6 +845,8 @@ Observed:          Weak cipher (DES, 3DES, RC4, Blowfish or ECB mode) in src/ser
 Expected:          TLS endpoints and clients require at least the configured minimum version (default 1.2), and code uses modern ciphers (AES-GCM, ChaCha20-Poly1305).
 Risk:              Legacy protocols and ciphers have practical attacks that expose traffic or encrypted data.
 Recommendation:    Raise the minimum TLS version to 1.2 or 1.3 and replace legacy ciphers with an authenticated cipher such as AES-256-GCM.
+Controls:          Secure Data Transfer; Network Security
+Policies:          Encryption & Crypto Controls; Information Sharing & Transfer
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -820,6 +872,8 @@ Observed:          src/webhooks.js handles webhooks at line 7, but no signature 
 Expected:          Every webhook handler verifies the sender signature over the raw body, with a constant-time comparison, before acting.
 Risk:              Unsigned webhooks let anyone forge events such as "payment succeeded" or "user verified".
 Recommendation:    Verify the provider signature with its SDK (or an HMAC over the raw body with timingSafeEqual) before processing.
+Controls:          Secure Data Transfer; Network Security
+Policies:          Encryption & Crypto Controls; Information Sharing & Transfer
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -844,6 +898,8 @@ Observed:          Remote script piped straight into a shell in Dockerfile at li
 Expected:          Downloaded tools and scripts are verified with a checksum or signature before they run.
 Risk:              Piping a remote script to a shell runs whatever the server (or anyone who compromises it) sends, inside your build.
 Recommendation:    Download to a file, verify its checksum or signature, then run it, or install from a package manager.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -870,6 +926,8 @@ Observed:          package.json declares npm dependencies but no lockfile (packa
 Expected:          Every dependency manifest has a committed lockfile (or hash-pinned requirements) so installs are reproducible.
 Risk:              Without a lockfile, each install can pull different, possibly compromised, versions, and a build cannot be reproduced.
 Recommendation:    Generate the lockfile with your package manager, commit it, and install with the frozen/ci mode in CI.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -896,6 +954,8 @@ Observed:          Request body or headers passed to a logger in src/auth.js at 
 Expected:          Logs never contain passwords, tokens, authorization headers, full request bodies or card numbers.
 Risk:              Logs are copied widely (log platforms, support tools, laptops). Credentials in them become a breach with a long tail.
 Recommendation:    Log identifiers and outcomes, not payloads. Use a logger with redaction paths for anything sensitive.
+Controls:          Security Monitoring & Detection; Security Logging
+Policies:          Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -921,6 +981,8 @@ Observed:          No incident response plan was found in the repository's docum
 Expected:          An incident response plan defines roles, severity levels, escalation paths and how internal and external communication happens.
 Risk:              During an incident, an undocumented process means slow, inconsistent response and missed notification deadlines.
 Recommendation:    Write docs/security/incident-response.md covering who leads, how severity is set, when to escalate, and who tells customers and regulators.
+Controls:          Security Incident Management
+Policies:          Incident Response & Breach Notification
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -952,6 +1014,8 @@ Observed:          No workflow is triggered by pull_request.
 Expected:          A CI pipeline runs automated tests and lint on every pull request, and branch protection requires it to pass before merge.
 Risk:              Without a test gate, broken or unreviewed behaviour reaches the default branch and production.
 Recommendation:    Add a pull-request workflow that runs tests and lint, then make it a required status check.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -983,6 +1047,8 @@ Observed:          No backend or cloud block was found in 1 Terraform file(s) (d
 Expected:          Terraform state lives in a remote, locked, access-controlled backend, and state files are never committed.
 Risk:              State files contain secrets in plain text, and unlocked or local state lets concurrent applies corrupt infrastructure.
 Recommendation:    Configure a remote backend with locking, remove committed state from git (and rotate any secrets it held), and gitignore *.tfstate.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -1015,6 +1081,8 @@ Observed:          aws_db_instance.main sets backup_retention_period = 0 (detect
 Expected:          Every database has automated backups with a retention policy, and point-in-time recovery where supported.
 Risk:              A bad migration, deletion or ransomware event with no backup is permanent data loss.
 Recommendation:    Enable automated backups with explicit retention (and PITR), or cover the stores with an AWS Backup plan.
+Controls:          Disaster Recovery Planning; Physical Access Control
+Policies:          Backup, Business Continuity & Disaster Recovery; Physical Security & Environmental
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -1044,6 +1112,8 @@ Observed:          aws_db_instance.main does not set storage_encrypted = true (d
 Expected:          Every database, volume, file system and cache is encrypted at rest, preferably with managed KMS keys.
 Risk:              Unencrypted storage exposes data through snapshots, decommissioned disks and backup copies.
 Recommendation:    Enable encryption at rest on every data store (it usually requires a replacement for existing RDS instances: snapshot, copy encrypted, restore).
+Controls:          Information Classification; Encrypted Data at Rest; Encryption Key Management; Access Rights
+Policies:          Data Classification & Handling; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-02-14
 Status:            Open
@@ -1071,6 +1141,8 @@ Observed:          No CODEOWNERS file found in .github/, the root or docs/.
 Expected:          A CODEOWNERS file assigns an owner to every directory, with named teams on security-sensitive paths.
 Risk:              Changes to unowned code can merge without review from anyone accountable for it.
 Recommendation:    Add .github/CODEOWNERS with a catch-all owner and named teams for sensitive paths, then require code owner review in branch protection.
+Controls:          Organization Structure & Reporting Lines; Security Governance Roles; Segregation of duties
+Policies:          Information Security & Privacy Governance; Access Control & Least Privilege
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1098,6 +1170,8 @@ Observed:          No SECURITY.md or security.txt found (looked in SECURITY.md, 
 Expected:          A SECURITY.md (or /.well-known/security.txt) tells external researchers how to report a vulnerability and what response to expect.
 Risk:              Without a published channel, vulnerabilities get reported publicly, to the wrong person, or not at all.
 Recommendation:    Add SECURITY.md at the repository root with a private reporting channel, supported versions and expected response time.
+Controls:          Regulatory Liaison; Security Incident Management; Data Privacy; Supplier Security
+Policies:          Incident Response & Breach Notification; Privacy & Data-Subject Rights; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1126,6 +1200,8 @@ Observed:          No risk register was found in the repository's documentation.
 Expected:          Risks are recorded with likelihood, impact, an owner and a treatment decision, and link to tracking issues.
 Risk:              Unrecorded risks have no owner, so they are neither fixed nor consciously accepted.
 Recommendation:    Keep a risk register (a Markdown table is fine) and review it at least quarterly.
+Controls:          Risk Management; Vulnerability Management
+Policies:          Risk Management; Vulnerability & Patch Management
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1152,6 +1228,8 @@ Observed:          No threat model was found in the repository's documentation.
 Expected:          A threat model names the assets, trust boundaries, threats and mitigations for the system, and is updated with major changes.
 Risk:              Without one, security work follows whatever is noticed rather than what matters most, and design flaws ship unexamined.
 Recommendation:    Write a short threat model (docs/security/threat-model.md): what you protect, where untrusted input enters, what could go wrong (STRIDE works), and what stops it.
+Controls:          Risk Management; Vulnerability Management
+Policies:          Risk Management; Vulnerability & Patch Management
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1184,6 +1262,8 @@ Observed:          The repository defines infrastructure, but no IaC scanner (Ch
 Expected:          Terraform, Kubernetes, CloudFormation and Dockerfiles are scanned for misconfigurations (Checkov, Trivy config, tfsec, hadolint, ...) on every change.
 Risk:              Misconfigurations such as public buckets or open ports are the leading cause of cloud breaches, and are cheap to catch before apply.
 Recommendation:    Run Checkov or Trivy in config mode on pull requests that touch infrastructure.
+Controls:          Vulnerability Management; Security Monitoring & Detection; Policy Compliance; Access Rights
+Policies:          Vulnerability & Patch Management; Compliance & Regulatory Monitoring
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1208,6 +1288,8 @@ Observed:          No SAST tool (CodeQL, Semgrep, Bandit, gosec, SonarQube, ...)
 Expected:          A SAST tool (CodeQL, Semgrep, Bandit, gosec, ...) runs on every pull request.
 Risk:              Injection and other code-level flaws reach production without automated review.
 Recommendation:    Enable CodeQL (GitHub default setup or a workflow) or run Semgrep on pull requests.
+Controls:          Vulnerability Management; Security Monitoring & Detection; Policy Compliance; Access Rights
+Policies:          Vulnerability & Patch Management; Compliance & Regulatory Monitoring
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1234,6 +1316,8 @@ Observed:          The scan at line 15 of .github/workflows/ci.yml is configured
 Expected:          Security scan steps fail the pipeline on Critical/High findings instead of reporting and carrying on.
 Risk:              Non-blocking scanners produce reports nobody reads; known issues merge anyway.
 Recommendation:    Remove continue-on-error / "|| true" from scan steps and set the scanner to fail on Critical and High.
+Controls:          Vulnerability Management; Policy Compliance
+Policies:          Vulnerability & Patch Management; Policy Management & Exception Handling
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1258,6 +1342,8 @@ Observed:          No vulnerability remediation policy was found in the reposito
 Expected:          Remediation deadlines are defined per severity (e.g. Critical 7 days, High 30) and overdue findings are escalated.
 Risk:              Without deadlines, known vulnerabilities age indefinitely, and auditors flag aged Critical/High findings as a control failure.
 Recommendation:    Publish remediation SLAs per severity and an escalation path for overdue findings, and configure the same values in threesock.yaml.
+Controls:          Vulnerability Management; Policy Compliance
+Policies:          Vulnerability & Patch Management; Policy Management & Exception Handling
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1286,6 +1372,8 @@ Observed:          1 entry in .trivyignore have no comment explaining why.
 Expected:          Every suppression of a security finding says why (and ideally who approved it and until when).
 Risk:              Unexplained suppressions hide real vulnerabilities and cannot be reviewed; auditors treat blanket suppressions as a red flag.
 Recommendation:    Add the rule id and a reason to each suppression, or move it into threesock.yaml exceptions with an approver and expiry.
+Controls:          Vulnerability Management; Policy Compliance
+Policies:          Vulnerability & Patch Management; Policy Management & Exception Handling
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1310,6 +1398,8 @@ Observed:          IaC scanner skip without a reason at line 16.
 Expected:          Every suppression of a security finding says why (and ideally who approved it and until when).
 Risk:              Unexplained suppressions hide real vulnerabilities and cannot be reviewed; auditors treat blanket suppressions as a red flag.
 Recommendation:    Add the rule id and a reason to each suppression, or move it into threesock.yaml exceptions with an approver and expiry.
+Controls:          Vulnerability Management; Policy Compliance
+Policies:          Vulnerability & Patch Management; Policy Management & Exception Handling
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1334,6 +1424,8 @@ Observed:          Unpinned: actions/checkout@v4 (line 8), some-org/setup-deploy
 Expected:          Every third-party action is pinned to a full 40-character commit SHA (with the version in a comment), so a moved tag cannot change what runs.
 Risk:              Tags can be moved. A compromised action tag (as in the tj-actions/changed-files incident) runs attacker code with your workflow's secrets.
 Recommendation:    Pin each action to the commit SHA of the release you reviewed, keep the version as a comment, and let Dependabot update the pins.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1358,6 +1450,8 @@ Observed:          Job deploy in .github/workflows/ci.yml deploys or publishes w
 Expected:          Jobs that deploy or publish run in a GitHub environment, so required reviewers, branch restrictions and environment-scoped secrets apply.
 Risk:              Without an environment gate, anyone who can push to a triggering branch can deploy to production.
 Recommendation:    Add `environment: production` to deploy jobs and configure required reviewers and deployment branch rules on that environment.
+Controls:          Configuration & Patch Management; Secure SDLC Integration; Credential Management; Endpoint Security; Endpoint Protection
+Policies:          Secure Configuration & Hardening; Secure Software Development Lifecycle; Authentication & Password
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1385,6 +1479,8 @@ Observed:          Procedures found for 0 of 7 core processes (by heading); miss
 Expected:          Runbooks cover onboarding, offboarding, deployment, rollback, incident response, key rotation and access reviews.
 Risk:              Undocumented procedures are performed inconsistently and cannot be shown to an auditor.
 Recommendation:    Add a section (heading) for each missing procedure to your runbooks.
+Controls:          Standard Operating Procedures (SOPs); Policy Compliance
+Policies:          Policy Management & Exception Handling
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1413,6 +1509,8 @@ Observed:          Session cookie is readable from JavaScript (HttpOnly disabled
 Expected:          Session and auth cookies set HttpOnly, Secure and SameSite.
 Risk:              Without HttpOnly an XSS bug can steal sessions; without Secure the cookie can leak over plain HTTP.
 Recommendation:    Set httpOnly, secure and sameSite on every session or auth cookie. Use an environment check only to relax Secure for local HTTP development.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1439,6 +1537,8 @@ Observed:          JWT decoded without verifying its signature in src/server.js 
 Expected:          JWTs are signed with strong algorithms and validated (alg, exp, aud, iss) on every request.
 Risk:              An unverified or "none"-algorithm token lets anyone forge a session for any user.
 Recommendation:    Always verify tokens with an explicit algorithm allow-list, and check exp, aud and iss. Use decode only for logging-free inspection of already-verified tokens.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1465,6 +1565,8 @@ Observed:          No Gitleaks, TruffleHog, detect-secrets or similar scanner is
 Expected:          A secret scanner runs on every push or pull request (and ideally as a pre-commit hook), with push protection enabled on the hosting platform.
 Risk:              Without automated scanning, a committed credential is found by an attacker before it is found by you.
 Recommendation:    Add Gitleaks (or TruffleHog) to CI and to pre-commit, and enable GitHub secret scanning with push protection.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1498,6 +1600,8 @@ Observed:          No offboarding procedure was found in the repository's docume
 Expected:          Offboarding revokes SSO, source control, cloud, CI/CD and vendor access within a set deadline (≤ 24h).
 Risk:              Departed staff and contractors keep working credentials, a common source of incidents and an audit finding.
 Recommendation:    Document an offboarding checklist covering every system with access, and the deadline for completing it.
+Controls:          Access Rights; Personnel Security; Credential Management
+Policies:          Access Control & Least Privilege; Background Screening & On/Off-boarding
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1525,6 +1629,8 @@ Observed:          A token is signed in src/auth.js at line 12 with no expiry ne
 Expected:          Every token the application issues has an expiry, so access ends even if revocation fails.
 Risk:              A token without expiry stays valid forever; one leak is permanent access.
 Recommendation:    Set a short expiry on every issued token and use refresh tokens that can be revoked.
+Controls:          Access Rights; Personnel Security; Credential Management
+Policies:          Access Control & Least Privilege; Background Screening & On/Off-boarding
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1549,6 +1655,8 @@ Observed:          HTTP server or web framework detected in package.json, but no
 Expected:          Responses set CSP, HSTS, X-Content-Type-Options and frame protections, in code or at the edge (CDN, proxy, platform config).
 Risk:              Missing headers remove browser-side defences against XSS, clickjacking and protocol downgrade.
 Recommendation:    Add a security-headers middleware (helmet, Talisman, SecurityMiddleware) or set the headers in your proxy or platform configuration.
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1574,6 +1682,8 @@ Observed:          DOM innerHTML/outerHTML assigned without visible sanitization
 Expected:          HTML output is escaped by the framework; raw-HTML sinks are avoided or fed only sanitized content.
 Risk:              Rendering raw HTML that contains user input enables cross-site scripting: session theft and actions on the victim's behalf.
 Recommendation:    Render text through the framework's escaping. Where raw HTML is unavoidable, sanitize it with DOMPurify (or bleach) on the same line so the intent is visible.
+Controls:          Network Security; Vulnerability Management; Remote-Work Security
+Policies:          Secure Configuration & Hardening; Remote Access & BYOD
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1598,6 +1708,8 @@ Observed:          http://api.partner-service.com is used in src/server.js at li
 Expected:          Every external and internal service URL uses https://. Plain HTTP is limited to localhost and documentation examples.
 Risk:              Requests over plain HTTP can be read and modified in transit, including tokens and personal data.
 Recommendation:    Switch the URL to https:// and make sure the target service redirects HTTP to HTTPS with HSTS.
+Controls:          Secure Data Transfer; Network Security
+Policies:          Encryption & Crypto Controls; Information Sharing & Transfer
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1622,6 +1734,8 @@ Observed:          node:latest in Dockerfile at line 1 has no version tag or use
 Expected:          Base images use an explicit version tag, ideally pinned by digest, from a trusted registry.
 Risk:              An untagged or :latest base image changes underneath you, so builds are not reproducible and a compromised upstream image flows straight in.
 Recommendation:    Pin base images to a version and digest, and let Dependabot or Renovate propose updates.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1646,6 +1760,8 @@ Observed:          The repository builds container images but no image scanner (
 Expected:          Images built from this repository are scanned (Trivy, Grype, Snyk, Docker Scout) before they are pushed or deployed.
 Risk:              Base images and OS packages carry their own vulnerabilities that dependency scanning of your code does not see.
 Recommendation:    Scan each built image in CI and fail on Critical/High vulnerabilities with a fix available.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1671,6 +1787,8 @@ Observed:          Dockerfile runs npm install at line 4; use npm ci to install 
 Expected:          Builds install exactly what the lockfile says (npm ci, pnpm install --frozen-lockfile, pip --require-hashes).
 Risk:              `npm install` in CI can rewrite the lockfile and pull versions nobody reviewed.
 Recommendation:    Use the lockfile-respecting install command in CI and Dockerfiles.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1697,6 +1815,8 @@ Observed:          Dockerfile never sets a non-root USER in its final stage.
 Expected:          The final stage of each Dockerfile switches to a non-root USER.
 Risk:              A process running as root turns any code execution bug into full control of the container and an easier escape to the host.
 Recommendation:    Create or use an unprivileged user and switch to it in the final stage.
+Controls:          Vulnerability Management; Configuration & Patch Management; Security Logging
+Policies:          Vulnerability & Patch Management; Secure Configuration & Hardening; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1722,6 +1842,8 @@ Observed:          Neither Dependabot/Renovate nor a scheduled dependency scan i
 Expected:          New vulnerabilities in existing dependencies are detected continuously (Dependabot/Renovate alerts or a scheduled scan).
 Risk:              Code that does not change still becomes vulnerable as CVEs are published; without monitoring nobody finds out.
 Recommendation:    Enable Dependabot (with security updates) or Renovate, or run a dependency scan on a weekly schedule.
+Controls:          Vulnerability Management; Configuration & Patch Management; Security Logging
+Policies:          Vulnerability & Patch Management; Secure Configuration & Hardening; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1751,6 +1873,8 @@ Observed:          No alert definitions (Prometheus rules, CloudWatch alarms, Da
 Expected:          Alerts for auth-failure spikes, error rates and infrastructure anomalies are defined as code and routed to on-call.
 Risk:              Attacks and outages that nobody is alerted to run for hours or days.
 Recommendation:    Define alert rules in code (Prometheus, CloudWatch, Datadog, Grafana) with routing to an on-call channel.
+Controls:          Security Monitoring & Detection; Security Logging
+Policies:          Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1777,6 +1901,8 @@ Observed:          No severity and triage criteria was found in the repository's
 Expected:          Documented criteria say how a security event is classified, at what severity it becomes an incident, and how the triage outcome is recorded.
 Risk:              Without shared criteria, the same alert is ignored by one person and escalated by another, and real incidents are missed.
 Recommendation:    Document severity levels with examples, the threshold for declaring an incident, and where triage outcomes (true/false positive) are recorded.
+Controls:          Security Incident Management; Security Monitoring & Detection
+Policies:          Incident Response & Breach Notification
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1804,6 +1930,8 @@ Observed:          Runbooks found for 0 of 4 common scenarios; missing: credenti
 Expected:          Runbooks cover credential leaks, data exposure, compromised dependencies and outages/DDoS.
 Risk:              Improvising the first steps of a credential leak or supply-chain incident costs the hours that matter most.
 Recommendation:    Add a short runbook per scenario: how to detect it, contain it, eradicate it and who to tell.
+Controls:          Security Incident Management
+Policies:          Incident Response & Breach Notification
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1831,6 +1959,8 @@ Observed:          No key rotation procedure was found in the repository's docum
 Expected:          A procedure says which secrets and keys are rotated, how, on what schedule, and on exposure or personnel change.
 Risk:              Unrotated credentials stay valid long after they leak or their holder leaves.
 Recommendation:    Document each secret, where it lives, how to rotate it, and when (≤ 90 days, or on exposure or departure).
+Controls:          Security Incident Management; Disaster Recovery Planning; Credential Management
+Policies:          Incident Response & Breach Notification; Backup, Business Continuity & Disaster Recovery
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1858,6 +1988,8 @@ Observed:          4 sensitive files exist but there is no CODEOWNERS file.
 Expected:          Security-sensitive paths (auth, IAM, crypto, payments, infrastructure, workflows, migrations, lockfiles) have a specific CODEOWNERS entry, not just the catch-all.
 Risk:              Changes to the riskiest code can be approved by any reviewer instead of the people accountable for it.
 Recommendation:    Add explicit CODEOWNERS entries for sensitive paths and require code owner review. Adjust what counts as sensitive with sensitivePaths in threesock.yaml.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1884,6 +2016,8 @@ Observed:          migrations/001_init.up.sql has no matching 001_init.down.sql.
 Expected:          Each migration has a down/downgrade step, or the repository documents how schema changes are rolled back.
 Risk:              A bad migration without a way back turns a deploy rollback into a data-recovery incident.
 Recommendation:    Write a down migration for each change, or document the expand/contract and restore procedure used instead.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1909,6 +2043,8 @@ Observed:          No business continuity / disaster recovery plan was found in 
 Expected:          A BC/DR plan lists critical dependencies and their fallbacks, how the system is recovered, and what happens in a provider or regional outage.
 Risk:              A provider outage or loss of a key component turns into an improvised, extended outage.
 Recommendation:    Write a short continuity plan: critical dependencies, what degrades gracefully, recovery steps, and who decides.
+Controls:          Disaster Recovery Planning; Risk Management; Resource Capacity Management
+Policies:          Backup, Business Continuity & Disaster Recovery; Risk Management
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1938,6 +2074,8 @@ Observed:          No a third-party services inventory and an SBOM was found.
 Expected:          An inventory lists third-party services and integrations (with the data they receive), and an SBOM covers open-source dependencies.
 Risk:              Unknown vendors and SDKs receive data nobody approved, and a vendor breach cannot be assessed quickly.
 Recommendation:    Keep a third-party inventory (service, purpose, data shared, owner) and generate an SBOM in CI.
+Controls:          Supplier Security; Asset Inventory
+Policies:          Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1964,6 +2102,8 @@ Observed:          No resources.limits for: api.
 Expected:          Every container and task declares CPU and memory limits (and requests where the scheduler uses them).
 Risk:              One runaway workload can starve its neighbours and take down unrelated services.
 Recommendation:    Set requests and limits on every container, and memory/CPU on every task definition or compose service.
+Controls:          Resource Capacity Management; Security Monitoring & Detection
+Policies:          Backup, Business Continuity & Disaster Recovery; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -1990,6 +2130,8 @@ Observed:          aws_db_instance.main does not set deletion_protection (detect
 Expected:          Production databases enable deletion protection so a mistaken apply or console click cannot drop them.
 Risk:              One bad `terraform apply` or a compromised credential deletes the database outright.
 Recommendation:    Enable deletion protection on databases (and turn it off deliberately when decommissioning).
+Controls:          Disaster Recovery Planning; Physical Access Control
+Policies:          Backup, Business Continuity & Disaster Recovery; Physical Security & Environmental
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2016,6 +2158,8 @@ Observed:          k8s/deployment.yaml defines a workload without readiness or l
 Expected:          Every workload declares liveness/readiness probes (or a HEALTHCHECK / load balancer health check) so failures are detected and replaced automatically.
 Risk:              A hung process keeps receiving traffic and is never restarted.
 Recommendation:    Add readiness and liveness probes to containers (or HEALTHCHECK / target group health checks).
+Controls:          Disaster Recovery Planning; Physical Access Control
+Policies:          Backup, Business Continuity & Disaster Recovery; Physical Security & Environmental
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2041,6 +2185,8 @@ Observed:          aws_db_instance.main is not configured for multi-AZ failover 
 Expected:          Databases and caches run in more than one availability zone with automatic failover.
 Risk:              A single-zone failure takes the database down until the zone recovers.
 Recommendation:    Enable Multi-AZ (RDS), automatic failover (ElastiCache) or regional availability (Cloud SQL).
+Controls:          Disaster Recovery Planning; Physical Access Control
+Policies:          Backup, Business Continuity & Disaster Recovery; Physical Security & Environmental
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2067,6 +2213,8 @@ Observed:          No documentation of backup restore tests or DR exercises was 
 Expected:          Backup restores are tested on a schedule (quarterly for critical systems), with dated results kept.
 Risk:              Untested backups routinely fail when needed: wrong scope, missing keys, or restores slower than the RTO.
 Recommendation:    Run and record a restore test each quarter: date, what was restored, time taken, and issues found.
+Controls:          Disaster Recovery Planning
+Policies:          Backup, Business Continuity & Disaster Recovery
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2094,6 +2242,8 @@ Observed:          No recovery objectives (RTO/RPO) was found in the repository'
 Expected:          Recovery time and recovery point objectives are defined for each system.
 Risk:              Without objectives, nobody can tell whether backups and failover are adequate until it is too late.
 Recommendation:    Set RTO and RPO per system in the DR plan and design backups and failover to meet them.
+Controls:          Disaster Recovery Planning
+Policies:          Backup, Business Continuity & Disaster Recovery
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2120,6 +2270,8 @@ Observed:          HTTP server or web framework detected in package.json, but no
 Expected:          Request bodies, query parameters and webhook payloads are validated server-side with a schema library.
 Risk:              Unvalidated input causes silent data corruption, crashes and injection, and lets clients send totals or IDs the server should compute.
 Recommendation:    Validate every request with a schema (Zod, Pydantic, Joi, validator) and reject what does not match.
+Controls:          Secure SDLC Integration
+Policies:          Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2145,6 +2297,8 @@ Observed:          Job queues are used, but no retry limits, backoff or dead-let
 Expected:          Jobs and consumers set retry limits with backoff, and failed work lands in a dead-letter queue that is monitored.
 Risk:              Failed jobs are dropped silently or retried forever, losing or duplicating work.
 Recommendation:    Configure attempts and backoff on every queue, and route exhausted messages to a dead-letter queue.
+Controls:          Secure SDLC Integration; Security Monitoring & Detection
+Policies:          Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2169,6 +2323,8 @@ Observed:          1 schema or migration file(s) contain no NOT NULL, UNIQUE, fo
 Expected:          Schemas declare NOT NULL, UNIQUE, foreign key and check constraints, so the database rejects invalid data even when application code misses it.
 Risk:              Without constraints, a single bug writes orphaned or duplicate records that corrupt reports and billing.
 Recommendation:    Declare constraints in the schema for required fields, uniqueness and relationships.
+Controls:          Data Retention & Destruction; Security Logging; Disaster Recovery Planning
+Policies:          Backup, Business Continuity & Disaster Recovery; Data Classification & Handling
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2197,6 +2353,8 @@ Observed:          No data classification scheme was found in the repository's d
 Expected:          A classification scheme (e.g. public / internal / confidential / restricted) is defined with handling rules, and applied to data stores and fields.
 Risk:              Without classification, confidential data is handled like everything else: logged, copied to lower environments and shared with vendors.
 Recommendation:    Define classification levels and their handling rules, then tag data stores and sensitive fields.
+Controls:          Information Classification; Encrypted Data at Rest; Encryption Key Management; Access Rights
+Policies:          Data Classification & Handling; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2224,6 +2382,8 @@ Observed:          seeds/customers.json contains 1 valid card number, 1 SSN-shap
 Expected:          Seeds, fixtures and sample data are synthetic: test card numbers, reserved example domains, generated identifiers.
 Risk:              Real customer data in the repository is a breach of its own, copied to every clone, CI runner and laptop.
 Recommendation:    Replace real-looking data with synthetic values (example.com addresses, provider test cards) or generate it with Faker; purge any real data from history.
+Controls:          Information Classification; Encrypted Data at Rest; Encryption Key Management; Access Rights
+Policies:          Data Classification & Handling; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2248,6 +2408,8 @@ Observed:          No data retention schedule was found in the repository's docu
 Expected:          Retention periods are defined per data class, and say how data is deleted at the end of them.
 Risk:              Data kept forever is breach exposure without business value, and violates privacy commitments.
 Recommendation:    Document a retention schedule per data class and implement it with TTLs, lifecycle rules or purge jobs.
+Controls:          Data Retention & Destruction
+Policies:          Retention & Secure Disposal
 Owner:             Unassigned
 Due date:          2026-04-15
 Status:            Open
@@ -2275,6 +2437,8 @@ Observed:          No error tracking, metrics or dashboard configuration was fou
 Expected:          Error tracking, metrics and dashboards are configured in code (Sentry, OpenTelemetry, Prometheus, Grafana, Datadog, CloudWatch, ...).
 Risk:              Without instrumentation, security-relevant failures and abuse are invisible until users report them.
 Recommendation:    Instrument the service (error tracking and metrics) and keep dashboards and monitors in code.
+Controls:          Asset Inventory; Security Monitoring & Detection; Vulnerability Management
+Policies:          Logging, Monitoring & Audit; Vulnerability & Patch Management
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2300,6 +2464,8 @@ Observed:          No SBOM tool (Syft, CycloneDX, SPDX, npm sbom) runs in CI.
 Expected:          CI produces an SBOM (CycloneDX or SPDX) for each release or build.
 Risk:              Without an SBOM you cannot answer "are we affected?" quickly when a new vulnerability lands.
 Recommendation:    Generate an SBOM in CI with Syft or a CycloneDX tool and keep it with the release artifacts.
+Controls:          Asset Inventory; Security Monitoring & Detection; Vulnerability Management
+Policies:          Logging, Monitoring & Audit; Vulnerability & Patch Management
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2325,6 +2491,8 @@ Observed:          No pull request (or merge request) template was found.
 Expected:          The PR template asks authors to state the security impact of each change.
 Risk:              Without a prompt, security-relevant changes (new endpoints, data flows, dependencies) go through review unflagged.
 Recommendation:    Add a security section with a short checklist to .github/pull_request_template.md.
+Controls:          Standard Operating Procedures (SOPs); Policy Compliance; Security Incident Management
+Policies:          Policy Management & Exception Handling; Security & Privacy Awareness Training
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2352,6 +2520,8 @@ Observed:          README.md has no link to SECURITY.md or security documentatio
 Expected:          The README links to the security policy and the security documentation, so people can find them.
 Risk:              Documentation nobody can find is not followed.
 Recommendation:    Add a Security section to the README linking SECURITY.md and your security docs folder.
+Controls:          Standard Operating Procedures (SOPs); Policy Compliance; Security Incident Management
+Policies:          Policy Management & Exception Handling; Security & Privacy Awareness Training
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2377,6 +2547,8 @@ Observed:          No ADR directory (docs/adr, decisions/) with decision records
 Expected:          Significant architectural decisions are recorded as ADRs, and ADRs discuss their security considerations.
 Risk:              Without recorded decisions, the security reasoning behind an architecture is lost and gets undone by later changes.
 Recommendation:    Record decisions in docs/adr/NNNN-title.md with a "Security considerations" section.
+Controls:          Risk Management; Vulnerability Management
+Policies:          Risk Management; Vulnerability & Patch Management
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2407,6 +2579,8 @@ Observed:          3 manifest or IaC file(s) rely on the catch-all owner or none
 Expected:          Dependency manifests, Dockerfiles and IaC have specific CODEOWNERS, so adding a dependency, service or datastore is reviewed by someone accountable.
 Risk:              New SDKs and services slip in through routine reviews, bringing data flows and vulnerabilities nobody assessed.
 Recommendation:    Give manifests, Dockerfiles and infrastructure directories specific CODEOWNERS and require code owner review.
+Controls:          Change management; Risk Management; Supplier Security
+Policies:          Change & Release Management; Risk Management
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2432,6 +2606,8 @@ Observed:          No workflow both runs a security scanner and has a schedule t
 Expected:          Security scans run on a schedule against the default branch, not only on pull requests, so new vulnerabilities in unchanged code are found.
 Risk:              A repository nobody touches is never rescanned, while new CVEs land against its dependencies every week.
 Recommendation:    Add a schedule trigger to the workflow that runs your scanners.
+Controls:          Vulnerability Management; Security Monitoring & Detection; Policy Compliance; Access Rights
+Policies:          Vulnerability & Patch Management; Compliance & Regulatory Monitoring
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2459,6 +2635,8 @@ Observed:          No risk-to-control mapping was found in the repository's docu
 Expected:          A control matrix (or a risk register with a controls column) maps each identified risk to the controls that address it.
 Risk:              Controls that are not tied to risks drift into box-ticking, and uncovered risks go unnoticed.
 Recommendation:    Add a controls column to the risk register, or keep a separate control matrix table.
+Controls:          Risk Management; Policy Compliance
+Policies:          Risk Management; Information Security & Privacy Governance
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2485,6 +2663,8 @@ Observed:          docs/security/old-policy.md: no review date; no owner.
 Expected:          Each policy states its owner and the date it was last reviewed, and is reviewed at least annually.
 Risk:              Stale or ownerless policies describe controls that no longer operate, which auditors test against.
 Recommendation:    Add an owner and a "Last reviewed: YYYY-MM-DD" line to each policy, and review them yearly.
+Controls:          Standard Operating Procedures (SOPs); Policy Compliance
+Policies:          Policy Management & Exception Handling
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2510,6 +2690,8 @@ Observed:          .gitignore has no entry matching .env files.
 Expected:          Environment files with real values stay out of version control. Only templates such as .env.example are committed, and .gitignore excludes .env files.
 Risk:              A committed .env file usually holds live credentials, which are then exposed to everyone with repository access and remain in git history.
 Recommendation:    Rotate any credentials the file contains, remove it from git with `git rm --cached`, add `.env*` to .gitignore, and commit a .env.example with empty values instead.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2537,6 +2719,8 @@ Observed:          `smtpPassword` is assigned a literal value (Hun********) in s
 Expected:          Credential-like settings read their values from the environment or a secrets manager, never from string literals.
 Risk:              A literal credential in code is shared with everyone who can read the repository and is hard to rotate. This check is heuristic, so confirm each match.
 Recommendation:    Replace the literal with a value loaded at runtime. If it is not a credential, add an exception with a justification.
+Controls:          Access Rights; Credential Management; Encryption Key Management; Network Security
+Policies:          Access Control & Least Privilege; Authentication & Password; Encryption & Crypto Controls
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2562,6 +2746,8 @@ Observed:          aws_db_instance.main does not set kms_key_id (detected by thr
 Expected:          Data stores are encrypted with customer-managed KMS keys (with a deletion window), so destroying the key renders all copies, including snapshots, unrecoverable.
 Risk:              With provider-owned keys, decommissioned data and stray snapshots stay readable; disposal relies on finding every copy.
 Recommendation:    Encrypt data stores with a dedicated customer-managed KMS key with rotation enabled.
+Controls:          Data Retention & Destruction; Asset Inventory; Encryption Key Management
+Policies:          Retention & Secure Disposal
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2592,6 +2778,8 @@ Observed:          No automated dependency updates (Dependabot or Renovate) is c
 Expected:          Dependabot or Renovate keeps dependencies current, and a vulnerability scan (dependency review, OSV-Scanner, npm audit, pip-audit, govulncheck) runs in CI.
 Risk:              Known-vulnerable dependencies are the most common way attackers get in, and they are only fixed if someone notices.
 Recommendation:    Enable Dependabot (or Renovate) and add a dependency scan to pull-request CI.
+Controls:          Configuration & Patch Management; Endpoint Protection; Secure SDLC Integration; Supplier Security
+Policies:          Vulnerability & Patch Management; Secure Software Development Lifecycle; Vendor & Third-Party Risk
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2624,6 +2812,8 @@ Observed:          Terraform is used, but no scheduled plan or drift detection w
 Expected:          A scheduled `terraform plan` (or a drift detection service) reports changes made outside of code.
 Risk:              Manual console changes silently reopen gaps that code review closed, and are invisible until something breaks.
 Recommendation:    Run `terraform plan -detailed-exitcode` on a schedule and alert when it reports changes.
+Controls:          Vulnerability Management; Configuration & Patch Management; Security Logging
+Policies:          Vulnerability & Patch Management; Secure Configuration & Hardening; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2650,6 +2840,8 @@ Observed:          No document describes an emergency, hotfix or break-glass cha
 Expected:          An emergency (hotfix / break-glass) change process is documented, including who may use it and the retroactive review it requires.
 Risk:              Without a defined path, urgent fixes bypass review informally and leave no audit trail, which auditors treat as a control failure.
 Recommendation:    Document the emergency change path: who can invoke it, what is skipped, and the retroactive review required within a set time.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2676,6 +2868,8 @@ Observed:          No runbook or document describing how to roll back a deployme
 Expected:          A runbook explains how to roll back a bad release, who can do it, and how to verify it worked.
 Risk:              Under incident pressure, an undocumented rollback is slow, inconsistent and easy to get wrong.
 Recommendation:    Add a rollback section to your deployment runbook (docs/runbooks/rollback.md) and rehearse it.
+Controls:          Change management; Secure SDLC Integration; Segregation of duties
+Policies:          Change & Release Management; Secure Software Development Lifecycle
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2703,6 +2897,8 @@ Observed:          No autoscaling configuration and no documented capacity plan 
 Expected:          Workloads autoscale on load, or a documented capacity plan sets headroom targets.
 Risk:              Traffic spikes (or abuse) exhaust fixed capacity and cause an outage.
 Recommendation:    Add a HorizontalPodAutoscaler or cloud autoscaling policy, or document a capacity plan with headroom targets.
+Controls:          Resource Capacity Management; Security Monitoring & Detection
+Policies:          Backup, Business Continuity & Disaster Recovery; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2729,6 +2925,8 @@ Observed:          The repository serves HTTP but has no load or performance tes
 Expected:          Load tests (k6, Artillery, Locust, Gatling, ...) exist and run before major releases.
 Risk:              Capacity limits are discovered in production, during the busiest hour.
 Recommendation:    Add a load test for the critical paths and run it before major releases.
+Controls:          Resource Capacity Management; Security Monitoring & Detection
+Policies:          Backup, Business Continuity & Disaster Recovery; Logging, Monitoring & Audit
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2755,6 +2953,8 @@ Observed:          The repository serves an API but has no OpenAPI, GraphQL or p
 Expected:          The API has a machine-readable contract (OpenAPI, GraphQL schema, protobuf) kept in the repository or generated from code.
 Risk:              Without a contract, clients and the service disagree about inputs and outputs, and breaking changes go unnoticed.
 Recommendation:    Commit an OpenAPI document (or GraphQL schema / .proto files), or generate one from code, and version it.
+Controls:          Secure SDLC Integration; Change management
+Policies:          Secure Software Development Lifecycle; Change & Release Management
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2781,6 +2981,8 @@ Observed:          No CHANGELOG, CHANGES, HISTORY or release notes file at the r
 Expected:          A changelog or release notes record each version, including breaking changes.
 Risk:              Users and downstream systems are surprised by breaking changes, causing processing errors.
 Recommendation:    Keep a CHANGELOG.md (Keep a Changelog format) and call out breaking changes explicitly.
+Controls:          Secure SDLC Integration; Change management
+Policies:          Secure Software Development Lifecycle; Change & Release Management
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2807,6 +3009,8 @@ Observed:          aws_s3_bucket.exports has no lifecycle configuration, so obje
 Expected:          Buckets have lifecycle expiration, log groups have a retention period, and ephemeral tables use TTLs.
 Risk:              Without automated deletion, data (and logs full of it) accumulates forever, enlarging every breach.
 Recommendation:    Add lifecycle expiration to buckets and retention_in_days to log groups, matching your retention schedule.
+Controls:          Data Retention & Destruction
+Policies:          Retention & Secure Disposal
 Owner:             Unassigned
 Due date:          2026-07-14
 Status:            Open
@@ -2825,6 +3029,71 @@ resource "aws_s3_bucket_lifecycle_configuration" "exports" {
   }
 }
 ```
+
+## Controls and policies affected
+
+Mapping: threesock default catalogue (mappings/controls.yaml).
+
+| Control | Open findings | Criteria |
+|---|---|---|
+| Network Security | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-009, F-016, F-017, F-018, F-020, F-021, F-022, F-023, F-024, F-025, F-026, F-027, F-049, F-050, F-051, F-054, F-055, F-056, F-091, F-092 | CC6.1, CC6.6, CC6.7 |
+| Credential Management | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-046, F-047, F-049, F-050, F-051, F-052, F-053, F-065, F-091, F-092 | CC5.2, CC6.1, CC6.3, CC7.5 |
+| Access Rights | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-019, F-035, F-040, F-041, F-049, F-050, F-051, F-052, F-053, F-079, F-080, F-088, F-091, F-092 | CC6.1, CC6.2, C1.1, CC4.1, CC6.3 |
+| Secure SDLC Integration | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-096, F-097, F-100, F-101 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
+| Vulnerability Management | F-009, F-020, F-021, F-022, F-023, F-024, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-054, F-055, F-060, F-061, F-082, F-083, F-086, F-088, F-095 | CC6.6, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
+| Encryption Key Management | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-035, F-049, F-050, F-051, F-079, F-080, F-091, F-092, F-093 | CC6.1, C1.1, CC6.5 |
+| Configuration & Patch Management | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-060, F-061, F-094, F-095 | CC5.2, CC6.8, CC7.1 |
+| Endpoint Protection | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-046, F-047, F-057, F-058, F-059, F-094 | CC5.2, CC6.8 |
+| Policy Compliance | F-040, F-041, F-042, F-043, F-044, F-045, F-048, F-084, F-085, F-088, F-089, F-090 | CC4.1, CC4.2, CC5.3, CC2.2, CC5.1 |
+| Security Monitoring & Detection | F-030, F-040, F-041, F-062, F-063, F-070, F-077, F-082, F-083, F-088, F-098, F-099 | CC7.2, CC4.1, CC7.3, A1.1, PI1.3, CC2.1 |
+| Change management | F-032, F-033, F-066, F-067, F-087, F-096, F-097, F-100, F-101 | CC8.1, CC3.4, PI1.1 |
+| Disaster Recovery Planning | F-034, F-065, F-068, F-071, F-072, F-073, F-074, F-075, F-078 | A1.2, CC7.5, CC9.1, A1.3, PI1.5 |
+| Segregation of duties | F-010, F-011, F-032, F-033, F-036, F-066, F-067, F-096, F-097 | CC3.3, CC8.1, CC1.3 |
+| Supplier Security | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-087, F-094 | CC6.8, CC2.3, CC9.2, CC3.4 |
+| Remote-Work Security | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 | CC6.6 |
+| Risk Management | F-010, F-011, F-038, F-039, F-068, F-086, F-087, F-089 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
+| Security Logging | F-010, F-011, F-030, F-060, F-061, F-062, F-078, F-095 | CC3.3, CC7.2, CC7.1, PI1.5 |
+| Endpoint Security | F-001, F-012, F-013, F-014, F-015, F-046, F-047 | CC5.2 |
+| Security Incident Management | F-031, F-037, F-063, F-064, F-065, F-084, F-085 | CC7.4, CC2.3, CC7.3, CC7.5, CC2.2 |
+| Asset Inventory | F-069, F-082, F-083, F-093 | CC9.2, CC2.1, CC6.5 |
+| Data Retention & Destruction | F-078, F-081, F-093, F-102 | PI1.5, C1.2, CC6.5 |
+| Physical Access Control | F-034, F-071, F-072, F-073 | A1.2 |
+| Resource Capacity Management | F-068, F-070, F-098, F-099 | CC9.1, A1.1 |
+| Secure Data Transfer | F-025, F-026, F-027, F-056 | CC6.7 |
+| Standard Operating Procedures (SOPs) | F-048, F-084, F-085, F-090 | CC5.3, CC2.2 |
+| Encrypted Data at Rest | F-035, F-079, F-080 | C1.1 |
+| Information Classification | F-035, F-079, F-080 | C1.1 |
+| Personnel Security | F-019, F-052, F-053 | CC6.2, CC6.3 |
+| Data Privacy | F-037 | CC2.3 |
+| Organization Structure & Reporting Lines | F-036 | CC1.3 |
+| Regulatory Liaison | F-037 | CC2.3 |
+| Security Governance Roles | F-036 | CC1.3 |
+
+| Policy | Open findings | Criteria |
+|---|---|---|
+| Secure Software Development Lifecycle | F-001, F-012, F-013, F-014, F-015, F-028, F-029, F-032, F-033, F-046, F-047, F-057, F-058, F-059, F-066, F-067, F-076, F-077, F-094, F-096, F-097, F-100, F-101 | CC5.2, CC6.8, CC8.1, PI1.2, PI1.3, PI1.1 |
+| Authentication & Password | F-001, F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-012, F-013, F-014, F-015, F-016, F-017, F-018, F-046, F-047, F-049, F-050, F-051, F-091, F-092 | CC5.2, CC6.1 |
+| Encryption & Crypto Controls | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-016, F-017, F-018, F-025, F-026, F-027, F-035, F-049, F-050, F-051, F-056, F-079, F-080, F-091, F-092 | CC6.1, CC6.7, C1.1 |
+| Access Control & Least Privilege | F-002, F-003, F-004, F-005, F-006, F-007, F-008, F-010, F-011, F-016, F-017, F-018, F-019, F-036, F-049, F-050, F-051, F-052, F-053, F-091, F-092 | CC6.1, CC3.3, CC6.2, CC1.3, CC6.3 |
+| Vulnerability & Patch Management | F-028, F-029, F-038, F-039, F-040, F-041, F-042, F-043, F-044, F-045, F-057, F-058, F-059, F-060, F-061, F-082, F-083, F-086, F-088, F-094, F-095 | CC6.8, CC3.2, CC4.1, CC4.2, CC7.1, CC2.1 |
+| Secure Configuration & Hardening | F-001, F-009, F-012, F-013, F-014, F-015, F-020, F-021, F-022, F-023, F-024, F-046, F-047, F-054, F-055, F-060, F-061, F-095 | CC5.2, CC6.6, CC7.1 |
+| Backup, Business Continuity & Disaster Recovery | F-034, F-065, F-068, F-070, F-071, F-072, F-073, F-074, F-075, F-078, F-098, F-099 | A1.2, CC7.5, CC9.1, A1.1, A1.3, PI1.5 |
+| Logging, Monitoring & Audit | F-010, F-011, F-030, F-060, F-061, F-062, F-070, F-082, F-083, F-095, F-098, F-099 | CC3.3, CC7.2, CC7.1, A1.1, CC2.1 |
+| Change & Release Management | F-032, F-033, F-066, F-067, F-087, F-096, F-097, F-100, F-101 | CC8.1, CC3.4, PI1.1 |
+| Policy Management & Exception Handling | F-042, F-043, F-044, F-045, F-048, F-084, F-085, F-090 | CC4.2, CC5.3, CC2.2 |
+| Remote Access & BYOD | F-009, F-020, F-021, F-022, F-023, F-024, F-054, F-055 | CC6.6 |
+| Risk Management | F-010, F-011, F-038, F-039, F-068, F-086, F-087, F-089 | CC3.3, CC3.2, CC9.1, CC3.4, CC5.1 |
+| Vendor & Third-Party Risk | F-028, F-029, F-037, F-057, F-058, F-059, F-069, F-094 | CC6.8, CC2.3, CC9.2 |
+| Incident Response & Breach Notification | F-031, F-037, F-063, F-064, F-065 | CC7.4, CC2.3, CC7.3, CC7.5 |
+| Data Classification & Handling | F-035, F-078, F-079, F-080 | C1.1, PI1.5 |
+| Information Sharing & Transfer | F-025, F-026, F-027, F-056 | CC6.7 |
+| Physical Security & Environmental | F-034, F-071, F-072, F-073 | A1.2 |
+| Background Screening & On/Off-boarding | F-019, F-052, F-053 | CC6.2, CC6.3 |
+| Compliance & Regulatory Monitoring | F-040, F-041, F-088 | CC4.1 |
+| Retention & Secure Disposal | F-081, F-093, F-102 | C1.2, CC6.5 |
+| Information Security & Privacy Governance | F-036, F-089 | CC1.3, CC5.1 |
+| Security & Privacy Awareness Training | F-084, F-085 | CC2.2 |
+| Privacy & Data-Subject Rights | F-037 | CC2.3 |
 
 ## Manual evidence checklist
 
@@ -3186,7 +3455,6 @@ These criteria were scored on their automated checks. The rubric checks below st
 
 **CC5.2 · Technology general controls** (scored 0 (Not Met))
 
-- [ ] SSO/MFA enforced on source control, cloud console, CI/CD, and production tooling
 - [ ] Centralized logging in place (see CC7)
 - [ ] Encryption in transit and at rest configured (see CC6.7, C1.1)
 - [ ] Endpoint management/EDR policy for developer machines
@@ -3269,7 +3537,6 @@ These criteria were scored on their automated checks. The rubric checks below st
 
 **CC8.1 · Authorized, tested, approved changes** (scored 0 (Not Met))
 
-- [ ] **Admins are not exempt** from protection, or bypass is logged and reviewed
 - [ ] Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure
 - [ ] Changes are traceable: commit → PR → ticket → build → deployment, with logs retained
 - [ ] Production credentials are not available on developer laptops or standing dev access; test and prod are separated
@@ -3349,4 +3616,4 @@ These criteria were scored on their automated checks. The rubric checks below st
 
 ---
 
-Generated by threesock 0.1.0 on 2026-01-15 · JSON schema 1.2.0
+Generated by threesock 0.1.0 on 2026-01-15 · JSON schema 1.3.0

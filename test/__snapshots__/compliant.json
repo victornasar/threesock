@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "tool": {
     "name": "threesock",
     "version": "<version>"
@@ -136,6 +136,18 @@
         "Employee/contractor acknowledgment of policies is tracked (HRIS/GRC)",
         "Whistleblower mechanism, disciplinary procedure, and background screening documented"
       ],
+      "controls": [
+        "Personnel Security",
+        "Disciplinary process",
+        "Policy Compliance",
+        "Acceptable Use"
+      ],
+      "policies": [
+        "Sanctions & Disciplinary",
+        "Background Screening & On/Off-boarding",
+        "Acceptable Use & Workstation Security",
+        "Information Security & Privacy Governance"
+      ],
       "owner": "Leadership and People Ops"
     },
     {
@@ -158,6 +170,14 @@
         "rubricChecks": 0
       },
       "manualFollowUps": [],
+      "controls": [
+        "Management Security Accountability",
+        "Security Governance Roles"
+      ],
+      "policies": [
+        "Information Security & Privacy Governance",
+        "Compliance & Regulatory Monitoring"
+      ],
       "owner": "Board / executive leadership"
     },
     {
@@ -207,6 +227,15 @@
         "Service ownership recorded (service catalog, `catalog-info.yaml`, README owner section)",
         "Segregation of duties enforced: PR authors cannot approve their own changes; production deploy permission is distinct from write access",
         "Org chart, RACI, and job descriptions exist"
+      ],
+      "controls": [
+        "Organization Structure & Reporting Lines",
+        "Security Governance Roles",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Information Security & Privacy Governance",
+        "Access Control & Least Privilege"
       ]
     },
     {
@@ -233,6 +262,15 @@
         "Secure coding guidelines and onboarding docs exist",
         "Contribution guide covers security expectations (dependency policy, secret handling, review standards)",
         "Training completion records tracked"
+      ],
+      "controls": [
+        "Personnel Security",
+        "Secure SDLC Integration"
+      ],
+      "policies": [
+        "Security & Privacy Awareness Training",
+        "Background Screening & On/Off-boarding",
+        "Secure Software Development Lifecycle"
       ],
       "owner": "Leadership and People Ops"
     },
@@ -271,6 +309,15 @@
         "Control owners named for each control in documentation",
         "Escalation paths documented in runbooks",
         "Performance objectives and disciplinary process reference security duties"
+      ],
+      "controls": [
+        "Management Security Accountability",
+        "Disciplinary process",
+        "Change management"
+      ],
+      "policies": [
+        "Sanctions & Disciplinary",
+        "Information Security & Privacy Governance"
       ],
       "owner": "Leadership and People Ops"
     },
@@ -340,6 +387,15 @@
         "System/asset inventory maintained (services, datastores, third-party integrations)",
         "Vulnerability scan output retained and queryable",
         "Security metrics available (open vulns by severity, MTTR, patch age, coverage of MFA)"
+      ],
+      "controls": [
+        "Asset Inventory",
+        "Security Monitoring & Detection",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit",
+        "Vulnerability & Patch Management"
       ]
     },
     {
@@ -407,6 +463,15 @@
       "manualFollowUps": [
         "Alert routing (Slack/PagerDuty/email) defined as code or documented",
         "Security advisories/alerts (e.g., Dependabot, code scanning) route to the responsible team"
+      ],
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling",
+        "Security & Privacy Awareness Training"
       ]
     },
     {
@@ -457,6 +522,17 @@
         "Incident notification templates for customers exist",
         "Status page configured; API documentation states auth and security requirements",
         "Vendor security requirements communicated"
+      ],
+      "controls": [
+        "Regulatory Liaison",
+        "Security Incident Management",
+        "Data Privacy",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification",
+        "Privacy & Data-Subject Rights",
+        "Vendor & Third-Party Risk"
       ]
     },
     {
@@ -482,6 +558,14 @@
       "manualFollowUps": [
         "Security, availability, and data-handling objectives documented (README, architecture docs, SLOs)",
         "Data-flow diagrams and trust boundaries documented"
+      ],
+      "controls": [
+        "Risk Management",
+        "Management Security Accountability"
+      ],
+      "policies": [
+        "Risk Management",
+        "Information Security & Privacy Governance"
       ],
       "owner": "Security and risk owner"
     },
@@ -567,6 +651,14 @@
       },
       "manualFollowUps": [
         "Vulnerability findings (SAST/SCA/IaC) are scored with a defined method (e.g., CVSS + exploitability + exposure)"
+      ],
+      "controls": [
+        "Risk Management",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Risk Management",
+        "Vulnerability & Patch Management"
       ]
     },
     {
@@ -612,6 +704,16 @@
         "Admin/impersonation actions are audit-logged with actor, target, and reason",
         "Management override is detectable (admins cannot bypass branch protection silently; bypass events are logged)",
         "Rate limiting and anomaly detection on credential-abuse and account-takeover vectors"
+      ],
+      "controls": [
+        "Risk Management",
+        "Segregation of duties",
+        "Security Logging"
+      ],
+      "policies": [
+        "Risk Management",
+        "Access Control & Least Privilege",
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -658,6 +760,15 @@
         "Design review or ADR required for major architectural changes",
         "Major dependency/runtime upgrades are reviewed for security impact",
         "IaC changes to networking, IAM, or encryption require elevated review"
+      ],
+      "controls": [
+        "Change management",
+        "Risk Management",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Risk Management"
       ]
     },
     {
@@ -746,6 +857,16 @@
         "DAST or penetration test performed at least annually, and reports are retained",
         "Access reviews performed on a defined cadence (repo, cloud, prod data)",
         "Compliance-as-code checks (OPA/Conftest, Checkov, cloud config rules) run automatically"
+      ],
+      "controls": [
+        "Vulnerability Management",
+        "Security Monitoring & Detection",
+        "Policy Compliance",
+        "Access Rights"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Compliance & Regulatory Monitoring"
       ]
     },
     {
@@ -825,6 +946,14 @@
       "manualFollowUps": [
         "Findings automatically create tracked issues with owner and due date",
         "Escalation path exists for overdue findings"
+      ],
+      "controls": [
+        "Vulnerability Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Policy Management & Exception Handling"
       ]
     },
     {
@@ -872,6 +1001,14 @@
       "manualFollowUps": [
         "Preventive controls exist as CI gates and policy-as-code, not only documented intent",
         "Compensating controls documented where a primary control is not feasible"
+      ],
+      "controls": [
+        "Risk Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Risk Management",
+        "Information Security & Privacy Governance"
       ]
     },
     {
@@ -1067,10 +1204,21 @@
         "rubricChecks": 5
       },
       "manualFollowUps": [
-        "SSO/MFA enforced on source control, cloud console, CI/CD, and production tooling",
         "Centralized logging in place (see CC7)",
         "Encryption in transit and at rest configured (see CC6.7, C1.1)",
         "Endpoint management/EDR policy for developer machines"
+      ],
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
       ]
     },
     {
@@ -1257,6 +1405,13 @@
       "manualFollowUps": [
         "Policies are version-controlled with review history and effective dates",
         "Employee acknowledgments tracked"
+      ],
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling"
       ]
     },
     {
@@ -1462,6 +1617,17 @@
       "manualFollowUps": [
         "**Authentication:** SSO/OIDC/SAML supported for workforce and enterprise customers; MFA available and enforced for admins/privileged roles",
         "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries"
+      ],
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
       ]
     },
     {
@@ -1507,6 +1673,14 @@
         "IAM/permission changes made via IaC with PR review and approval",
         "No default or shared credentials; service accounts have documented owners and purpose",
         "Role definitions documented and mapped to job function"
+      ],
+      "controls": [
+        "Access Rights",
+        "Personnel Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
       ]
     },
     {
@@ -1572,6 +1746,15 @@
         "Role changes take effect promptly (no long-lived cached elevated claims)",
         "Periodic access reviews identify and remove stale accounts, keys, and contractor access",
         "Machine credentials rotate on schedule and on personnel change"
+      ],
+      "controls": [
+        "Access Rights",
+        "Personnel Security",
+        "Credential Management"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
       ]
     },
     {
@@ -1596,6 +1779,12 @@
       "manualFollowUps": [
         "Production runs in providers with current SOC 2 reports (carve-out/inherited controls documented)",
         "No on-premises or colo infrastructure defined in IaC unless separately assessed"
+      ],
+      "controls": [
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Physical Security & Environmental"
       ],
       "owner": "IT and facilities (inherit from cloud provider SOC 2 report)"
     },
@@ -1645,6 +1834,14 @@
         "Decommissioned cloud resources (volumes, snapshots, buckets, DBs) are deleted via IaC/lifecycle rules",
         "Data-bearing resources have documented decommission steps and verification",
         "Device wipe/destruction records exist for endpoints and media"
+      ],
+      "controls": [
+        "Data Retention & Destruction",
+        "Asset Inventory",
+        "Encryption Key Management"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
       ]
     },
     {
@@ -1830,6 +2027,15 @@
       "manualFollowUps": [
         "WAF or equivalent protection for public endpoints; DDoS protections available",
         "Admin access via VPN/bastion/zero-trust proxy, not the public internet"
+      ],
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
       ]
     },
     {
@@ -1926,6 +2132,14 @@
         "Secrets, tokens, and PII are never placed in URLs/query strings or logs",
         "Data exports/transfers use encrypted channels (SFTP, presigned URLs with short expiry)",
         "Controls exist to prevent unauthorized bulk export/exfiltration (e.g., egress rules, export permissions)"
+      ],
+      "controls": [
+        "Secure Data Transfer",
+        "Network Security"
+      ],
+      "policies": [
+        "Encryption & Crypto Controls",
+        "Information Sharing & Transfer"
       ]
     },
     {
@@ -2078,6 +2292,17 @@
         "Only approved GitHub Actions/CI plugins are allowed (allowlist or SHA-pinning)",
         "File-upload paths scan or sandbox untrusted files",
         "Endpoint protection/EDR on developer and production hosts"
+      ],
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
       ]
     },
     {
@@ -2160,6 +2385,16 @@
       "manualFollowUps": [
         "Security-relevant events are logged: authentication, authorization failures, privilege changes, admin actions, data export, config changes",
         "Logs are centralized and tamper-resistant"
+      ],
+      "controls": [
+        "Vulnerability Management",
+        "Configuration & Patch Management",
+        "Security Logging"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Configuration & Hardening",
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -2224,6 +2459,13 @@
         "Alerts route to an on-call owner with defined response expectations",
         "Logs are structured and include timestamp, actor, action, resource, outcome, and correlation ID",
         "Log retention meets policy (see 1.4); access to logs is restricted and audited"
+      ],
+      "controls": [
+        "Security Monitoring & Detection",
+        "Security Logging"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -2271,6 +2513,13 @@
       "manualFollowUps": [
         "Alert-to-ticket automation exists",
         "Event evaluation outcomes are recorded (true/false positive, incident yes/no)"
+      ],
+      "controls": [
+        "Security Incident Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
       ]
     },
     {
@@ -2375,6 +2624,12 @@
         "Emergency capability: revoke keys, disable accounts, kill switches/feature flags, isolate services",
         "Incident tickets with timelines exist; postmortems completed with tracked corrective actions",
         "Response plan tested (tabletop or simulation) at least annually"
+      ],
+      "controls": [
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
       ]
     },
     {
@@ -2423,6 +2678,15 @@
         "Infrastructure can be rebuilt from IaC; clean-room redeploy procedure documented",
         "Backup restore procedures documented (see A1.2, A1.3)",
         "Post-incident remediation is tracked to completion"
+      ],
+      "controls": [
+        "Security Incident Management",
+        "Disaster Recovery Planning",
+        "Credential Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification",
+        "Backup, Business Continuity & Disaster Recovery"
       ]
     },
     {
@@ -2584,11 +2848,19 @@
         "rubricChecks": 12
       },
       "manualFollowUps": [
-        "**Admins are not exempt** from protection, or bypass is logged and reviewed",
         "Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure",
         "Changes are traceable: commit → PR → ticket → build → deployment, with logs retained",
         "Production credentials are not available on developer laptops or standing dev access; test and prod are separated",
         "Production data is not used in lower environments unless masked"
+      ],
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
       ]
     },
     {
@@ -2637,6 +2909,15 @@
         "Single points of failure identified and mitigated (multi-AZ, redundant components)",
         "Critical dependencies (cloud region, DNS, auth provider, payment provider) have documented fallback or degradation behavior",
         "Runbooks exist for regional/provider outages"
+      ],
+      "controls": [
+        "Disaster Recovery Planning",
+        "Risk Management",
+        "Resource Capacity Management"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Risk Management"
       ]
     },
     {
@@ -2700,6 +2981,13 @@
         "Data shared with each vendor is documented and minimized; data-flow diagrams cover vendors",
         "Webhook/callback authenticity verified; vendor SDKs pinned and scanned",
         "Vendor SOC reports, DPAs, security questionnaires, and annual reviews tracked"
+      ],
+      "controls": [
+        "Supplier Security",
+        "Asset Inventory"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk"
       ]
     },
     {
@@ -2784,6 +3072,14 @@
         "Monitoring and alerting on CPU, memory, disk, network, queue depth, DB connections, and storage growth",
         "Back-pressure, timeouts, connection-pool limits, and rate limiting protect from overload",
         "Capacity reviews occur on a defined cadence"
+      ],
+      "controls": [
+        "Resource Capacity Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -2889,6 +3185,14 @@
         "Availability objectives (SLOs/SLAs) defined and monitored, with alerting on breach",
         "Environment is reproducible from IaC",
         "Physical/environmental controls inherited from provider with reports reviewed"
+      ],
+      "controls": [
+        "Disaster Recovery Planning",
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Physical Security & Environmental"
       ]
     },
     {
@@ -2956,6 +3260,12 @@
       "manualFollowUps": [
         "DR/failover exercises performed, with results documented",
         "Failures during tests generate remediation tickets tracked to closure"
+      ],
+      "controls": [
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery"
       ]
     },
     {
@@ -3019,6 +3329,14 @@
       "manualFollowUps": [
         "Data definitions/dictionary exist for key entities and calculations",
         "Service specifications and SLAs/SLOs documented and communicated to users"
+      ],
+      "controls": [
+        "Secure SDLC Integration",
+        "Change management"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle",
+        "Change & Release Management"
       ]
     },
     {
@@ -3086,6 +3404,12 @@
         "Server-side validation (never client-only)",
         "Invalid input is rejected or quarantined with clear error handling; malformed records are not silently dropped",
         "Parameterized queries; safe file-upload validation (type, size, content)"
+      ],
+      "controls": [
+        "Secure SDLC Integration"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle"
       ]
     },
     {
@@ -3154,6 +3478,13 @@
         "Authorization is re-checked at processing time, not only at intake",
         "Business-rule and calculation logic covered by automated tests, including edge cases (rounding, currency, time zones)",
         "Job/pipeline monitoring alerts on failure, lag, and stuck work"
+      ],
+      "controls": [
+        "Secure SDLC Integration",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle"
       ]
     },
     {
@@ -3181,6 +3512,14 @@
         "Delivery confirmation/acknowledgment and retry for outbound messages and webhooks",
         "Output access is authorized and scoped to the recipient",
         "Delivery timeliness is measured against specification"
+      ],
+      "controls": [
+        "Secure SDLC Integration",
+        "Secure Data Transfer"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle",
+        "Information Sharing & Transfer"
       ],
       "owner": "Engineering lead"
     },
@@ -3232,6 +3571,15 @@
         "Data retention rules implemented, including soft-delete semantics where needed",
         "Safe, tested migrations; backups verified (see A1)",
         "Data-integrity tests or reconciliation queries run on a schedule"
+      ],
+      "controls": [
+        "Data Retention & Destruction",
+        "Security Logging",
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Data Classification & Handling"
       ]
     },
     {
@@ -3331,6 +3679,16 @@
         "Access to confidential data is least-privilege and audit-logged",
         "Protection against accidental deletion (versioning, deletion protection, backups)",
         "Confidentiality agreements with staff and vendors"
+      ],
+      "controls": [
+        "Information Classification",
+        "Encrypted Data at Rest",
+        "Encryption Key Management",
+        "Access Rights"
+      ],
+      "policies": [
+        "Data Classification & Handling",
+        "Encryption & Crypto Controls"
       ]
     },
     {
@@ -3412,6 +3770,12 @@
         "Backups age out per policy; cryptographic erasure used where feasible",
         "Deletion is verified and logged (job outputs, audit records)",
         "Media/device disposal records exist"
+      ],
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
       ]
     },
     {
@@ -3440,6 +3804,13 @@
         "Changes are communicated to affected users; prior versions are retained",
         "Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)"
       ],
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3467,6 +3838,12 @@
         "Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required",
         "Re-consent triggered for new purposes or material changes",
         "Explicit consent for sensitive data and cross-border transfers where required"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
       ],
       "owner": "Privacy / legal"
     },
@@ -3497,6 +3874,14 @@
         "Third-party SDKs and analytics events reviewed for unintended PII collection",
         "Legal basis/purpose recorded where applicable"
       ],
+      "controls": [
+        "Data Privacy",
+        "Information Classification"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3525,6 +3910,15 @@
         "Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls",
         "Age-gating/parental-consent logic where minors' data is possible"
       ],
+      "controls": [
+        "Data Privacy",
+        "Information Classification",
+        "Encrypted Data at Rest"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3551,6 +3945,13 @@
         "Purpose limitation enforced (purpose tags/access policies, not just documentation)",
         "No secondary use without basis (e.g., production PII in analytics, ML training, or marketing without consent)",
         "Data-use documented for pipelines and internal tools; internal access is justified and logged"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
       ],
       "owner": "Privacy / legal"
     },
@@ -3580,6 +3981,14 @@
         "Backup and log retention aligned with schedule",
         "Legal-hold process exists and is honored by purge jobs"
       ],
+      "controls": [
+        "Data Retention & Destruction",
+        "Data Privacy"
+      ],
+      "policies": [
+        "Retention & Secure Disposal",
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3607,6 +4016,12 @@
         "Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)",
         "Deletion is verified and audit-logged",
         "P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)"
+      ],
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
       ],
       "owner": "Privacy / legal"
     },
@@ -3637,6 +4052,13 @@
         "Requests are tracked with response-time SLA and audit logs",
         "Endpoint is rate-limited and abuse-resistant"
       ],
+      "controls": [
+        "Data Privacy",
+        "Access Rights"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3662,6 +4084,12 @@
         "Users can update or request correction of their data",
         "Corrections propagate to downstream systems and relevant third parties",
         "Change history/audit trail retained; denials documented with rationale"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
       ],
       "owner": "Privacy / legal"
     },
@@ -3691,6 +4119,16 @@
         "Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)",
         "Cross-border transfer mechanisms documented where applicable"
       ],
+      "controls": [
+        "Data Privacy",
+        "Supplier Security",
+        "Secure Data Transfer"
+      ],
+      "policies": [
+        "Information Sharing & Transfer",
+        "Vendor & Third-Party Risk",
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3715,6 +4153,14 @@
       "manualFollowUps": [
         "Disclosure events are logged (subject, recipient, data categories, purpose, timestamp, authorization basis)",
         "Records are retained per policy and queryable by data subject"
+      ],
+      "controls": [
+        "Data Privacy",
+        "Security Logging"
+      ],
+      "policies": [
+        "Information Sharing & Transfer",
+        "Logging, Monitoring & Audit"
       ],
       "owner": "Privacy / legal"
     },
@@ -3743,6 +4189,13 @@
         "Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)",
         "Records link to the incident-response process (CC7.3–CC7.4)"
       ],
+      "controls": [
+        "Security Incident Management",
+        "Data Privacy"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3770,6 +4223,12 @@
         "Technical scopes limit vendor access to necessary data",
         "Vendor compliance is monitored (SOC reports, reviews)"
       ],
+      "controls": [
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3795,6 +4254,14 @@
       "manualFollowUps": [
         "Contracts specify notification timelines",
         "Intake channel/process exists for vendor breach notices and feeds incident response"
+      ],
+      "controls": [
+        "Supplier Security",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk",
+        "Incident Response & Breach Notification"
       ],
       "owner": "Privacy / legal"
     },
@@ -3824,6 +4291,13 @@
         "Contact data and notification tooling available for affected populations",
         "Notification decisions recorded"
       ],
+      "controls": [
+        "Security Incident Management",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -3848,6 +4322,13 @@
       "manualFollowUps": [
         "DSAR output includes what is held (P5.1) and to whom it was disclosed (P6.2)",
         "Accounting can be produced within the response SLA"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Information Sharing & Transfer"
       ],
       "owner": "Privacy / legal"
     },
@@ -3875,6 +4356,12 @@
         "Users can review and update their own data",
         "Data-quality checks or stale-data flagging run on a schedule",
         "Irrelevant or unnecessary fields are removed"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
       ],
       "owner": "Privacy / legal"
     },
@@ -3904,10 +4391,22 @@
         "Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI",
         "Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)"
       ],
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Compliance & Regulatory Monitoring"
+      ],
       "owner": "Privacy / legal"
     }
   ],
   "findings": [],
+  "mapping": {
+    "name": "threesock default catalogue",
+    "source": "default"
+  },
   "coverage": {
     "rulesRun": 98,
     "rulesErrored": [],

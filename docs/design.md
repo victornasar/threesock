@@ -114,3 +114,22 @@ Agreed with the maintainer before Phase 2. Change them deliberately, not by drif
 30. HTML: one offline file, no JavaScript, `<details>` sections, inline logo, system fonts, automatic light/dark.
 31. `threesock baseline` writes `threesock-baseline.yaml` (same schema as `exceptions`); approver, reason and expiry are required. `--all` accepts only Medium and Low; Critical and High are accepted one fingerprint at a time. `--prune` removes stale entries, and reports count them.
 32. Exception expiry caps: Critical ≤ 7 days, High ≤ 90 days (configurable).
+
+## Phase 4 decisions (2026-10-22)
+
+**4a: mapping and GitHub**
+
+33. `mappings/controls.yaml` is self-contained: a neutral default catalogue (the 35 controls and 25 policies from `docs/rubric/COMPLIANCE_QUESTIONS.txt`, without the original company name) and a mapping of all 61 criteria. Tests check every name and every criterion. A `mappings:` file in `threesock.yaml` replaces it. Findings list the controls and policies they affect (schema 1.3.0).
+34. `--github` uses Node's built-in `fetch` (no SDK) and `GITHUB_TOKEN` only. The repository comes from the `origin` remote or `--github-repo`; `GITHUB_API_URL` is honoured for GitHub Enterprise Server.
+35. GitHub checks: branch protection and rulesets (CC8.1), required signed commits (CC1.5), secret scanning and push protection (CC6.1), Dependabot alerts enabled (CC7.1), aged Critical/High alerts (CC4.2), environment reviewers and organization 2FA/default permission (CC5.2; not applicable on personal repositories).
+36. Alert age is measured against `thresholds.vulnerabilitySlaDays` (rubric 1.4: 7/30/90/180), not the finding SLAs.
+37. API failures (permissions, rate limits, offline) make the affected checks inconclusive with the missing permission named; they never fail the scan.
+38. Tests use recorded API responses. Live verification runs only against threesock's own repository. `victornasar/colloquialify` and the `tagsclinic-dev` organization are never touched.
+
+**4b: external scanners**
+
+39. Offline-capable tools run automatically when installed (Gitleaks with full history, zizmor offline, Checkov, Semgrep only with repository-local rules). Network-needing tools (OSV-Scanner, Trivy vulnerability DB, Semgrep registry rules) need `--network`. 60-second timeout per tool; `--no-tools` and `--tools a,b`.
+40. Each tool is its own check under the matching criterion, present only when it ran. Findings are de-duplicated against built-in findings by path and line (built-in wins, "also found by" noted), and record the tool name and version.
+41. Checkov and Trivy misconfigurations map to criteria by topic (network CC6.6, encryption at rest C1.1, in transit CC6.7, IAM CC6.1, logging CC7.2, backup A1.2), falling back to CC7.1.
+42. Secrets found only in git history are High, show the commit SHA, and are redacted.
+43. Adapters are tested with recorded tool output; a separate CI job installs pinned, checksum-verified tools and runs them for real.

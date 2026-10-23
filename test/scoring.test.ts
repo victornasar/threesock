@@ -30,6 +30,8 @@ const finding = (over: Partial<Finding>): Finding => ({
   status: 'open',
   redFlag: false,
   fingerprint: 'abc',
+  controls: [],
+  policies: [],
   ...over,
 });
 

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "tool": {
     "name": "threesock",
     "version": "<version>"
@@ -177,6 +177,18 @@
         "Employee/contractor acknowledgment of policies is tracked (HRIS/GRC)",
         "Whistleblower mechanism, disciplinary procedure, and background screening documented"
       ],
+      "controls": [
+        "Personnel Security",
+        "Disciplinary process",
+        "Policy Compliance",
+        "Acceptable Use"
+      ],
+      "policies": [
+        "Sanctions & Disciplinary",
+        "Background Screening & On/Off-boarding",
+        "Acceptable Use & Workstation Security",
+        "Information Security & Privacy Governance"
+      ],
       "owner": "Leadership and People Ops"
     },
     {
@@ -199,6 +211,14 @@
         "rubricChecks": 0
       },
       "manualFollowUps": [],
+      "controls": [
+        "Management Security Accountability",
+        "Security Governance Roles"
+      ],
+      "policies": [
+        "Information Security & Privacy Governance",
+        "Compliance & Regulatory Monitoring"
+      ],
       "owner": "Board / executive leadership"
     },
     {
@@ -238,6 +258,15 @@
         "Service ownership recorded (service catalog, `catalog-info.yaml`, README owner section)",
         "Segregation of duties enforced: PR authors cannot approve their own changes; production deploy permission is distinct from write access",
         "Org chart, RACI, and job descriptions exist"
+      ],
+      "controls": [
+        "Organization Structure & Reporting Lines",
+        "Security Governance Roles",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Information Security & Privacy Governance",
+        "Access Control & Least Privilege"
       ]
     },
     {
@@ -264,6 +293,15 @@
         "Secure coding guidelines and onboarding docs exist",
         "Contribution guide covers security expectations (dependency policy, secret handling, review standards)",
         "Training completion records tracked"
+      ],
+      "controls": [
+        "Personnel Security",
+        "Secure SDLC Integration"
+      ],
+      "policies": [
+        "Security & Privacy Awareness Training",
+        "Background Screening & On/Off-boarding",
+        "Secure Software Development Lifecycle"
       ],
       "owner": "Leadership and People Ops"
     },
@@ -302,6 +340,15 @@
         "Control owners named for each control in documentation",
         "Escalation paths documented in runbooks",
         "Performance objectives and disciplinary process reference security duties"
+      ],
+      "controls": [
+        "Management Security Accountability",
+        "Disciplinary process",
+        "Change management"
+      ],
+      "policies": [
+        "Sanctions & Disciplinary",
+        "Information Security & Privacy Governance"
       ],
       "owner": "Leadership and People Ops"
     },
@@ -351,6 +398,15 @@
         "System/asset inventory maintained (services, datastores, third-party integrations)",
         "Vulnerability scan output retained and queryable",
         "Security metrics available (open vulns by severity, MTTR, patch age, coverage of MFA)"
+      ],
+      "controls": [
+        "Asset Inventory",
+        "Security Monitoring & Detection",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit",
+        "Vulnerability & Patch Management"
       ]
     },
     {
@@ -398,6 +454,15 @@
       "manualFollowUps": [
         "Alert routing (Slack/PagerDuty/email) defined as code or documented",
         "Security advisories/alerts (e.g., Dependabot, code scanning) route to the responsible team"
+      ],
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling",
+        "Security & Privacy Awareness Training"
       ]
     },
     {
@@ -438,6 +503,17 @@
         "Incident notification templates for customers exist",
         "Status page configured; API documentation states auth and security requirements",
         "Vendor security requirements communicated"
+      ],
+      "controls": [
+        "Regulatory Liaison",
+        "Security Incident Management",
+        "Data Privacy",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification",
+        "Privacy & Data-Subject Rights",
+        "Vendor & Third-Party Risk"
       ]
     },
     {
@@ -463,6 +539,14 @@
       "manualFollowUps": [
         "Security, availability, and data-handling objectives documented (README, architecture docs, SLOs)",
         "Data-flow diagrams and trust boundaries documented"
+      ],
+      "controls": [
+        "Risk Management",
+        "Management Security Accountability"
+      ],
+      "policies": [
+        "Risk Management",
+        "Information Security & Privacy Governance"
       ],
       "owner": "Security and risk owner"
     },
@@ -520,6 +604,14 @@
       },
       "manualFollowUps": [
         "Vulnerability findings (SAST/SCA/IaC) are scored with a defined method (e.g., CVSS + exploitability + exposure)"
+      ],
+      "controls": [
+        "Risk Management",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Risk Management",
+        "Vulnerability & Patch Management"
       ]
     },
     {
@@ -561,6 +653,16 @@
         "Admin/impersonation actions are audit-logged with actor, target, and reason",
         "Management override is detectable (admins cannot bypass branch protection silently; bypass events are logged)",
         "Rate limiting and anomaly detection on credential-abuse and account-takeover vectors"
+      ],
+      "controls": [
+        "Risk Management",
+        "Segregation of duties",
+        "Security Logging"
+      ],
+      "policies": [
+        "Risk Management",
+        "Access Control & Least Privilege",
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -599,6 +701,15 @@
         "Design review or ADR required for major architectural changes",
         "Major dependency/runtime upgrades are reviewed for security impact",
         "IaC changes to networking, IAM, or encryption require elevated review"
+      ],
+      "controls": [
+        "Change management",
+        "Risk Management",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Risk Management"
       ]
     },
     {
@@ -657,6 +768,16 @@
         "DAST or penetration test performed at least annually, and reports are retained",
         "Access reviews performed on a defined cadence (repo, cloud, prod data)",
         "Compliance-as-code checks (OPA/Conftest, Checkov, cloud config rules) run automatically"
+      ],
+      "controls": [
+        "Vulnerability Management",
+        "Security Monitoring & Detection",
+        "Policy Compliance",
+        "Access Rights"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Compliance & Regulatory Monitoring"
       ]
     },
     {
@@ -716,6 +837,14 @@
       "manualFollowUps": [
         "Findings automatically create tracked issues with owner and due date",
         "Escalation path exists for overdue findings"
+      ],
+      "controls": [
+        "Vulnerability Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Policy Management & Exception Handling"
       ]
     },
     {
@@ -753,6 +882,14 @@
       "manualFollowUps": [
         "Preventive controls exist as CI gates and policy-as-code, not only documented intent",
         "Compensating controls documented where a primary control is not feasible"
+      ],
+      "controls": [
+        "Risk Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Risk Management",
+        "Information Security & Privacy Governance"
       ]
     },
     {
@@ -848,10 +985,21 @@
         "rubricChecks": 5
       },
       "manualFollowUps": [
-        "SSO/MFA enforced on source control, cloud console, CI/CD, and production tooling",
         "Centralized logging in place (see CC7)",
         "Encryption in transit and at rest configured (see CC6.7, C1.1)",
         "Endpoint management/EDR policy for developer machines"
+      ],
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
       ]
     },
     {
@@ -898,6 +1046,13 @@
       "manualFollowUps": [
         "Policies are version-controlled with review history and effective dates",
         "Employee acknowledgments tracked"
+      ],
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling"
       ]
     },
     {
@@ -1027,6 +1182,17 @@
       "manualFollowUps": [
         "**Authentication:** SSO/OIDC/SAML supported for workforce and enterprise customers; MFA available and enforced for admins/privileged roles",
         "**Authorization:** Server-side RBAC/ABAC enforced on **every** endpoint and object access (no IDOR); deny by default; tenant isolation enforced in queries"
+      ],
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
       ]
     },
     {
@@ -1066,6 +1232,14 @@
         "IAM/permission changes made via IaC with PR review and approval",
         "No default or shared credentials; service accounts have documented owners and purpose",
         "Role definitions documented and mapped to job function"
+      ],
+      "controls": [
+        "Access Rights",
+        "Personnel Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
       ]
     },
     {
@@ -1115,6 +1289,15 @@
         "Role changes take effect promptly (no long-lived cached elevated claims)",
         "Periodic access reviews identify and remove stale accounts, keys, and contractor access",
         "Machine credentials rotate on schedule and on personnel change"
+      ],
+      "controls": [
+        "Access Rights",
+        "Personnel Security",
+        "Credential Management"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
       ]
     },
     {
@@ -1139,6 +1322,12 @@
       "manualFollowUps": [
         "Production runs in providers with current SOC 2 reports (carve-out/inherited controls documented)",
         "No on-premises or colo infrastructure defined in IaC unless separately assessed"
+      ],
+      "controls": [
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Physical Security & Environmental"
       ],
       "owner": "IT and facilities (inherit from cloud provider SOC 2 report)"
     },
@@ -1178,6 +1367,14 @@
         "Decommissioned cloud resources (volumes, snapshots, buckets, DBs) are deleted via IaC/lifecycle rules",
         "Data-bearing resources have documented decommission steps and verification",
         "Device wipe/destruction records exist for endpoints and media"
+      ],
+      "controls": [
+        "Data Retention & Destruction",
+        "Asset Inventory",
+        "Encryption Key Management"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
       ]
     },
     {
@@ -1285,6 +1482,15 @@
       "manualFollowUps": [
         "WAF or equivalent protection for public endpoints; DDoS protections available",
         "Admin access via VPN/bastion/zero-trust proxy, not the public internet"
+      ],
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
       ]
     },
     {
@@ -1353,6 +1559,14 @@
         "Secrets, tokens, and PII are never placed in URLs/query strings or logs",
         "Data exports/transfers use encrypted channels (SFTP, presigned URLs with short expiry)",
         "Controls exist to prevent unauthorized bulk export/exfiltration (e.g., egress rules, export permissions)"
+      ],
+      "controls": [
+        "Secure Data Transfer",
+        "Network Security"
+      ],
+      "policies": [
+        "Encryption & Crypto Controls",
+        "Information Sharing & Transfer"
       ]
     },
     {
@@ -1448,6 +1662,17 @@
         "Only approved GitHub Actions/CI plugins are allowed (allowlist or SHA-pinning)",
         "File-upload paths scan or sandbox untrusted files",
         "Endpoint protection/EDR on developer and production hosts"
+      ],
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
       ]
     },
     {
@@ -1504,6 +1729,16 @@
       "manualFollowUps": [
         "Security-relevant events are logged: authentication, authorization failures, privilege changes, admin actions, data export, config changes",
         "Logs are centralized and tamper-resistant"
+      ],
+      "controls": [
+        "Vulnerability Management",
+        "Configuration & Patch Management",
+        "Security Logging"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Configuration & Hardening",
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -1552,6 +1787,13 @@
         "Alerts route to an on-call owner with defined response expectations",
         "Logs are structured and include timestamp, actor, action, resource, outcome, and correlation ID",
         "Log retention meets policy (see 1.4); access to logs is restricted and audited"
+      ],
+      "controls": [
+        "Security Monitoring & Detection",
+        "Security Logging"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -1589,6 +1831,13 @@
       "manualFollowUps": [
         "Alert-to-ticket automation exists",
         "Event evaluation outcomes are recorded (true/false positive, incident yes/no)"
+      ],
+      "controls": [
+        "Security Incident Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
       ]
     },
     {
@@ -1637,6 +1886,12 @@
         "Emergency capability: revoke keys, disable accounts, kill switches/feature flags, isolate services",
         "Incident tickets with timelines exist; postmortems completed with tracked corrective actions",
         "Response plan tested (tabletop or simulation) at least annually"
+      ],
+      "controls": [
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
       ]
     },
     {
@@ -1675,6 +1930,15 @@
         "Infrastructure can be rebuilt from IaC; clean-room redeploy procedure documented",
         "Backup restore procedures documented (see A1.2, A1.3)",
         "Post-incident remediation is tracked to completion"
+      ],
+      "controls": [
+        "Security Incident Management",
+        "Disaster Recovery Planning",
+        "Credential Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification",
+        "Backup, Business Continuity & Disaster Recovery"
       ]
     },
     {
@@ -1768,11 +2032,19 @@
         "rubricChecks": 12
       },
       "manualFollowUps": [
-        "**Admins are not exempt** from protection, or bypass is logged and reviewed",
         "Production deploys occur only via the pipeline, with protected environment approvals; no manual production changes outside emergency procedure",
         "Changes are traceable: commit → PR → ticket → build → deployment, with logs retained",
         "Production credentials are not available on developer laptops or standing dev access; test and prod are separated",
         "Production data is not used in lower environments unless masked"
+      ],
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
       ]
     },
     {
@@ -1811,6 +2083,15 @@
         "Single points of failure identified and mitigated (multi-AZ, redundant components)",
         "Critical dependencies (cloud region, DNS, auth provider, payment provider) have documented fallback or degradation behavior",
         "Runbooks exist for regional/provider outages"
+      ],
+      "controls": [
+        "Disaster Recovery Planning",
+        "Risk Management",
+        "Resource Capacity Management"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Risk Management"
       ]
     },
     {
@@ -1852,6 +2133,13 @@
         "Data shared with each vendor is documented and minimized; data-flow diagrams cover vendors",
         "Webhook/callback authenticity verified; vendor SDKs pinned and scanned",
         "Vendor SOC reports, DPAs, security questionnaires, and annual reviews tracked"
+      ],
+      "controls": [
+        "Supplier Security",
+        "Asset Inventory"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk"
       ]
     },
     {
@@ -1910,6 +2198,14 @@
         "Monitoring and alerting on CPU, memory, disk, network, queue depth, DB connections, and storage growth",
         "Back-pressure, timeouts, connection-pool limits, and rate limiting protect from overload",
         "Capacity reviews occur on a defined cadence"
+      ],
+      "controls": [
+        "Resource Capacity Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Logging, Monitoring & Audit"
       ]
     },
     {
@@ -1977,6 +2273,14 @@
         "Availability objectives (SLOs/SLAs) defined and monitored, with alerting on breach",
         "Environment is reproducible from IaC",
         "Physical/environmental controls inherited from provider with reports reviewed"
+      ],
+      "controls": [
+        "Disaster Recovery Planning",
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Physical Security & Environmental"
       ]
     },
     {
@@ -2024,6 +2328,12 @@
       "manualFollowUps": [
         "DR/failover exercises performed, with results documented",
         "Failures during tests generate remediation tickets tracked to closure"
+      ],
+      "controls": [
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery"
       ]
     },
     {
@@ -2071,6 +2381,14 @@
       "manualFollowUps": [
         "Data definitions/dictionary exist for key entities and calculations",
         "Service specifications and SLAs/SLOs documented and communicated to users"
+      ],
+      "controls": [
+        "Secure SDLC Integration",
+        "Change management"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle",
+        "Change & Release Management"
       ]
     },
     {
@@ -2116,6 +2434,12 @@
         "Server-side validation (never client-only)",
         "Invalid input is rejected or quarantined with clear error handling; malformed records are not silently dropped",
         "Parameterized queries; safe file-upload validation (type, size, content)"
+      ],
+      "controls": [
+        "Secure SDLC Integration"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle"
       ]
     },
     {
@@ -2162,6 +2486,13 @@
         "Authorization is re-checked at processing time, not only at intake",
         "Business-rule and calculation logic covered by automated tests, including edge cases (rounding, currency, time zones)",
         "Job/pipeline monitoring alerts on failure, lag, and stuck work"
+      ],
+      "controls": [
+        "Secure SDLC Integration",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle"
       ]
     },
     {
@@ -2189,6 +2520,14 @@
         "Delivery confirmation/acknowledgment and retry for outbound messages and webhooks",
         "Output access is authorized and scoped to the recipient",
         "Delivery timeliness is measured against specification"
+      ],
+      "controls": [
+        "Secure SDLC Integration",
+        "Secure Data Transfer"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle",
+        "Information Sharing & Transfer"
       ],
       "owner": "Engineering lead"
     },
@@ -2230,6 +2569,15 @@
         "Data retention rules implemented, including soft-delete semantics where needed",
         "Safe, tested migrations; backups verified (see A1)",
         "Data-integrity tests or reconciliation queries run on a schedule"
+      ],
+      "controls": [
+        "Data Retention & Destruction",
+        "Security Logging",
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Data Classification & Handling"
       ]
     },
     {
@@ -2298,6 +2646,16 @@
         "Access to confidential data is least-privilege and audit-logged",
         "Protection against accidental deletion (versioning, deletion protection, backups)",
         "Confidentiality agreements with staff and vendors"
+      ],
+      "controls": [
+        "Information Classification",
+        "Encrypted Data at Rest",
+        "Encryption Key Management",
+        "Access Rights"
+      ],
+      "policies": [
+        "Data Classification & Handling",
+        "Encryption & Crypto Controls"
       ]
     },
     {
@@ -2347,6 +2705,12 @@
         "Backups age out per policy; cryptographic erasure used where feasible",
         "Deletion is verified and logged (job outputs, audit records)",
         "Media/device disposal records exist"
+      ],
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
       ]
     },
     {
@@ -2375,6 +2739,13 @@
         "Changes are communicated to affected users; prior versions are retained",
         "Notice matches actual behavior (compare against schema, analytics events, and third-party SDKs)"
       ],
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2402,6 +2773,12 @@
         "Cookie/tracker consent enforced (no non-essential trackers before consent); Global Privacy Control respected where required",
         "Re-consent triggered for new purposes or material changes",
         "Explicit consent for sensitive data and cross-border transfers where required"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
       ],
       "owner": "Privacy / legal"
     },
@@ -2432,6 +2809,14 @@
         "Third-party SDKs and analytics events reviewed for unintended PII collection",
         "Legal basis/purpose recorded where applicable"
       ],
+      "controls": [
+        "Data Privacy",
+        "Information Classification"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2460,6 +2845,15 @@
         "Enhanced protections: separate storage, stronger encryption, masking, tokenization, stricter access controls",
         "Age-gating/parental-consent logic where minors' data is possible"
       ],
+      "controls": [
+        "Data Privacy",
+        "Information Classification",
+        "Encrypted Data at Rest"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2486,6 +2880,13 @@
         "Purpose limitation enforced (purpose tags/access policies, not just documentation)",
         "No secondary use without basis (e.g., production PII in analytics, ML training, or marketing without consent)",
         "Data-use documented for pipelines and internal tools; internal access is justified and logged"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Data Classification & Handling"
       ],
       "owner": "Privacy / legal"
     },
@@ -2515,6 +2916,14 @@
         "Backup and log retention aligned with schedule",
         "Legal-hold process exists and is honored by purge jobs"
       ],
+      "controls": [
+        "Data Retention & Destruction",
+        "Data Privacy"
+      ],
+      "policies": [
+        "Retention & Secure Disposal",
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2542,6 +2951,12 @@
         "Deletion cascades to all stores (primary, replicas, caches, search, warehouse, vendors, backups on expiry)",
         "Deletion is verified and audit-logged",
         "P4.1–P4.3 operate as one connected data-lifecycle control (use → retain → dispose)"
+      ],
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
       ],
       "owner": "Privacy / legal"
     },
@@ -2572,6 +2987,13 @@
         "Requests are tracked with response-time SLA and audit logs",
         "Endpoint is rate-limited and abuse-resistant"
       ],
+      "controls": [
+        "Data Privacy",
+        "Access Rights"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2597,6 +3019,12 @@
         "Users can update or request correction of their data",
         "Corrections propagate to downstream systems and relevant third parties",
         "Change history/audit trail retained; denials documented with rationale"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
       ],
       "owner": "Privacy / legal"
     },
@@ -2626,6 +3054,16 @@
         "Payloads to vendors are minimized (only necessary fields; pseudonymized where possible)",
         "Cross-border transfer mechanisms documented where applicable"
       ],
+      "controls": [
+        "Data Privacy",
+        "Supplier Security",
+        "Secure Data Transfer"
+      ],
+      "policies": [
+        "Information Sharing & Transfer",
+        "Vendor & Third-Party Risk",
+        "Privacy & Data-Subject Rights"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2650,6 +3088,14 @@
       "manualFollowUps": [
         "Disclosure events are logged (subject, recipient, data categories, purpose, timestamp, authorization basis)",
         "Records are retained per policy and queryable by data subject"
+      ],
+      "controls": [
+        "Data Privacy",
+        "Security Logging"
+      ],
+      "policies": [
+        "Information Sharing & Transfer",
+        "Logging, Monitoring & Audit"
       ],
       "owner": "Privacy / legal"
     },
@@ -2678,6 +3124,13 @@
         "Detection exists for likely exposure paths (public buckets, misdirected exports, log leakage, DLP)",
         "Records link to the incident-response process (CC7.3–CC7.4)"
       ],
+      "controls": [
+        "Security Incident Management",
+        "Data Privacy"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2705,6 +3158,12 @@
         "Technical scopes limit vendor access to necessary data",
         "Vendor compliance is monitored (SOC reports, reviews)"
       ],
+      "controls": [
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2730,6 +3189,14 @@
       "manualFollowUps": [
         "Contracts specify notification timelines",
         "Intake channel/process exists for vendor breach notices and feeds incident response"
+      ],
+      "controls": [
+        "Supplier Security",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk",
+        "Incident Response & Breach Notification"
       ],
       "owner": "Privacy / legal"
     },
@@ -2759,6 +3226,13 @@
         "Contact data and notification tooling available for affected populations",
         "Notification decisions recorded"
       ],
+      "controls": [
+        "Security Incident Management",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "owner": "Privacy / legal"
     },
     {
@@ -2783,6 +3257,13 @@
       "manualFollowUps": [
         "DSAR output includes what is held (P5.1) and to whom it was disclosed (P6.2)",
         "Accounting can be produced within the response SLA"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Information Sharing & Transfer"
       ],
       "owner": "Privacy / legal"
     },
@@ -2810,6 +3291,12 @@
         "Users can review and update their own data",
         "Data-quality checks or stale-data flagging run on a schedule",
         "Irrelevant or unnecessary fields are removed"
+      ],
+      "controls": [
+        "Data Privacy"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights"
       ],
       "owner": "Privacy / legal"
     },
@@ -2839,6 +3326,14 @@
         "Privacy reviews (PIA/DPIA) are part of the SDLC for new features handling PI",
         "Periodic privacy compliance monitoring; deficiencies feed corrective actions (CC4.2)"
       ],
+      "controls": [
+        "Data Privacy",
+        "Regulatory Liaison"
+      ],
+      "policies": [
+        "Privacy & Data-Subject Rights",
+        "Compliance & Regulatory Monitoring"
+      ],
       "owner": "Privacy / legal"
     }
   ],
@@ -2862,6 +3357,18 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "2e38110b587137ff",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "on: pull_request          # untrusted code, no secrets, read-only token\npermissions:\n  contents: read"
     },
     {
@@ -2882,6 +3389,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "19b2fdd7597cd865",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "# .gitignore\n.env\n.env.*\n!.env.example"
     },
     {
@@ -2903,6 +3421,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "5abcffbf8a26b92f",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
@@ -2924,6 +3453,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "578d58a6ea3d3f78",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
@@ -2945,6 +3485,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "362be198fe5c6855",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
@@ -2966,6 +3517,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "bfc919acd0d513b7",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
@@ -2987,6 +3549,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "dbc842e483c9a34d",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "const claims = jwt.verify(token, publicKey, {\n  algorithms: ['RS256'], audience: 'api.example.com', issuer: 'https://auth.example.com/',\n});"
     },
     {
@@ -3008,6 +3581,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "abc0c452ae79b734",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "resource \"aws_db_instance\" \"main\" {\n  publicly_accessible    = false\n  db_subnet_group_name   = aws_db_subnet_group.private.name\n  vpc_security_group_ids = [aws_security_group.db.id]\n}"
     },
     {
@@ -3029,6 +3613,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "710b00c25be90b65",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "resource \"aws_s3_bucket_public_access_block\" \"uploads\" {\n  bucket                  = aws_s3_bucket.uploads.id\n  block_public_acls       = true\n  block_public_policy     = true\n  ignore_public_acls      = true\n  restrict_public_buckets = true\n}"
     },
     {
@@ -3050,6 +3643,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "53644da3b9edf3d1",
+      "controls": [
+        "Risk Management",
+        "Segregation of duties",
+        "Security Logging"
+      ],
+      "policies": [
+        "Risk Management",
+        "Access Control & Least Privilege",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "if (!session.user.roles.includes('admin')) return res.sendStatus(403);"
     },
     {
@@ -3071,6 +3674,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "84838710166e87cf",
+      "controls": [
+        "Risk Management",
+        "Segregation of duties",
+        "Security Logging"
+      ],
+      "policies": [
+        "Risk Management",
+        "Access Control & Least Privilege",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "if (!session.user.roles.includes('admin')) return res.sendStatus(403);"
     },
     {
@@ -3092,6 +3705,18 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "4d89b8195decb0b5",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "permissions:\n  id-token: write\n  contents: read\nsteps:\n  - uses: aws-actions/configure-aws-credentials@<sha>  # pin to a commit SHA\n    with:\n      role-to-assume: arn:aws:iam::123456789012:role/deploy\n      aws-region: us-east-1"
     },
     {
@@ -3113,6 +3738,18 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "534af5d23c19ca4f",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "- run: echo \"Title: $TITLE\"\n  env:\n    TITLE: ${{ github.event.issue.title }}"
     },
     {
@@ -3134,6 +3771,18 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "39cc5f9477bf680e",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "- run: ./deploy.sh\n  env:\n    DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}"
     },
     {
@@ -3155,6 +3804,18 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "be121b3e14b471ef",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "permissions:\n  contents: read\njobs:\n  release:\n    permissions:\n      contents: write\n      id-token: write"
     },
     {
@@ -3176,6 +3837,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "01a87178c156b224",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "// Before\nconst stripe = new Stripe('sk_live_...');\n\n// After\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);"
     },
     {
@@ -3197,6 +3869,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "9a99d0ea6971b2f7",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "data \"aws_iam_policy_document\" \"app\" {\n  statement {\n    actions   = [\"s3:GetObject\", \"s3:PutObject\"]\n    resources = [\"${aws_s3_bucket.uploads.arn}/*\"]\n  }\n}"
     },
     {
@@ -3218,6 +3901,17 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "512fd13149795fb3",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "import argon2 from 'argon2';\nconst hash = await argon2.hash(password, { type: argon2.argon2id });\nconst ok = await argon2.verify(hash, candidate);"
     },
     {
@@ -3239,6 +3933,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "4652b4f328c9728c",
+      "controls": [
+        "Access Rights",
+        "Personnel Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
+      ],
       "example": "const input = SignupSchema.parse(req.body); // { email, password, name } only\nawait User.create({ ...input, role: 'member' });"
     },
     {
@@ -3260,6 +3962,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "bded86cd02c319b9",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "app.use(cors({ origin: ['https://app.example.com'], credentials: true }));"
     },
     {
@@ -3281,6 +3992,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "665117d0ae33f77c",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "# Python: argument list, no shell\nsubprocess.run([\"convert\", src, dst], check=True)\n\n// Node: execFile with arguments, no shell\nexecFile('convert', [src, dst]);"
     },
     {
@@ -3302,6 +4022,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "ffbea44c97b0072a",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "# Python: argument list, no shell\nsubprocess.run([\"convert\", src, dst], check=True)\n\n// Node: execFile with arguments, no shell\nexecFile('convert', [src, dst]);"
     },
     {
@@ -3323,6 +4052,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "a018d583cbc96df7",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "ingress {\n  from_port       = 5432\n  to_port         = 5432\n  protocol        = \"tcp\"\n  security_groups = [aws_security_group.app.id]  # not 0.0.0.0/0\n}"
     },
     {
@@ -3344,6 +4082,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "1a0881ed5c779226",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "// Node (pg)\nawait db.query('SELECT * FROM users WHERE id = $1', [id]);\n\n# Python (psycopg)\ncur.execute(\"SELECT * FROM users WHERE id = %s\", (user_id,))"
     },
     {
@@ -3365,6 +4112,14 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "a4a096edf2831697",
+      "controls": [
+        "Secure Data Transfer",
+        "Network Security"
+      ],
+      "policies": [
+        "Encryption & Crypto Controls",
+        "Information Sharing & Transfer"
+      ],
       "example": "// Node: trust a private CA instead of disabling checks\nhttps.request(url, { ca: fs.readFileSync('certs/internal-ca.pem') });\n\n# Python\nrequests.get(url, verify=\"certs/internal-ca.pem\")"
     },
     {
@@ -3386,6 +4141,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "731d8c5f1ef22bf4",
+      "controls": [
+        "Secure Data Transfer",
+        "Network Security"
+      ],
+      "policies": [
+        "Encryption & Crypto Controls",
+        "Information Sharing & Transfer"
+      ],
       "example": "tls.createServer({ minVersion: 'TLSv1.3', key, cert });\nconst cipher = crypto.createCipheriv('aes-256-gcm', key, iv);"
     },
     {
@@ -3407,6 +4170,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "bddf14bf0738a3f6",
+      "controls": [
+        "Secure Data Transfer",
+        "Network Security"
+      ],
+      "policies": [
+        "Encryption & Crypto Controls",
+        "Information Sharing & Transfer"
+      ],
       "example": "const event = stripe.webhooks.constructEvent(rawBody, req.headers['stripe-signature'], process.env.STRIPE_WEBHOOK_SECRET);"
     },
     {
@@ -3428,6 +4199,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "309d1158cf9e78ea",
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "curl -fsSLo install.sh https://example.com/install.sh\necho \"<sha256>  install.sh\" | sha256sum -c -\nsh install.sh"
     },
     {
@@ -3448,6 +4230,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "8f9488b34667e010",
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "pnpm install && git add pnpm-lock.yaml       # Node\nuv lock && git add uv.lock                    # Python\npip-compile --generate-hashes requirements.in # pip"
     },
     {
@@ -3469,6 +4262,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "eb77d5808f5e2c89",
+      "controls": [
+        "Security Monitoring & Detection",
+        "Security Logging"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit"
+      ],
       "example": "const log = pino({ redact: ['req.headers.authorization', 'req.body.password'] });\nlog.info({ userId, outcome: 'login_failed' });"
     },
     {
@@ -3488,6 +4288,12 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "f3e66946d186a412",
+      "controls": [
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "example": "## Roles\nIncident lead: on-call engineer. Comms: head of support.\n## Severity\nSEV1: data exposure or full outage. SEV2: partial outage. SEV3: minor.\n## Escalation\nSEV1 pages the CTO within 15 minutes.\n## Communication\nStatus page within 30 minutes; customers notified within 72 hours of a confirmed breach."
     },
     {
@@ -3507,6 +4313,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "39ca38eb997ecb43",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
       "example": "on: pull_request\npermissions: { contents: read }\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>\n      - run: npm ci && npm run lint && npm test"
     },
     {
@@ -3526,6 +4341,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "2a1bb17d45e5f72a",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
       "example": "terraform {\n  backend \"s3\" {\n    bucket       = \"acme-terraform-state\"\n    key          = \"prod/terraform.tfstate\"\n    region       = \"us-east-1\"\n    encrypt      = true\n    use_lockfile = true\n  }\n}"
     },
     {
@@ -3547,6 +4371,14 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "ccf9494442fb333a",
+      "controls": [
+        "Disaster Recovery Planning",
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Physical Security & Environmental"
+      ],
       "example": "resource \"aws_db_instance\" \"main\" {\n  backup_retention_period = 14\n}\nresource \"aws_dynamodb_table\" \"events\" {\n  point_in_time_recovery { enabled = true }\n}"
     },
     {
@@ -3568,6 +4400,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "8c477cd12be1c9a3",
+      "controls": [
+        "Information Classification",
+        "Encrypted Data at Rest",
+        "Encryption Key Management",
+        "Access Rights"
+      ],
+      "policies": [
+        "Data Classification & Handling",
+        "Encryption & Crypto Controls"
+      ],
       "example": "resource \"aws_db_instance\" \"main\" {\n  storage_encrypted = true\n  kms_key_id        = aws_kms_key.data.arn\n}"
     },
     {
@@ -3587,6 +4429,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "3c1304ef0ce0a8d3",
+      "controls": [
+        "Organization Structure & Reporting Lines",
+        "Security Governance Roles",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Information Security & Privacy Governance",
+        "Access Control & Least Privilege"
+      ],
       "example": "# .github/CODEOWNERS\n*                 @your-org/engineering\n/src/auth/        @your-org/security\n/infra/           @your-org/platform"
     },
     {
@@ -3606,6 +4457,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "9f8fe6464cbd7a34",
+      "controls": [
+        "Regulatory Liaison",
+        "Security Incident Management",
+        "Data Privacy",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification",
+        "Privacy & Data-Subject Rights",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "# Security policy\n\n## Reporting a vulnerability\nEmail security@example.com or use GitHub private vulnerability reporting.\nWe acknowledge reports within 2 business days and aim to fix Critical issues within 7 days."
     },
     {
@@ -3625,6 +4487,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "77e4d97527a22b7e",
+      "controls": [
+        "Risk Management",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Risk Management",
+        "Vulnerability & Patch Management"
+      ],
       "example": "| Risk | Likelihood | Impact | Owner | Treatment |\n|---|---|---|---|---|\n| Leaked deploy key | Low | High | @platform | Mitigate: OIDC, no stored keys |"
     },
     {
@@ -3644,6 +4514,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "6ae91c3bc21beb3a",
+      "controls": [
+        "Risk Management",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Risk Management",
+        "Vulnerability & Patch Management"
+      ],
       "example": "# Threat model\n## Assets\nCustomer PII in Postgres; API keys for payment providers.\n## Trust boundaries\nPublic API, admin console, webhook endpoint.\n## Threats and mitigations\n| Threat | Mitigation |\n|---|---|\n| Forged webhook | Signature verification |"
     },
     {
@@ -3663,6 +4541,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "8b2c446528141102",
+      "controls": [
+        "Vulnerability Management",
+        "Security Monitoring & Detection",
+        "Policy Compliance",
+        "Access Rights"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Compliance & Regulatory Monitoring"
+      ],
       "example": "- run: trivy config --exit-code 1 --severity HIGH,CRITICAL ."
     },
     {
@@ -3682,6 +4570,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "e0d61d296e682e2d",
+      "controls": [
+        "Vulnerability Management",
+        "Security Monitoring & Detection",
+        "Policy Compliance",
+        "Access Rights"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Compliance & Regulatory Monitoring"
+      ],
       "example": "- uses: github/codeql-action/init@<sha>  # pin to a commit SHA\n  with: { languages: javascript-typescript }\n- uses: github/codeql-action/analyze@<sha>"
     },
     {
@@ -3703,6 +4601,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "1a04e51ee5fb35fd",
+      "controls": [
+        "Vulnerability Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Policy Management & Exception Handling"
+      ],
       "example": "- run: trivy fs --exit-code 1 --severity CRITICAL,HIGH ."
     },
     {
@@ -3722,6 +4628,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "851e178537973934",
+      "controls": [
+        "Vulnerability Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Policy Management & Exception Handling"
+      ],
       "example": "| Severity | Fix within |\n|---|---|\n| Critical | 7 days |\n| High | 30 days |\nOverdue findings are escalated to the engineering lead; exceptions need an approver and expiry."
     },
     {
@@ -3743,6 +4657,14 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "1ccc5bcdef082ee4",
+      "controls": [
+        "Vulnerability Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Policy Management & Exception Handling"
+      ],
       "example": "subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)"
     },
     {
@@ -3764,6 +4686,14 @@
       "status": "open",
       "redFlag": true,
       "fingerprint": "17afa8e513c40558",
+      "controls": [
+        "Vulnerability Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Policy Management & Exception Handling"
+      ],
       "example": "subprocess.run(cmd, shell=True)  # nosec B602: cmd is a fixed literal, no user input (SEC-41)"
     },
     {
@@ -3785,6 +4715,18 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "b286c79acb36cf93",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2"
     },
     {
@@ -3806,6 +4748,18 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "9b80fea4d7c398f9",
+      "controls": [
+        "Configuration & Patch Management",
+        "Secure SDLC Integration",
+        "Credential Management",
+        "Endpoint Security",
+        "Endpoint Protection"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Secure Software Development Lifecycle",
+        "Authentication & Password"
+      ],
       "example": "jobs:\n  deploy:\n    environment: production\n    runs-on: ubuntu-latest"
     },
     {
@@ -3825,6 +4779,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "f4fd96f0ec240f17",
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling"
+      ],
       "example": "docs/runbooks/\n  access.md     # onboarding, offboarding, access reviews\n  release.md    # deployment and rollback\n  incidents.md  # incident response\n  secrets.md    # key rotation"
     },
     {
@@ -3846,6 +4807,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "867f41806c1540c5",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "app.use(session({\n  cookie: { httpOnly: true, secure: true, sameSite: 'lax', maxAge: 8 * 60 * 60 * 1000 },\n}));"
     },
     {
@@ -3867,6 +4839,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "f62b4c3dcce53a1e",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "const claims = jwt.verify(token, publicKey, {\n  algorithms: ['RS256'], audience: 'api.example.com', issuer: 'https://auth.example.com/',\n});"
     },
     {
@@ -3886,6 +4869,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "690d9982717aee72",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "# .github/workflows/secrets.yml\non: [push, pull_request]\npermissions: { contents: read }\njobs:\n  gitleaks:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@<sha>  # pin to a commit SHA\n        with: { fetch-depth: 0 }\n      - uses: gitleaks/gitleaks-action@<sha>"
     },
     {
@@ -3905,6 +4899,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "8d143efb3eb76cc7",
+      "controls": [
+        "Access Rights",
+        "Personnel Security",
+        "Credential Management"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
+      ],
       "example": "## Offboarding (within 24 hours)\n- [ ] Disable SSO account (cascades to apps via SCIM)\n- [ ] Remove from GitHub org and npm org\n- [ ] Revoke personal cloud credentials and tokens"
     },
     {
@@ -3926,6 +4929,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "8418b171847a6f9f",
+      "controls": [
+        "Access Rights",
+        "Personnel Security",
+        "Credential Management"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Background Screening & On/Off-boarding"
+      ],
       "example": "jwt.sign(claims, key, { algorithm: 'RS256', expiresIn: '15m' });"
     },
     {
@@ -3946,6 +4958,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "b1b961b9dd42774a",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "import helmet from 'helmet';\napp.use(helmet({ hsts: { maxAge: 31536000, includeSubDomains: true } }));"
     },
     {
@@ -3967,6 +4988,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "252663a1cc6ca858",
+      "controls": [
+        "Network Security",
+        "Vulnerability Management",
+        "Remote-Work Security"
+      ],
+      "policies": [
+        "Secure Configuration & Hardening",
+        "Remote Access & BYOD"
+      ],
       "example": "<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />"
     },
     {
@@ -3988,6 +5018,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "058f7cfbcedb5e93",
+      "controls": [
+        "Secure Data Transfer",
+        "Network Security"
+      ],
+      "policies": [
+        "Encryption & Crypto Controls",
+        "Information Sharing & Transfer"
+      ],
       "example": "const API_URL = process.env.API_URL ?? 'https://api.example.com';"
     },
     {
@@ -4009,6 +5047,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "a190bb6b318d0b0c",
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "FROM node:22.11.0-bookworm-slim@sha256:<digest>"
     },
     {
@@ -4028,6 +5077,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "1f84927c8fe3b5df",
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "- uses: aquasecurity/trivy-action@<sha>  # pin to a commit SHA\n  with: { image-ref: 'app:${{ github.sha }}', severity: 'CRITICAL,HIGH', exit-code: '1', ignore-unfixed: true }"
     },
     {
@@ -4049,6 +5109,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "64cedb67b78b3910",
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "RUN npm ci --omit=dev\n# or\nRUN pnpm install --frozen-lockfile --prod"
     },
     {
@@ -4070,6 +5141,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "12cd005a083794da",
+      "controls": [
+        "Vulnerability Management",
+        "Configuration & Patch Management",
+        "Security Logging"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Configuration & Hardening",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "RUN addgroup --system app && adduser --system --ingroup app app\nUSER app"
     },
     {
@@ -4089,6 +5170,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "031b1135912c21cc",
+      "controls": [
+        "Vulnerability Management",
+        "Configuration & Patch Management",
+        "Security Logging"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Configuration & Hardening",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }"
     },
     {
@@ -4108,6 +5199,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "a79d3b3ef70c6b25",
+      "controls": [
+        "Security Monitoring & Detection",
+        "Security Logging"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit"
+      ],
       "example": "- alert: LoginFailureSpike\n  expr: sum(rate(auth_login_failures_total[5m])) > 20\n  labels: { severity: page }"
     },
     {
@@ -4127,6 +5225,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "3dc942ce851cbe84",
+      "controls": [
+        "Security Incident Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "example": "| Severity | Criteria | Example |\n|---|---|---|\n| Critical | Confirmed data exposure or active exploitation | Leaked production key used by a third party |\nTriage outcome (true/false positive, incident yes/no) is recorded on the ticket."
     },
     {
@@ -4146,6 +5251,12 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "2ed0b4d82201c82c",
+      "controls": [
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification"
+      ],
       "example": "## Credential leak\n1. Revoke the credential at the provider.\n2. Search logs for use since the leak.\n3. Rotate dependent secrets and record the incident."
     },
     {
@@ -4165,6 +5276,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "1cd4f93fec683e49",
+      "controls": [
+        "Security Incident Management",
+        "Disaster Recovery Planning",
+        "Credential Management"
+      ],
+      "policies": [
+        "Incident Response & Breach Notification",
+        "Backup, Business Continuity & Disaster Recovery"
+      ],
       "example": "## Rotating secrets\n| Secret | Where | How | When |\n|---|---|---|---|\n| Database password | AWS Secrets Manager | Automatic rotation Lambda | Every 30 days |"
     },
     {
@@ -4184,6 +5304,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "96725e2faf218099",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
       "example": "/src/auth/            @your-org/security\n/infra/               @your-org/platform\n/.github/workflows/   @your-org/platform"
     },
     {
@@ -4204,6 +5333,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "65588b3df01f4147",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
       "example": "-- 20261022_add_status.down.sql\nALTER TABLE orders DROP COLUMN status;"
     },
     {
@@ -4223,6 +5361,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "07d989501a867971",
+      "controls": [
+        "Disaster Recovery Planning",
+        "Risk Management",
+        "Resource Capacity Management"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Risk Management"
+      ],
       "example": "## Critical dependencies\n| Dependency | If unavailable |\n|---|---|\n| Auth provider | Existing sessions continue; new logins fail with a status banner |\n## Recovery\nRebuild from IaC in the secondary region; restore the latest snapshot."
     },
     {
@@ -4242,6 +5389,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "d4dbc3c2328936e8",
+      "controls": [
+        "Supplier Security",
+        "Asset Inventory"
+      ],
+      "policies": [
+        "Vendor & Third-Party Risk"
+      ],
       "example": "| Service | Purpose | Data shared | Owner |\n|---|---|---|---|\n| Stripe | Payments | Name, email, card token | @billing |"
     },
     {
@@ -4262,6 +5416,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "8148fd6d6bd46101",
+      "controls": [
+        "Resource Capacity Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "resources:\n  requests: { cpu: 100m, memory: 128Mi }\n  limits:   { cpu: 500m, memory: 512Mi }"
     },
     {
@@ -4283,6 +5445,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "bec52221fd33da0d",
+      "controls": [
+        "Disaster Recovery Planning",
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Physical Security & Environmental"
+      ],
       "example": "resource \"aws_db_instance\" \"main\" {\n  deletion_protection = true\n}"
     },
     {
@@ -4303,6 +5473,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "5555ec23a1e53ab8",
+      "controls": [
+        "Disaster Recovery Planning",
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Physical Security & Environmental"
+      ],
       "example": "readinessProbe: { httpGet: { path: /healthz, port: 8080 }, periodSeconds: 10 }\nlivenessProbe:  { httpGet: { path: /healthz, port: 8080 }, initialDelaySeconds: 15 }"
     },
     {
@@ -4324,6 +5502,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "ab5e59a7b452607b",
+      "controls": [
+        "Disaster Recovery Planning",
+        "Physical Access Control"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Physical Security & Environmental"
+      ],
       "example": "resource \"aws_db_instance\" \"main\" {\n  multi_az = true\n}"
     },
     {
@@ -4343,6 +5529,12 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "60dd5b2951849fe6",
+      "controls": [
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery"
+      ],
       "example": "## Restore test log\n| Date | System | Result | Time | Follow-up |\n|---|---|---|---|---|\n| 2026-09-30 | Postgres | Pass | 42 min | none |"
     },
     {
@@ -4362,6 +5554,12 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "6098614b792829db",
+      "controls": [
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery"
+      ],
       "example": "| System | RTO | RPO |\n|---|---|---|\n| API | 1 hour | 15 minutes |"
     },
     {
@@ -4382,6 +5580,12 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "ad6f9b2c6e653388",
+      "controls": [
+        "Secure SDLC Integration"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle"
+      ],
       "example": "const Order = z.object({ sku: z.string().min(1), quantity: z.number().int().positive().max(100) });\nconst order = Order.parse(req.body);"
     },
     {
@@ -4401,6 +5605,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "ee49649f32de1b4d",
+      "controls": [
+        "Secure SDLC Integration",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle"
+      ],
       "example": "await queue.add('send-invoice', data, { attempts: 5, backoff: { type: 'exponential', delay: 1000 } });"
     },
     {
@@ -4421,6 +5632,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "97da2166fc43d3c7",
+      "controls": [
+        "Data Retention & Destruction",
+        "Security Logging",
+        "Disaster Recovery Planning"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Data Classification & Handling"
+      ],
       "example": "CREATE TABLE orders (\n  id uuid PRIMARY KEY,\n  customer_id uuid NOT NULL REFERENCES customers(id),\n  total_cents integer NOT NULL CHECK (total_cents >= 0)\n);"
     },
     {
@@ -4440,6 +5660,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "d88ba9bf23694c7f",
+      "controls": [
+        "Information Classification",
+        "Encrypted Data at Rest",
+        "Encryption Key Management",
+        "Access Rights"
+      ],
+      "policies": [
+        "Data Classification & Handling",
+        "Encryption & Crypto Controls"
+      ],
       "example": "| Level | Examples | Handling |\n|---|---|---|\n| Restricted | Card data, credentials | Encrypted fields, no logs, no lower environments |\n| Confidential | Customer PII | Encrypted at rest, access logged |"
     },
     {
@@ -4460,6 +5690,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "64db513299b3c82f",
+      "controls": [
+        "Information Classification",
+        "Encrypted Data at Rest",
+        "Encryption Key Management",
+        "Access Rights"
+      ],
+      "policies": [
+        "Data Classification & Handling",
+        "Encryption & Crypto Controls"
+      ],
       "example": "{ \"email\": \"ada@example.com\", \"card\": \"4242424242424242\", \"ssn\": \"000-00-0000\" }"
     },
     {
@@ -4479,6 +5719,12 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "838be99c20f0bf44",
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
+      ],
       "example": "| Data | Retention | Deletion |\n|---|---|---|\n| Application logs | 90 days hot, 12 months archive | Bucket lifecycle rule |\n| Closed accounts | 30 days | Nightly purge job |"
     },
     {
@@ -4498,6 +5744,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "2572b71906218fe6",
+      "controls": [
+        "Asset Inventory",
+        "Security Monitoring & Detection",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit",
+        "Vulnerability & Patch Management"
+      ],
       "example": "import * as Sentry from '@sentry/node';\nSentry.init({ dsn: process.env.SENTRY_DSN, tracesSampleRate: 0.1 });"
     },
     {
@@ -4517,6 +5772,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "83f7ff6461ca3144",
+      "controls": [
+        "Asset Inventory",
+        "Security Monitoring & Detection",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Logging, Monitoring & Audit",
+        "Vulnerability & Patch Management"
+      ],
       "example": "- uses: anchore/sbom-action@<sha>  # pin to a commit SHA\n  with: { format: cyclonedx-json, output-file: sbom.cdx.json }"
     },
     {
@@ -4536,6 +5800,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "d0279ff1b06f9a97",
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling",
+        "Security & Privacy Awareness Training"
+      ],
       "example": "## Security impact\n- [ ] Touches auth, permissions, secrets or personal data\n- [ ] Adds a dependency or third-party service\n- [ ] Changes infrastructure, network or IAM"
     },
     {
@@ -4556,6 +5829,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "c5a9d1a2bcd044ac",
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance",
+        "Security Incident Management"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling",
+        "Security & Privacy Awareness Training"
+      ],
       "example": "## Security\nSee [SECURITY.md](SECURITY.md) to report a vulnerability, and [docs/security](docs/security) for policies and runbooks."
     },
     {
@@ -4575,6 +5857,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "3fc01bac0142f0ab",
+      "controls": [
+        "Risk Management",
+        "Vulnerability Management"
+      ],
+      "policies": [
+        "Risk Management",
+        "Vulnerability & Patch Management"
+      ],
       "example": "# 0003. Use OIDC for CI cloud access\n## Status\nAccepted\n## Decision\nCI assumes a deploy role through OIDC.\n## Security considerations\nNo long-lived keys in CI; role scoped to the deploy bucket."
     },
     {
@@ -4594,6 +5884,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "22c479d23700fd83",
+      "controls": [
+        "Change management",
+        "Risk Management",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Risk Management"
+      ],
       "example": "/package.json   @your-org/platform\n/infra/         @your-org/platform"
     },
     {
@@ -4613,6 +5912,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "3a02c1fb6200cd9a",
+      "controls": [
+        "Vulnerability Management",
+        "Security Monitoring & Detection",
+        "Policy Compliance",
+        "Access Rights"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Compliance & Regulatory Monitoring"
+      ],
       "example": "on:\n  pull_request:\n  schedule:\n    - cron: '17 6 * * 1'  # weekly"
     },
     {
@@ -4632,6 +5941,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "7a0903a4b8ad240f",
+      "controls": [
+        "Risk Management",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Risk Management",
+        "Information Security & Privacy Governance"
+      ],
       "example": "| Risk | Controls |\n|---|---|\n| Malicious dependency | Lockfiles, minimumReleaseAge, dependency review |"
     },
     {
@@ -4652,6 +5969,13 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "5ef979bfa230d62f",
+      "controls": [
+        "Standard Operating Procedures (SOPs)",
+        "Policy Compliance"
+      ],
+      "policies": [
+        "Policy Management & Exception Handling"
+      ],
       "example": "Owner: @security-lead\nLast reviewed: 2026-10-01"
     },
     {
@@ -4672,6 +5996,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "c3119a20058b5edf",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "# .gitignore\n.env\n.env.*\n!.env.example"
     },
     {
@@ -4693,6 +6028,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "fe0aa376e16bf539",
+      "controls": [
+        "Access Rights",
+        "Credential Management",
+        "Encryption Key Management",
+        "Network Security"
+      ],
+      "policies": [
+        "Access Control & Least Privilege",
+        "Authentication & Password",
+        "Encryption & Crypto Controls"
+      ],
       "example": "// After\nconst client = new Client({ password: process.env.SMTP_PASSWORD });"
     },
     {
@@ -4714,6 +6060,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "6cfd9e32872f265f",
+      "controls": [
+        "Data Retention & Destruction",
+        "Asset Inventory",
+        "Encryption Key Management"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
+      ],
       "example": "resource \"aws_kms_key\" \"data\" {\n  enable_key_rotation     = true\n  deletion_window_in_days = 30\n}\nresource \"aws_db_instance\" \"main\" {\n  kms_key_id = aws_kms_key.data.arn\n}"
     },
     {
@@ -4733,6 +6087,17 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "2953e1da21b438da",
+      "controls": [
+        "Configuration & Patch Management",
+        "Endpoint Protection",
+        "Secure SDLC Integration",
+        "Supplier Security"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Software Development Lifecycle",
+        "Vendor & Third-Party Risk"
+      ],
       "example": "# .github/dependabot.yml\nversion: 2\nupdates:\n  - package-ecosystem: npm\n    directory: /\n    schedule: { interval: weekly }\n  - package-ecosystem: github-actions\n    directory: /\n    schedule: { interval: weekly }"
     },
     {
@@ -4752,6 +6117,16 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "a9d8df233ec64892",
+      "controls": [
+        "Vulnerability Management",
+        "Configuration & Patch Management",
+        "Security Logging"
+      ],
+      "policies": [
+        "Vulnerability & Patch Management",
+        "Secure Configuration & Hardening",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "on: { schedule: [{ cron: '0 6 * * *' }] }\n...\n      - run: terraform plan -detailed-exitcode -lock=false"
     },
     {
@@ -4771,6 +6146,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "add910b5218ba2ce",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
       "example": "## Emergency changes\nUse only for active incidents. An on-call engineer may merge with one approval from the incident commander.\nA retroactive review PR is opened within 2 business days and linked from the incident ticket."
     },
     {
@@ -4790,6 +6174,15 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "d97d88987bf8548d",
+      "controls": [
+        "Change management",
+        "Secure SDLC Integration",
+        "Segregation of duties"
+      ],
+      "policies": [
+        "Change & Release Management",
+        "Secure Software Development Lifecycle"
+      ],
       "example": "## Rolling back a release\n1. Find the last good deployment in the Deployments tab.\n2. Promote it: `vercel promote <deployment-url>` (or re-run the deploy workflow for the previous tag).\n3. Confirm health checks and error rates recover; post in #incidents."
     },
     {
@@ -4809,6 +6202,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "3704b993535764be",
+      "controls": [
+        "Resource Capacity Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "apiVersion: autoscaling/v2\nkind: HorizontalPodAutoscaler\nspec: { minReplicas: 2, maxReplicas: 10, metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } } }] }"
     },
     {
@@ -4828,6 +6229,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "6b97411e28ba84a2",
+      "controls": [
+        "Resource Capacity Management",
+        "Security Monitoring & Detection"
+      ],
+      "policies": [
+        "Backup, Business Continuity & Disaster Recovery",
+        "Logging, Monitoring & Audit"
+      ],
       "example": "import http from 'k6/http';\nexport const options = { vus: 50, duration: '2m' };\nexport default () => http.get(`${__ENV.BASE_URL}/health`);"
     },
     {
@@ -4847,6 +6256,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "403ea7999f4ef693",
+      "controls": [
+        "Secure SDLC Integration",
+        "Change management"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle",
+        "Change & Release Management"
+      ],
       "example": "openapi: 3.1.0\ninfo: { title: Orders API, version: 2.3.0 }\npaths: { /v2/orders: { get: { ... } } }"
     },
     {
@@ -4866,6 +6283,14 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "d11928f11f6871b8",
+      "controls": [
+        "Secure SDLC Integration",
+        "Change management"
+      ],
+      "policies": [
+        "Secure Software Development Lifecycle",
+        "Change & Release Management"
+      ],
       "example": "## 2.0.0\n### Breaking\n- `/v1/orders` removed; use `/v2/orders`."
     },
     {
@@ -4887,9 +6312,19 @@
       "status": "open",
       "redFlag": false,
       "fingerprint": "ff79c698e87e8c4a",
+      "controls": [
+        "Data Retention & Destruction"
+      ],
+      "policies": [
+        "Retention & Secure Disposal"
+      ],
       "example": "resource \"aws_s3_bucket_lifecycle_configuration\" \"exports\" {\n  bucket = aws_s3_bucket.exports.id\n  rule {\n    id     = \"expire-exports\"\n    status = \"Enabled\"\n    expiration { days = 30 }\n  }\n}"
     }
   ],
+  "mapping": {
+    "name": "threesock default catalogue",
+    "source": "default"
+  },
   "coverage": {
     "rulesRun": 98,
     "rulesErrored": [],

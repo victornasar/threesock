@@ -1,0 +1,337 @@
+# threesock control and policy mapping.
+#
+# A self-contained file: the catalogue of internal controls and policies, and the
+# SOC 2 criteria each one supports. Replace it with your own catalogue by pointing
+# `mappings:` in threesock.yaml at a file with the same shape.
+#
+# The default catalogue is the control and policy list in docs/rubric/COMPLIANCE_QUESTIONS.txt.
+# The mapping is a starting point drafted for threesock; review it against your own program.
+
+version: 1
+name: threesock default catalogue
+
+controls:
+  - 'Acceptable Use'
+  - 'Access Rights'
+  - 'Asset Inventory'
+  - 'Change management'
+  - 'Configuration & Patch Management'
+  - 'Credential Management'
+  - 'Data Privacy'
+  - 'Data Retention & Destruction'
+  - 'Disaster Recovery Planning'
+  - 'Disciplinary process'
+  - 'Encrypted Data at Rest'
+  - 'Encryption Key Management'
+  - 'Endpoint Protection'
+  - 'Endpoint Security'
+  - 'Information Classification'
+  - 'Management Security Accountability'
+  - 'Network Security'
+  - 'Organization Structure & Reporting Lines'
+  - 'Personnel Security'
+  - 'Physical Access Control'
+  - 'Policy Compliance'
+  - 'Regulatory Liaison'
+  - 'Remote-Work Security'
+  - 'Resource Capacity Management'
+  - 'Risk Management'
+  - 'Secure Data Transfer'
+  - 'Secure SDLC Integration'
+  - 'Security Governance Roles'
+  - 'Security Incident Management'
+  - 'Security Logging'
+  - 'Security Monitoring & Detection'
+  - 'Segregation of duties'
+  - 'Standard Operating Procedures (SOPs)'
+  - 'Supplier Security'
+  - 'Vulnerability Management'
+
+policies:
+  - 'Compliance & Regulatory Monitoring'
+  - 'Secure Configuration & Hardening'
+  - 'Information Security & Privacy Governance'
+  - 'Authentication & Password'
+  - 'Access Control & Least Privilege'
+  - 'Acceptable Use & Workstation Security'
+  - 'Incident Response & Breach Notification'
+  - 'Logging, Monitoring & Audit'
+  - 'Vendor & Third-Party Risk'
+  - 'Secure Software Development Lifecycle'
+  - 'Encryption & Crypto Controls'
+  - 'Retention & Secure Disposal'
+  - 'Background Screening & On/Off-boarding'
+  - 'Physical Security & Environmental'
+  - 'Policy Management & Exception Handling'
+  - 'Sanctions & Disciplinary'
+  - 'Information Sharing & Transfer'
+  - 'Backup, Business Continuity & Disaster Recovery'
+  - 'Change & Release Management'
+  - 'Remote Access & BYOD'
+  - 'Data Classification & Handling'
+  - 'Security & Privacy Awareness Training'
+  - 'Vulnerability & Patch Management'
+  - 'Privacy & Data-Subject Rights'
+  - 'Risk Management'
+
+criteria:
+  CC1.1:
+    controls: ['Personnel Security', 'Disciplinary process', 'Policy Compliance', 'Acceptable Use']
+    policies:
+      [
+        'Sanctions & Disciplinary',
+        'Background Screening & On/Off-boarding',
+        'Acceptable Use & Workstation Security',
+        'Information Security & Privacy Governance',
+      ]
+  CC1.2:
+    controls: ['Management Security Accountability', 'Security Governance Roles']
+    policies: ['Information Security & Privacy Governance', 'Compliance & Regulatory Monitoring']
+  CC1.3:
+    controls:
+      [
+        'Organization Structure & Reporting Lines',
+        'Security Governance Roles',
+        'Segregation of duties',
+      ]
+    policies: ['Information Security & Privacy Governance', 'Access Control & Least Privilege']
+  CC1.4:
+    controls: ['Personnel Security', 'Secure SDLC Integration']
+    policies:
+      [
+        'Security & Privacy Awareness Training',
+        'Background Screening & On/Off-boarding',
+        'Secure Software Development Lifecycle',
+      ]
+  CC1.5:
+    controls: ['Management Security Accountability', 'Disciplinary process', 'Change management']
+    policies: ['Sanctions & Disciplinary', 'Information Security & Privacy Governance']
+  CC2.1:
+    controls: ['Asset Inventory', 'Security Monitoring & Detection', 'Vulnerability Management']
+    policies: ['Logging, Monitoring & Audit', 'Vulnerability & Patch Management']
+  CC2.2:
+    controls:
+      ['Standard Operating Procedures (SOPs)', 'Policy Compliance', 'Security Incident Management']
+    policies: ['Policy Management & Exception Handling', 'Security & Privacy Awareness Training']
+  CC2.3:
+    controls:
+      ['Regulatory Liaison', 'Security Incident Management', 'Data Privacy', 'Supplier Security']
+    policies:
+      [
+        'Incident Response & Breach Notification',
+        'Privacy & Data-Subject Rights',
+        'Vendor & Third-Party Risk',
+      ]
+  CC3.1:
+    controls: ['Risk Management', 'Management Security Accountability']
+    policies: ['Risk Management', 'Information Security & Privacy Governance']
+  CC3.2:
+    controls: ['Risk Management', 'Vulnerability Management']
+    policies: ['Risk Management', 'Vulnerability & Patch Management']
+  CC3.3:
+    controls: ['Risk Management', 'Segregation of duties', 'Security Logging']
+    policies: ['Risk Management', 'Access Control & Least Privilege', 'Logging, Monitoring & Audit']
+  CC3.4:
+    controls: ['Change management', 'Risk Management', 'Supplier Security']
+    policies: ['Change & Release Management', 'Risk Management']
+  CC4.1:
+    controls:
+      [
+        'Vulnerability Management',
+        'Security Monitoring & Detection',
+        'Policy Compliance',
+        'Access Rights',
+      ]
+    policies: ['Vulnerability & Patch Management', 'Compliance & Regulatory Monitoring']
+  CC4.2:
+    controls: ['Vulnerability Management', 'Policy Compliance']
+    policies: ['Vulnerability & Patch Management', 'Policy Management & Exception Handling']
+  CC5.1:
+    controls: ['Risk Management', 'Policy Compliance']
+    policies: ['Risk Management', 'Information Security & Privacy Governance']
+  CC5.2:
+    controls:
+      [
+        'Configuration & Patch Management',
+        'Secure SDLC Integration',
+        'Credential Management',
+        'Endpoint Security',
+        'Endpoint Protection',
+      ]
+    policies:
+      [
+        'Secure Configuration & Hardening',
+        'Secure Software Development Lifecycle',
+        'Authentication & Password',
+      ]
+  CC5.3:
+    controls: ['Standard Operating Procedures (SOPs)', 'Policy Compliance']
+    policies: ['Policy Management & Exception Handling']
+  CC6.1:
+    controls:
+      ['Access Rights', 'Credential Management', 'Encryption Key Management', 'Network Security']
+    policies:
+      [
+        'Access Control & Least Privilege',
+        'Authentication & Password',
+        'Encryption & Crypto Controls',
+      ]
+  CC6.2:
+    controls: ['Access Rights', 'Personnel Security']
+    policies: ['Access Control & Least Privilege', 'Background Screening & On/Off-boarding']
+  CC6.3:
+    controls: ['Access Rights', 'Personnel Security', 'Credential Management']
+    policies: ['Access Control & Least Privilege', 'Background Screening & On/Off-boarding']
+  CC6.4:
+    controls: ['Physical Access Control']
+    policies: ['Physical Security & Environmental']
+  CC6.5:
+    controls: ['Data Retention & Destruction', 'Asset Inventory', 'Encryption Key Management']
+    policies: ['Retention & Secure Disposal']
+  CC6.6:
+    controls: ['Network Security', 'Vulnerability Management', 'Remote-Work Security']
+    policies: ['Secure Configuration & Hardening', 'Remote Access & BYOD']
+  CC6.7:
+    controls: ['Secure Data Transfer', 'Network Security']
+    policies: ['Encryption & Crypto Controls', 'Information Sharing & Transfer']
+  CC6.8:
+    controls:
+      [
+        'Configuration & Patch Management',
+        'Endpoint Protection',
+        'Secure SDLC Integration',
+        'Supplier Security',
+      ]
+    policies:
+      [
+        'Vulnerability & Patch Management',
+        'Secure Software Development Lifecycle',
+        'Vendor & Third-Party Risk',
+      ]
+  CC7.1:
+    controls: ['Vulnerability Management', 'Configuration & Patch Management', 'Security Logging']
+    policies:
+      [
+        'Vulnerability & Patch Management',
+        'Secure Configuration & Hardening',
+        'Logging, Monitoring & Audit',
+      ]
+  CC7.2:
+    controls: ['Security Monitoring & Detection', 'Security Logging']
+    policies: ['Logging, Monitoring & Audit']
+  CC7.3:
+    controls: ['Security Incident Management', 'Security Monitoring & Detection']
+    policies: ['Incident Response & Breach Notification']
+  CC7.4:
+    controls: ['Security Incident Management']
+    policies: ['Incident Response & Breach Notification']
+  CC7.5:
+    controls:
+      ['Security Incident Management', 'Disaster Recovery Planning', 'Credential Management']
+    policies:
+      ['Incident Response & Breach Notification', 'Backup, Business Continuity & Disaster Recovery']
+  CC8.1:
+    controls: ['Change management', 'Secure SDLC Integration', 'Segregation of duties']
+    policies: ['Change & Release Management', 'Secure Software Development Lifecycle']
+  CC9.1:
+    controls: ['Disaster Recovery Planning', 'Risk Management', 'Resource Capacity Management']
+    policies: ['Backup, Business Continuity & Disaster Recovery', 'Risk Management']
+  CC9.2:
+    controls: ['Supplier Security', 'Asset Inventory']
+    policies: ['Vendor & Third-Party Risk']
+  A1.1:
+    controls: ['Resource Capacity Management', 'Security Monitoring & Detection']
+    policies: ['Backup, Business Continuity & Disaster Recovery', 'Logging, Monitoring & Audit']
+  A1.2:
+    controls: ['Disaster Recovery Planning', 'Physical Access Control']
+    policies:
+      ['Backup, Business Continuity & Disaster Recovery', 'Physical Security & Environmental']
+  A1.3:
+    controls: ['Disaster Recovery Planning']
+    policies: ['Backup, Business Continuity & Disaster Recovery']
+  PI1.1:
+    controls: ['Secure SDLC Integration', 'Change management']
+    policies: ['Secure Software Development Lifecycle', 'Change & Release Management']
+  PI1.2:
+    controls: ['Secure SDLC Integration']
+    policies: ['Secure Software Development Lifecycle']
+  PI1.3:
+    controls: ['Secure SDLC Integration', 'Security Monitoring & Detection']
+    policies: ['Secure Software Development Lifecycle']
+  PI1.4:
+    controls: ['Secure SDLC Integration', 'Secure Data Transfer']
+    policies: ['Secure Software Development Lifecycle', 'Information Sharing & Transfer']
+  PI1.5:
+    controls: ['Data Retention & Destruction', 'Security Logging', 'Disaster Recovery Planning']
+    policies: ['Backup, Business Continuity & Disaster Recovery', 'Data Classification & Handling']
+  C1.1:
+    controls:
+      [
+        'Information Classification',
+        'Encrypted Data at Rest',
+        'Encryption Key Management',
+        'Access Rights',
+      ]
+    policies: ['Data Classification & Handling', 'Encryption & Crypto Controls']
+  C1.2:
+    controls: ['Data Retention & Destruction']
+    policies: ['Retention & Secure Disposal']
+  P1.1:
+    controls: ['Data Privacy', 'Regulatory Liaison']
+    policies: ['Privacy & Data-Subject Rights']
+  P2.1:
+    controls: ['Data Privacy']
+    policies: ['Privacy & Data-Subject Rights']
+  P3.1:
+    controls: ['Data Privacy', 'Information Classification']
+    policies: ['Privacy & Data-Subject Rights', 'Data Classification & Handling']
+  P3.2:
+    controls: ['Data Privacy', 'Information Classification', 'Encrypted Data at Rest']
+    policies: ['Privacy & Data-Subject Rights', 'Data Classification & Handling']
+  P4.1:
+    controls: ['Data Privacy']
+    policies: ['Privacy & Data-Subject Rights', 'Data Classification & Handling']
+  P4.2:
+    controls: ['Data Retention & Destruction', 'Data Privacy']
+    policies: ['Retention & Secure Disposal', 'Privacy & Data-Subject Rights']
+  P4.3:
+    controls: ['Data Retention & Destruction']
+    policies: ['Retention & Secure Disposal']
+  P5.1:
+    controls: ['Data Privacy', 'Access Rights']
+    policies: ['Privacy & Data-Subject Rights']
+  P5.2:
+    controls: ['Data Privacy']
+    policies: ['Privacy & Data-Subject Rights']
+  P6.1:
+    controls: ['Data Privacy', 'Supplier Security', 'Secure Data Transfer']
+    policies:
+      [
+        'Information Sharing & Transfer',
+        'Vendor & Third-Party Risk',
+        'Privacy & Data-Subject Rights',
+      ]
+  P6.2:
+    controls: ['Data Privacy', 'Security Logging']
+    policies: ['Information Sharing & Transfer', 'Logging, Monitoring & Audit']
+  P6.3:
+    controls: ['Security Incident Management', 'Data Privacy']
+    policies: ['Incident Response & Breach Notification']
+  P6.4:
+    controls: ['Supplier Security']
+    policies: ['Vendor & Third-Party Risk']
+  P6.5:
+    controls: ['Supplier Security', 'Security Incident Management']
+    policies: ['Vendor & Third-Party Risk', 'Incident Response & Breach Notification']
+  P6.6:
+    controls: ['Security Incident Management', 'Regulatory Liaison']
+    policies: ['Incident Response & Breach Notification']
+  P6.7:
+    controls: ['Data Privacy']
+    policies: ['Privacy & Data-Subject Rights', 'Information Sharing & Transfer']
+  P7.1:
+    controls: ['Data Privacy']
+    policies: ['Privacy & Data-Subject Rights']
+  P8.1:
+    controls: ['Data Privacy', 'Regulatory Liaison']
+    policies: ['Privacy & Data-Subject Rights', 'Compliance & Regulatory Monitoring']

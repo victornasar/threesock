@@ -65,6 +65,8 @@ function result(f: Finding, ruleIndex: number, anchor: string) {
       severity: f.severity,
       dueDate: f.dueDate,
       repositoryLevel: repoLevel,
+      controls: f.controls,
+      policies: f.policies,
     },
     ...(f.status === 'accepted' && f.exception
       ? {

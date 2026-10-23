@@ -56,6 +56,31 @@ Top fixes
      secrets manager or environment variable. Rewriting git history does not un-leak a pushed secret.
 ```
 
+## GitHub checks (opt-in)
+
+`--github` adds read-only checks against the GitHub API: branch protection and rulesets, required signed commits, secret scanning and push protection, Dependabot alerts and their age, production environment reviewers, and organization 2FA and base permissions. It is the only feature that uses the network, and it runs only when you pass the flag.
+
+```sh
+GITHUB_TOKEN=$(gh auth token) npx threesock scan --github
+```
+
+A fine-grained token with **read-only** access to the repository is enough:
+
+| Permission | Used for |
+|---|---|
+| Metadata | Repository details, rulesets that apply to the branch |
+| Administration | Classic branch protection, ruleset bypass lists, security settings, Dependabot status |
+| Dependabot alerts | Alert age |
+| Code scanning alerts | Alert age |
+| Environments | Production reviewers |
+| Organization administration | 2FA requirement and base permission (organization owners only) |
+
+Anything the token cannot read is reported as inconclusive, naming the missing permission; it never fails the scan. The token is sent only to the GitHub API and is scrubbed from all output. Set `GITHUB_API_URL` for GitHub Enterprise Server, and `--github-repo owner/name` if the `origin` remote is not on GitHub.
+
+## Controls and policies
+
+Every finding lists the internal controls and policies it affects, using `mappings/controls.yaml`: a default catalogue of 35 controls and 25 policies mapped to all 61 criteria. To use your own catalogue, copy the file, edit it, and point `mappings:` in `threesock.yaml` at it.
+
 ## How scoring works
 
 Exactly as rubric section 1.1 specifies:
