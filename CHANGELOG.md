@@ -2,7 +2,7 @@
 
 All notable changes to threesock are recorded here. The JSON report has its own `schemaVersion`; changes to it are called out explicitly.
 
-## Unreleased
+## 0.1.0 - 2026-10-23
 
 ### Added
 - GitHub Action (`action/action.yml`): composite action that uploads SARIF, writes a job summary and gates on `fail-on`; inputs reach the shell only through environment variables.
